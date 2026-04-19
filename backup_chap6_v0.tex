@@ -1,0 +1,154 @@
+\chapter{Training General-Purpose Coding Agents with Trajectory Augmentation (\textit{proposed})}
+\label{chap:effective-analysis}
+
+
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{0.7\columnwidth}{!}{%
+\begin{tabular}{l ccc}
+\toprule
+\multirow{2}{*}{\bf Teacher Model} &
+\multicolumn{3}{c}{\bf SWE-bench Verified (Easy 50)} \\
+\cmidrule(lr){2-4}
+& Resolved \% & Localized \% & Non-Empty \% \\
+\midrule
+\sdlrow & \multicolumn{3}{c}{\textit{Base Model: Qwen2.5Coder-7B}} \\
+\midrule
+\textemdash & 2.0 & 4.0 & 8.0 \\
+Claude-3.7 (441)    & \textcolor{treegreen}{32.0} & 56.0 & 66.0 \\
+o3-mini (441)            & \textcolor{red}{0.0} & 0.0 & 0.0 \\
+o3-mini (edited) (441)    & \textcolor{treegreen}{10.0} & 56.0 & 66.0 \\
+\bottomrule
+\end{tabular}%
+}
+\caption{Results on training Qwen2.5Coder-7B on issue localization trajectories by distilling from different teacher models. We evaluate the methods on a subset of 50 instances from SWE-bench Verified. o3-mini (edited) indicates the same set of trajectories as o3-mini, but with reasoning and action steps combined. 
+}
+\label{ablation:o3mini}
+\end{table}
+
+
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{0.7\columnwidth}{!}{%
+\begin{tabular}{l ccc}
+\toprule
+\multirow{2}{*}{\bf Teacher Model} &
+\multicolumn{3}{c}{\bf SWE-bench Verified (Easy 50)} \\
+\cmidrule(lr){2-4}
+& Resolved \% & Localized \% & Non-Empty \% \\
+\midrule
+\sdlrow & \multicolumn{3}{c}{\textit{Base Model: Qwen2.5Coder-7B}} \\
+\midrule
+\textemdash & 2.0 & 4.0 & 8.0 \\
+Qwen2.5Coder-32B (399) & \textcolor{red}{4.0} & 20.0 & 48.0 \\
+Claude-3.7 (399)   & \textcolor{treegreen}{26.0} & 68.0 & 86.0 \\
+\bottomrule
+\end{tabular}%
+}
+\caption{Results on training Qwen2.5Coder-7B on issue localization trajectories by self-training and distilling from Claude-3.7. We evaluate the methods on a subset of SWE-bench Verified after training. 
+}
+\label{ablation:self-vs-claude}
+\end{table}
+
+
+\section{Overview}
+
+The ultimate goal of synthetic data generation is to construct training data that is both effective and scalable.
+In \autoref{chap:cmtrans} and \autoref{chap:repost}, we introduce two methods that improve the scalability of training data while maintaining effectiveness.
+In this chapter, we aim to pursue this goal from another direction: can we improve the effectiveness of training trajectories?
+
+Prior work has shown that training effectiveness depends on multiple factors.
+Most analyses are conducted under the setting of rejection sampling finetuning~\cite{rejection-sampling}: applying a teacher model to solve a set of problem instances, running evaluation, and training the student model on successful trajectories with supervised finetuning (SFT).
+SWE-Play~\cite{swe-play} and Hybrid-Gym~\cite{hybrid-gym} find that different training tasks have different impact.
+RepoST~\cite{repost}, SWE-Smith~\cite{swe-smith}, and Hybrid-Gym~\cite{hybrid-gym} show that the selection of training instances is crucial for model training (e.g., training on instances that are more challenging and cover more diverse repositories improves performance).
+SWE-Gym~\cite{swegym} demonstrates that the number of trajectories sampled from a single instance is an important factor.
+
+What previous research overlook is that \textbf{even successful trajectories generated from the same set of instances may have substantially different impact in training}.
+For instance, \autoref{ablation:o3mini} shows a large performance gap between distilling from Claude-3.7~\cite{claude37} and o3-mini~\cite{o3_mini}
+One of the reason we find is that o3-mini frequently separates the reasoning process and the corresponding actions (i.e., tool calls) into different agent steps (i.e., conversational turns).
+After training on such data, the agent collapses to the distribution of reasoning-only steps and does not learn to call tools at all.
+We verify this hypothesis by simply stitching adjacent reasoning and action steps into a single step in o3-mini trajectories (denoted as ``o3-mini (edited)''), which significantly improves the training performance.
+
+
+To better understand trajectory effectiveness, we propose analyses to answer the question: what are the characteristics that makes a trajectory effective or ineffective?
+The analyses cover two general aspects:
+(1) \textbf{the high-level problem-solving strategies}. Examples include the strategy to locate relevant code for a GitHub issue, and the iteration of solution implementation and verification. 
+For instance, we find that after implementing the solution, Claude-3.7 tends to verify it by reasoning or by running tests, but Qwen2.5-Coder-32B~\cite{qwen25coder} rarely double-checks the code it generates.
+(2) \textbf{the concrete actions taken by the agent}. A concrete example is that when exploring the repository, Claude-3.7 tends to use the \texttt{think} function multiple times to articulate its reasoning. In comparison, Qwen2.5-Coder-32B rarely uses this function.
+We then analyze whether each characteristic is beneficial or harmful for training via controlled experiments.
+For instance, to check whether adding reasoning steps helps, we can remove the thinking steps from Claude-3.7's trajectories, re-train the model, and compare the performance with the original trajectories.
+
+
+After identifying the beneficial and harmful characteristics, we propose two trajectory augmentation methods that inject beneficial characteristics into training trajectories.
+This enables us to obtain effective training trajectories with no or little reliance on expensive teacher models, reducing the cost of data construction.
+Particularly, we propose:
+(1) \textbf{trajectory generation with the collaboration of strong and weak teacher models}. For instance, we can use a strong teacher model (e.g., Claude-3.7) to generate a high-level plan, and then use a weak teacher model (e.g., Qwen2.5-Coder-32B) to resolve the problem by following that plan.
+(2) \textbf{trajectory post-editing}. After a trajectory is generated, we edit it to insert beneficial characteristics (e.g., by adding explicit \texttt{think} steps).
+
+
+We conduct the analyses on training datasets covering multiple tasks, including the SWE-Gym issue-solving dataset~\cite{swegym} and the Hybrid-Gym dataset containing four tasks: function localization, issue localization, dependency search, and function generation~\cite{hybrid-gym}.
+To validate the proposed trajectory augmentation methods, we evaluate the finetuned model on multiple coding agent benchmarks: the SWE-Bench issue-solving benchmark~\cite{swebench}, the SWT-Bench test generation benchmark~\cite{swt-bench}, and the Commit-0 library generation benchmark~\cite{commit0}.
+
+
+
+\section{Proposed Analyses}
+This section aims to identify the differences between strong model's and weak model's trajectories on the same set of instances.
+
+\subsection{Analyses Setup}
+Following previous work~\cite{swegym,R2EGym,swe-smith,swe-play,hybrid-gym}, we focus on the rejection sampling finetuning setting, where the training set is constructed by applying a teacher model to solve a set of problem instances and collecting successful trajectories. 
+
+We choose Claude-3.7 to be the strong teacher model, which is used for distillation in many previous work~\cite{swegym,R2EGym,swe-smith,swe-play,hybrid-gym}.
+We conduct pairwise comparison between Claude-3.7 and a list of weaker and more cost-efficient teacher models: Gemini-3-Flash~\cite{gemini3flash}, Qwen3-235B~\cite{qwen3}, and Qwen2.5-Coder-32B~\cite{qwen25coder}.
+Specifically, we apply the strong and weak model to the same set of instances, and select the ones where both models generate a successful trajectory.
+Then we apply an judge LLM (e.g., o3-mini~\cite{o3_mini} in our experiments) to analyze the differences in these trajectories.
+
+\subsection{Proposed Analysis on High-Level Strategies}
+We follow~\cite{hybrid-gym} and decompose the process to solve general coding agent tasks into five stages: planning, result reproduction, repository exploration, solution implementation, and solution verification, where the order of the stages is interchangeable.
+For each pair of trajectories, we apply the judge LLM to summarize their strategies to complete each stage and compare the differences. 
+Finally, we combine the comparison results of 20 pairs of trajectories and prompt the judge LLM again to summarize the pattern.
+
+Below is an example summary of the repository exploration strategies taken by Claude-3.7 and Qwen2.5-Coder-32B to resolve the same issue:
+Claude-3.7 comes up with a list of keywords, searches for Python files containing any of the keywords, locates the function containing the keyword, searches its name and reads the context to understand its functionality and usage, and finally checks if there are any test functions for this function.
+In comparison, Qwen2.5-Coder-32B only searches for one keyword. After locating the file, it scans the entire file to locate the function that is relevant to the issue.
+
+Note that this is just the initial version of the analysis method, which can be further improved.
+
+\subsection{Proposed Analysis on Concrete Actions}
+We also compare the concrete actions taken by different teacher models to achieve similar purposes.
+Similarly, given a pair of trajectories, we prompt the judge LLM to extract the actions (i.e., tool calls) that have similar purposes, and summarize their differences.
+
+For example, in one pair of trajectories, to conduct reasoning, Claude-3.7 calls the \texttt{think} function multiple times to generate and refine the high-level plan to locate the issue.
+In comparison, Qwen2.5-Coder-32B never calls the \texttt{think} function, and the reasoning process before each action is in general shorter than Claude-3.7.
+
+Similar to above, the detailed analysis method can also be further improved.
+
+\subsection{Proposed Analysis on the Effectiveness of Trajectory Characteristics}
+After identifying the characteristics of trajectories generated by different teacher models, we design controlled experiments to check whether each characteristic is beneficial or harmful.
+Specifically, we remove the characteristics from the corresponding trajectories and observe training outcome.
+
+As an example, after observing that Claude-3.7 locates the target function by searching for keywords in the file, and Qwen2.5-Coder-32B locates it by scanning the entire file, we interchange the function searching steps in both trajectories, re-train the student model, and compare the performance with the original set of trajectories.
+
+
+\section{Proposed Method}
+In this section, we propose two methods to inject beneficial characteristics into the trajectories generated by weaker but more cost-efficient teacher models.
+
+\subsection{Trajectory Generation with Strong-Weak Collaboration}
+The first method is to use the strong teacher model to provide auxiliary information to the weak teacher model.
+For instance, with the observation that the strong model's repository exploration strategy is more effective than the weak model's, we can first use the strong model to generate the detailed plan for issue localization (e.g., ``first search for Python files containing the following keywords, and then ...''), and then insert the plan into the weak model's input prompt.
+In comparison to using the strong model to generate the entire trajectory, this method only prompts it once, reducing the cost of generating training data.
+
+\subsection{Trajectory Post-Editing}
+Another method is to directly edit the trajectories generated by weak models.
+For instance, with the observation that Qwen2.5-Coder-32B does not use the \texttt{think} function effectively, we can prompt it to synthesize intermediate thinking steps and insert it into the trajectory.
+
+
+\section{Proposed Experiments}
+% \subsection{Proposed Experimental Setup}
+To verify the effectiveness of the two trajectory augmentation methods, we train the student model (e.g., Qwen2.5-Coder-32B) on the original trajectories and the augmented trajectories, separately, and then compare the performance.
+
+The proposed training datasets include the SWE-Gym issue-solving dataset~\cite{swegym} and the Hybrid-Gym dataset, which contains four tasks: function localization, issue localization, dependency search, and function generation~\cite{hybrid-gym}.
+The proposed evaluation datasets include the SWE-Bench issue-solving benchmark~\cite{swebench}, the SWT-Bench test generation benchmark~\cite{swt-bench}, and the Commit-0 library generation benchmark~\cite{commit0}.

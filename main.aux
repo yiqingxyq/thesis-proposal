@@ -1,0 +1,759 @@
+\relax 
+\providecommand\zref@newlabel[2]{}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\providecommand \oddpage@label [2]{}
+\citation{codet5}
+\citation{transcoderST}
+\citation{swegym}
+\citation{avatar}
+\citation{llm-aggrefact}
+\citation{sweagent}
+\citation{openhands}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces The timeline of how the paradigm of the collaboration between human and AI coding assistants shifts from script-level static code generation to project-level coding agent.\relax }}{1}{figure.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:proposal_intro}{{1.1}{1}{The timeline of how the paradigm of the collaboration between human and AI coding assistants shifts from script-level static code generation to project-level coding agent.\relax }{figure.caption.4}{}}
+\newlabel{fig:proposal_intro@cref}{{[figure][1][1]1.1}{[1][1][]1}}
+\citation{swe-smith}
+\citation{swe-smith}
+\citation{swe-play}
+\citation{qwen25coder}
+\citation{swe-smith,R2EGym}
+\citation{claude46}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}Thesis Overview}{3}{section.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Proposed Timeline}{4}{section.1.2}\protected@file@percent }
+\citation{swebench}
+\citation{swebench-pro}
+\citation{swebench-multimodal}
+\citation{multi-swe-bench}
+\citation{swt-bench}
+\citation{testgeneval}
+\citation{commit0}
+\citation{artifactsbench}
+\citation{sweperf}
+\citation{swefficiency}
+\citation{kernelbench}
+\citation{super}
+\citation{envbench}
+\citation{terminalbench}
+\citation{classeval,repocoder,codereval,evocodebench,deveval,R2E,repost}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Literature Review}{5}{chapter.2}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Coding Agent Overview}{5}{section.2.1}\protected@file@percent }
+\newlabel{sec:related-overview}{{2.1}{5}{Coding Agent Overview}{section.2.1}{}}
+\newlabel{sec:related-overview@cref}{{[section][1][2]2.1}{[1][5][]5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}Benchmarks for Coding Agents}{5}{subsection.2.1.1}\protected@file@percent }
+\citation{agentless}
+\citation{sweagent}
+\citation{openhands}
+\citation{sweagent}
+\citation{live-swe-agent}
+\citation{swe-search}
+\citation{openhands}
+\citation{swegym}
+\citation{swerl}
+\citation{mlagent}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}Coding Agent Infrastructure}{6}{subsection.2.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.3}Training Paradigms for Coding Agent}{6}{subsection.2.1.3}\protected@file@percent }
+\citation{swegym,R2EGym,swe-smith}
+\citation{qwen25coder}
+\citation{swegym}
+\citation{swebench}
+\citation{R2EGym}
+\citation{swe-smith}
+\citation{swe-play}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Scalable Coding Agent Training}{7}{section.2.2}\protected@file@percent }
+\newlabel{sec:related-scalable}{{2.2}{7}{Scalable Coding Agent Training}{section.2.2}{}}
+\newlabel{sec:related-scalable@cref}{{[section][2][2]2.2}{[1][7][]7}}
+\citation{gpt5,claude37,claude45}
+\citation{deepseekv3,kimik2,qwen25coder,qwen3,llama3modelcard}
+\citation{kimik2}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Generalizability of Coding Agents}{8}{section.2.3}\protected@file@percent }
+\newlabel{sec:related-generalizability}{{2.3}{8}{Generalizability of Coding Agents}{section.2.3}{}}
+\newlabel{sec:related-generalizability@cref}{{[section][3][2]2.3}{[1][8][]8}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Training Critique Models for Coding Agent}{8}{section.2.4}\protected@file@percent }
+\newlabel{sec:related-critique}{{2.4}{8}{Training Critique Models for Coding Agent}{section.2.4}{}}
+\newlabel{sec:related-critique@cref}{{[section][4][2]2.4}{[1][8][]8}}
+\@writefile{toc}{\contentsline {part}{I\hspace  {1em}Coding Agent Training with Scalable Synthetic Data}{9}{part.1}\protected@file@percent }
+\newlabel{part:scalability}{{I}{10}{Coding Agent Training with Scalable Synthetic Data}{part.1}{}}
+\newlabel{part:scalability@cref}{{[part][1][]I}{[1][10][]10}}
+\citation{plbart,codet5,transcoder}
+\citation{avatar}
+\citation{transcoder}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Constructing Scalable Code Translation Training Data with Comparable Corpora and Multiple References}{11}{chapter.3}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\newlabel{chap:cmtrans}{{3}{11}{Constructing Scalable Code Translation Training Data with Comparable Corpora and Multiple References}{chapter.3}{}}
+\newlabel{chap:cmtrans@cref}{{[chapter][3][]3}{[1][11][]11}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Introduction}{11}{section.3.1}\protected@file@percent }
+\citation{NMTComparableCorpora,low_resource_comp_corpora}
+\citation{avatar,xcodeeval}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces The standard pipeline for code translation (colored in light grey) and the CMTrans pipeline (colored in pink). The comparable corpora are both naturally occurring and model generated. We generate multiple references by CMTrans\xspace  . \relax }}{12}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:cmtrans_diagram_intro}{{3.1}{12}{The standard pipeline for code translation (colored in light grey) and the CMTrans pipeline (colored in pink). The comparable corpora are both naturally occurring and model generated. We generate multiple references by \cmtransours . \relax }{figure.caption.6}{}}
+\newlabel{fig:cmtrans_diagram_intro@cref}{{[figure][1][3]3.1}{[1][11][]12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces An example of parallel and comparable data. Parallel examples are line-by-line aligned. Programs in a comparable example may have different algorithms and structures (e.g., global code vs. class in this case), but may still contain lines that can be matched, as highlighted in pink, blue, and yellow.\relax }}{12}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:cmtrans_example_intro}{{3.2}{12}{An example of parallel and comparable data. Parallel examples are line-by-line aligned. Programs in a comparable example may have different algorithms and structures (e.g., global code vs. class in this case), but may still contain lines that can be matched, as highlighted in pink, blue, and yellow.\relax }{figure.caption.7}{}}
+\newlabel{fig:cmtrans_example_intro@cref}{{[figure][2][3]3.2}{[1][11][]12}}
+\citation{avatar}
+\newlabel{fig:cmtrans_ppl1}{{3.3a}{13}{Java-to-Python\relax }{figure.caption.8}{}}
+\newlabel{fig:cmtrans_ppl1@cref}{{[subfigure][1][3,3]3.3a}{[1][11][]13}}
+\newlabel{sub@fig:cmtrans_ppl1}{{a}{13}{Java-to-Python\relax }{figure.caption.8}{}}
+\newlabel{sub@fig:cmtrans_ppl1@cref}{{[subfigure][1][3,3]3.3a}{[1][11][]13}}
+\newlabel{fig:cmtrans_ppl2}{{3.3b}{13}{Python-to-Java\relax }{figure.caption.8}{}}
+\newlabel{fig:cmtrans_ppl2@cref}{{[subfigure][2][3,3]3.3b}{[1][11][]13}}
+\newlabel{sub@fig:cmtrans_ppl2}{{b}{13}{Python-to-Java\relax }{figure.caption.8}{}}
+\newlabel{sub@fig:cmtrans_ppl2@cref}{{[subfigure][2][3,3]3.3b}{[1][11][]13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Perplexity of validation set during finetuning.\relax }}{13}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:cmtrans_ppl}{{3.3}{13}{Perplexity of validation set during finetuning.\relax }{figure.caption.8}{}}
+\newlabel{fig:cmtrans_ppl@cref}{{[figure][3][3]3.3}{[1][11][]13}}
+\citation{codet5}
+\citation{codet5}
+\citation{transcoderST}
+\citation{codet5}
+\citation{transcoderST}
+\citation{codexglue,avatar,transcoder}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Methodology}{14}{section.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Problem Formulation}{14}{subsection.3.2.1}\protected@file@percent }
+\citation{avatar,xcodeeval,codenet}
+\citation{codesearchnet}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces An example of CMTrans\xspace  for Java-to-Python translation. We compare the pipeline of CMTrans\xspace  (\textit  {red}) to the standard pipeline (\textit  {grey}) of code translation (e.g., finetuned CodeT5, \citealt  {codet5}) and the self-supervision-and-fine-tuning method (\textit  {purple}) of TransCoder-ST (\citealt  {transcoderST}).\relax }}{15}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:cmtrans_method}{{3.4}{15}{An example of \cmtransours for Java-to-Python translation. We compare the pipeline of \cmtransours (\textit {red}) to the standard pipeline (\textit {grey}) of code translation (e.g., finetuned CodeT5, \citealt {codet5}) and the self-supervision-and-fine-tuning method (\textit {purple}) of TransCoder-ST (\citealt {transcoderST}).\relax }{figure.caption.9}{}}
+\newlabel{fig:cmtrans_method@cref}{{[figure][4][3]3.4}{[1][14][]15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Training on Comparable Corpora}{15}{subsection.3.2.2}\protected@file@percent }
+\newlabel{sec:comparable}{{3.2.2}{15}{Training on Comparable Corpora}{subsection.3.2.2}{}}
+\newlabel{sec:comparable@cref}{{[subsection][2][3,2]3.2.2}{[1][14][]15}}
+\citation{codesearchnet}
+\citation{codet5}
+\newlabel{eq:mtloss}{{3.1}{16}{Training on Comparable Corpora}{equation.3.2.1}{}}
+\newlabel{eq:mtloss@cref}{{[equation][1][3]3.1}{[1][16][]16}}
+\citation{avatar}
+\citation{transcoderST}
+\citation{transcoder}
+\citation{dobf}
+\citation{transcoderST}
+\citation{codebert}
+\citation{codet5}
+\citation{plbart}
+\citation{transcoderST}
+\citation{avatar}
+\citation{avatar}
+\citation{transcoder}
+\citation{transcoderST}
+\citation{codet5}
+\citation{transcoderST}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Number of problems per dataset. ``Gen-comp'' is the comparable corpora dataset we generate. C-to-J, C-to-P, ... denote the test examples of C++-to-Java, C++-to-Python translation, etc. * denotes data we build.\relax }}{17}{table.caption.10}\protected@file@percent }
+\newlabel{tab:cmtrans_dataset}{{3.1}{17}{Number of problems per dataset. ``Gen-comp'' is the comparable corpora dataset we generate. C-to-J, C-to-P, ... denote the test examples of C++-to-Java, C++-to-Python translation, etc. * denotes data we build.\relax }{table.caption.10}{}}
+\newlabel{tab:cmtrans_dataset@cref}{{[table][1][3]3.1}{[1][17][]17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Finetuning with Multiple References}{17}{subsection.3.2.3}\protected@file@percent }
+\newlabel{sec:multiref}{{3.2.3}{17}{Finetuning with Multiple References}{subsection.3.2.3}{}}
+\newlabel{sec:multiref@cref}{{[subsection][3][3,2]3.2.3}{[1][16][]17}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Results}{17}{section.3.3}\protected@file@percent }
+\citation{codet5}
+\citation{transcoder}
+\citation{xcodeeval}
+\citation{avatar}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Java-Python translation results on TransCoder-test. We copy the results of all the baselines reported by \citet  {avatar}. CB and CA@1 stand for CodeBLEU and Computational Accuracy. We highlight the \textbf  {best} results under each metric with Bold and underline the \underline  {second-best} results.\relax }}{18}{table.caption.11}\protected@file@percent }
+\newlabel{tab:cmtrans_main}{{3.2}{18}{Java-Python translation results on TransCoder-test. We copy the results of all the baselines reported by \citet {avatar}. CB and CA@1 stand for CodeBLEU and Computational Accuracy. We highlight the \textbf {best} results under each metric with Bold and underline the \underline {second-best} results.\relax }{table.caption.11}{}}
+\newlabel{tab:cmtrans_main@cref}{{[table][2][3]3.2}{[1][17][]18}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Java-C++ and Python-C++ translation results on TransCoder-test. The CA@1 results of TransCoder and TransCoder-ST are copied from the TransCoder-ST paper. We evaluate BLEU and CodeBLEU using their released checkpoints. We finetune and evaluate CodeT5 and TransCoder-ST-ft on our own.\relax }}{18}{table.caption.12}\protected@file@percent }
+\newlabel{tab:cmtrans_cpp}{{3.3}{18}{Java-C++ and Python-C++ translation results on TransCoder-test. The CA@1 results of TransCoder and TransCoder-ST are copied from the TransCoder-ST paper. We evaluate BLEU and CodeBLEU using their released checkpoints. We finetune and evaluate CodeT5 and TransCoder-ST-ft on our own.\relax }{table.caption.12}{}}
+\newlabel{tab:cmtrans_cpp@cref}{{[table][3][3]3.3}{[1][17][]18}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Experimental Setup}{18}{subsection.3.3.1}\protected@file@percent }
+\newlabel{sec:setup}{{3.3.1}{18}{Experimental Setup}{subsection.3.3.1}{}}
+\newlabel{sec:setup@cref}{{[subsection][1][3,3]3.3.1}{[1][18][]18}}
+\citation{codesearchnet}
+\citation{codenet}
+\citation{avatar}
+\citation{BLEU}
+\citation{codebleu}
+\citation{transcoderST,avatar}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Main results}{19}{subsection.3.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Ablation studies of CMTrans\xspace  . We report CA@1 results. J-to-P and P-to-J stand for Java-to-Python and Python-to-Java results. We put the experiments on each type of comparable corpora in an individual block.\relax }}{20}{table.caption.13}\protected@file@percent }
+\newlabel{tab:cmtrans_ablation}{{3.4}{20}{Ablation studies of \cmtransours . We report CA@1 results. J-to-P and P-to-J stand for Java-to-Python and Python-to-Java results. We put the experiments on each type of comparable corpora in an individual block.\relax }{table.caption.13}{}}
+\newlabel{tab:cmtrans_ablation@cref}{{[table][4][3]3.4}{[1][20][]20}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Performance Analysis}{20}{subsection.3.3.3}\protected@file@percent }
+\citation{codet5}
+\citation{codet5}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Translation results with different amount of parallel data. We mark the relative gain of CMTrans\xspace  over CodeT5.\relax }}{21}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:cmtrans_size}{{3.5}{21}{Translation results with different amount of parallel data. We mark the relative gain of \cmtransours over CodeT5.\relax }{figure.caption.14}{}}
+\newlabel{fig:cmtrans_size@cref}{{[figure][5][3]3.5}{[1][21][]21}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces The overlap between the types of constructs in the translation outputs and the ground truth translations. \relax }}{21}{table.caption.15}\protected@file@percent }
+\newlabel{tab:cmtrans_construct}{{3.5}{21}{The overlap between the types of constructs in the translation outputs and the ground truth translations. \relax }{table.caption.15}{}}
+\newlabel{tab:cmtrans_construct@cref}{{[table][5][3]3.5}{[1][21][]21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Influence of Comparable Corpora}{21}{subsection.3.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.6}{\ignorespaces Syntax Accuracy (SA) on TransCoder-test before finetuning, which evaluates whether the program can be compiled without syntax errors.\relax }}{22}{table.caption.16}\protected@file@percent }
+\newlabel{tab:cmtrans_EA}{{3.6}{22}{Syntax Accuracy (SA) on TransCoder-test before finetuning, which evaluates whether the program can be compiled without syntax errors.\relax }{table.caption.16}{}}
+\newlabel{tab:cmtrans_EA@cref}{{[table][6][3]3.6}{[1][21][]22}}
+\newlabel{fig:cmtrans_uni1}{{3.6a}{23}{Java-to-Python\relax }{figure.caption.17}{}}
+\newlabel{fig:cmtrans_uni1@cref}{{[subfigure][1][3,6]3.6a}{[1][22][]23}}
+\newlabel{sub@fig:cmtrans_uni1}{{a}{23}{Java-to-Python\relax }{figure.caption.17}{}}
+\newlabel{sub@fig:cmtrans_uni1@cref}{{[subfigure][1][3,6]3.6a}{[1][22][]23}}
+\newlabel{fig:cmtrans_uni2}{{3.6b}{23}{Python-to-Java\relax }{figure.caption.17}{}}
+\newlabel{fig:cmtrans_uni2@cref}{{[subfigure][2][3,6]3.6b}{[1][22][]23}}
+\newlabel{sub@fig:cmtrans_uni2}{{b}{23}{Python-to-Java\relax }{figure.caption.17}{}}
+\newlabel{sub@fig:cmtrans_uni2@cref}{{[subfigure][2][3,6]3.6b}{[1][22][]23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Number of unique correct translations in 20 candidates for each test example. We use beam search for each method, so the generated candidates are guaranteed to be distinct.\relax }}{23}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:cmtrans_unique}{{3.6}{23}{Number of unique correct translations in 20 candidates for each test example. We use beam search for each method, so the generated candidates are guaranteed to be distinct.\relax }{figure.caption.17}{}}
+\newlabel{fig:cmtrans_unique@cref}{{[figure][6][3]3.6}{[1][22][]23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Effect of the size of comparable corpora.\relax }}{23}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:cmtrans_hyper_cc}{{3.7}{23}{Effect of the size of comparable corpora.\relax }{figure.caption.18}{}}
+\newlabel{fig:cmtrans_hyper_cc@cref}{{[figure][7][3]3.7}{[1][23][]23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.5}Influence of Multiple References}{23}{subsection.3.3.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Effect of the max number of references for each example.\relax }}{24}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:cmtrans_hyper_multi}{{3.8}{24}{Effect of the max number of references for each example.\relax }{figure.caption.19}{}}
+\newlabel{fig:cmtrans_hyper_multi@cref}{{[figure][8][3]3.8}{[1][23][]24}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.6}Hyper-parameter analysis}{24}{subsection.3.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.7}Case Studies}{24}{subsection.3.3.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces Case study: a comparable example generated by our method with an NL-to-code generation model. We highlight the lines in the Java program and the generated Python program that can be matched.\relax }}{25}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:cmtrans_case}{{3.9}{25}{Case study: a comparable example generated by our method with an NL-to-code generation model. We highlight the lines in the Java program and the generated Python program that can be matched.\relax }{figure.caption.20}{}}
+\newlabel{fig:cmtrans_case@cref}{{[figure][9][3]3.9}{[1][25][]25}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Chapter Summary}{25}{section.3.4}\protected@file@percent }
+\citation{codesearchnet,swebench}
+\citation{NEXT,plum,RLTF}
+\citation{NEXT,plum}
+\citation{RLTF,exp_refine}
+\citation{swebench,R2E}
+\citation{super}
+\citation{repocoder,swebench,swegym}
+\citation{R2E}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Constructing Scalable Coding Agent Training Environments with Sandbox Testing}{26}{chapter.4}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\newlabel{chap:repost}{{4}{26}{Constructing Scalable Coding Agent Training Environments with Sandbox Testing}{chapter.4}{}}
+\newlabel{chap:repost@cref}{{[chapter][4][]4}{[1][26][]26}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Introduction}{26}{section.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces  We can use the coding environments built by \textsc  {RepoST}\xspace  for training and evaluation. We first apply the code generation model to generate candidate solutions with the original repository as context. Then we evaluate the solutions by executing the evaluation script built by \textsc  {RepoST}\xspace  . For evaluation, we directly compute Pass@$k$ scores. For training, we add all successful solutions to the train set and further finetune the model. \relax }}{27}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:repost_intro}{{4.1}{27}{We can use the coding environments built by \repostmethodName for training and evaluation. We first apply the code generation model to generate candidate solutions with the original repository as context. Then we evaluate the solutions by executing the evaluation script built by \repostmethodName . For evaluation, we directly compute Pass@$k$ scores. For training, we add all successful solutions to the train set and further finetune the model. \relax }{figure.caption.21}{}}
+\newlabel{fig:repost_intro@cref}{{[figure][1][4]4.1}{[1][27][]27}}
+\citation{repocoder}
+\citation{codex}
+\citation{codex}
+\citation{repocoder}
+\citation{sweagent,openhands}
+\citation{qwen25coder}
+\citation{swebench}
+\citation{swt-bench}
+\citation{commit0}
+\citation{R2E}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Methodology}{28}{section.4.2}\protected@file@percent }
+\citation{R2E}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces The \textsc  {RepoST}\xspace  coding environment construction framework. We sandbox the target function and its dependencies to a separate evaluation script for execution, which avoids building the entire repository. We design careful quality control strategies with iterative quality improvement and post-filtering. The outcome of \textsc  {RepoST}\xspace  is a set of executable repo-level coding environments, which can be used for training and evaluation.\relax }}{29}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:repost_framework}{{4.2}{29}{The \repostmethodName coding environment construction framework. We sandbox the target function and its dependencies to a separate evaluation script for execution, which avoids building the entire repository. We design careful quality control strategies with iterative quality improvement and post-filtering. The outcome of \repostmethodName is a set of executable repo-level coding environments, which can be used for training and evaluation.\relax }{figure.caption.22}{}}
+\newlabel{fig:repost_framework@cref}{{[figure][2][4]4.2}{[1][28][]29}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Repository and Function Curation}{29}{subsection.4.2.1}\protected@file@percent }
+\newlabel{sec:pre_curation}{{4.2.1}{29}{Repository and Function Curation}{subsection.4.2.1}{}}
+\newlabel{sec:pre_curation@cref}{{[subsection][1][4,2]4.2.1}{[1][28][]29}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Sandboxing: Key to Environment Setup}{29}{subsection.4.2.2}\protected@file@percent }
+\newlabel{sec:sandboxing}{{4.2.2}{29}{Sandboxing: Key to Environment Setup}{subsection.4.2.2}{}}
+\newlabel{sec:sandboxing@cref}{{[subsection][2][4,2]4.2.2}{[1][29][]29}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces  An example where the LLM successfully creates a mock class, \texttt  {Mock\_API}, to replace real external API calls. In this way, while the function body of the target function \texttt  {API\_call} remains exactly the same as in the original codebase, it can be executed without making real API calls. \relax }}{30}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:repost_sandboxing}{{4.3}{30}{An example where the LLM successfully creates a mock class, \texttt {Mock\_API}, to replace real external API calls. In this way, while the function body of the target function \texttt {API\_call} remains exactly the same as in the original codebase, it can be executed without making real API calls. \relax }{figure.caption.23}{}}
+\newlabel{fig:repost_sandboxing@cref}{{[figure][3][4]4.3}{[1][29][]30}}
+\citation{codex}
+\citation{R2E}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Test Generation}{31}{subsection.4.2.3}\protected@file@percent }
+\newlabel{sec:test_generation}{{4.2.3}{31}{Test Generation}{subsection.4.2.3}{}}
+\newlabel{sec:test_generation@cref}{{[subsection][3][4,2]4.2.3}{[1][31][]31}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.4}Quality Control and Filtering}{32}{subsection.4.2.4}\protected@file@percent }
+\newlabel{sec:quality_control}{{4.2.4}{32}{Quality Control and Filtering}{subsection.4.2.4}{}}
+\newlabel{sec:quality_control@cref}{{[subsection][4][4,2]4.2.4}{[1][32][]32}}
+\citation{repocoder}
+\citation{swegym}
+\citation{R2E}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Statistics of \textsc  {RepoST-Train}\xspace  and \textsc  {RepoST-Eval}\xspace  compared to existing \textbf  {execution-based} code generation datasets. R2E (Reproduced) applies the R2E method to the same set of input repositories as \textsc  {RepoST-Train}\xspace  , but results in a smaller number of repositories and examples. ``Repo?'' and ``Auto Test?'' refer to the repo-level setting and automatically generated tests.\relax }}{33}{table.caption.24}\protected@file@percent }
+\newlabel{tab:repost_stats}{{4.1}{33}{Statistics of \reposttrainsetName and \repostevalsetName compared to existing \textbf {execution-based} code generation datasets. R2E (Reproduced) applies the R2E method to the same set of input repositories as \reposttrainsetName , but results in a smaller number of repositories and examples. ``Repo?'' and ``Auto Test?'' refer to the repo-level setting and automatically generated tests.\relax }{table.caption.24}{}}
+\newlabel{tab:repost_stats@cref}{{[table][1][4]4.1}{[1][33][]33}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Resulting Datasets: \textsc  {RepoST-Train}\xspace  and \textsc  {RepoST-Eval}\xspace  }{33}{section.4.3}\protected@file@percent }
+\newlabel{sec:dataset_stats}{{4.3}{33}{Resulting Datasets: \reposttrainsetName and \repostevalsetName }{section.4.3}{}}
+\newlabel{sec:dataset_stats@cref}{{[section][3][4]4.3}{[1][33][]33}}
+\citation{deveval}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Detailed statistics of our datasets.\relax }}{34}{table.caption.25}\protected@file@percent }
+\newlabel{tab:repost_detailed_stats}{{4.2}{34}{Detailed statistics of our datasets.\relax }{table.caption.25}{}}
+\newlabel{tab:repost_detailed_stats@cref}{{[table][2][4]4.2}{[1][33][]34}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Agreement between human and GPT-4o on checking (1) the functionality equivalence between the sandboxed and original function, and (2) the test correctness. When GPT-4o predicts ``Yes'' for both quality checks, it has a high agreement with human.\relax }}{34}{table.caption.26}\protected@file@percent }
+\newlabel{tab:repost_agreement}{{4.3}{34}{Agreement between human and GPT-4o on checking (1) the functionality equivalence between the sandboxed and original function, and (2) the test correctness. When GPT-4o predicts ``Yes'' for both quality checks, it has a high agreement with human.\relax }{table.caption.26}{}}
+\newlabel{tab:repost_agreement@cref}{{[table][3][4]4.3}{[1][33][]34}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Quality Verification with Human Study}{34}{subsection.4.3.1}\protected@file@percent }
+\newlabel{sec:human_study}{{4.3.1}{34}{Quality Verification with Human Study}{subsection.4.3.1}{}}
+\newlabel{sec:human_study@cref}{{[subsection][1][4,3]4.3.1}{[1][34][]34}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Human study results. We ask the participants to complete the function with the same context we use to evaluate code generation models in \S  \ref {sec:code_gen_exps}.\relax }}{35}{table.caption.27}\protected@file@percent }
+\newlabel{tab:repost_human_study_1}{{4.4}{35}{Human study results. We ask the participants to complete the function with the same context we use to evaluate code generation models in \S \ref {sec:code_gen_exps}.\relax }{table.caption.27}{}}
+\newlabel{tab:repost_human_study_1@cref}{{[table][4][4]4.4}{[1][33][]35}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Code Generation Training Experiments}{35}{section.4.4}\protected@file@percent }
+\newlabel{sec:code_gen_exps}{{4.4}{35}{Code Generation Training Experiments}{section.4.4}{}}
+\newlabel{sec:code_gen_exps@cref}{{[section][4][4]4.4}{[1][35][]35}}
+\citation{starcoder2}
+\citation{qwen25coder}
+\citation{starcoder2}
+\citation{qwen25coder}
+\citation{codex}
+\citation{repocoder}
+\@writefile{lot}{\contentsline {table}{\numberline {4.5}{\ignorespaces Code generation training results. We evaluate Pass@1 for all experiments. For RepoEval, we use the ``Oracle'' repo-level context as used in their original paper. \relax }}{36}{table.caption.28}\protected@file@percent }
+\newlabel{tab:repost_main}{{4.5}{36}{Code generation training results. We evaluate Pass@1 for all experiments. For RepoEval, we use the ``Oracle'' repo-level context as used in their original paper. \relax }{table.caption.28}{}}
+\newlabel{tab:repost_main@cref}{{[table][5][4]4.5}{[1][36][]36}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Experimental Setup}{36}{subsection.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Experimental Results}{37}{subsection.4.4.2}\protected@file@percent }
+\citation{claude37}
+\citation{openhands}
+\newlabel{fig:repost_scaling_law}{{4.4a}{38}{Scaling law analysis.\relax }{figure.caption.29}{}}
+\newlabel{fig:repost_scaling_law@cref}{{[subfigure][1][4,4]4.4a}{[1][37][]38}}
+\newlabel{sub@fig:repost_scaling_law}{{a}{38}{Scaling law analysis.\relax }{figure.caption.29}{}}
+\newlabel{sub@fig:repost_scaling_law@cref}{{[subfigure][1][4,4]4.4a}{[1][37][]38}}
+\newlabel{fig:repost_diversity_study}{{4.4b}{38}{Repo diversity.\relax }{figure.caption.29}{}}
+\newlabel{fig:repost_diversity_study@cref}{{[subfigure][2][4,4]4.4b}{[1][37][]38}}
+\newlabel{sub@fig:repost_diversity_study}{{b}{38}{Repo diversity.\relax }{figure.caption.29}{}}
+\newlabel{sub@fig:repost_diversity_study@cref}{{[subfigure][2][4,4]4.4b}{[1][37][]38}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces (a) Pass@1 scores on RepoEval with different numbers of training examples. (b) Pass@1 scores on RepoEval with different methods to sample 2,000 training examples. Sample-by-Example has a broader repository coverage and achieves better Pass@1. The performance is further enhanced with RFT (Distill). \relax }}{38}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:repost_analysis}{{4.4}{38}{(a) Pass@1 scores on RepoEval with different numbers of training examples. (b) Pass@1 scores on RepoEval with different methods to sample 2,000 training examples. Sample-by-Example has a broader repository coverage and achieves better Pass@1. The performance is further enhanced with RFT (Distill). \relax }{figure.caption.29}{}}
+\newlabel{fig:repost_analysis@cref}{{[figure][4][4]4.4}{[1][37][]38}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Coding Agent Training Experiments}{38}{section.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Experimental Setup}{38}{subsection.4.5.1}\protected@file@percent }
+\citation{swebench}
+\citation{swt-bench}
+\citation{commit0}
+\@writefile{lot}{\contentsline {table}{\numberline {4.6}{\ignorespaces Performance of the Qwen2.5Coder-7B agent on SWE-Bench Verified, SWT-Bench Verified, and Commit-0 Lite before and after training. \relax }}{39}{table.caption.30}\protected@file@percent }
+\newlabel{tab:repost-agent}{{4.6}{39}{Performance of the Qwen2.5Coder-7B agent on SWE-Bench Verified, SWT-Bench Verified, and Commit-0 Lite before and after training. \relax }{table.caption.30}{}}
+\newlabel{tab:repost-agent@cref}{{[table][6][4]4.6}{[1][39][]39}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Experimental Results}{39}{subsection.4.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Chapter Summary}{39}{section.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {part}{II\hspace  {1em}Training Coding Agents that Generalize across Tasks}{41}{part.2}\protected@file@percent }
+\newlabel{part:generalizability}{{II}{42}{Training Coding Agents that Generalize across Tasks}{part.2}{}}
+\newlabel{part:generalizability@cref}{{[part][2][]II}{[1][42][]42}}
+\citation{swegym}
+\citation{swegym}
+\citation{sweagent,openhands}
+\citation{swebench}
+\citation{swegym,R2EGym,swe-smith}
+\citation{valerie-interaction}
+\citation{swe-play}
+\citation{swegym}
+\citation{swe-play}
+\citation{swegym,swe-smith,R2EGym}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Training General-Purpose Coding Agents with Scalable Tasks \textcolor {aquablue}{(\textit  {in-progress})}}{43}{chapter.5}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\newlabel{chap:hybrid-gym}{{5}{43}{Training General-Purpose Coding Agents with Scalable Tasks \textcolor {aquablue}{(\textit {in-progress})}}{chapter.5}{}}
+\newlabel{chap:hybrid-gym@cref}{{[chapter][5][]5}{[1][43][]43}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Introduction}{43}{section.5.1}\protected@file@percent }
+\citation{swegym}
+\citation{swebench}
+\citation{swt-bench}
+\citation{commit0}
+\citation{swe-play}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces (\textit  {\textbf  {Left}}) We decompose general coding agent tasks into a set of intermediate components and compute the percentage of agent actions spent on each component. Our training tasks partially cover verification and fully cover reasoning, repository exploration, and implementation, which consist of around 68\% of the actions. \textit  {(\textbf  {Right})} Example actions for each component. Compared to a baseline training method, SWE-Gym\nobreakspace  {}\cite  {swegym}, training with our \textsc  {Hybrid-Gym}\xspace  significantly reduces failures due to insufficient reasoning, insufficient exploration, and failed file editing, improving the final resolved rate on SWE-Bench Verified from 10.6\% to 15.0\%. \relax }}{44}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:intro}{{5.1}{44}{(\textit {\textbf {Left}}) We decompose general coding agent tasks into a set of intermediate components and compute the percentage of agent actions spent on each component. Our training tasks partially cover verification and fully cover reasoning, repository exploration, and implementation, which consist of around 68\% of the actions. \textit {(\textbf {Right})} Example actions for each component. Compared to a baseline training method, SWE-Gym~\cite {swegym}, training with our \repostmethodname significantly reduces failures due to insufficient reasoning, insufficient exploration, and failed file editing, improving the final resolved rate on SWE-Bench Verified from 10.6\% to 15.0\%. \relax }{figure.caption.31}{}}
+\newlabel{fig:intro@cref}{{[figure][1][5]5.1}{[1][43][]44}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces The use of Linux commands for repository exploration in our proposed training tasks (left) and downstream tasks (right). We show the percentage of each command used in the agent steps targeting repository exploration. \relax }}{45}{table.caption.32}\protected@file@percent }
+\newlabel{tab:cmd-category}{{5.1}{45}{The use of Linux commands for repository exploration in our proposed training tasks (left) and downstream tasks (right). We show the percentage of each command used in the agent steps targeting repository exploration. \relax }{table.caption.32}{}}
+\newlabel{tab:cmd-category@cref}{{[table][1][5]5.1}{[1][45][]45}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces We categorize the agent's actions based on the intermediate components of the task, where the categories are pre-defined. \relax }}{45}{table.caption.33}\protected@file@percent }
+\newlabel{tab:action-category}{{5.2}{45}{We categorize the agent's actions based on the intermediate components of the task, where the categories are pre-defined. \relax }{table.caption.33}{}}
+\newlabel{tab:action-category@cref}{{[table][2][5]5.2}{[1][45][]45}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Methodology}{45}{section.5.2}\protected@file@percent }
+\newlabel{sec:methodology}{{5.2}{45}{Methodology}{section.5.2}{}}
+\newlabel{sec:methodology@cref}{{[section][2][5]5.2}{[1][45][]45}}
+\citation{swegym,R2EGym,swe-play}
+\citation{claude45}
+\citation{openhands}
+\citation{o3_mini}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces The error analysis of different methods on 50 instances sampled from SWE-Bench Verified.\relax }}{46}{figure.caption.34}\protected@file@percent }
+\newlabel{fig:error-analysis}{{5.2}{46}{The error analysis of different methods on 50 instances sampled from SWE-Bench Verified.\relax }{figure.caption.34}{}}
+\newlabel{fig:error-analysis@cref}{{[figure][2][5]5.2}{[1][45][]46}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Analysis of Coding Agent Task Transferability}{46}{subsection.5.2.1}\protected@file@percent }
+\newlabel{sec:analysis-methodology}{{5.2.1}{46}{Analysis of Coding Agent Task Transferability}{subsection.5.2.1}{}}
+\newlabel{sec:analysis-methodology@cref}{{[subsection][1][5,2]5.2.1}{[1][46][]46}}
+\citation{swe-smith,swe-play}
+\citation{openhands}
+\citation{qwen25coder}
+\citation{swegym}
+\citation{claude45}
+\citation{codex}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Principles for Training Task Design}{48}{subsection.5.2.2}\protected@file@percent }
+\newlabel{sec:principle}{{5.2.2}{48}{Principles for Training Task Design}{subsection.5.2.2}{}}
+\newlabel{sec:principle@cref}{{[subsection][2][5,2]5.2.2}{[1][47][]48}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}\textsc  {Hybrid-Gym}\xspace  Tasks}{48}{subsection.5.2.3}\protected@file@percent }
+\newlabel{sec:tasks}{{5.2.3}{48}{\repostmethodname Tasks}{subsection.5.2.3}{}}
+\newlabel{sec:tasks@cref}{{[subsection][3][5,2]5.2.3}{[1][48][]48}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces The average number of OpenHands tools called in each trajectory.\relax }}{49}{table.caption.35}\protected@file@percent }
+\newlabel{tab:openhands-tool-distribution}{{5.3}{49}{The average number of OpenHands tools called in each trajectory.\relax }{table.caption.35}{}}
+\newlabel{tab:openhands-tool-distribution@cref}{{[table][3][5]5.3}{[1][48][]49}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Performance of the student and teacher models on a subset of instances sampled from each training task.\relax }}{49}{table.caption.36}\protected@file@percent }
+\newlabel{tab:distillation-sanity-check}{{5.4}{49}{Performance of the student and teacher models on a subset of instances sampled from each training task.\relax }{table.caption.36}{}}
+\newlabel{tab:distillation-sanity-check@cref}{{[table][4][5]5.4}{[1][48][]49}}
+\citation{repost}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}Verification of \textsc  {Hybrid-Gym}\xspace  Tasks}{50}{subsection.5.2.4}\protected@file@percent }
+\newlabel{sec:task-verification}{{5.2.4}{50}{Verification of \repostmethodname Tasks}{subsection.5.2.4}{}}
+\newlabel{sec:task-verification@cref}{{[subsection][4][5,2]5.2.4}{[1][50][]50}}
+\citation{swe-smith}
+\citation{claude45}
+\citation{claude37}
+\citation{qwen3}
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces Statistics of \textsc  {Hybrid-Gym}\xspace  and its subsets. Following SWE-Smith, we report the average per-instance cost of setting up the training environment for rollout. Compared to existing datasets, \textsc  {Hybrid-Gym}\xspace  covers more repositories and requires only 2 docker images to build all training instances.\relax }}{51}{table.caption.37}\protected@file@percent }
+\newlabel{tab:stat}{{5.5}{51}{Statistics of \repostmethodname and its subsets. Following SWE-Smith, we report the average per-instance cost of setting up the training environment for rollout. Compared to existing datasets, \repostmethodname covers more repositories and requires only 2 docker images to build all training instances.\relax }{table.caption.37}{}}
+\newlabel{tab:stat@cref}{{[table][5][5]5.5}{[1][50][]51}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Results}{51}{section.5.3}\protected@file@percent }
+\newlabel{sec:exp}{{5.3}{51}{Results}{section.5.3}{}}
+\newlabel{sec:exp@cref}{{[section][3][5]5.3}{[1][51][]51}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Experimental Setup}{51}{subsection.5.3.1}\protected@file@percent }
+\citation{swe-play}
+\citation{swebench}
+\citation{swt-bench}
+\citation{commit0}
+\citation{swegym}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Scaling law analysis. Performance on SWE-bench Verified improves consistently as training data size increases from around 5\% (250 trajectories) to 100\% (4.4k trajectories).\relax }}{52}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:scaling}{{5.3}{52}{Scaling law analysis. Performance on SWE-bench Verified improves consistently as training data size increases from around 5\% (250 trajectories) to 100\% (4.4k trajectories).\relax }{figure.caption.38}{}}
+\newlabel{fig:scaling@cref}{{[figure][3][5]5.3}{[1][50][]52}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Main Results}{52}{subsection.5.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces Results on three real-world coding tasks. We show whether the datasets contain swe, swt, cmt, or synthetic tasks (syn) in training. Results with a white background are \textbf  {task transfer} results. Results with a light grey background are trained with in-domain tasks. We highlight the best result for each dataset and show the relative \textcolor {treegreen}{gain} and \textcolor {red}{loss} compared to the base model, Qwen2.5Coder. \textsc  {Hybrid-Gym}\xspace  achieves strong task transfer performances across all three benchmarks and further improves in-domain datasets (e.g., SWE-Play). \relax }}{53}{table.caption.39}\protected@file@percent }
+\newlabel{tab:main}{{5.6}{53}{Results on three real-world coding tasks. We show whether the datasets contain swe, swt, cmt, or synthetic tasks (syn) in training. Results with a white background are \textbf {task transfer} results. Results with a light grey background are trained with in-domain tasks. We highlight the best result for each dataset and show the relative \textcolor {treegreen}{gain} and \textcolor {red}{loss} compared to the base model, Qwen2.5Coder. \repostmethodname achieves strong task transfer performances across all three benchmarks and further improves in-domain datasets (e.g., SWE-Play). \relax }{table.caption.39}{}}
+\newlabel{tab:main@cref}{{[table][6][5]5.6}{[1][52][]53}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Performance of training Qwen2.5Coder-7B on each of the \textsc  {Hybrid-Gym}\xspace  tasks and the issue-solving task. We sample 500 instances from each of our tasks. Even without finetuning on issue-solving, function localization achieves a larger performance gain than SWE-Gym, which has 491 issue-solving instances. We report the resolved rates on SWE-Bench Verified, SWT-Bench Verified, and Commit-0 Lite. \relax }}{54}{table.caption.40}\protected@file@percent }
+\newlabel{tab:single-task}{{5.7}{54}{Performance of training Qwen2.5Coder-7B on each of the \repostmethodname tasks and the issue-solving task. We sample 500 instances from each of our tasks. Even without finetuning on issue-solving, function localization achieves a larger performance gain than SWE-Gym, which has 491 issue-solving instances. We report the resolved rates on SWE-Bench Verified, SWT-Bench Verified, and Commit-0 Lite. \relax }{table.caption.40}{}}
+\newlabel{tab:single-task@cref}{{[table][7][5]5.7}{[1][53][]54}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Detailed Results}{54}{subsection.5.3.3}\protected@file@percent }
+\citation{deepseekv3}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Controlled experiments on training data characteristics. (a)\nobreakspace  {}\textbf  {Output Format:} Removing the file editing actions (\texttt  {str\_replace}) from function localization trajectories causes a large drop in SWE-bench resolution rate. (b)\nobreakspace  {}\textbf  {Repo-Exploration:} script-level code generation (LCB) does not effectively transfer to repo-level issue-solving and even underperforms documentation generation, a simple repo-level task. (c)\nobreakspace  {}\textbf  {Task Complexity:} Transfer improves as training tasks become more complex. (d)\nobreakspace  {}\textbf  {Trajectory Complexity:} With a fixed data size, training on longer (more agent steps) trajectories substantially improves downstream performance.\relax }}{55}{figure.caption.41}\protected@file@percent }
+\newlabel{fig:ablation}{{5.4}{55}{Controlled experiments on training data characteristics. (a)~\textbf {Output Format:} Removing the file editing actions (\texttt {str\_replace}) from function localization trajectories causes a large drop in SWE-bench resolution rate. (b)~\textbf {Repo-Exploration:} script-level code generation (LCB) does not effectively transfer to repo-level issue-solving and even underperforms documentation generation, a simple repo-level task. (c)~\textbf {Task Complexity:} Transfer improves as training tasks become more complex. (d)~\textbf {Trajectory Complexity:} With a fixed data size, training on longer (more agent steps) trajectories substantially improves downstream performance.\relax }{figure.caption.41}{}}
+\newlabel{fig:ablation@cref}{{[figure][4][5]5.4}{[1][54][]55}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Analysis of Task Transferability}{55}{section.5.4}\protected@file@percent }
+\newlabel{sec:controlled-exp}{{5.4}{55}{Analysis of Task Transferability}{section.5.4}{}}
+\newlabel{sec:controlled-exp@cref}{{[section][4][5]5.4}{[1][54][]55}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Output Format Must Match Downstream Tasks}{55}{subsection.5.4.1}\protected@file@percent }
+\citation{livecodebench}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Script-level Agentic Tasks Do NOT Generalize to Repo-level Tasks}{56}{subsection.5.4.2}\protected@file@percent }
+\newlabel{sec:ablation_lcb}{{5.4.2}{56}{Script-level Agentic Tasks Do NOT Generalize to Repo-level Tasks}{subsection.5.4.2}{}}
+\newlabel{sec:ablation_lcb@cref}{{[subsection][2][5,4]5.4.2}{[1][56][]56}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}Task and Trajectory Complexity Matters}{56}{subsection.5.4.3}\protected@file@percent }
+\newlabel{sec:ablation_complexity}{{5.4.3}{56}{Task and Trajectory Complexity Matters}{subsection.5.4.3}{}}
+\newlabel{sec:ablation_complexity@cref}{{[subsection][3][5,4]5.4.3}{[1][56][]56}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Effect of teacher model and data selection. (a) Effect of \textbf  {sampling strategy} at fixed training budget. Repository diversity improves training but using the same repositories as in evaluation does not. (b) training on issue localization trajectories with different \textbf  {teacher models}. o3-mini (edited) indicates the same set of trajectories as o3-mini, but with text and action steps combined. \relax }}{57}{figure.caption.42}\protected@file@percent }
+\newlabel{fig:sampling_teacher}{{5.5}{57}{Effect of teacher model and data selection. (a) Effect of \textbf {sampling strategy} at fixed training budget. Repository diversity improves training but using the same repositories as in evaluation does not. (b) training on issue localization trajectories with different \textbf {teacher models}. o3-mini (edited) indicates the same set of trajectories as o3-mini, but with text and action steps combined. \relax }{figure.caption.42}{}}
+\newlabel{fig:sampling_teacher@cref}{{[figure][5][5]5.5}{[1][56][]57}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.4}Even Successful Trajectories of the Same Task Instances may have Different Impact}{57}{subsection.5.4.4}\protected@file@percent }
+\citation{repost,swe-smith}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.5}Sampling Strategies Affects Effectiveness}{58}{subsection.5.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Chapter Summary}{58}{section.5.5}\protected@file@percent }
+\citation{hybrid-gym}
+\citation{rejection-sampling}
+\citation{swegym}
+\citation{swe-smith}
+\citation{repost}
+\citation{swe-smith}
+\citation{hybrid-gym}
+\citation{hybrid-gym}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}On the Agent Behaviors that Generalize across Coding Tasks \textcolor {mediumgreen}{(\textit  {proposed})}}{60}{chapter.6}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\newlabel{chap:effective-analysis}{{6}{60}{On the Agent Behaviors that Generalize across Coding Tasks \textcolor {mediumgreen}{(\textit {proposed})}}{chapter.6}{}}
+\newlabel{chap:effective-analysis@cref}{{[chapter][6][]6}{[1][60][]60}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Introduction}{60}{section.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Results on training Qwen2.5Coder-7B on successful trajectories of the exact same 400 function localization instances generated by Claude-3.7, Qwen2.5Coder-32B, and Qwen2.5Coder-32B with the more detailed prompt we develop in the preliminary experiments (denoted as Advanced Prompt). We evaluate the student models on a subset of the SWE-bench Verified issue-solving dataset after training. \relax }}{61}{table.caption.43}\protected@file@percent }
+\newlabel{ablation:self-vs-claude}{{6.1}{61}{Results on training Qwen2.5Coder-7B on successful trajectories of the exact same 400 function localization instances generated by Claude-3.7, Qwen2.5Coder-32B, and Qwen2.5Coder-32B with the more detailed prompt we develop in the preliminary experiments (denoted as Advanced Prompt). We evaluate the student models on a subset of the SWE-bench Verified issue-solving dataset after training. \relax }{table.caption.43}{}}
+\newlabel{ablation:self-vs-claude@cref}{{[table][1][6]6.1}{[1][60][]61}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Frequency of infile keyword searching actions in the training trajectories of Qwen-32B and Claude-3.7 and the evaluation trajectories of their student models. We observe that the student models inherit the teacher's strategies in training trajectories.\relax }}{62}{table.caption.44}\protected@file@percent }
+\newlabel{tab:plus:prelim1}{{6.2}{62}{Frequency of infile keyword searching actions in the training trajectories of Qwen-32B and Claude-3.7 and the evaluation trajectories of their student models. We observe that the student models inherit the teacher's strategies in training trajectories.\relax }{table.caption.44}{}}
+\newlabel{tab:plus:prelim1@cref}{{[table][2][6]6.2}{[1][62][]62}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Limitations of Preliminary Experiments}{62}{section.6.2}\protected@file@percent }
+\newlabel{plus:sec:limpreliminary}{{6.2}{62}{Limitations of Preliminary Experiments}{section.6.2}{}}
+\newlabel{plus:sec:limpreliminary@cref}{{[section][2][6]6.2}{[1][62][]62}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Proposed Method: A More Comprehensive Analysis on Agent Behaviors that Affect Distillation Performance}{63}{section.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Proposed Method 1: Categorization of Agent Behaviors}{63}{subsection.6.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Proposed Method 2: Controlled Experiments based on Trajectory Editing or Data Selection}{64}{subsection.6.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Proposed Method 3: Extend to Multiple Model Pairs and Tasks}{65}{subsection.6.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Training Critique Models to Assist Coding Agents}{66}{part.3}\protected@file@percent }
+\newlabel{part:usage}{{III}{67}{Training Critique Models to Assist Coding Agents}{part.3}{}}
+\newlabel{part:usage@cref}{{[part][3][]III}{[1][67][]67}}
+\citation{hallucination-survey,empirical-factuality}
+\citation{finetuning-on-new,understand-finetuning,unfamiliar-finetuning}
+\citation{ITI,DoLA}
+\citation{FAVA,EVER}
+\citation{FactTune}
+\citation{EVER}
+\citation{finetuning-on-new,understand-finetuning}
+\citation{self-bias}
+\citation{prometheus,AutoJ}
+\citation{FLAMe}
+\citation{longform}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Improving Generator Factuality by Training an Evaluator Model}{68}{chapter.7}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\newlabel{chap:fence}{{7}{68}{Improving Generator Factuality by Training an Evaluator Model}{chapter.7}{}}
+\newlabel{chap:fence@cref}{{[chapter][7][]7}{[1][68][]68}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Introduction}{68}{section.7.1}\protected@file@percent }
+\citation{factscore}
+\citation{truthfulqa}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces \textit  {(Left)} The framework to train an evaluator, \textsc  {FenCE}\xspace  , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit  {(Right)} The framework to improve model factuality with \textsc  {FenCE}\xspace  . We construct training data by leveraging \textsc  {FenCE}\xspace  to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }}{69}{figure.caption.45}\protected@file@percent }
+\newlabel{fig:overview}{{7.1}{69}{\textit {(Left)} The framework to train an evaluator, \fencemodelname , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit {(Right)} The framework to improve model factuality with \fencemodelname . We construct training data by leveraging \fencemodelname to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }{figure.caption.45}{}}
+\newlabel{fig:overview@cref}{{[figure][1][7]7.1}{[1][68][]69}}
+\citation{FLAMe}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Framework of evaluator training. (\textit  {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit  {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }}{70}{figure.caption.46}\protected@file@percent }
+\newlabel{fig:evaluator_train}{{7.2}{70}{Framework of evaluator training. (\textit {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }{figure.caption.46}{}}
+\newlabel{fig:evaluator_train@cref}{{[figure][2][7]7.2}{[1][70][]70}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Methodology}{70}{section.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}\textsc  {FenCE}\xspace  : Factuality Evaluator Training}{70}{subsection.7.2.1}\protected@file@percent }
+\newlabel{sec:evaluator_training}{{7.2.1}{70}{\fencemodelname : Factuality Evaluator Training}{subsection.7.2.1}{}}
+\newlabel{sec:evaluator_training@cref}{{[subsection][1][7,2]7.2.1}{[1][70][]70}}
+\citation{understand-finetuning,finetuning-on-new}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces  The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \textsc  {FenCE}\xspace  to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit  {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit  {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }}{72}{figure.caption.47}\protected@file@percent }
+\newlabel{fig:revise}{{7.3}{72}{The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \fencemodelname to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }{figure.caption.47}{}}
+\newlabel{fig:revise@cref}{{[figure][3][7]7.3}{[1][72][]72}}
+\newlabel{eq:evaluator_sft}{{7.1}{72}{\fencemodelname : Factuality Evaluator Training}{equation.7.2.1}{}}
+\newlabel{eq:evaluator_sft@cref}{{[equation][1][7]7.1}{[1][72][]72}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}Improving Generator Factuality with \textsc  {FenCE}\xspace  }{72}{subsection.7.2.2}\protected@file@percent }
+\newlabel{sec:improve_factuality}{{7.2.2}{72}{Improving Generator Factuality with \fencemodelname }{subsection.7.2.2}{}}
+\newlabel{sec:improve_factuality@cref}{{[subsection][2][7,2]7.2.2}{[1][72][]72}}
+\citation{DPO}
+\citation{DPO}
+\citation{FLAMe}
+\citation{xsum-hallucination}
+\citation{QAGS}
+\citation{FRANK}
+\citation{ragtruth}
+\citation{factscore}
+\citation{Q2}
+\citation{faithdial}
+\citation{begin}
+\citation{llm-aggrefact}
+\citation{llm-aggrefact}
+\citation{llm-aggrefact}
+\citation{FLAMe}
+\citation{llm-aggrefact}
+\citation{llm-aggrefact}
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{74}{section.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{74}{subsection.7.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Main Results}{74}{subsection.7.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet  {llm-aggrefact}. \relax }}{75}{table.caption.48}\protected@file@percent }
+\newlabel{tab:res-llm-aggrefact}{{7.1}{75}{Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet {llm-aggrefact}. \relax }{table.caption.48}{}}
+\newlabel{tab:res-llm-aggrefact@cref}{{[table][1][7]7.1}{[1][74][]75}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{75}{subsection.7.3.3}\protected@file@percent }
+\citation{EVER,self-eval-skt}
+\citation{factscore}
+\citation{truthfulqa}
+\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces  The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }}{76}{table.caption.49}\protected@file@percent }
+\newlabel{tab:aug-acc}{{7.2}{76}{The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }{table.caption.49}{}}
+\newlabel{tab:aug-acc@cref}{{[table][2][7]7.2}{[1][75][]76}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{76}{section.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{76}{subsection.7.4.1}\protected@file@percent }
+\citation{FactTune}
+\citation{self-eval-skt}
+\citation{EVER}
+\citation{RAG}
+\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces  Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \textsc  {FenCE}\xspace  . \relax }}{77}{table.caption.50}\protected@file@percent }
+\newlabel{tab:res-factscore}{{7.3}{77}{Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \fencemodelname . \relax }{table.caption.50}{}}
+\newlabel{tab:res-factscore@cref}{{[table][3][7]7.3}{[1][77][]77}}
+\citation{ITI,DoLA}
+\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces  Ablation study that compares different training recipes when equipped with \textsc  {FenCE}\xspace  as the evaluator. ``SFT + \textsc  {FenCE}\xspace  '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \textsc  {FenCE}\xspace  evaluator. \relax }}{78}{table.caption.51}\protected@file@percent }
+\newlabel{tab:res-ablation}{{7.4}{78}{Ablation study that compares different training recipes when equipped with \fencemodelname as the evaluator. ``SFT + \fencemodelname '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \fencemodelname evaluator. \relax }{table.caption.51}{}}
+\newlabel{tab:res-ablation@cref}{{[table][4][7]7.4}{[1][77][]78}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.2}Main Results}{78}{subsection.7.4.2}\protected@file@percent }
+\newlabel{fig:response_shift_distribution_claims}{{7.4a}{79}{Distribution of claims\relax }{figure.caption.52}{}}
+\newlabel{fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][77][]79}}
+\newlabel{sub@fig:response_shift_distribution_claims}{{a}{79}{Distribution of claims\relax }{figure.caption.52}{}}
+\newlabel{sub@fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][77][]79}}
+\newlabel{fig:response_shift_refused_responses}{{7.4b}{79}{\% Refused responses\relax }{figure.caption.52}{}}
+\newlabel{fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][77][]79}}
+\newlabel{sub@fig:response_shift_refused_responses}{{b}{79}{\% Refused responses\relax }{figure.caption.52}{}}
+\newlabel{sub@fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][77][]79}}
+\newlabel{fig:response_shift_num_facts}{{7.4c}{79}{\% Facts\relax }{figure.caption.52}{}}
+\newlabel{fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][77][]79}}
+\newlabel{sub@fig:response_shift_num_facts}{{c}{79}{\% Facts\relax }{figure.caption.52}{}}
+\newlabel{sub@fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][77][]79}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit  {``Base Model''}), SFT + \textsc  {FenCE}\xspace  (\textit  {``SFT''}), and our method, Edit/Remove + Coarse (\textit  {``DPO''}).\relax }}{79}{figure.caption.52}\protected@file@percent }
+\newlabel{fig:response_shift}{{7.4}{79}{Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit {``Base Model''}), SFT + \fencemodelname (\textit {``SFT''}), and our method, Edit/Remove + Coarse (\textit {``DPO''}).\relax }{figure.caption.52}{}}
+\newlabel{fig:response_shift@cref}{{[figure][4][7]7.4}{[1][77][]79}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }}{79}{figure.caption.53}\protected@file@percent }
+\newlabel{fig:claim_acc_by_cat}{{7.5}{79}{The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }{figure.caption.53}{}}
+\newlabel{fig:claim_acc_by_cat@cref}{{[figure][5][7]7.5}{[1][77][]79}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{79}{subsection.7.4.3}\protected@file@percent }
+\citation{unfamiliar-finetuning}
+\newlabel{fig:hyper_param_iter}{{7.6a}{80}{Iterations of Revision\relax }{figure.caption.54}{}}
+\newlabel{fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][78][]80}}
+\newlabel{sub@fig:hyper_param_iter}{{a}{80}{Iterations of Revision\relax }{figure.caption.54}{}}
+\newlabel{sub@fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][78][]80}}
+\newlabel{fig:hyper_param_k}{{7.6b}{80}{top-$k$\relax }{figure.caption.54}{}}
+\newlabel{fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][78][]80}}
+\newlabel{sub@fig:hyper_param_k}{{b}{80}{top-$k$\relax }{figure.caption.54}{}}
+\newlabel{sub@fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][78][]80}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }}{80}{figure.caption.54}\protected@file@percent }
+\newlabel{fig:hyper-param}{{7.6}{80}{Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }{figure.caption.54}{}}
+\newlabel{fig:hyper-param@cref}{{[figure][6][7]7.6}{[1][78][]80}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.5}Chapter Summary}{81}{section.7.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }}{82}{table.caption.55}\protected@file@percent }
+\newlabel{tab:case_1}{{7.5}{82}{An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }{table.caption.55}{}}
+\newlabel{tab:case_1@cref}{{[table][5][7]7.5}{[1][81][]82}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }}{83}{table.caption.56}\protected@file@percent }
+\newlabel{tab:case_2}{{7.6}{83}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }{table.caption.56}{}}
+\newlabel{tab:case_2@cref}{{[table][6][7]7.6}{[1][81][]83}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.7}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }}{84}{table.caption.57}\protected@file@percent }
+\newlabel{tab:case_3}{{7.7}{84}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }{table.caption.57}{}}
+\newlabel{tab:case_3@cref}{{[table][7][7]7.7}{[1][81][]84}}
+\citation{swe-smith,R2EGym,hybrid-gym}
+\citation{swe-smith}
+\citation{cwm}
+\citation{swebench}
+\citation{swe-smith}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit  {proposed})}}{85}{chapter.8}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\newlabel{chap:prm-training}{{8}{85}{Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit {proposed})}}{chapter.8}{}}
+\newlabel{chap:prm-training@cref}{{[chapter][8][]8}{[1][85][]85}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}Overview}{85}{section.8.1}\protected@file@percent }
+\citation{swebench}
+\citation{sweagent}
+\citation{cwm}
+\citation{claude46}
+\citation{qwen3}
+\citation{swe-smith}
+\citation{swe-prm}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Preliminary Experiments}{86}{section.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.1}Inference-time Critique Models can be Effective}{86}{subsection.8.2.1}\protected@file@percent }
+\newlabel{sec:prm-strong}{{8.2.1}{86}{Inference-time Critique Models can be Effective}{subsection.8.2.1}{}}
+\newlabel{sec:prm-strong@cref}{{[subsection][1][8,2]8.2.1}{[1][86][]86}}
+\citation{swe-prm}
+\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Results on equipping CWM-32B with different critique models on SWE-Bench Verified. ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.\relax }}{87}{table.caption.58}\protected@file@percent }
+\newlabel{tab:prm:prelim}{{8.1}{87}{Results on equipping CWM-32B with different critique models on SWE-Bench Verified. ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.\relax }{table.caption.58}{}}
+\newlabel{tab:prm:prelim@cref}{{[table][1][8]8.1}{[1][87][]87}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.2}Distilled Critique Models also Bring Performance Gains}{87}{subsection.8.2.2}\protected@file@percent }
+\newlabel{sec:prm-sft}{{8.2.2}{87}{Distilled Critique Models also Bring Performance Gains}{subsection.8.2.2}{}}
+\newlabel{sec:prm-sft@cref}{{[subsection][2][8,2]8.2.2}{[1][87][]87}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.3}Proposed Method}{88}{section.8.3}\protected@file@percent }
+\newlabel{sec:prm-proposed}{{8.3}{88}{Proposed Method}{section.8.3}{}}
+\newlabel{sec:prm-proposed@cref}{{[section][3][8]8.3}{[1][88][]88}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.1}Analysis of Distracting Critiques}{88}{subsection.8.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.2}Constructing DPO Data to Distill Critique Models}{89}{subsection.8.3.2}\protected@file@percent }
+\citation{swebench}
+\citation{sweagent}
+\citation{cwm}
+\citation{qwen25coder}
+\@writefile{toc}{\contentsline {chapter}{\numberline {9}Conclusion}{91}{chapter.9}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\bibstyle{plainnat}
+\bibdata{register}
+\bibcite{plbart}{{1}{2021{}}{{Ahmad et~al.}}{{Ahmad, Chakraborty, Ray, and Chang}}}
+\bibcite{avatar}{{2}{2021{}}{{Ahmad et~al.}}{{Ahmad, Tushar, Chakraborty, and Chang}}}
+\bibcite{llama3modelcard}{{3}{2024}{{AI@Meta}}{{}}}
+\bibcite{claude37}{{4}{2025{}}{{Anthropic}}{{}}}
+\bibcite{claude45}{{5}{2025{}}{{Anthropic}}{{}}}
+\bibcite{claude46}{{6}{2026}{{Anthropic}}{{}}}
+\bibcite{swe-search}{{7}{2025}{{Antoniades et~al.}}{{Antoniades, {\"{O}}rwall, Zhang, Xie, Goyal, and Wang}}}
+\bibcite{rejection-sampling}{{8}{2022}{{Bai et~al.}}{{Bai, Kadavath, Kundu, Askell, Kernion, Jones, Chen, Goldie, Mirhoseini, McKinnon, Chen, Olsson, Olah, Hernandez, Drain, Ganguli, Li, Tran-Johnson, Perez, Kerr, Mueller, Ladish, Landau, Ndousse, Lukosuite, Lovitt, Sellitto, Elhage, Schiefer, Mercado, DasSarma, Lasenby, Larson, Ringer, Johnston, Kravec, Showk, Fort, Lanham, Telleen-Lawton, Conerly, Henighan, Hume, Bowman, Hatfield-Dodds, Mann, Amodei, Joseph, McCandlish, Brown, and Kaplan}}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{92}{chapter*.59}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\bibcite{super}{{9}{2024}{{Bogin et~al.}}{{Bogin, Yang, Gupta, Richardson, Bransom, Clark, Sabharwal, and Khot}}}
+\bibcite{codex}{{10}{2021}{{Chen et~al.}}{{Chen, Tworek, Jun, Yuan, de~Oliveira~Pinto, Kaplan, Edwards, Burda, Joseph, Brockman, Ray, Puri, Krueger, Petrov, Khlaaf, Sastry, Mishkin, Chan, Gray, Ryder, Pavlov, Power, Kaiser, Bavarian, Winter, Tillet, Such, Cummings, Plappert, Chantzis, Barnes, Herbert-Voss, Guss, Nichol, Paino, Tezak, Tang, Babuschkin, Balaji, Jain, Saunders, Hesse, Carr, Leike, Achiam, Misra, Morikawa, Radford, Knight, Brundage, Murati, Mayer, Welinder, McGrew, Amodei, McCandlish, Sutskever, and Zaremba}}}
+\bibcite{valerie-interaction}{{11}{2025}{{Chen et~al.}}{{Chen, Malhotra, Wang, Michelini, Zhou, Soni, Tran, Smith, Talwalkar, and Neubig}}}
+\bibcite{DoLA}{{12}{2024}{{Chuang et~al.}}{{Chuang, Xie, Luo, Kim, Glass, and He}}}
+\bibcite{deepseekv3}{{13}{2024}{{DeepSeek-AI et~al.}}{{DeepSeek-AI, Liu, Feng, Xue, Wang, Wu, Lu, Zhao, Deng, Zhang, Ruan, Dai, Guo, Yang, Chen, Ji, Li, Lin, Dai, Luo, et~al.}}}
+\bibcite{swebench-pro}{{14}{2025}{{Deng et~al.}}{{Deng, Da, Pan, He, Ide, Garg, Lauffer, Park, Pasari, Rane, Sampath, Krishnan, Kundurthy, Hendryx, Wang, Zhang, Jacobson, Liu, and Kenstler}}}
+\bibcite{classeval}{{15}{2023}{{Du et~al.}}{{Du, Liu, Wang, Wang, Liu, Chen, Feng, Sha, Peng, and Lou}}}
+\bibcite{faithdial}{{16}{2022{}}{{Dziri et~al.}}{{Dziri, Kamalloo, Milton, Zaiane, Yu, Ponti, and Reddy}}}
+\bibcite{begin}{{17}{2022{}}{{Dziri et~al.}}{{Dziri, Rashkin, Linzen, and Reitter}}}
+\bibcite{envbench}{{18}{2025}{{Eliseeva et~al.}}{{Eliseeva, Kovrigin, Kholkin, Bogomolov, and Zharov}}}
+\bibcite{codebert}{{19}{2020}{{Feng et~al.}}{{Feng, Guo, Tang, Duan, Feng, Gong, Shou, Qin, Liu, Jiang, and Zhou}}}
+\bibcite{swe-prm}{{20}{2025}{{Gandhi et~al.}}{{Gandhi, Tsay, Ganhotra, Kate, and Rizk}}}
+\bibcite{finetuning-on-new}{{21}{2024}{{Gekhman et~al.}}{{Gekhman, Yona, Aharoni, Eyal, Feder, Reichart, and Herzig}}}
+\bibcite{NMTComparableCorpora}{{22}{2022}{{Gete and Etchegoyhen}}{{}}}
+\bibcite{understand-finetuning}{{23}{2024}{{Ghosal et~al.}}{{Ghosal, Hashimoto, and Raghunathan}}}
+\bibcite{sweperf}{{24}{2025}{{He et~al.}}{{He, Liu, Du, Yan, Fan, Huang, Yuan, and Ma}}}
+\bibcite{Q2}{{25}{2021}{{Honovich et~al.}}{{Honovich, Choshen, Aharoni, Neeman, Szpektor, and Abend}}}
+\bibcite{qwen25coder}{{26}{2024}{{Hui et~al.}}{{Hui, Yang, Cui, Yang, Liu, Zhang, Liu, Zhang, Yu, Lu, Dang, Fan, Zhang, Yang, Men, Huang, Zheng, Miao, Quan, Feng, Ren, Ren, Zhou, and Lin}}}
+\bibcite{codesearchnet}{{27}{2020}{{Husain et~al.}}{{Husain, Wu, Gazit, Allamanis, and Brockschmidt}}}
+\bibcite{low_resource_comp_corpora}{{28}{2014}{{Irvine}}{{}}}
+\bibcite{testgeneval}{{29}{2025{}}{{Jain et~al.}}{{Jain, Synnaeve, and Roziere}}}
+\bibcite{livecodebench}{{30}{2024{}}{{Jain et~al.}}{{Jain, Han, Gu, Li, Yan, Zhang, Wang, Solar-Lezama, Sen, and Stoica}}}
+\bibcite{R2E}{{31}{2024{}}{{Jain et~al.}}{{Jain, Shetty, Zhang, Han, Sen, and Stoica}}}
+\bibcite{R2EGym}{{32}{2025{}}{{Jain et~al.}}{{Jain, Singh, Shetty, Zhang, Zheng, Sen, and Stoica}}}
+\bibcite{exp_refine}{{33}{2024}{{Jiang et~al.}}{{Jiang, Li, Wang, Zhou, Hossain, Ray, Kumar, Ma, and Deoras}}}
+\bibcite{swebench}{{34}{2024}{{Jimenez et~al.}}{{Jimenez, Yang, Wettig, Yao, Pei, Press, and Narasimhan}}}
+\bibcite{EVER}{{35}{2024{}}{{Kang et~al.}}{{Kang, Ni, and Yao}}}
+\bibcite{unfamiliar-finetuning}{{36}{2024{}}{{Kang et~al.}}{{Kang, Wallace, Tomlin, Kumar, and Levine}}}
+\bibcite{xcodeeval}{{37}{2023}{{Khan et~al.}}{{Khan, Bari, Do, Wang, Parvez, and Joty}}}
+\bibcite{prometheus}{{38}{2024}{{Kim et~al.}}{{Kim, Shin, Cho, Jang, Longpre, Lee, Yun, Shin, Kim, Thorne, and Seo}}}
+\bibcite{dobf}{{39}{2021}{{Lachaux et~al.}}{{Lachaux, Roziere, Szafraniec, and Lample}}}
+\bibcite{RAG}{{40}{2020}{{Lewis et~al.}}{{Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal, K\"{u}ttler, Lewis, Yih, Rockt\"{a}schel, Riedel, and Kiela}}}
+\bibcite{evocodebench}{{41}{2024{}}{{Li et~al.}}{{Li, Li, Zhang, Zhao, Dong, Jin, Li, Huang, and Li}}}
+\bibcite{deveval}{{42}{2024{}}{{Li et~al.}}{{Li, Li, Zhao, Li, Jin, Zhu, Liu, Liu, Wang, Fang, Wang, Ding, Zhang, Dong, Zhu, Gu, and Yang}}}
+\bibcite{AutoJ}{{43}{2024{}}{{Li et~al.}}{{Li, Sun, Yuan, Fan, hai zhao, and Liu}}}
+\bibcite{empirical-factuality}{{44}{2024{}}{{Li et~al.}}{{Li, Chen, Ren, Cheng, Zhao, Nie, and Wen}}}
+\bibcite{ITI}{{45}{2024{}}{{Li et~al.}}{{Li, Patel, Vi\'{e}gas, Pfister, and Wattenberg}}}
+\bibcite{truthfulqa}{{46}{2022}{{Lin et~al.}}{{Lin, Hilton, and Evans}}}
+\bibcite{RLTF}{{47}{2023}{{Liu et~al.}}{{Liu, Zhu, Xiao, FU, Han, Wei, and Ye}}}
+\bibcite{mlagent}{{48}{2025}{{Liu et~al.}}{{Liu, Chai, Zhu, Tang, Ye, Zhang, Bai, and Chen}}}
+\bibcite{starcoder2}{{49}{2024}{{Lozhkov et~al.}}{{Lozhkov, Li, Allal, Cassano, Lamy-Poirier, Tazi, Tang, Pykhtar, Liu, Wei, Liu, Tian, Kocetkov, Zucker, Belkada, Wang, Liu, Abulkhanov, Paul, Li, Li, Risdal, Li, Zhu, Zhuo, Zheltonozhskii, Dade, Yu, Krauß, Jain, Su, He, Dey, Abati, Chai, Muennighoff, Tang, Oblokulov, Akiki, Marone, Mou, Mishra, Gu, Hui, Dao, Zebaze, Dehaene, Patry, Xu, McAuley, Hu, Scholak, Paquet, Robinson, Anderson, Chapados, Patwary, Tajbakhsh, Jernite, Ferrandis, Zhang, Hughes, Wolf, Guha, von Werra, and de~Vries}}}
+\bibcite{codexglue}{{50}{2021}{{Lu et~al.}}{{Lu, Guo, Ren, Huang, Svyatkovskiy, Blanco, Clement, Drain, Jiang, Tang, Li, Zhou, Shou, Zhou, Tufano, GONG, Zhou, Duan, Sundaresan, Deng, Fu, and LIU}}}
+\bibcite{swefficiency}{{51}{2025}{{Ma et~al.}}{{Ma, Hashemi, Yazdanbakhsh, Swersky, Press, Li, Reddi, and Ranganathan}}}
+\bibcite{xsum-hallucination}{{52}{2020}{{Maynez et~al.}}{{Maynez, Narayan, Bohnet, and Mcdonald}}}
+\bibcite{terminalbench}{{53}{2026}{{Merrill et~al.}}{{Merrill, Shaw, Carlini, Li, Raj, Bercovich, Shi, Shin, Walshe, Buchanan, Shen, Ye, Lin, Poulos, Wang, Nezhurina, Jitsev, Lu, Mastromichalakis, Xu, Chen, Liu, Zhang, Chen, Kashyap, Uslu, Li, Wu, Yan, Bian, Sharma, Sun, Dillmann, Anand, Lanpouthakoun, Koopah, Hu, Guha, Dreiman, Zhu, Krauth, Zhong, Muennighoff, Amanfu, Tan, Pimpalgaonkar, Aggarwal, Lin, Lan, Zhao, Liang, Wang, Wang, Zhou, Heineman, Liu, Trivedi, Yang, Lin, Shetty, Yang, Omi, Raoof, Li, Zhuo, Lin, Dai, Wang, Chai, Zhou, Wahdany, She, Hu, Dong, Zhu, Cui, Saiyed, Kolbeinsson, Hu, Rytting, Marten, Wang, Dimakis, Konwinski, and Schmidt}}}
+\bibcite{factscore}{{54}{2023}{{Min et~al.}}{{Min, Krishna, Lyu, Lewis, Yih, Koh, Iyyer, Zettlemoyer, and Hajishirzi}}}
+\bibcite{FAVA}{{55}{2024}{{Mishra et~al.}}{{Mishra, Asai, Balachandran, Wang, Neubig, Tsvetkov, and Hajishirzi}}}
+\bibcite{swt-bench}{{56}{2024}{{M\"{u}ndler et~al.}}{{M\"{u}ndler, M\"{u}ller, He, and Vechev}}}
+\bibcite{NEXT}{{57}{2024}{{Ni et~al.}}{{Ni, Allamanis, Cohan, Deng, Shi, Sutton, and Yin}}}
+\bibcite{ragtruth}{{58}{2024}{{Niu et~al.}}{{Niu, Wu, Zhu, Xu, Shum, Zhong, Song, and Zhang}}}
+\bibcite{gpt5}{{59}{2025{}}{{OpenAI}}{{}}}
+\bibcite{o3_mini}{{60}{2025{}}{{OpenAI}}{{}}}
+\bibcite{kernelbench}{{61}{2025}{{Ouyang et~al.}}{{Ouyang, Guo, Arora, Zhang, Hu, Re, and Mirhoseini}}}
+\bibcite{FRANK}{{62}{2021}{{Pagnoni et~al.}}{{Pagnoni, Balachandran, and Tsvetkov}}}
+\bibcite{swegym}{{63}{2024}{{Pan et~al.}}{{Pan, Wang, Neubig, Jaitly, Ji, Suhr, and Zhang}}}
+\bibcite{BLEU}{{64}{2002}{{Papineni et~al.}}{{Papineni, Roukos, Ward, and Zhu}}}
+\bibcite{codenet}{{65}{2021}{{Puri et~al.}}{{Puri, Kung, Janssen, Zhang, Domeniconi, Zolotov, Dolby, Chen, Choudhury, Decker, Thost, Buratti, Pujar, Ramji, Finkler, Malaika, and Reiss}}}
+\bibcite{DPO}{{66}{2023}{{Rafailov et~al.}}{{Rafailov, Sharma, Mitchell, Ermon, Manning, and Finn}}}
+\bibcite{codebleu}{{67}{2020}{{Ren et~al.}}{{Ren, Guo, Lu, Zhou, Liu, Tang, Sundaresan, Zhou, Blanco, and Ma}}}
+\bibcite{transcoder}{{68}{2020}{{Roziere et~al.}}{{Roziere, Lachaux, Chanussot, and Lample}}}
+\bibcite{transcoderST}{{69}{2022}{{Roziere et~al.}}{{Roziere, Zhang, Charton, Harman, Synnaeve, and Lample}}}
+\bibcite{llm-aggrefact}{{70}{2024}{{Tang et~al.}}{{Tang, Laban, and Durrett}}}
+\bibcite{cwm}{{71}{2025}{{team et~al.}}{{team, Copet, Carbonneaux, Cohen, Gehring, Kahn, Kossen, Kreuk, McMilin, Meyer, Wei, Zhang, Zheng, Armengol-Estapé, Bashiri, Beck, Chambon, Charnalia, Cummins, Decugis, Fisches, Fleuret, Gloeckle, Gu, Hassid, Haziza, Idrissi, Keller, Kindi, Leather, Maimon, Markosyan, Massa, Mazaré, Mella, Murray, Muzumdar, O'Hearn, Pagliardini, Pedchenko, Remez, Seeker, Selvi, Sultan, Wang, Wehrstedt, Yoran, Zhang, Cohen, Adi, and Synnaeve}}}
+\bibcite{kimik2}{{72}{2025}{{Team et~al.}}{{Team, Bai, Bao, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Cui, Ding, Dong, Du, Du, Du, Du, Fan, Feng, Fu, Gao, Gao, Gao, Gao, Gu, Guan, Guo, Guo, Hu, Hao, He, He, He, Hong, Hu, Hu, Huang, Huang, Huang, Jiang, Jiang, Jin, Kang, Lai, Li, Li, Li, Li, Li, Li, Li, Li, Li, Lin, Lin, Lin, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Lu, Lu, Ma, Ma, Ma, Mao, Mei, Men, Miao, Pan, Peng, Qin, Qu, Shang, Shi, Shi, Song, Su, Su, Sun, Sung, Tang, Tao, Teng, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wei, Wei, Wu, Wu, Wu, Xiao, Xie, Xiong, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Yan, Yan, Yang, Yang, Yang, Yang, Yang, Yao, Yao, Ye, Ye, Yin, Yu, Yuan, Yuan, Yuan, Zhan, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhao, Zhao, Zheng, Zheng, Zhou, Zhou, Zhou, Zhu, Zhuang, and Zu}}}
+\bibcite{FactTune}{{73}{2024}{{Tian et~al.}}{{Tian, Mitchell, Yao, Manning, and Finn}}}
+\bibcite{FLAMe}{{74}{2024}{{Vu et~al.}}{{Vu, Krishna, Alzubi, Tar, Faruqui, and Sung}}}
+\bibcite{QAGS}{{75}{2020}{{Wang et~al.}}{{Wang, Cho, and Lewis}}}
+\bibcite{openhands}{{76}{2025}{{Wang et~al.}}{{Wang, Li, Song, Xu, Tang, Zhuge, Pan, Song, Li, Singh, Tran, Li, Ma, Zheng, Qian, Shao, Muennighoff, Zhang, Hui, Lin, Brennan, Peng, Ji, and Neubig}}}
+\bibcite{codet5}{{77}{2021}{{Wang et~al.}}{{Wang, Wang, Joty, and Hoi}}}
+\bibcite{longform}{{78}{2024}{{Wei et~al.}}{{Wei, Yang, Song, Lu, Hu, Huang, Tran, Peng, Liu, Huang, Du, and Le}}}
+\bibcite{swerl}{{79}{2025}{{Wei et~al.}}{{Wei, Duchenne, Copet, Carbonneaux, ZHANG, Fried, Synnaeve, Singh, and Wang}}}
+\bibcite{agentless}{{80}{2025{}}{{Xia et~al.}}{{Xia, Deng, Dunn, and Zhang}}}
+\bibcite{live-swe-agent}{{81}{2025{}}{{Xia et~al.}}{{Xia, Wang, Yang, Wei, and Zhang}}}
+\bibcite{repost}{{82}{2025}{{Xie et~al.}}{{Xie, Xie, Sheth, Liu, Fried, and Rose}}}
+\bibcite{hybrid-gym}{{83}{2026}{{Xie et~al.}}{{Xie, Liu, Zhang, Kotalwar, Gandhi, Acharya, Wang, Rose, Neubig, and Fried}}}
+\bibcite{self-bias}{{84}{2024}{{Xu et~al.}}{{Xu, Zhu, Zhao, Pan, Li, and Wang}}}
+\bibcite{qwen3}{{85}{2025{}}{{Yang et~al.}}{{Yang, Li, Yang, Zhang, Hui, Zheng, Yu, Gao, Huang, Lv, Zheng, Liu, Zhou, Huang, Hu, Ge, Wei, Lin, Tang, Yang, Tu, Zhang, Yang, Yang, Zhou, Zhou, Lin, Dang, Bao, Yang, Yu, Deng, Li, Xue, Li, Zhang, Wang, Zhu, Men, Gao, Liu, Luo, Li, Tang, Yin, Ren, Wang, Zhang, Ren, Fan, Su, Zhang, Zhang, Wan, Liu, Wang, Cui, Zhang, Zhou, and Qiu}}}
+\bibcite{sweagent}{{86}{2024}{{Yang et~al.}}{{Yang, Jimenez, Wettig, Lieret, Yao, Narasimhan, and Press}}}
+\bibcite{swebench-multimodal}{{87}{2025{}}{{Yang et~al.}}{{Yang, Jimenez, Zhang, Lieret, Yang, Wu, Press, Muennighoff, Synnaeve, Narasimhan, Yang, Wang, and Press}}}
+\bibcite{swe-smith}{{88}{2025{}}{{Yang et~al.}}{{Yang, Lieret, Jimenez, Wettig, Khandpur, Zhang, Hui, Press, Schmidt, and Yang}}}
+\bibcite{multi-swe-bench}{{89}{2025}{{Zan et~al.}}{{Zan, Huang, Liu, Chen, Zhang, Xin, Chen, Liu, Zhong, Li, Liu, Xiao, Chen, Zhang, Su, Liu, Long, Shen, and Xiang}}}
+\bibcite{artifactsbench}{{90}{2025}{{Zhang et~al.}}{{Zhang, Li, Xu, Liu, Liu, Zhou, Deng, Wu, Huang, Li, Yi, Xiong, Hu, Zhang, Jiang, Xu, Zhang, Zhou, Zhou, and Lian}}}
+\bibcite{plum}{{91}{2024{}}{{Zhang et~al.}}{{Zhang, Diao, Zou, and Peng}}}
+\bibcite{repocoder}{{92}{2023{}}{{Zhang et~al.}}{{Zhang, Chen, Zhang, Keung, Liu, Zan, Mao, Lou, and Chen}}}
+\bibcite{self-eval-skt}{{93}{2024{}}{{Zhang et~al.}}{{Zhang, Peng, Tian, Zhou, Jin, Song, Mi, and Meng}}}
+\bibcite{codereval}{{94}{2024{}}{{Zhang et~al.}}{{Zhang, Zhang, Ran, Zhu, Dou, Hao, Xie, and Zhang}}}
+\bibcite{hallucination-survey}{{95}{2023{}}{{Zhang et~al.}}{{Zhang, Li, Cui, Cai, Liu, Fu, Huang, Zhao, Zhang, Chen, Wang, Luu, Bi, Shi, and Shi}}}
+\bibcite{commit0}{{96}{2025}{{Zhao et~al.}}{{Zhao, Jiang, Lee, Chiu, Cardie, Gall{\'e}, and Rush}}}
+\bibcite{swe-play}{{97}{2025}{{Zhu et~al.}}{{Zhu, Gandhi, and Neubig}}}
+\gdef \@abspage@last{120}

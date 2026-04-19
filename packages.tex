@@ -1,0 +1,181 @@
+\usepackage{amsmath,amsfonts,bm}
+\usepackage{booktabs} % For formal tables
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{array}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{arydshln}
+\usepackage{xspace}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{algpseudocode}
+\usepackage[noend,ruled]{algorithm2e}
+\usepackage{setspace}
+\usepackage{varwidth}
+\usepackage{enumitem}
+\usepackage{mdframed}
+\usepackage{centernot}
+\usepackage{textcomp}
+\usepackage{soul}
+\usepackage{pifont}
+\usepackage{wrapfig}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[nameinlink]{cleveref}
+\usepackage{cuted}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{twemojis}
+\usepackage[T1]{fontenc}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\newcounter{timelineitem}
+\newcommand{\timelineentry}[2]{%
+  \stepcounter{timelineitem}%
+  \node[circle,fill=black,inner sep=2pt] (dot\thetimelineitem) at (0,-\value{timelineitem}) {};
+  \node[anchor=west] at (0.7,-\value{timelineitem}) {#1};
+  \node[anchor=west] at (5.8,-\value{timelineitem}) {#2};
+  \ifnum\value{timelineitem}>1
+    \draw[thin] (dot\number\numexpr\value{timelineitem}-1\relax) -- (dot\thetimelineitem);
+  \fi
+}
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\newcommand{\cmtransours}{CMTrans\xspace}
+\newcommand{\CC}{Comp-Corp\xspace}
+
+\newcommand{\repostmethodName}{\textsc{RepoST}\xspace}
+\newcommand{\repostdatasetName}{\textsc{RepoST}\xspace}
+\newcommand{\reposttrainsetName}{\textsc{RepoST-Train}\xspace}
+\newcommand{\repostevalsetName}{\textsc{RepoST-Eval}\xspace}
+
+\newcommand{\anchordrours}{Anchor-DR\xspace}
+
+\newcommand{\repostmethodname}{\textsc{Hybrid-Gym}\xspace}
+
+\newcommand{\fencemodelname}{\textsc{FenCE}\xspace}
+
+\newcommand{\plusname}{\textsc{Hybrid-Plus}\xspace}
+
+\newcommand{\proposedWork}{\textbf{\textcolor{treegreen}{proposed work}}}
+
+% circled
+\newcommand{\circled}[1]{\textcircled{\raisebox{-0.9pt}{#1}}}
+
+
+
+% newly added
+\newcommand{\edit}[1]{\textcolor{darkgreen}{#1}}
+
+\newcommand{\TBD}[1]{\textcolor{blue}{[TBD: #1]}}
+\newcommand{\yiqing}[1]{\textcolor{blue}{[Yiqing: #1]}}
+\newcommand{\daniel}[1]{\textcolor{brown}{[Daniel: #1]}}
+
+\newcommand{\plan}{\textcolor{blue}{[Plan]}}
+
+\newcommand{\ie}{\textit{i.e.},} % that is
+\newcommand{\eg}{\textit{e.g.},} % for example
+\newcommand{\start}[1]{\vspace{1.5mm}\noindent{{\bf #1}.}}
+\DeclareMathOperator*{\argmin}{arg\,min\,}
+\DeclareMathOperator*{\argmax}{arg\,max\,}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+
+% defining vspace 
+\newcommand{\downv}{\vspace{-.0cm}}
+\newcommand{\upv}{\vspace{-.0cm}}
+% \newcommand{\downve}{\vspace{-.0cm}}
+
+
+% \usepackage{color, colortbl}
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{treegreen}{rgb}{0.13, 0.54, 0.23}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\definecolor{LightBlue}{RGB}{171, 227, 235}
+\newcommand{\bad}{\cellcolor{red!8}}
+\newcommand{\worse}{\cellcolor{red!16}}
+\newcommand{\good}{\cellcolor{applegreen!10}}
+\newcommand{\better}{\cellcolor{applegreen!20}}
+\newcommand{\hlcell}{\cellcolor{applegreen!22}}
+\newcommand{\hlrow}{\rowcolor{amber!18}}
+\newcommand{\dlrow}{\rowcolor{gray!20}}
+\newcommand{\sdlrow}{\rowcolor{gray!10}}
+\newcommand{\blrow}{\rowcolor{LightBlue!30}}
+\newcommand{\dlcell}{\cellcolor{gray!20}}
+
+
+
+\definecolor{green2}{HTML}{BFD8B6}
+\definecolor{green3}{HTML}{E7F0E5}
+\definecolor{greenarrow}{HTML}{1DB100}
+\definecolor{red3}{HTML}{C82506}
+
+% defining colours to be used in figures
+% \definecolor{gred}{RGB}{219,68,55}
+\definecolor{gred}{RGB}{255,102,102}
+\definecolor{gblue}{RGB}{51,102,255}
+\definecolor{gyellow}{RGB}{244,180,0}
+\definecolor{ggreen}{RGB}{15,157,88}
+\definecolor{ggrey}{RGB}{115,115,115}
+\definecolor{na}{gray}{0.9}
+
+\definecolor{textRed}{RGB}{157,0,23}
+\definecolor{textYellow}{RGB}{166,119,54}
+\definecolor{textGreen}{RGB}{58,110,38}
+\definecolor{textBlue}{RGB}{39,71,156}
+
+% \definecolor{lightRed}{RGB}{255,222,222}
+% \definecolor{lightYellow}{RGB}{255,255,193}
+% \definecolor{lightGreen}{RGB}{222,255,222}
+% \definecolor{lightBlue}{RGB}{221,231,244}
+
+\definecolor{LightYellow}{RGB}{255,250,208}
+\definecolor{LightGreen}{RGB}{194,255,192}
+\definecolor{LightBlue}{RGB}{187,236,251}
+\definecolor{LightPurple}{RGB}{224,223,255}
+\definecolor{LightGrey}{RGB}{225,225,225}
+
+\definecolor{OrangeRed}{rgb}{1.0, 0.27, 0.0}
+\definecolor{mediumgreen}{RGB}{72, 158, 52}
+\definecolor{darkgreen}{rgb}{0.0, 0.42, 0.24}
+\definecolor{midnightgreen}{rgb}{0.0, 0.29, 0.33}
+\definecolor{aquablue}{RGB}{52, 147, 158}
+
+\definecolor{diagramRed}{RGB}{246,193,193}
+\definecolor{diagramPurple}{RGB}{224,224,253}
+\definecolor{diagramOrange}{RGB}{244,222,176}
+\definecolor{diagramGrey}{RGB}{236,236,236}
+
+\definecolor{Grey}{RGB}{150,150,150}
+
+\newcommand{\ctext}[2]{%
+  \begingroup
+  \sethlcolor{#1}%
+  \hl{ #2 }%
+  \endgroup
+}
+
+\newcommand{\hlpgen}[2]{\fboxsep1pt \colorbox{ggreen!#2}{\strut #1}} % highlight text with custom saturation. for pgen
+\newcommand{\hlcov}[2]{\fboxsep1pt \colorbox{gyellow!#2}{\strut #1}} % highlight text with custom saturation. for cov
+\newcommand{\colorR}[1]{\textcolor{gred}{\textbf{#1}}}
+\newcommand{\colorG}[1]{\textcolor{ggreen}{\textbf{#1}}}
+\newcommand{\colorB}[1]{\textcolor{gblue}{\textbf{#1}}}
+\newcommand{\colorGrey}[1]{\textcolor{ggrey}{\textbf{#1}}}
+
+\newcommand{\colorr}[1]{\textcolor{gred}{#1}}
+\newcommand{\colorg}[1]{\textcolor{ggreen}{#1}}
+\newcommand{\colorb}[1]{\textcolor{gblue}{#1}}
+
+\newcommand{\colordg}[1]{\textcolor{darkgreen}{#1}}
+\newcommand{\colorgrey}[1]{\textcolor{Grey}{#1}}

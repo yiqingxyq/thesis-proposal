@@ -1,0 +1,342 @@
+%for a more compact document, add the option openany to avoid
+%starting all chapters on odd numbered pages
+\documentclass[12pt,openany]{cmuthesis}
+
+% This is a template for a CMU thesis.  It is 18 pages without any content :-)
+% The source for this is pulled from a variety of sources and people.
+% Here's a partial list of people who may or may have not contributed:
+%
+%        bnoble   = Brian Noble
+%        caruana  = Rich Caruana
+%        colohan  = Chris Colohan
+%        jab      = Justin Boyan
+%        josullvn = Joseph O'Sullivan
+%        jrs      = Jonathan Shewchuk
+%        kosak    = Corey Kosak
+%        mjz      = Matt Zekauskas (mattz@cs)
+%        pdinda   = Peter Dinda
+%        pfr      = Patrick Riley
+%        dkoes = David Koes (me)
+
+% My main contribution is putting everything into a single class files and small
+% template since I prefer this to some complicated sprawling directory tree with
+% makefiles.
+
+% some useful packages
+\usepackage{tgpagella}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[numbers,sort]{natbib}
+\usepackage[backref=false,pageanchor=true,plainpages=false, pdfpagelabels, bookmarks,bookmarksnumbered,
+%pdfborder=0 0 0,  %removes outlines around hyper links in online display
+]{hyperref}
+% \usepackage{subfigure}
+
+% Approximately 1" margins, more space on binding side
+%\usepackage[letterpaper,twoside,vscale=.8,hscale=.75,nomarginpar]{geometry}
+%for general printing (not binding)
+\usepackage[letterpaper,twoside,vscale=.8,hscale=.8,nomarginpar,hmarginratio=1:1]{geometry}
+
+\input{packages}
+
+% Provides a draft mark at the top of the document. 
+\draftstamp{\today}{DRAFT}
+
+\begin {document} 
+\onehalfspacing
+\frontmatter
+
+%initialize page style, so contents come out right (see bot) -mjz
+\pagestyle{empty}
+
+\title{ %% 
+{\it Thesis Proposal} \\
+{\bf Synthetic Training Data Construction for Coding Agents}
+}
+\author{Yiqing Xie}
+% \date{January 3006}
+\Year{2026}
+\trnumber{}
+
+\committee{
+Carolyn Rosé, Chair \\
+Daniel Fried \\
+Graham Neubig \\
+Dan Roth
+}
+
+\support{}
+\disclaimer{}
+
+% copyright notice generated automatically from Year and author.
+% permission added if \permission{} given.
+
+\keywords{synthetic data, coding agent, code generation}
+
+\maketitle
+
+% \begin{dedication}
+% For my dog
+% \end{dedication}
+
+% \pagestyle{plain} % for toc, was empty
+
+\begin{abstract}
+With the development of AI techniques, the role of AI in software development is shifting from script-level, static code generation to project-level coding agents.
+This dissertation research focuses on the fundamental challenges of training coding agents: the high cost of constructing training data, the difficulty of handling diverse use cases simutaneously, and the performance saturation with respect to data scale.
+To this end, this thesis is structured around three parts: (1) constructing scalable training data, (2) improving the generalizability of coding agents, and (3) training critique models for coding agents.
+
+One major bottleneck of scaling coding agent training data is the construction of training environments, which are abstractions of real-world coding setups.
+Building the environments can require substantial human or agent effort, for example, when the environments support the executability and unit testing of an entire code repository. 
+In our work, we aim to find an appropriate level of abstraction for training environments, with the goal of simplifying their construction while preserving training effectiveness.
+
+Building on this lightweight environment construction process, we extend coding agents' abilities to diverse downstream coding tasks. In particular, we develop principles for designing synthetic training tasks and characterize atomic skills that transfer across coding tasks. Our work bridges the gap between single-task training and general-purpose coding agent training.
+
+Even with these advances in coding agent training, empirically, we observe that for a specific model, additional training data yields little or no further gain after a certain point.
+Our analysis further shows that the performance is substantially bottlenecked by the limited high-level planning ability: producing intermediate steps about what should be done and in what order, as opposed to low-level implementation: generating concrete executable actions to perform the intermediate steps.
+In our work, we aim to train an additional critique model that specializes in planning and dynamically provides guidance to the coding agent in inference.
+
+Together, this thesis aims to build scalable data to train effective coding agents and critique models that generalize across diverse coding tasks.
+\end{abstract}
+
+% \begin{acknowledgments}
+% TBD.
+% \end{acknowledgments}
+
+
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter
+
+%% Double space document for easy review:
+%\renewcommand{\baselinestretch}{1.66}\normalsize
+
+% The other requirements Catherine has:
+%
+%  - avoid large margins.  She wants the thesis to use fewer pages, 
+%    especially if it requires colour printing.
+%
+%  - The thesis should be formatted for double-sided printing.  This
+%    means that all chapters, acknowledgements, table of contents, etc.
+%    should start on odd numbered (right facing) pages.
+%
+%  - You need to use the department standard tech report title page.  I
+%    have tried to ensure that the title page here conforms to this
+%    standard.
+%
+%  - Use a nice serif font, such as Times Roman.  Sans serif looks bad.
+%
+% Other than that, just make it look good...
+
+
+
+\chapter{Introduction}
+With the rapid advancement of AI techniques, the role of AI in software development is evolving from script-level, static code generation toward project-level coding agents. 
+Unlike traditional code assistants that are lmited to producing isolated snippets of code, coding agent infra-structures such as SWE-Agent~\cite{sweagent} and OpenHands~\cite{openhands} provide tools for the LLM to understand broader repository context, track dependencies across files, develop multi-step development plans, etc. 
+This enables them to assist with more complex tasks such as feature implementation, refactoring, debugging, testing, and maintenance of the entire codebase.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{figs/proposal_intro.pdf}
+  \caption{The timeline of how the paradigm of the collaboration between human and AI coding assistants shifts from script-level static code generation to project-level coding agent.}
+  \label{fig:proposal_intro}
+\end{figure}
+
+Although coding agents have shown strong performance on recent benchmarks that simulate real-world scenarios, there remains substantial room to improve both the effectiveness and feasibility of coding agent training.
+We identify several fundamental challenges as follows:
+
+\start{The High Cost of Constructing Training Data}
+Although the scale of training data has been shown to be a major factor in coding agent performance~\cite{swe-smith}, constructing such data remains highly expensive.
+One major bottleneck is the construction of training environments that serve as abstractions of real-world coding setups, which typically involve docker environments with all required external packages installed, test suites for major features in a codebase, etc. 
+Given the current state of LLM capacity, this process still demands substantial human or agent effort~\cite{swe-smith}.
+Such resources are particularly scarce in academia, where the engineering, computational, human, and financial resources are often limited, hindering the development of systematic research on coding agent training.
+
+\start{The Difficulty of Handling Diverse Use Cases Simutaneously}
+In real-world deployment, coding agents must operate across diverse tasks and scenarios, and can be paired with different tools, execution harnesses, and inference-time techniques.
+However, most existing research still focuses on training agents for a single task under a fixed inference setting and with a predefined set of tools, which does not reliably generalize to other settings~\cite{swe-play}.
+What still remains underexplored is how well skills transfer across these dimensions and how such transferability can be improved.
+Such lack of understanding creates a significant gap between current coding agent research and practical real-world applications.
+
+\start{The Performance Saturation with Respect to Data Scale}
+% Even if the first two challenges are addressed, the performance of coding agents is still fundamentally constrained by the capacity of the underlying base models.
+% On one hand, this is an inherent challenge of machine learning, where a model's ability to fit mapping functions and represent patterns is limited.
+% Such limitation is especially pronounced for coding agent training, which requires complex and diverse skills from multiple aspects, including tool usage, coding-related knowledge, instruction-following, etc.
+% On the other hand, training models with larger sizes is again bottlenecked by the computational resources, which is particularly limited in academia.
+Even if the first two challenges are addressed, empirically, we observe that for a specific model, especially the one with limited size (e.g., Qwen2.5Coder-7B and 14B~\cite{qwen25coder}), increasing the size of training data yields little or no further gain after a certain point~\cite{swe-smith,R2EGym}.
+To better understand this limitation, we break down the abilities required for coding agent training into high-level planning (producing intermediate steps about what should be done and in what order) and low-level implementation (generating concrete executable actions to perform the intermediate steps).
+Our analysis suggests that high-level planning remains a major bottleneck: even after training, there is still a substantial gap between these models and frontier models such as Claude Sonnet 4.6~\cite{claude46}.
+Although increasing the size of the base model can raise the performance ceiling, it also requires more computational resources, which is particularly limited in academia.
+
+In this thesis, we aim to mitigate the three challenges by (1) constructing scalable training data, (2) improving the generalizability of coding agents, and (3) training critique models to assist coding agents.
+
+\section{Thesis Overview}
+This thesis contains three parts targeting the three above challenges, respectively.
+
+\start{Part 1: Coding Agent Training with Scalable Synthetic Data}
+As abstractions of real-world coding setups, training environments are typically complex and require substantial human or agent effort to construct.
+In our work, we aim to find an appropriate level of abstraction for training environments.
+Specifically, we identify the execution support for the entire codebase to be the major bottleneck of training environment construction, and propose training settings that avoid code execution or only require execution for a particular module in the codebase.
+This simplifies the construction of training environments while preserving training effectiveness.
+
+\start{Part 2: Training Coding Agents that Generalize across Tasks}
+Most existing coding agent training datasets only focus on a single task, which does not reliably generalize to other tasks.
+In our work, we open a direction of training coding agents that generalize across tasks.
+Specifically, we conduct systematic analyses on the commonalities shared across diverse downstream coding tasks, and design synthetic training tasks that can generalize across tasks.
+In the \textbf{\textcolor{treegreen}{proposed work}}, we take a step forward and analyze the exact trajectory behaviors (including problem-solving strategies and concrete actions) that are transferrable across tasks. Then we propose a data selection method based on such desired behaviors beyond task success.
+
+\start{Part 3: Training Critique Models to Assist Coding Agent}
+While the first two parts aim to improve the effectiveness of coding agent training, empirically, we still observe that the performance satuates with respect to data scale after a certain point, and the high-level planning ability remains a major bottleneck.
+To address this limitation, in our work, we develop critique models that provide guidance to the coding agent at inference time.
+Compared to the coding agent that is optimized for the combination of high-level planning and low-level implementation, the critique model is specialized in planning.
+We first show that the high-level idea of ``training a specialized model to provide guidance to the main model'' can be beneficial in general NLP tasks such as factuality generation.
+Then in the \textbf{\textcolor{treegreen}{proposed work}}, we apply this idea to coding agent training and train critique models to assist coding agents in inference.
+We show that there is a large room of improvement for training critique models for coding agents, and propose a recipe to train critique models.
+
+\newpage
+\section{Proposed Timeline}
+
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+    
+    \setcounter{timelineitem}{0}
+    \timelineentry{May 2026}{Thesis Proposal}
+    \timelineentry{May 2026 -- June 2026}{Complete Proposed Work I (\autoref{chap:prm-training})}
+    \timelineentry{May 2026 -- Sept 2026}{Complete Proposed Work II (\autoref{chap:effective-analysis})}
+    \timelineentry{Aug 2027}{Thesis Defense}
+\end{tikzpicture}
+\end{figure}
+
+
+
+
+
+
+\chapter{Literature Review}
+% 80-20 rule: 80: easy solutions; 20: the residule
+% Overall goal: make coding agent training more feasible.
+% 1. make scalable data: 
+%     - existing work: datasets
+%     - what's missing: it is still challenging and expensive to construct synthetic training data
+
+% 2. what's missing in part 1: generalizability of coding agents 
+%     - existing work: general-purpose agent training 
+%     - what's missing: mid-training (general-purpose coding agent training)
+
+% 3. what's missing in part 1 and 2: the limitation of coding agent training
+%     - existing work: how critique models could be helpful 
+%     - what's missing: understanding what kind of critique is helpful
+
+The structure of this chapter is as follows: 
+In \S\ref{sec:related-overview}, we introduce the overview of coding agent training. 
+In \S\ref{sec:related-scalable}, we discuss existing work that constructs scalable training data, and introduce how our work opens a direction of constructing scalable coding agent training data with lightweight environments.
+Since most coding agent training datasets only focus on a single task, to train coding agents that are capable across a diverse set of applications, in \S\ref{sec:related-generalizability}, we further discuss the generalizability of coding agents, where our work aims to reveal the key abilities that are transferrable across different coding tasks.
+While all the above works show effective ways to directly train coding agents, the performance is still bottlenecked by the capacity of the base models. To address this limitation, in \S\ref{sec:related-critique}, we discuss how existing work uses inference-time feedback to improve LLM generation, and how we apply this idea to coding agent and train critique models to assist coding agents in inference.
+
+
+
+
+\section{Coding Agent Overview}
+\label{sec:related-overview}
+\subsection{Benchmarks for Coding Agents}
+Coding agents have shown strong performance on recent repository-level benchmarks.
+The SWE-Bench issue-solving benchmark~\cite{swebench} evaluates the ability to resolve a GitHub issue in a real-world repository by generating a code patch.
+Following SWE-Bench, SWE-bench Pro~\cite{swebench-pro} is a more challenging issue-solving benchmark that captures realistic, complex, enterprise-level problems beyond the scope of SWE-Bench.
+Similarly, SWE-bench Multimodal~\citep{swebench-multimodal} further targets visual, user-facing software domains and includes multimodal context (e.g., images) in issue-solving.
+Multi-SWE-bench~\citep{multi-swe-bench} extends the issue-resolution setting to repositories to nine different programming languages.
+
+Beyond issue-solving benchmarks, SWT-Bench~\cite{swt-bench} and TestGenEval~\cite{testgeneval} target test generation, where the goal is to generate a set of test functions for a GitHub issue.
+Commit-0~\cite{commit0} evaluates the ability to generate the entire library from scratch. The results will be evaluated by the number of tests passed.
+ArtifactsBench~\cite{artifactsbench} assesses the transformation from multimodal instructions into high-quality and interactive visual artifacts.
+SWE-Perf~\cite{sweperf} and SWE-fficiency~\cite{swefficiency} evaluate the ability to improve code efficiency (i.e., execution time) in addition to correctness.
+KernelBench~\cite{kernelbench} targets the generation of GPU kernels.
+SUPER~\cite{super}, EnvBench~\cite{envbench}, and TerminalBench~\cite{terminalbench} evaluate the agent's ability to run bash commands for setup and execution tasks.
+Multiple benchmarks are focusing on function generation~\cite{classeval,repocoder,codereval,evocodebench,deveval,R2E,repost}. Given the description of the function, the task is to complete the function body.
+All these benchmarks are designed to simulate real-world use cases for coding agents and require repository exploration and patch-style edits.
+
+\subsection{Coding Agent Infrastructure}
+Approaches to solving the above benchmarks include workflow-based pipelines and agent frameworks. 
+Workflow-based systems explicitly structure the solution process into stages, as in Agentless~\cite{agentless}.
+In comparison, coding agents can dynamically call tools to interact with the environment, enabling end-to-end problem solving.
+
+Agent infrastructure such as SWE-Agent~\cite{sweagent} and OpenHands~\citep{openhands} provide agent-computer interfaces for tool use and editing. 
+SWE-Agent introduces the concept of agent-computer interface: a structured set of interactions for searching/navigating code, viewing and editing files, and executing commands/tests, all with careful context management.
+Building upon SWE-agent, mini-SWE-Agent~\cite{sweagent} achieves similar performance with a simpler control flow.
+Live-SWE-agent explores online self-evolution of SWE agents~\citep{live-swe-agent}. 
+SWE-Search~\citep{swe-search} improves SWE-Agent using planning (e.g., Monte Carlo Tree Search) with iterative refinement. 
+Compared to SWE-Agent, OpenHands~\cite{openhands} provides a wider range of tools that allow the agent to interact with the world in similar ways to those of a human developer: by writing code, interacting with a command line, and browsing the web.
+
+\subsection{Training Paradigms for Coding Agent}
+To train coding agents, SWE-Gym~\cite{swegym} adopts rejection sampling finetuning, which applies a teacher model to generate trajectories, evaluates the correctness, and finetunes the student model on the successful trajectories.
+SWE-RL~\cite{swerl} trains the agent model with reinforcement learning, with the similarity score between ground-truth and LLM-generated solutions as reward.
+A follow-up work, ML-Agent~\cite{mlagent}, extends SWE-RL with exploration-enriched fine-tuning, step-wise RL, and an agentic ML-specific reward module.
+
+
+
+\section{Scalable Coding Agent Training}
+\label{sec:related-scalable}
+We focus on the training of end-to-end coding agents in this section.
+As shown in multiple existing works~\citep{swegym,R2EGym,swe-smith}, the performance of coding agents significantly improves when we scale up the training data, especially for base models with larger sizes. For instance, SWE-Smith show that the performance of coding agents with Qwen2.5Coder-32B~\cite{qwen25coder} as the base model is still not converged when we have around 5k training trajectories.
+
+Towards this challenge, existing works focus on reducing the effort of constructing training data.
+SWE-Gym~\cite{swegym} presents the first set of training environments for coding agents. The authors manually construct training environments using the same approach as SWE-Bench~\cite{swebench}. Each training environment contains a GitHub issue, the ground truth code patch to resolve it, and the corresponding GitHub snapshot with all required packages installed, which is equipped with the test function for the issue. The resulting dataset has 491 training trajectories.
+Following SWE-Gym, to reduce the effort of constructing training environments, R2E-Gym~\cite{R2EGym} improves the scalability of executable training environments by using test-generation and back-translation directly from commits. Although it still requires human effort to set up the repositories, it reduces the reliance on human-written issues or unit tests and thereby improves the training data scale to 3.3k trajectories.
+A concurrent work, SWE-Smith~\cite{swe-smith} generates scalable executable environments at a scale by automatically synthesizing bugs, which obtains 5.0k training trajectories. The authors also reduce the number of dockers in the training dataset by keeping only one docker image for each repository.
+The only part that requires human effort is the installation of repositories, where the authors explicitly mention that it is necessary to have human agent collaboration to ensure installation success rate.
+SWE-Play~\cite{swe-play} reduces human effort with a completely automatic approach. It uses a coding agent to propose training tasks, build the repositories from scratch, implement the tasks, and generate tests to verify the correctness. Although it avoids human effort, the environment construction process is still challenging and expensive for agents to complete, resulting a dataset with only 704 training trajectories.
+
+There is still a large room of improvement for constructing scalable training data. Particularly, existing works either still require human effort in repository setup or test generation, or suffer from low success rates with a fully automatic approach.
+One potential reason is that they use the same executability setting in training and in downstream evaluation. Specifically, they require the repository to be executable, which encourages code execution and verification in training trajectories and enables unit-testing to select successful trajectories.
+In our work, we investigate: to what extent can training environments without executable repositories still be effective for coding agent training?
+We will answer this question by analyzing the effect of executability in coding tasks and constructing unit-testing without executable repositories.
+
+
+
+\section{Generalizability of Coding Agents}
+\label{sec:related-generalizability}
+\TBD{Here we introduce existing work on general-purpose agent training, where coding tasks are only a subset of training tasks.}
+In the pre-training stage, recent work train the language models on general agentic tasks, including proprietary models~\cite{gpt5,claude37,claude45} and open-sourced ones~\cite{deepseekv3,kimik2,qwen25coder,qwen3,llama3modelcard}.
+For instance, Kimi-K2~\cite{kimik2} constructs a wide range of synthetic tools and tasks to boost general agentic abilities.
+
+
+\TBD{What's specifical about our work: (1) we focus on general-purpose coding agent training, which is a stage between pre-training and single-task post-training; (2) we aim to reveal the key abilities that are transferrable across different coding tasks.}
+
+
+
+
+\section{Training Critique Models for Coding Agent}
+\label{sec:related-critique}
+\TBD{Here we introduce existing work on improving the planning ability of coding agents, especially on multi-agent systems}
+
+\TBD{Showing what's special about critique model training: can combine with any existing coding agents.}
+
+
+
+
+
+\input{part_scalability}
+\input{part_generalizability}
+\input{part_usage}
+
+\chapter{Conclusion}
+
+%\appendix
+%\include{appendix}
+
+\backmatter
+
+%\renewcommand{\baselinestretch}{1.0}\normalsize
+
+% By default \bibsection is \chapter*, but we really want this to show
+% up in the table of contents and pdf bookmarks.
+\renewcommand{\bibsection}{\chapter{\bibname}}
+%\newcommand{\bibpreamble}{This text goes between the ``Bibliography''
+%  header and the actual list of references}
+\bibliographystyle{plainnat}
+\bibliography{register} %your bib file
+
+\end{document}
