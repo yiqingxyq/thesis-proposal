@@ -91,7 +91,7 @@ One major bottleneck of scaling coding agent training data is the construction o
 Building the environments can require substantial human or agent effort, for example, when the environments support the executability and unit testing of an entire code repository. 
 In our work, we aim to find an appropriate level of abstraction for training environments, with the goal of simplifying their construction while preserving training effectiveness.
 
-Building on this lightweight environment construction process, we extend coding agents' abilities to diverse downstream coding tasks. In particular, we develop principles for designing synthetic training tasks and characterize atomic skills that transfer across coding tasks. Our work bridges the gap between single-task training and general-purpose coding agent training.
+Building on this lightweight environment construction process, we extend coding agents' abilities to diverse downstream coding tasks and conduct systematic analyses on the generalizability of coding agents across different tasks, which is still under-explored in existing research on both single-task post-training or coding agent pre-training. In particular, we develop principles for designing synthetic training tasks and characterize atomic skills that transfer across coding tasks.
 
 Even with these advances in coding agent training, empirically, we observe that for a specific model, additional training data yields little or no further gain after a certain point.
 Our analysis further shows that the performance is substantially bottlenecked by the limited high-level planning ability: producing intermediate steps about what should be done and in what order, as opposed to low-level implementation: generating concrete executable actions to perform the intermediate steps.
@@ -157,15 +157,11 @@ Such resources are particularly scarce in academia, where the engineering, compu
 
 \start{The Difficulty of Handling Diverse Use Cases Simutaneously}
 In real-world deployment, coding agents must operate across diverse tasks and scenarios, and can be paired with different tools, execution harnesses, and inference-time techniques.
-However, most existing research still focuses on training agents for a single task under a fixed inference setting and with a predefined set of tools, which does not reliably generalize to other settings~\cite{swe-play}.
+However, most existing open-sourced post-training datasets still focuses on training agents for a single task under a fixed inference setting and with a predefined set of tools, which does not reliably generalize to other settings~\cite{swe-play}.
 What still remains underexplored is how well skills transfer across these dimensions and how such transferability can be improved.
 Such lack of understanding creates a significant gap between current coding agent research and practical real-world applications.
 
 \start{The Performance Saturation with Respect to Data Scale}
-% Even if the first two challenges are addressed, the performance of coding agents is still fundamentally constrained by the capacity of the underlying base models.
-% On one hand, this is an inherent challenge of machine learning, where a model's ability to fit mapping functions and represent patterns is limited.
-% Such limitation is especially pronounced for coding agent training, which requires complex and diverse skills from multiple aspects, including tool usage, coding-related knowledge, instruction-following, etc.
-% On the other hand, training models with larger sizes is again bottlenecked by the computational resources, which is particularly limited in academia.
 Even if the first two challenges are addressed, empirically, we observe that for a specific model, especially the one with limited size (e.g., Qwen2.5Coder-7B and 14B~\cite{qwen25coder}), increasing the size of training data yields little or no further gain after a certain point~\cite{swe-smith,R2EGym}.
 To better understand this limitation, we break down the abilities required for coding agent training into high-level planning (producing intermediate steps about what should be done and in what order) and low-level implementation (generating concrete executable actions to perform the intermediate steps).
 Our analysis suggests that high-level planning remains a major bottleneck: even after training, there is still a substantial gap between these models and frontier models such as Claude Sonnet 4.6~\cite{claude46}.
@@ -183,7 +179,7 @@ Specifically, we identify the execution support for the entire codebase to be th
 This simplifies the construction of training environments while preserving training effectiveness.
 
 \start{Part 2: Training Coding Agents that Generalize across Tasks}
-Most existing coding agent training datasets only focus on a single task, which does not reliably generalize to other tasks.
+Most existing open-sourced coding agent post-training datasets only focus on a single task, which does not reliably generalize to other tasks.
 In our work, we open a direction of training coding agents that generalize across tasks.
 Specifically, we conduct systematic analyses on the commonalities shared across diverse downstream coding tasks, and design synthetic training tasks that can generalize across tasks.
 In the \textbf{\textcolor{treegreen}{proposed work}}, we take a step forward and analyze the exact trajectory behaviors (including problem-solving strategies and concrete actions) that are transferrable across tasks. Then we propose a data selection method based on such desired behaviors beyond task success.
@@ -191,7 +187,8 @@ In the \textbf{\textcolor{treegreen}{proposed work}}, we take a step forward and
 \start{Part 3: Training Critique Models to Assist Coding Agent}
 While the first two parts aim to improve the effectiveness of coding agent training, empirically, we still observe that the performance satuates with respect to data scale after a certain point, and the high-level planning ability remains a major bottleneck.
 To address this limitation, in our work, we develop critique models that provide guidance to the coding agent at inference time.
-Compared to the coding agent that is optimized for the combination of high-level planning and low-level implementation, the critique model is specialized in planning.
+While the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, the critique model is specialized for planning.
+Since the optimum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning, training a specialized critique model may lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
 We first show that the high-level idea of ``training a specialized model to provide guidance to the main model'' can be beneficial in general NLP tasks such as factuality generation.
 Then in the \textbf{\textcolor{treegreen}{proposed work}}, we apply this idea to coding agent training and train critique models to assist coding agents in inference.
 We show that there is a large room of improvement for training critique models for coding agents, and propose a recipe to train critique models.
@@ -205,8 +202,9 @@ We show that there is a large room of improvement for training critique models f
     
     \setcounter{timelineitem}{0}
     \timelineentry{May 2026}{Thesis Proposal}
-    \timelineentry{May 2026 -- June 2026}{Complete Proposed Work I (\autoref{chap:prm-training})}
-    \timelineentry{May 2026 -- Sept 2026}{Complete Proposed Work II (\autoref{chap:effective-analysis})}
+    \timelineentry{May 2026 -- Jun 2026}{Complete Proposed Work I (\autoref{chap:critique-training}) and submit it to EMNLP 2026}
+    \timelineentry{May 2026 -- Sept 2026}{Complete Proposed Work II (\autoref{chap:effective-analysis}) and submit it to ICLR 2027}
+    \timelineentry{Oct 2026 -- Jul 2026}{Thesis Writing and Job Search}
     \timelineentry{Aug 2027}{Thesis Defense}
 \end{tikzpicture}
 \end{figure}
@@ -217,25 +215,15 @@ We show that there is a large room of improvement for training critique models f
 
 
 \chapter{Literature Review}
-% 80-20 rule: 80: easy solutions; 20: the residule
-% Overall goal: make coding agent training more feasible.
-% 1. make scalable data: 
-%     - existing work: datasets
-%     - what's missing: it is still challenging and expensive to construct synthetic training data
-
-% 2. what's missing in part 1: generalizability of coding agents 
-%     - existing work: general-purpose agent training 
-%     - what's missing: mid-training (general-purpose coding agent training)
-
-% 3. what's missing in part 1 and 2: the limitation of coding agent training
-%     - existing work: how critique models could be helpful 
-%     - what's missing: understanding what kind of critique is helpful
 
 The structure of this chapter is as follows: 
 In \S\ref{sec:related-overview}, we introduce the overview of coding agent training. 
 In \S\ref{sec:related-scalable}, we discuss existing work that constructs scalable training data, and introduce how our work opens a direction of constructing scalable coding agent training data with lightweight environments.
 Since most coding agent training datasets only focus on a single task, to train coding agents that are capable across a diverse set of applications, in \S\ref{sec:related-generalizability}, we further discuss the generalizability of coding agents, where our work aims to reveal the key abilities that are transferrable across different coding tasks.
-While all the above works show effective ways to directly train coding agents, the performance is still bottlenecked by the capacity of the base models. To address this limitation, in \S\ref{sec:related-critique}, we discuss how existing work uses inference-time feedback to improve LLM generation, and how we apply this idea to coding agent and train critique models to assist coding agents in inference.
+While all the above works show effective ways to directly train coding agents, empirically, we still observe that the performance satuates with respect to data scale after a certain point, and the high-level planning ability remains a major bottleneck.
+To address this limitation, in \S\ref{sec:related-critique}, we discuss how existing work improves the planning ability by either indirect approaches such as optimizing the context, memory, tools, etc, or direct approaches that explicitly train a planner agent.
+Our work opens a direction of critique model training, which falls into the direct approach.
+The critique model is explicitly optimized to tackle the planning bottleneck, and can be integrated with a fixed coding agent without retraining it.
 
 
 
@@ -277,7 +265,7 @@ A follow-up work, ML-Agent~\cite{mlagent}, extends SWE-RL with exploration-enric
 
 
 
-\section{Scalable Coding Agent Training}
+\section{Scalable Coding Agent Post-Training}
 \label{sec:related-scalable}
 We focus on the training of end-to-end coding agents in this section.
 As shown in multiple existing works~\citep{swegym,R2EGym,swe-smith}, the performance of coding agents significantly improves when we scale up the training data, especially for base models with larger sizes. For instance, SWE-Smith show that the performance of coding agents with Qwen2.5Coder-32B~\cite{qwen25coder} as the base model is still not converged when we have around 5k training trajectories.
@@ -296,24 +284,52 @@ We will answer this question by analyzing the effect of executability in coding 
 
 
 
-\section{Generalizability of Coding Agents}
+\section{Coding Agent Pre-Training}
 \label{sec:related-generalizability}
-\TBD{Here we introduce existing work on general-purpose agent training, where coding tasks are only a subset of training tasks.}
-In the pre-training stage, recent work train the language models on general agentic tasks, including proprietary models~\cite{gpt5,claude37,claude45} and open-sourced ones~\cite{deepseekv3,kimik2,qwen25coder,qwen3,llama3modelcard}.
-For instance, Kimi-K2~\cite{kimik2} constructs a wide range of synthetic tools and tasks to boost general agentic abilities.
+In addition to the open-sourced coding agent post-training datasets introduced in \autoref{sec:related-scalable}, another line of work focuses on coding agent pre-training, with coding tasks as a subset of training tasks. Although such methods may be trained on massive user requests for coding tasks, they typically do not reveal explicit training details or conduct systematic analysis on the generalizability across different coding tasks.
+
+In particular, 
+Claude-3.5-Sonnet~\cite{claude35} is trained on an internal tool set to write, edit, and execute code.
+GPT-4.5~\cite{gpt45} is trained on using command-line tools and Python to modify files within the codebase.
+Devstral~\cite{devstral} trains the model to solve real GitHub issues and runs over multiple agent infrastructures.
+Kimi-K2~\cite{kimik2} is trained on large-scale agentic data synthesis by generating tool‑use demonstrations in the combination of simulated and real environments.
+Qwen3‑Coder~\cite{qwen3} applies long‑horizon ``Agent RL'' to encourage multi‑turn tool interactions, with large parallel environment infrastructure.
+DeepSeek-V3.2~\cite{deepseekv3} uses with massive agent training data synthesis, with more than 1.8k environments and 85k instructions, where the code‑agent environments are mined from GitHub issue‑PR pairs with automated environment setup and JUnit test validation.
+MiniMax-M2.5~\cite{minimax25} is trained with RL in hundreds of thousands of complex real-world environments, covering more than 10 languages and 200k real environments.
+GLM-5~\cite{GLM-5} constructs long‑context data for coding agent training.
+Kimi K2.5~\cite{kimik25} improves the parallelism of RL environments and introduces a self‑directed agent swarm paradigm.
+Recent work such as Claude-Opus-4.7~\cite{claude47} and GPT‑5.3‑Codex~\cite{gpt53codex} focus on enhancing the safety of the models in coding environments, such as the robustness against prompt injection attacks.
+
+What is missing in both single-task post-training (\autoref{sec:related-scalable}) and coding agent pre-training (\autoref{sec:related-generalizability}) is the systematic analysis on the generalizability across different coding tasks.
+For instance, it is still under-explored on what conditions the coding agent abilities are transferrable across different coding tasks, and what exact abilities are shared across different tasks.
+In our work, we investigate the principles to design training tasks that transfer effectively across a broad range of coding agent tasks.
+In a proposed work, we further analyze the key agent behaviors that benefit the transferability across multiple coding tasks.
 
 
-\TBD{What's specifical about our work: (1) we focus on general-purpose coding agent training, which is a stage between pre-training and single-task post-training; (2) we aim to reveal the key abilities that are transferrable across different coding tasks.}
-
-
-
-
-\section{Training Critique Models for Coding Agent}
+\section{Improving the High-level Planning Ability of Coding Agents}
 \label{sec:related-critique}
-\TBD{Here we introduce existing work on improving the planning ability of coding agents, especially on multi-agent systems}
 
-\TBD{Showing what's special about critique model training: can combine with any existing coding agents.}
+To improve the coding agent's planning ability, one line of work focuses on indirect approaches such as optimizing the context, memory, tools, etc.
+Reflexion~\cite{reflexion} adds reflective text in an episodic memory buffer to enhance decision-making.
+RepoCoder~\cite{repocoder}, RLCoder~\cite{rlcoder}, and Repoformer~\cite{repoformer} improve inference-time context by training a retriever model.
+MGDebugger~\cite{mgdebugger} improves debugging by decomposing problematic code into a hierarchical tree structure of subfunctions, with each level representing a particular granularity of error
+RepoGraph~\cite{repograph} provides a more comprehensive view for the repository by summarizing its structure and content into a graph, where the agent can call tools to view the graph.
+With a similar high-level idea, an empirical study~\cite{strong-weak} summarizes the repository structure into a README file, which can be used to guide the agent's repository exploration.
 
+
+Another line of work focuses on direct approaches that explicitly train a planner agent.
+MetaGPT~\cite{metagpt} performs coding tasks with a distributed software-company pipeline, where ``planning'' is decomposed into requirement analysis, architecture design, and system design, and are performed by the produce manager, architect, and project manager, respectively.
+Similarly, ChatDev~\cite{chatdev} presents a waterfall-style sequence of design, coding, code completion, review, and testing phases.
+AgentVerse~\cite{agentverse} develops a four-stage loop including expert recruitment, collaborative decision-making, action execution, and evaluation.
+MapCoder~\cite{mapcoder} uses a four-agent pipeline: retrieval, planning, coding, and debugging. 
+In addition to the above pipeline-based approaches, AutoGen~\cite{autogen} adopts a more flexible approach by allowing multiple agents to converse with each other to accomplish tasks.
+HyperAgent~\cite{hyperagent} has a centralized Planner that generates resolution strategies and dispatches them asynchronously to the navigator, code editor, and executor agents.
+
+
+Compared with indirect methods, the direct planning approach target the planning bottleneck more directly by training a specialized planner agent.
+However, in most existing methods, each sub-agent is optimized for a specific intermediate step of the task. These components typically do not operate independently and cannot generalize to other frameworks or workflows.
+In our work, we propose a more adaptive and generalizable approach by training a critique model that is specialized in planning and can provide guidance to the coding agent at inference time.
+The critique model can be integrated with a fixed coding agent without retraining it.
 
 
 
@@ -323,6 +339,20 @@ For instance, Kimi-K2~\cite{kimik2} constructs a wide range of synthetic tools a
 \input{part_usage}
 
 \chapter{Conclusion}
+This thesis aims to build synthetic training data for coding agents to resolve the three fundamental challenges: the high cost of constructing training data, the difficulty of handling diverse use cases simultaneously, and the performance saturation with respect to data scale.
+
+In \autoref{part:scalability}, we begin by improving the scalability of training data by finding an appropriate level of abstraction for training environments, with the goal of simplifying the data construction process while preserving effectiveness.
+We provide a successful approach that simplifies the process of external package installation while remaining effective.
+Building on this lightweight environment construction process, in \autoref{part:generalizability}, we extend the scope to general-purpose coding agent training and we aim to conduct systematic analyses on the generalizability of coding agents across different tasks. We start with developing the principles for designing synthetic training tasks for task generalization.
+Finally, in \autoref{part:usage}, towards the empirical observation that the performance satuates with respect to data scale after a certain point, with high-level planning ability remaining a major bottleneck, we aim to raise the performance ceiling by training a critique model that specializes in planning to assist the coding agent. We motivate this approach by showing that critique model training can be effective in general NLP tasks such as factuality generation.
+
+For the next steps, we will continue the research on \autoref{part:generalizability} and \autoref{part:usage} by completing the two proposed works in \autoref{chap:effective-analysis} and \autoref{chap:critique-training}.
+Specifically, for Proposed Work I (\autoref{part:usage}), we will verify that the characteristics we find indeed affect the overall performance (\autoref{sec:critique-analysis}) and construct DPO data targeting the beneficial or distracting characteristics we find (\autoref{sec:critique-dpo}). 
+Meanwhile, we will write the research paper and we aim to submit the paper to EMNLP 2026, where the deadline is in May 25, 2026.
+
+As for Proposed Work II (\autoref{part:generalizability}), we will start with discovering the key agent behaviors by comparing the training trajectories generated by a frontier model, Claude-Sonnet-3.7, and a weaker model, Qwen2.5Coder-32B, with our categorization of agent behaviors proposed in \autoref{plus:sec:categorization}. The effectiveness of the key behaviors will be verified with controlled experiments proposed in \autoref{plus:sec:controlled-exp}. We aim to finish this stage by the end of June 2026. Then we will extend the analysis to multiple training and evaluation tasks and multiple teacher model pairs as proposed in \autoref{plus:sec:extend-exp}. We aim to finish this stage by the end of July 2026. We will then wrap up the experiment results and write a research paper. We aim to submit the paper to ICLR 2027, where the deadline is in September, 2026.
+
+After submitting the two papers, I will spend the remaining time on thesis writing and job search. I aim to defend the thesis in August 2027.
 
 %\appendix
 %\include{appendix}

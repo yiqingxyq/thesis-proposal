@@ -5,15 +5,19 @@
 
 
 \start{Overview of Part~\ref{part:usage}}
-In \autoref{part:scalability} and \autoref{part:generalizability}, we aim to construct synthetic data to improve coding agent effectiveness. However, such methods are inherently bottlenecked by the capacity of the base models.
-To address this limitation, in this part, we develop an auxiliary model to assist the primary coding agent. With the auxiliary model in the context, the search space of the coding agent's actions is reduced. Therefore the system can achieve potentially better performance with the same capacity of the coding agent.
+In \autoref{part:scalability} and \autoref{part:generalizability}, we aim to construct synthetic data to improve coding agent effectiveness. 
+However, empirically, we still observe that the performance satuates with respect to data scale after a certain point, and the high-level planning ability remains a major bottleneck.
 
-Specifically, we identify two key principles that an ideal auxiliary model should follow: (1) it should provide additional performance gains when collaborating with the primary coding agent, and (2) it should specialize in capabilities that are different from the main coding agent.
-We then show that a critique model that is trained to provide textual critiques for the main model during inference can achieve both principles, for both seq-to-seq NLP tasks (\autoref{chap:fence}) and coding agent tasks (\autoref{chap:prm-training}).
+To address this limitation, in this part, we develop an critique model to provide guidance to the coding agent at inference time. 
+While the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, the critique model is specialized for planning.
+Since the optimum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning, training a specialized critique model may lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
 
-In \autoref{chap:fence}, we show that a critique model can improve the factuality of a generator model by either interacting with it in inference or providing feedback to assist training. We further improve the effectiveness of the critique model by constructing tailored training data.
+% Specifically, we identify two key principles that an ideal auxiliary model should follow: (1) it should provide additional performance gains when collaborating with the primary coding agent, and (2) it should specialize in capabilities that are different from the main coding agent.
+% We then show that a critique model that is trained to provide textual critiques for the main model during inference can achieve both principles, for both seq-to-seq NLP tasks (\autoref{chap:fence}) and coding agent tasks (\autoref{chap:critique-training}).
 
-When it comes to the domain of coding agent, in a \proposedWork (\autoref{chap:prm-training}), we first show that using a frontier model (e.g., Claude) to provide critique during inference substantially improves the correctness of a coding agent. Then we distill a more cost-efficient critique model by constructing synthetic supervised-finetuning training data. To further improve its effectiveness, we propose a method to construct direct preference optimization (DPO) training data, focusing on its gap between the frontier critique model.
+To demonstrate the utility of critique model, in \autoref{chap:fence}, we show that a critique model can improve the factuality of a generator model by either interacting with it in inference or providing feedback to assist training. We further improve the effectiveness of the critique model by constructing tailored training data.
+
+When it comes to the domain of coding agent, in a \proposedWork (\autoref{chap:critique-training}), we first show that using a frontier model (e.g., Claude) to provide critique during inference substantially improves the correctness of a coding agent. Then we distill a more cost-efficient critique model by constructing synthetic supervised-finetuning training data. To further improve its effectiveness, we propose a method to construct direct preference optimization (DPO) training data, focusing on its gap between the frontier critique model.
 
 
 
@@ -582,7 +586,7 @@ We then present a training recipe that leverages \fencemodelname to finetune LM 
 Experiments show that \fencemodelname outperforms strong proprietary models such as Claude-3 on LLM-AggreFact.
 Our factuality training method improves Llama3-8B-chat's factuality performance by 14.45\% on FActScore and 8.25\% on TruthfulQA.
 
-\autoref{chap:prm-training} adapts the high-level idea of auxiliary model training to coding agent, where we first show that the coding agent performs better in inference if it receives critique from an auxiliary model every $k$ steps. Then, we propose a data construction method to train an open-source critique model. 
+\autoref{chap:critique-training} adapts the high-level idea of auxiliary model training to coding agent, where we first show that the coding agent performs better in inference if it receives critique from an auxiliary model every $k$ steps. Then, we propose a data construction method to train an open-source critique model. 
 
 
 
@@ -786,14 +790,18 @@ Title: Chadwick Boseman | Biography, Movies, Black Panther, \& Death ... \\
 
 
 \chapter{Improving Coding Agent Effectiveness by Training a Critique Model \textcolor{mediumgreen}{(\textit{proposed})}}
-\label{chap:prm-training}
+\label{chap:critique-training}
 
 \section{Overview}
-Synthetic data has proven effective for training coding agents~\cite{swe-smith,R2EGym,hybrid-gym}. However, as in many machine learning settings, the effectiveness of a coding agent is ultimately bottlenecked by the capacity of its base model. Prior work~\cite{swe-smith} shows that, when using Qwen2.5Coder-14B as the base model, coding-agent performance already saturates after roughly 800 training trajectories.
+Synthetic data has proven effective for training coding agents~\cite{swe-smith,R2EGym,hybrid-gym}. 
+% However, as in many machine learning settings, the effectiveness of a coding agent is ultimately bottlenecked by the capacity of its base model. 
+However, empirically, we still observe that the performance satuates with respect to data scale after a certain point, and the high-level planning ability remains a major bottleneck.
+For instance, prior work~\cite{R2EGym} shows that, when using Qwen2.5Coder-14B as the base model, coding-agent performance already saturates after roughly 800 training trajectories.
 
-To overcome this limitation, we propose training an auxiliary model to assist the coding agent at inference time. Similar to \autoref{chap:fence}, an ideal auxiliary model should satisfy two properties: (1) it should provide additional performance gains when paired with the primary coding agent, and (2) it should develop capabilities that differ from those of the main coding agent, allowing the two models to be optimized for distinct objectives.
+% To overcome this limitation, we propose training an auxiliary model to assist the coding agent at inference time. Similar to \autoref{chap:fence}, an ideal auxiliary model should satisfy two properties: (1) it should provide additional performance gains when paired with the primary coding agent, and (2) it should develop capabilities that differ from those of the main coding agent, allowing the two models to be optimized for distinct objectives.
 
-In this chapter, we show that a critique model trained to provide free-form textual feedback to the main model during inference satisfies both criteria for coding-agent tasks. Using a strong critique model such as Claude-Sonnet-4.6, we improve the performance of CWM-32B~\cite{cwm} on SWE-Bench Verified-mini~\cite{swebench} from 29.4\% to 61.0\%. Moreover, we find that using a model fine-tuned for coding-agent tasks, such as SWE-Smith-7B~\cite{swe-smith}, as the critique model does not yield additional gains beyond those achieved by the coding agent alone. This suggests that the critique model requires a different set of capabilities and should be optimized differently from the coding agent itself.
+In this chapter, following the high-level idea of \autoref{chap:fence}, we show that a critique model trained to provide free-form textual feedback to the main model during inference can be effective for coding-agent tasks. 
+Using a strong critique model such as Claude-Sonnet-4.6, we improve the performance of CWM-32B~\cite{cwm} on SWE-Bench Verified-mini~\cite{swebench} from 29.4\% to 61.0\%. Moreover, we find that using a model fine-tuned for coding-agent tasks, such as SWE-Smith-7B~\cite{swe-smith}, as the critique model does not yield additional gains beyond those achieved by the coding agent alone. This suggests that the critique model requires a different set of capabilities and should be optimized differently from the coding agent itself.
 
 Because using a frontier model as the critique model, such as Claude-Sonnet-4.6, remains expensive at inference time, our \textcolor{aquablue}{\textbf{preliminary experiments}} focus on constructing synthetic data to distill a more cost-efficient critique model, such as Qwen3-8B, that can provide free-form textual critiques to assist the main coding agent during inference. Specifically, we distill Qwen3-8B from Claude-generated critiques using standard supervised fine-tuning (SFT), and this already improves CWM-32B's performance on SWE-Bench Verified from 29.4\% to 33.4\%.
 
@@ -805,12 +813,12 @@ Motivated by these observations, we \textcolor{mediumgreen}{\textbf{propose}} to
 
 
 \section{Preliminary Experiments}
-In our preliminary experiments, we first show that a strong critique model can bring substantial performance gains to the coding agent in inference (\S\ref{sec:prm-strong}).
-Then we show that we can further train a more cost-efficient critique model (e.g., Qwen3-8B) by distilling it from the strong critique model (e.g., Claude-Sonnet-4.6) using vanilla supervised-finetuning (SFT) (\S\ref{sec:prm-sft}).
-Finally, we reveal the remaining gaps between the student critique model and the teacher critique model, which motivates our proposed method (\S\ref{sec:prm-proposed}).
+In our preliminary experiments, we first show that a strong critique model can bring substantial performance gains to the coding agent in inference (\S\ref{sec:critique-strong}).
+Then we show that we can further train a more cost-efficient critique model (e.g., Qwen3-8B) by distilling it from the strong critique model (e.g., Claude-Sonnet-4.6) using vanilla supervised-finetuning (SFT) (\S\ref{sec:critique-sft}).
+Finally, we reveal the remaining gaps between the student critique model and the teacher critique model, which motivates our proposed method (\S\ref{sec:critique-proposed}).
 
 \subsection{Inference-time Critique Models can be Effective}
-\label{sec:prm-strong}
+\label{sec:critique-strong}
 
 \start{Experimental Setup}
 We experiment with the SWE-Bench Verified dataset~\cite{swebench} with mini-SWE-Agent as the infrastructure~\cite{sweagent}. We use CWM-32B~\cite{cwm} as the coding agent and experiment with three critique models: a frontier model, Claude-Sonnet-4.6~\cite{claude46}, a cost-efficient open-source model, Qwen3-8B~\cite{qwen3}, and a model finetuned for coding agent tasks, SWE-Smith-7B~\cite{swe-smith}.
@@ -820,7 +828,7 @@ Following previous work~\cite{swe-prm}, we adopt the setting where the critique 
 We prompt the critique model to include (1) error analysis for the current trajectory, (2) high-level instructions for completing the task, and (3) the reasoning process for generating the critique, which is shown to be effective empirically~\cite{swe-prm}. 
 
 \start{Experimental Results}
-As shown in \autoref{tab:prm:prelim}, we observe that:
+As shown in \autoref{tab:critique:prelim}, we observe that:
 (1) The frontier critique model (Claude-Sonnet-4.6) can bring substantial performance gains to the coding agent, improving the resolved rate from 29.4\% to 61.0\%.
 (2) Using a weak critique model such as Qwen3-8B may even reduce the performance of the coding agent, but the performance loss is not significant.
 (3) The model finetuned for coding agent tasks (SWE-Smith-7B) is not an effective critique model, which performs even worse than Qwen3-8B. This indicates that the critique model and the coding agent require different capabilities and should be optimized differently.
@@ -852,12 +860,12 @@ As shown in \autoref{tab:prm:prelim}, we observe that:
   \end{tabular}%
   }
   \caption{Results on equipping CWM-32B with different critique models on SWE-Bench Verified. ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.}
-  \label{tab:prm:prelim}
+  \label{tab:critique:prelim}
 \end{table}
 
 
 \subsection{Distilled Critique Models also Bring Performance Gains}
-\label{sec:prm-sft}
+\label{sec:critique-sft}
 \start{Experimental Setup}
 To reduce inference cost, we distill Qwen3-8B from Claude-Sonnet-4.6 using vanilla supervised-finetuning (SFT).
 
@@ -866,22 +874,23 @@ We build training data from 500 trajectories with CWM-32B as the coding agent an
 We train the model on 8 L-40 GPUs, with a batch size of 8, and a learning rate of 5e-6. We train the model for 3 epochs.
 
 \start{Experimental Results}
-As shown in \autoref{tab:prm:prelim}, we observe that the SFT model can also bring performance gains to the coding agent, improving the resolved rate from 29.4\% to 33.4\%.
+As shown in \autoref{tab:critique:prelim}, we observe that the SFT model can also bring performance gains to the coding agent, improving the resolved rate from 29.4\% to 33.4\%.
 However, the performance gap with using the frontier critique model is still large, indicating that there is still a large room for improvement.
 
 \start{The Remaining Gaps}
 We observe that one major reason that limits the performance of the SFT-critique model is that is has a much lower non-empty rate than the base coding agent (reducing from 89.0\% to 73.4\%). What happens is that when the critique is distracting, the coding agent performs on average more actions than before (increasing from 34.54 to 61.39). It exceeds the limit of 150 steps more often, where the process is terminated before a valid code patch is generated.
 
-We present a simple fix to the limit-exceeding problem denoted as ``+ fallback'' in \autoref{tab:prm:prelim}. Specifically, when the coding agent exceeds the limit, we start from the first step again and run inference with the coding agent alone, without any critique models. This improves the non-empty rate from 73.4\% to 94.8\% and improves the resolved rate from 33.4\% to 36.4\%.
+We present a simple fix to the limit-exceeding problem denoted as ``+ fallback'' in \autoref{tab:critique:prelim}. Specifically, when the coding agent exceeds the limit, we start from the first step again and run inference with the coding agent alone, without any critique models. This improves the non-empty rate from 73.4\% to 94.8\% and improves the resolved rate from 33.4\% to 36.4\%.
 
 However, to reduce inference latency, we aim to train the critique model itself to avoid distracting behaviors. In the next section, we propose to systematically investigate the characteristics of the distracting critiques that lead to unnecessary actions, and construct training data to reduce such distracting behaviors.
 
 
 
 \section{Proposed Method}
-\label{sec:prm-proposed}
+\label{sec:critique-proposed}
 
 \subsection{Analysis of Distracting Critiques}
+\label{sec:critique-analysis}
 \start{Proposed Method}
 To investigate what types of critiques are distracting and lead to unnecessary actions, we propose to manually check a subset of trajectories where using the SFT critique model exceeds the limit but using Claude-4.6 as the critique model does not, and discover a list of differences between the critiques they generate.
 
@@ -901,6 +910,7 @@ If the revised critiques can bring significant performance gains, we can verify 
 
 
 \subsection{Constructing DPO Data to Distill Critique Models}
+\label{sec:critique-dpo}
 \start{Proposed Method}
 After identifying the characteristics of the distracting critiques, we can construct directed preference optimization (DPO) data to further improve the performance of the critique model.
 

@@ -1,4 +1,4 @@
-\begin{thebibliography}{97}
+\begin{thebibliography}{115}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -16,10 +16,10 @@ Wasi~Uddin Ahmad, Md~Golam~Rahman Tushar, Saikat Chakraborty, and Kai-Wei Chang.
 \newblock Avatar: A parallel corpus for java-python program translation.
 \newblock \emph{arXiv preprint arXiv:2108.11590}, 2021{\natexlab{b}}.
 
-\bibitem[AI@Meta(2024)]{llama3modelcard}
-AI@Meta.
-\newblock Llama 3 model card, 2024.
-\newblock URL \url{https://github.com/meta-llama/llama3/blob/main/MODEL_CARD.md}.
+\bibitem[Anthropic(2024)]{claude35}
+Anthropic.
+\newblock Claude-3.5, 2024.
+\newblock URL \url{https://www.anthropic.com/news/ claude-3-5-sonnet}.
 
 \bibitem[Anthropic(2025{\natexlab{a}})]{claude37}
 Anthropic.
@@ -31,10 +31,15 @@ Anthropic.
 \newblock Claude-4.5, 2025{\natexlab{b}}.
 \newblock URL \url{https://www.anthropic.com/news/claude-4-5-sonnet}.
 
-\bibitem[Anthropic(2026)]{claude46}
+\bibitem[Anthropic(2026{\natexlab{a}})]{claude46}
 Anthropic.
-\newblock Claude-4.6, 2026.
+\newblock Claude-4.6, 2026{\natexlab{a}}.
 \newblock URL \url{https://www.anthropic.com/news/claude-sonnet-4-6}.
+
+\bibitem[Anthropic(2026{\natexlab{b}})]{claude47}
+Anthropic.
+\newblock Claude-4.7, 2026{\natexlab{b}}.
+\newblock URL \url{https://www.anthropic.com/news/claude-sonnet-4-7}.
 
 \bibitem[Antoniades et~al.(2025)Antoniades, {\"{O}}rwall, Zhang, Xie, Goyal, and Wang]{swe-search}
 Antonis Antoniades, Albert {\"{O}}rwall, Kexun Zhang, Yuxi Xie, Anirudh Goyal, and William~Yang Wang.
@@ -62,6 +67,11 @@ Mark Chen, Jerry Tworek, Heewoo Jun, Qiming Yuan, Henrique~Ponde de~Oliveira~Pin
 Valerie Chen, Rohit Malhotra, Xingyao Wang, Juan Michelini, Xuhui Zhou, Aditya~Bharat Soni, Hoang~H. Tran, Calvin Smith, Ameet Talwalkar, and Graham Neubig.
 \newblock How can we assess human-agent interactions? case studies in software agent design, 2025.
 \newblock URL \url{https://arxiv.org/abs/2510.09801}.
+
+\bibitem[Chen et~al.(2023)Chen, Su, Zuo, Yang, Yuan, Chan, Yu, Lu, Hung, Qian, Qin, Cong, Xie, Liu, Sun, and Zhou]{agentverse}
+Weize Chen, Yusheng Su, Jingwei Zuo, Cheng Yang, Chenfei Yuan, Chi-Min Chan, Heyang Yu, Yaxi Lu, Yi-Hsin Hung, Chen Qian, Yujia Qin, Xin Cong, Ruobing Xie, Zhiyuan Liu, Maosong Sun, and Jie Zhou.
+\newblock Agentverse: Facilitating multi-agent collaboration and exploring emergent behaviors, 2023.
+\newblock URL \url{https://arxiv.org/abs/2308.10848}.
 
 \bibitem[Chuang et~al.(2024)Chuang, Xie, Luo, Kim, Glass, and He]{DoLA}
 Yung-Sung Chuang, Yujia Xie, Hongyin Luo, Yoon Kim, James~R. Glass, and Pengcheng He.
@@ -111,9 +121,16 @@ Zhangyin Feng, Daya Guo, Duyu Tang, Nan Duan, Xiaocheng Feng, Ming Gong, Linjun 
 \newblock \doi{10.18653/v1/2020.findings-emnlp.139}.
 \newblock URL \url{https://aclanthology.org/2020.findings-emnlp.139}.
 
-\bibitem[Gandhi et~al.(2025)Gandhi, Tsay, Ganhotra, Kate, and Rizk]{swe-prm}
+\bibitem[Gandhi et~al.(2025{\natexlab{a}})Gandhi, Naik, Xie, and Rose]{strong-weak}
+Shubham Gandhi, Atharva Naik, Yiqing Xie, and Carolyn Rose.
+\newblock An empirical study on strong-weak model collaboration for repo-level code generation.
+\newblock In Christos Christodoulopoulos, Tanmoy Chakraborty, Carolyn Rose, and Violet Peng, editors, \emph{Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing}, pages 20667--20686, Suzhou, China, November 2025{\natexlab{a}}. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2025.emnlp-main.1043}.
+\newblock URL \url{https://aclanthology.org/2025.emnlp-main.1043/}.
+
+\bibitem[Gandhi et~al.(2025{\natexlab{b}})Gandhi, Tsay, Ganhotra, Kate, and Rizk]{swe-prm}
 Shubham Gandhi, Jason Tsay, Jatin Ganhotra, Kiran Kate, and Yara Rizk.
-\newblock When agents go astray: Course-correcting swe agents with prms, 2025.
+\newblock When agents go astray: Course-correcting swe agents with prms, 2025{\natexlab{b}}.
 \newblock URL \url{https://arxiv.org/abs/2509.02360}.
 
 \bibitem[Gekhman et~al.(2024)Gekhman, Yona, Aharoni, Eyal, Feder, Reichart, and Herzig]{finetuning-on-new}
@@ -140,6 +157,11 @@ Xinyi He, Qian Liu, Mingzhe Du, Lin Yan, Zhijie Fan, Yiming Huang, Zejian Yuan, 
 \newblock Swe-perf: Can language models optimize code performance on real-world repositories?, 2025.
 \newblock URL \url{https://arxiv.org/abs/2507.12415}.
 
+\bibitem[Hong et~al.(2024)Hong, Zhuge, Chen, Zheng, Cheng, Zhang, Wang, Wang, Yau, Lin, Zhou, Ran, Xiao, Wu, and Schmidhuber]{metagpt}
+Sirui Hong, Mingchen Zhuge, Jiaqi Chen, Xiawu Zheng, Yuheng Cheng, Ceyao Zhang, Jinlin Wang, Zili Wang, Steven Ka~Shing Yau, Zijuan Lin, Liyang Zhou, Chenyu Ran, Lingfeng Xiao, Chenglin Wu, and Jürgen Schmidhuber.
+\newblock Metagpt: Meta programming for a multi-agent collaborative framework, 2024.
+\newblock URL \url{https://arxiv.org/abs/2308.00352}.
+
 \bibitem[Honovich et~al.(2021)Honovich, Choshen, Aharoni, Neeman, Szpektor, and Abend]{Q2}
 Or~Honovich, Leshem Choshen, Roee Aharoni, Ella Neeman, Idan Szpektor, and Omri Abend.
 \newblock $q^{2}$: {E}valuating factual consistency in knowledge-grounded dialogues via question generation and question answering.
@@ -159,6 +181,11 @@ Hamel Husain, Ho-Hsiang Wu, Tiferet Gazit, Miltiadis Allamanis, and Marc Brocksc
 \bibitem[Irvine(2014)]{low_resource_comp_corpora}
 Ann Irvine.
 \newblock Using comparable corpora to augment statistical machine translation models in low resource settings, 2014.
+
+\bibitem[Islam et~al.(2024)Islam, Ali, and Parvez]{mapcoder}
+Md.~Ashraful Islam, Mohammed~Eunus Ali, and Md~Rizwan Parvez.
+\newblock Mapcoder: Multi-agent code generation for competitive problem solving, 2024.
+\newblock URL \url{https://arxiv.org/abs/2405.11403}.
 
 \bibitem[Jain et~al.(2025{\natexlab{a}})Jain, Synnaeve, and Roziere]{testgeneval}
 Kush Jain, Gabriel Synnaeve, and Baptiste Roziere.
@@ -303,6 +330,11 @@ Sewon Min, Kalpesh Krishna, Xinxi Lyu, Mike Lewis, Wen-tau Yih, Pang Koh, Mohit 
 \newblock \doi{10.18653/v1/2023.emnlp-main.741}.
 \newblock URL \url{https://aclanthology.org/2023.emnlp-main.741}.
 
+\bibitem[MiniMax(2026)]{minimax25}
+MiniMax.
+\newblock Minimax-m2.5: A state-of-the-art model for agents and coding.
+\newblock \url{https://huggingface.co/MiniMaxAI/MiniMax-M2.5}, 2026.
+
 \bibitem[Mishra et~al.(2024)Mishra, Asai, Balachandran, Wang, Neubig, Tsvetkov, and Hajishirzi]{FAVA}
 Abhika Mishra, Akari Asai, Vidhisha Balachandran, Yizhong Wang, Graham Neubig, Yulia Tsvetkov, and Hannaneh Hajishirzi.
 \newblock Fine-grained hallucination detection and editing for language models.
@@ -324,21 +356,33 @@ Cheng Niu, Yuanhao Wu, Juno Zhu, Siliang Xu, KaShun Shum, Randy Zhong, Juntong S
 \newblock {RAGT}ruth: A hallucination corpus for developing trustworthy retrieval-augmented language models.
 \newblock In Lun-Wei Ku, Andre Martins, and Vivek Srikumar, editors, \emph{Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}. Association for Computational Linguistics, 2024.
 
-\bibitem[OpenAI(2025{\natexlab{a}})]{gpt5}
+\bibitem[OpenAI(2025{\natexlab{a}})]{gpt45}
 OpenAI.
-\newblock Gpt5, 2025{\natexlab{a}}.
-\newblock URL \url{https://platform.openai.com/docs/models/gpt-5}.
+\newblock Gpt-4.5, 2025{\natexlab{a}}.
+\newblock URL \url{https://openai.com/index/introducing-gpt-4-5}.
 
 \bibitem[OpenAI(2025{\natexlab{b}})]{o3_mini}
 OpenAI.
 \newblock Openai o3-mini, 2025{\natexlab{b}}.
 \newblock URL \url{https://openai.com/index/openai-o3-mini/}.
 
-\bibitem[Ouyang et~al.(2025)Ouyang, Guo, Arora, Zhang, Hu, Re, and Mirhoseini]{kernelbench}
+\bibitem[OpenAI(2026)]{gpt53codex}
+OpenAI.
+\newblock Introducing gpt-5.3-codex: The most capable agentic coding model to date, February 2026.
+\newblock URL \url{https://openai.com/index/gpt-5-3-codex-system-card/}.
+\newblock System Card.
+
+\bibitem[Ouyang et~al.(2025{\natexlab{a}})Ouyang, Guo, Arora, Zhang, Hu, Re, and Mirhoseini]{kernelbench}
 Anne Ouyang, Simon Guo, Simran Arora, Alex~L Zhang, William Hu, Christopher Re, and Azalia Mirhoseini.
 \newblock Kernelbench: Can {LLM}s write efficient {GPU} kernels?
-\newblock In \emph{Forty-second International Conference on Machine Learning}, 2025.
+\newblock In \emph{Forty-second International Conference on Machine Learning}, 2025{\natexlab{a}}.
 \newblock URL \url{https://openreview.net/forum?id=yeoN1iQT1x}.
+
+\bibitem[Ouyang et~al.(2025{\natexlab{b}})Ouyang, Yu, Ma, Xiao, Zhang, Jia, Han, Zhang, and Yu]{repograph}
+Siru Ouyang, Wenhao Yu, Kaixin Ma, Zilin Xiao, Zhihan Zhang, Mengzhao Jia, Jiawei Han, Hongming Zhang, and Dong Yu.
+\newblock Repograph: Enhancing {AI} software engineering with repository-level code graph.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025{\natexlab{b}}.
+\newblock URL \url{https://openreview.net/forum?id=dw9VUsSHGB}.
 
 \bibitem[Pagnoni et~al.(2021)Pagnoni, Balachandran, and Tsvetkov]{FRANK}
 Artidoro Pagnoni, Vidhisha Balachandran, and Yulia Tsvetkov.
@@ -358,14 +402,29 @@ Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu.
 \newblock In \emph{Proceedings of the 40th Annual Meeting on Association for Computational Linguistics}, ACL '02. Association for Computational Linguistics, 2002.
 \newblock URL \url{https://doi.org/10.3115/1073083.1073135}.
 
+\bibitem[Phan et~al.(2025)Phan, Nguyen, Nguyen, and Bui]{hyperagent}
+Huy~Nhat Phan, Tien~N. Nguyen, Phong~X. Nguyen, and Nghi D.~Q. Bui.
+\newblock Hyperagent: Generalist software engineering agents to solve coding tasks at scale, 2025.
+\newblock URL \url{https://arxiv.org/abs/2409.16299}.
+
 \bibitem[Puri et~al.(2021)Puri, Kung, Janssen, Zhang, Domeniconi, Zolotov, Dolby, Chen, Choudhury, Decker, Thost, Buratti, Pujar, Ramji, Finkler, Malaika, and Reiss]{codenet}
 Ruchir Puri, David~S. Kung, Geert Janssen, Wei Zhang, Giacomo Domeniconi, Vladimir Zolotov, Julian Dolby, Jie Chen, Mihir Choudhury, Lindsey Decker, Veronika Thost, Luca Buratti, Saurabh Pujar, Shyam Ramji, Ulrich Finkler, Susan Malaika, and Frederick Reiss.
 \newblock Codenet: A large-scale ai for code dataset for learning a diversity of coding tasks, 2021.
+
+\bibitem[Qian et~al.(2024)Qian, Liu, Liu, Chen, Dang, Li, Yang, Chen, Su, Cong, Xu, Li, Liu, and Sun]{chatdev}
+Chen Qian, Wei Liu, Hongzhang Liu, Nuo Chen, Yufan Dang, Jiahao Li, Cheng Yang, Weize Chen, Yusheng Su, Xin Cong, Juyuan Xu, Dahai Li, Zhiyuan Liu, and Maosong Sun.
+\newblock Chatdev: Communicative agents for software development, 2024.
+\newblock URL \url{https://arxiv.org/abs/2307.07924}.
 
 \bibitem[Rafailov et~al.(2023)Rafailov, Sharma, Mitchell, Ermon, Manning, and Finn]{DPO}
 Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher~D. Manning, and Chelsea Finn.
 \newblock Direct preference optimization: Your language model is secretly a reward model, 2023.
 \newblock URL \url{https://arxiv.org/abs/2305.18290}.
+
+\bibitem[Rastogi et~al.(2025)Rastogi, Yang, Jiang, Liu, Sablayrolles, Héliou, Martin, Agarwal, Ehrenberg, Lo, Roux, Darcet, Mensch, Bout, Rozière, Monicault, Bamford, Wallenwein, Renaudin, Lanfranchi, Denoix, Barreau, Mizelle, de~las Casas, Chane-Sane, Fugier, Hanna, Berrada, Delerce, Guinet, Novikov, Neubig, Lample, Martin, Jaju, Ludziejewski, Rute, Delignon, Chabran, Studnia, Barmentlo, Amar, Roberts, Denize, Saxena, Yadav, Khandelwal, Chandu, Jain, Lavaud, Blier, Zhao, Martin, Saulnier, Gao, Pellat, Guillaumin, Felardos, Dinot, Darrin, Augustin, Seznec, Gupta, Raghuraman, Duchenne, Wang, von Platen, Saffer, Jacob, Wambergue, Kurylowicz, Chagniot, Stock, Agrawal, Delacourt, Soletskyi, Sauvestre, Vaze, Gandhi, Subramanian, Dalal, Gandhi, Ghosh, Mishra, Aithal, Antoniak, Scao, Lavril, Schueller, Foubert, Robert, Wang, Lacroix, Bewley, Nemychnikova, Paltz, Richard, Li, Marshall, Wang, Zhang, Wan, and Tang]{devstral}
+Abhinav Rastogi, Adam Yang, Albert~Q. Jiang, Alexander~H. Liu, Alexandre Sablayrolles, Amélie Héliou, Amélie Martin, Anmol Agarwal, Andy Ehrenberg, Andy Lo, Antoine Roux, Arthur Darcet, Arthur Mensch, Baptiste Bout, Baptiste Rozière, Baudouin~De Monicault, Chris Bamford, Christian Wallenwein, Christophe Renaudin, Clémence Lanfranchi, Clément Denoix, Corentin Barreau, Darius Dabert~Devon Mizelle, Diego de~las Casas, Elliot Chane-Sane, Emilien Fugier, Emma~Bou Hanna, Gabrielle Berrada, Gauthier Delerce, Gauthier Guinet, Georgii Novikov, Graham Neubig, Guillaume Lample, Guillaume Martin, Himanshu Jaju, Jan Ludziejewski, Jason Rute, Jean-Malo Delignon, JeanHadrien Chabran, Joachim Studnia, Joep Barmentlo, Jonas Amar, Josselin~Somerville Roberts, Julien Denize, Karan Saxena, Karmesh Yadav, Kartik Khandelwal, Khyathi~Raghavi Chandu, Kush Jain, Lélio~Renard Lavaud, Léonard Blier, Lingxiao Zhao, Louis Martin, Lucile Saulnier, Luyu Gao, Marie Pellat, Mathilde Guillaumin, Mathis Felardos, Matthieu Dinot, Maxime Darrin, Maximilian Augustin, Mickaël Seznec, Neha Gupta, Nikhil Raghuraman, Olivier Duchenne, Patricia Wang, Patrick von Platen, Patryk Saffer, Paul Jacob, Paul Wambergue, Paula Kurylowicz, Philomène Chagniot, Pierre Stock, Pravesh Agrawal, Rémi Delacourt, Roman Soletskyi, Romain Sauvestre, Sagar Vaze, Sanchit Gandhi, Sandeep Subramanian, Shashwat Dalal, Siddharth Gandhi, Soham Ghosh, Srijan Mishra, Sumukh Aithal, Szymon Antoniak, Teven~Le Scao, Thibaut Lavril, Thibault Schueller, Thomas Foubert, Thomas Robert, Thomas Wang, Timothée Lacroix, Tom Bewley, Valeriia Nemychnikova, Victor Paltz, Virgile Richard, Wen-Ding Li, William Marshall, Xingyao Wang, Xuanyu Zhang, Yihan Wan, and Yunhao Tang.
+\newblock Devstral: Fine-tuning language models for coding agent applications, 2025.
+\newblock URL \url{https://arxiv.org/abs/2509.25193}.
 
 \bibitem[Ren et~al.(2020)Ren, Guo, Lu, Zhou, Liu, Tang, Sundaresan, Zhou, Blanco, and Ma]{codebleu}
 Shuo Ren, Daya Guo, Shuai Lu, Long Zhou, Shujie Liu, Duyu Tang, Neel Sundaresan, Ming Zhou, Ambrosio Blanco, and Shuai Ma.
@@ -379,6 +438,16 @@ Baptiste Roziere, Marie-Anne Lachaux, Lowik Chanussot, and Guillaume Lample.
 \bibitem[Roziere et~al.(2022)Roziere, Zhang, Charton, Harman, Synnaeve, and Lample]{transcoderST}
 Baptiste Roziere, Jie~M. Zhang, Francois Charton, Mark Harman, Gabriel Synnaeve, and Guillaume Lample.
 \newblock Leveraging automated unit tests for unsupervised code translation, 2022.
+
+\bibitem[Shi et~al.(2025)Shi, Wang, Wan, Wang, and Gu]{mgdebugger}
+Yuling Shi, Songsong Wang, Chengcheng Wan, Min Wang, and Xiaodong Gu.
+\newblock From code to correctness: Closing the last mile of code generation with hierarchical debugging, 2025.
+\newblock URL \url{https://arxiv.org/abs/2410.01215}.
+
+\bibitem[Shinn et~al.(2023)Shinn, Cassano, Gopinath, Narasimhan, and Yao]{reflexion}
+Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, and Shunyu Yao.
+\newblock Reflexion: language agents with verbal reinforcement learning.
+\newblock In \emph{Proceedings of the 37th International Conference on Neural Information Processing Systems}, 2023.
 
 \bibitem[Tang et~al.(2024)Tang, Laban, and Durrett]{llm-aggrefact}
 Liyan Tang, Philippe Laban, and Greg Durrett.
@@ -394,6 +463,11 @@ FAIR~CodeGen team, Jade Copet, Quentin Carbonneaux, Gal Cohen, Jonas Gehring, Ja
 Kimi Team, Yifan Bai, Yiping Bao, Guanduo Chen, Jiahao Chen, Ningxin Chen, Ruijue Chen, Yanru Chen, Yuankun Chen, Yutian Chen, Zhuofu Chen, Jialei Cui, Hao Ding, Mengnan Dong, Angang Du, Chenzhuang Du, Dikang Du, Yulun Du, Yu~Fan, Yichen Feng, Kelin Fu, Bofei Gao, Hongcheng Gao, Peizhong Gao, Tong Gao, Xinran Gu, Longyu Guan, Haiqing Guo, Jianhang Guo, Hao Hu, Xiaoru Hao, Tianhong He, Weiran He, Wenyang He, Chao Hong, Yangyang Hu, Zhenxing Hu, Weixiao Huang, Zhiqi Huang, Zihao Huang, Tao Jiang, Zhejun Jiang, Xinyi Jin, Yongsheng Kang, Guokun Lai, Cheng Li, Fang Li, Haoyang Li, Ming Li, Wentao Li, Yanhao Li, Yiwei Li, Zhaowei Li, Zheming Li, Hongzhan Lin, Xiaohan Lin, Zongyu Lin, Chengyin Liu, Chenyu Liu, Hongzhang Liu, Jingyuan Liu, Junqi Liu, Liang Liu, Shaowei Liu, T.~Y. Liu, Tianwei Liu, Weizhou Liu, Yangyang Liu, Yibo Liu, Yiping Liu, Yue Liu, Zhengying Liu, Enzhe Lu, Lijun Lu, Shengling Ma, Xinyu Ma, Yingwei Ma, Shaoguang Mao, Jie Mei, Xin Men, Yibo Miao, Siyuan Pan, Yebo Peng, Ruoyu Qin, Bowen Qu, Zeyu Shang, Lidong Shi, Shengyuan Shi, Feifan Song, Jianlin Su, Zhengyuan Su, Xinjie Sun, Flood Sung, Heyi Tang, Jiawen Tao, Qifeng Teng, Chensi Wang, Dinglu Wang, Feng Wang, Haiming Wang, Jianzhou Wang, Jiaxing Wang, Jinhong Wang, Shengjie Wang, Shuyi Wang, Yao Wang, Yejie Wang, Yiqin Wang, Yuxin Wang, Yuzhi Wang, Zhaoji Wang, Zhengtao Wang, Zhexu Wang, Chu Wei, Qianqian Wei, Wenhao Wu, Xingzhe Wu, Yuxin Wu, Chenjun Xiao, Xiaotong Xie, Weimin Xiong, Boyu Xu, Jing Xu, Jinjing Xu, L.~H. Xu, Lin Xu, Suting Xu, Weixin Xu, Xinran Xu, Yangchuan Xu, Ziyao Xu, Junjie Yan, Yuzi Yan, Xiaofei Yang, Ying Yang, Zhen Yang, Zhilin Yang, Zonghan Yang, Haotian Yao, Xingcheng Yao, Wenjie Ye, Zhuorui Ye, Bohong Yin, Longhui Yu, Enming Yuan, Hongbang Yuan, Mengjie Yuan, Haobing Zhan, Dehao Zhang, Hao Zhang, Wanlu Zhang, Xiaobin Zhang, Yangkun Zhang, Yizhi Zhang, Yongting Zhang, Yu~Zhang, Yutao Zhang, Yutong Zhang, Zheng Zhang, Haotian Zhao, Yikai Zhao, Huabin Zheng, Shaojie Zheng, Jianren Zhou, Xinyu Zhou, Zaida Zhou, Zhen Zhu, Weiyu Zhuang, and Xinxing Zu.
 \newblock Kimi k2: Open agentic intelligence, 2025.
 \newblock URL \url{https://arxiv.org/abs/2507.20534}.
+
+\bibitem[Team et~al.(2026)Team, Bai, Bai, Bao, Cai, Cao, Charles, Che, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Cheng, Chu, Cui, Deng, Diao, Ding, Dong, Dong, Dong, Dong, Du, Du, Du, Du, Du, Fan, Fang, Feng, Feng, Fu, Fu, Gao, Gao, Ge, Geng, Gong, Gong, Gongque, Gu, Gu, Gu, Guan, Guo, Hao, He, He, He, Hong, Hu, Hu, Hu, Hu, Huang, Huang, Huang, Huang, Jiang, Jiang, Jin, Jing, Lai, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Liao, Lin, Lin, Lin, Lin, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Lu, Lu, Lu, Luo, Luo, Luo, Ma, Ma, Mao, Mei, Men, Meng, Meng, Miao, Ni, Ouyang, Pan, Pang, Qian, Qin, Qin, Qiu, Qu, Shang, Shao, Shen, Shen, Shi, Shi, Shi, Song, Song, Song, Song, Su, Su, Su, Sui, Sun, Sun, Sun, Sung, Tai, Tang, Tang, Tang, Tang, Tao, Teng, Tian, Tian, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wei, Wei, Wen, Wen, Wu, Wu, Wu, Wu, Wu, Wu, Wu, Wu, Wu, Xiao, Xie, Xie, Xie, Xin, Xing, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Yan, Yan, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yao, Ye, Ye, Ye, Yin, Yu, Yu, Yu, Yu, Yuan, Yuan, Yuan, Yue, Zeng, Zha, Zhan, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhao, Zhao, Zhao, Zhao, Zhao, Zhao, Zhao, Zheng, Zheng, Zheng, Zheng, Zhong, Zhong, Zhong, Zhou, Zhou, Zhou, Zhou, Zhu, Zhu, Zhu, Zhu, Zhu, Zhuang, Zhuang, Zou, and Zu]{kimik25}
+Kimi Team, Tongtong Bai, Yifan Bai, Yiping Bao, S.~H. Cai, Yuan Cao, Y.~Charles, H.~S. Che, Cheng Chen, Guanduo Chen, Huarong Chen, Jia Chen, Jiahao Chen, Jianlong Chen, Jun Chen, Kefan Chen, Liang Chen, Ruijue Chen, Xinhao Chen, Yanru Chen, Yanxu Chen, Yicun Chen, Yimin Chen, Yingjiang Chen, Yuankun Chen, Yujie Chen, Yutian Chen, Zhirong Chen, Ziwei Chen, Dazhi Cheng, Minghan Chu, Jialei Cui, Jiaqi Deng, Muxi Diao, Hao Ding, Mengfan Dong, Mengnan Dong, Yuxin Dong, Yuhao Dong, Angang Du, Chenzhuang Du, Dikang Du, Lingxiao Du, Yulun Du, Yu~Fan, Shengjun Fang, Qiulin Feng, Yichen Feng, Garimugai Fu, Kelin Fu, Hongcheng Gao, Tong Gao, Yuyao Ge, Shangyi Geng, Chengyang Gong, Xiaochen Gong, Zhuoma Gongque, Qizheng Gu, Xinran Gu, Yicheng Gu, Longyu Guan, Yuanying Guo, Xiaoru Hao, Weiran He, Wenyang He, Yunjia He, Chao Hong, Hao Hu, Jiaxi Hu, Yangyang Hu, Zhenxing Hu, Ke~Huang, Ruiyuan Huang, Weixiao Huang, Zhiqi Huang, Tao Jiang, Zhejun Jiang, Xinyi Jin, Yu~Jing, Guokun Lai, Aidi Li, C.~Li, Cheng Li, Fang Li, Guanghe Li, Guanyu Li, Haitao Li, Haoyang Li, Jia Li, Jingwei Li, Junxiong Li, Lincan Li, Mo~Li, Weihong Li, Wentao Li, Xinhang Li, Xinhao Li, Yang Li, Yanhao Li, Yiwei Li, Yuxiao Li, Zhaowei Li, Zheming Li, Weilong Liao, Jiawei Lin, Xiaohan Lin, Zhishan Lin, Zichao Lin, Cheng Liu, Chenyu Liu, Hongzhang Liu, Liang Liu, Shaowei Liu, Shudong Liu, Shuran Liu, Tianwei Liu, Tianyu Liu, Weizhou Liu, Xiangyan Liu, Yangyang Liu, Yanming Liu, Yibo Liu, Yuanxin Liu, Yue Liu, Zhengying Liu, Zhongnuo Liu, Enzhe Lu, Haoyu Lu, Zhiyuan Lu, Junyu Luo, Tongxu Luo, Yashuo Luo, Long Ma, Yingwei Ma, Shaoguang Mao, Yuan Mei, Xin Men, Fanqing Meng, Zhiyong Meng, Yibo Miao, Minqing Ni, Kun Ouyang, Siyuan Pan, Bo~Pang, Yuchao Qian, Ruoyu Qin, Zeyu Qin, Jiezhong Qiu, Bowen Qu, Zeyu Shang, Youbo Shao, Tianxiao Shen, Zhennan Shen, Juanfeng Shi, Lidong Shi, Shengyuan Shi, Feifan Song, Pengwei Song, Tianhui Song, Xiaoxi Song, Hongjin Su, Jianlin Su, Zhaochen Su, Lin Sui, Jinsong Sun, Junyao Sun, Tongyu Sun, Flood Sung, Yunpeng Tai, Chuning Tang, Heyi Tang, Xiaojuan Tang, Zhengyang Tang, Jiawen Tao, Shiyuan Teng, Chaoran Tian, Pengfei Tian, Ao~Wang, Bowen Wang, Chensi Wang, Chuang Wang, Congcong Wang, Dingkun Wang, Dinglu Wang, Dongliang Wang, Feng Wang, Hailong Wang, Haiming Wang, Hengzhi Wang, Huaqing Wang, Hui Wang, Jiahao Wang, Jinhong Wang, Jiuzheng Wang, Kaixin Wang, Linian Wang, Qibin Wang, Shengjie Wang, Shuyi Wang, Si~Wang, Wei Wang, Xiaochen Wang, Xinyuan Wang, Yao Wang, Yejie Wang, Yipu Wang, Yiqin Wang, Yucheng Wang, Yuzhi Wang, Zhaoji Wang, Zhaowei Wang, Zhengtao Wang, Zhexu Wang, Zihan Wang, Zizhe Wang, Chu Wei, Ming Wei, Chuan Wen, Zichen Wen, Chengjie Wu, Haoning Wu, Junyan Wu, Rucong Wu, Wenhao Wu, Yuefeng Wu, Yuhao Wu, Yuxin Wu, Zijian Wu, Chenjun Xiao, Jin Xie, Xiaotong Xie, Yuchong Xie, Yifei Xin, Bowei Xing, Boyu Xu, Jianfan Xu, Jing Xu, Jinjing Xu, L.~H. Xu, Lin Xu, Suting Xu, Weixin Xu, Xinbo Xu, Xinran Xu, Yangchuan Xu, Yichang Xu, Yuemeng Xu, Zelai Xu, Ziyao Xu, Junjie Yan, Yuzi Yan, Guangyao Yang, Hao Yang, Junwei Yang, Kai Yang, Ningyuan Yang, Ruihan Yang, Xiaofei Yang, Xinlong Yang, Ying Yang, Yi~Yang, Yi~Yang, Zhen Yang, Zhilin Yang, Zonghan Yang, Haotian Yao, Dan Ye, Wenjie Ye, Zhuorui Ye, Bohong Yin, Chengzhen Yu, Longhui Yu, Tao Yu, Tianxiang Yu, Enming Yuan, Mengjie Yuan, Xiaokun Yuan, Yang Yue, Weihao Zeng, Dunyuan Zha, Haobing Zhan, Dehao Zhang, Hao Zhang, Jin Zhang, Puqi Zhang, Qiao Zhang, Rui Zhang, Xiaobin Zhang, Y.~Zhang, Yadong Zhang, Yangkun Zhang, Yichi Zhang, Yizhi Zhang, Yongting Zhang, Yu~Zhang, Yushun Zhang, Yutao Zhang, Yutong Zhang, Zheng Zhang, Chenguang Zhao, Feifan Zhao, Jinxiang Zhao, Shuai Zhao, Xiangyu Zhao, Yikai Zhao, Zijia Zhao, Huabin Zheng, Ruihan Zheng, Shaojie Zheng, Tengyang Zheng, Junfeng Zhong, Longguang Zhong, Weiming Zhong, M.~Zhou, Runjie Zhou, Xinyu Zhou, Zaida Zhou, Jinguo Zhu, Liya Zhu, Xinhao Zhu, Yuxuan Zhu, Zhen Zhu, Jingze Zhuang, Weiyu Zhuang, Ying Zou, and Xinxing Zu.
+\newblock Kimi k2.5: Visual agentic intelligence, 2026.
+\newblock URL \url{https://arxiv.org/abs/2602.02276}.
 
 \bibitem[Tian et~al.(2024)Tian, Mitchell, Yao, Manning, and Finn]{FactTune}
 Katherine Tian, Eric Mitchell, Huaxiu Yao, Christopher~D Manning, and Chelsea Finn.
@@ -419,6 +493,11 @@ Xingyao Wang, Boxuan Li, Yufan Song, Frank~F. Xu, Xiangru Tang, Mingchen Zhuge, 
 \newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
 \newblock URL \url{https://openreview.net/forum?id=OJd3ayDDoF}.
 
+\bibitem[Wang et~al.(2024)Wang, Wang, Guo, Chen, Zhang, Ma, and Zheng]{rlcoder}
+Yanlin Wang, Yanli Wang, Daya Guo, Jiachi Chen, Ruikai Zhang, Yuchi Ma, and Zibin Zheng.
+\newblock Rlcoder: Reinforcement learning for repository-level code completion, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.19487}.
+
 \bibitem[Wang et~al.(2021)Wang, Wang, Joty, and Hoi]{codet5}
 Yue Wang, Weishi Wang, Shafiq Joty, and Steven~C.H. Hoi.
 \newblock {C}ode{T}5: Identifier-aware unified pre-trained encoder-decoder models for code understanding and generation.
@@ -434,6 +513,16 @@ Yuxiang Wei, Olivier Duchenne, Jade Copet, Quentin Carbonneaux, LINGMING ZHANG, 
 \newblock {SWE}-{RL}: Advancing {LLM} reasoning via reinforcement learning on open software evolution.
 \newblock In \emph{The Thirty-ninth Annual Conference on Neural Information Processing Systems}, 2025.
 \newblock URL \url{https://openreview.net/forum?id=ULblO61XZ0}.
+
+\bibitem[Wu et~al.(2024)Wu, Ahmad, Zhang, Ramanathan, and Ma]{repoformer}
+Di~Wu, Wasi~Uddin Ahmad, Dejiao Zhang, Murali~Krishna Ramanathan, and Xiaofei Ma.
+\newblock Repoformer: selective retrieval for repository-level code completion.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine Learning}, 2024.
+
+\bibitem[Wu et~al.(2023)Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang, Liu, Awadallah, White, Burger, and Wang]{autogen}
+Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Beibin Li, Erkang Zhu, Li~Jiang, Xiaoyun Zhang, Shaokun Zhang, Jiale Liu, Ahmed~Hassan Awadallah, Ryen~W White, Doug Burger, and Chi Wang.
+\newblock Autogen: Enabling next-gen llm applications via multi-agent conversation, 2023.
+\newblock URL \url{https://arxiv.org/abs/2308.08155}.
 
 \bibitem[Xia et~al.(2025{\natexlab{a}})Xia, Deng, Dunn, and Zhang]{agentless}
 Chunqiu~Steven Xia, Yinlin Deng, Soren Dunn, and Lingming Zhang.
@@ -482,6 +571,11 @@ John Yang, Kilian Lieret, Carlos~E Jimenez, Alexander Wettig, Kabir Khandpur, Ya
 \newblock {SWE}-smith: Scaling data for software engineering agents.
 \newblock In \emph{The Thirty-ninth Annual Conference on Neural Information Processing Systems Datasets and Benchmarks Track}, 2025{\natexlab{c}}.
 \newblock URL \url{https://openreview.net/forum?id=63iVrXc8cC}.
+
+\bibitem[Z.ai(2026)]{GLM-5}
+Z.ai.
+\newblock Glm-5, 2026.
+\newblock URL \url{https://huggingface.co/zai-org/GLM-5}.
 
 \bibitem[Zan et~al.(2025)Zan, Huang, Liu, Chen, Zhang, Xin, Chen, Liu, Zhong, Li, Liu, Xiao, Chen, Zhang, Su, Liu, Long, Shen, and Xiang]{multi-swe-bench}
 Daoguang Zan, Zhirong Huang, Wei Liu, Hanwu Chen, Linhao Zhang, Shulin Xin, Lu~Chen, Qi~Liu, Xiaojian Zhong, Aoyan Li, Siyao Liu, Yongsheng Xiao, Liangqiang Chen, Yuyu Zhang, Jing Su, Tianyu Liu, Rui Long, Kai Shen, and Liang Xiang.
