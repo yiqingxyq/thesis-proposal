@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1776742030 "main.aux" "main.bbl" "main" 1776742672 0
+["bibtex main"] 1777006973 "main.aux" "main.bbl" "main" 1777007077 0
   "./register.bib" 1776730104 142838 7cf8d6c3fdf1388bfc5994ddae6c668f ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "main.aux" 1776742672 92580 f769f0c514e6627450115c11d1f80f58 "pdflatex"
+  "main.aux" 1777007077 93035 2482cf6114ecf7ac033efb3a3e124203 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1776742670 "/Users/veronicium/Downloads/proposal/main.tex" "main.pdf" "main" 1776742672 0
+["pdflatex"] 1777007075 "/Users/veronicium/Downloads/proposal/main.tex" "main.pdf" "main" 1777007077 0
   "/Users/veronicium/Downloads/proposal/main.tex" 1776742670 31486 0a5940fa695ed202c81d0bc5ed366c77 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec-sc.enc" 1529098226 2881 8e2aef9e38084b946e7656b60672fedb ""
@@ -295,15 +295,15 @@
   "RepoST_figs/scaling_law.pdf" 1776625320 19982 fe594a3f32225030a809053bc2b2f258 ""
   "cmuthesis.cls" 1776625320 7169 04d19da112fd077e5e7362d7c36cd821 ""
   "figs/proposal_intro.pdf" 1776625320 389811 cff02a68182a0882800ac348dc8bb3da ""
-  "main.aux" 1776742672 92580 f769f0c514e6627450115c11d1f80f58 "pdflatex"
-  "main.bbl" 1776742030 65084 ba9374ab296e4d8ffcee0785d4982f2c "bibtex main"
-  "main.lof" 1776742672 9947 d7a384d1a17015a3d7e4ee13f1345331 "pdflatex"
-  "main.lot" 1776742672 9351 f7c7a71a002999706a4d8c486758cbfa "pdflatex"
-  "main.out" 1776742672 23486 23a248cb2d28b02e22465b42d339ec94 "pdflatex"
+  "main.aux" 1777007077 93035 2482cf6114ecf7ac033efb3a3e124203 "pdflatex"
+  "main.bbl" 1777006973 65084 ba9374ab296e4d8ffcee0785d4982f2c "bibtex main"
+  "main.lof" 1777007077 9947 4deebbe60c2dd427c46d26c0f2540fb9 "pdflatex"
+  "main.lot" 1777007077 9351 26d4e87590c54b596c6753e2cec3cd1d "pdflatex"
+  "main.out" 1777007077 23797 26f9ccc891afc87fdf6015c42baf9b00 "pdflatex"
   "main.tex" 1776742670 31486 0a5940fa695ed202c81d0bc5ed366c77 ""
-  "main.toc" 1776742672 9281 969b6fb127a78676292b7982a44b286e "pdflatex"
+  "main.toc" 1777007077 9596 7673423d9ff602f72eef72ed6f66d8c2 "pdflatex"
   "packages.tex" 1776625320 5659 01c9e6c846a880d50f3efe141048936d ""
-  "part_generalizability.tex" 1776741313 75714 46cccf1c1c9a304efc4aef3d023112f7 ""
+  "part_generalizability.tex" 1777007075 71544 6b3e8c152b37b54ed3fdcfc0448e1cbf ""
   "part_scalability.tex" 1776625320 83128 49242539fa2fcb54b781dec5c94f31c7 ""
   "part_usage.tex" 1776742027 71266 13f72b2f70605f61ffb1935420bbf91f ""
   (generated)

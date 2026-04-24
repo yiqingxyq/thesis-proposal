@@ -63,32 +63,37 @@
 \contentsline {chapter}{\numberline {6}On the Agent Behaviors that Generalize across Coding Tasks \textcolor {mediumgreen}{(\textit {proposed})}}{62}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Introduction}{62}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Limitations of Preliminary Experiments}{64}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Proposed Method: A More Comprehensive Analysis on Agent Behaviors that Affect Distillation Performance}{65}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Proposed Method 1: Categorization of Agent Behaviors}{65}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Proposed Method 2: Controlled Experiments based on Trajectory Editing or Data Selection}{66}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}Proposed Method 3: Extend to Multiple Model Pairs and Tasks}{67}{subsection.6.3.3}%
-\contentsline {part}{III\hspace {1em}Training Critique Models to Assist Coding Agents}{68}{part.3}%
-\contentsline {chapter}{\numberline {7}Improving Generator Factuality by Training an Evaluator Model}{70}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Introduction}{70}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Methodology}{72}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}\textsc {FenCE}\xspace : Factuality Evaluator Training}{72}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Improving Generator Factuality with \textsc {FenCE}\xspace }{74}{subsection.7.2.2}%
-\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{76}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{76}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Main Results}{76}{subsection.7.3.2}%
-\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{77}{subsection.7.3.3}%
-\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{78}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{78}{subsection.7.4.1}%
-\contentsline {subsection}{\numberline {7.4.2}Main Results}{80}{subsection.7.4.2}%
-\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{81}{subsection.7.4.3}%
-\contentsline {section}{\numberline {7.5}Chapter Summary}{83}{section.7.5}%
-\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit {proposed})}}{87}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Overview}{87}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Preliminary Experiments}{88}{section.8.2}%
-\contentsline {subsection}{\numberline {8.2.1}Inference-time Critique Models can be Effective}{88}{subsection.8.2.1}%
-\contentsline {subsection}{\numberline {8.2.2}Distilled Critique Models also Bring Performance Gains}{89}{subsection.8.2.2}%
-\contentsline {section}{\numberline {8.3}Proposed Method}{90}{section.8.3}%
-\contentsline {subsection}{\numberline {8.3.1}Analysis of Distracting Critiques}{90}{subsection.8.3.1}%
-\contentsline {subsection}{\numberline {8.3.2}Constructing DPO Data to Distill Critique Models}{91}{subsection.8.3.2}%
-\contentsline {chapter}{\numberline {9}Conclusion}{93}{chapter.9}%
-\contentsline {chapter}{Bibliography}{95}{chapter*.59}%
+\contentsline {section}{\numberline {6.3}Proposed Method 1: Categorization of Agent Behaviors}{65}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Proposed Method}{65}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Proposed Experiments}{66}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Proposed Method 2: Controlled Experiments based on Trajectory Editing}{67}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Proposed Method}{67}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Proposed Experiments}{67}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}Proposed Method 3: Extend to Multiple Models and Tasks}{68}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Proposed Method}{68}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Proposed Experiments}{68}{subsection.6.5.2}%
+\contentsline {part}{III\hspace {1em}Training Critique Models to Assist Coding Agents}{69}{part.3}%
+\contentsline {chapter}{\numberline {7}Improving Generator Factuality by Training an Evaluator Model}{71}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Introduction}{71}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Methodology}{73}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}\textsc {FenCE}\xspace : Factuality Evaluator Training}{73}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Improving Generator Factuality with \textsc {FenCE}\xspace }{75}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{77}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{77}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Main Results}{77}{subsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{78}{subsection.7.3.3}%
+\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{79}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{79}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Main Results}{81}{subsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{82}{subsection.7.4.3}%
+\contentsline {section}{\numberline {7.5}Chapter Summary}{84}{section.7.5}%
+\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit {proposed})}}{88}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Overview}{88}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Preliminary Experiments}{89}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Inference-time Critique Models can be Effective}{89}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Distilled Critique Models also Bring Performance Gains}{90}{subsection.8.2.2}%
+\contentsline {section}{\numberline {8.3}Proposed Method}{91}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Analysis of Distracting Critiques}{91}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Constructing DPO Data to Distill Critique Models}{92}{subsection.8.3.2}%
+\contentsline {chapter}{\numberline {9}Conclusion}{94}{chapter.9}%
+\contentsline {chapter}{Bibliography}{96}{chapter*.59}%
