@@ -1022,11 +1022,16 @@ In \autoref{tab:plus:controlled-editing-examples}, we provide examples of how to
   &
   We remove all solution-verification steps from otherwise successful trajectories, while keeping the implementation steps and final successful outcome unchanged. We then train a student model on the edited trajectory set and compare its distillation performance against that of a model trained on the original trajectories.
   \\[0.8em]
-  
-  \textit{(Step-level)} The agent uses the file-editing tool correctly, with no errors or retries.
+
+  \textit{(Step-level)} The agent generates long reasoning before generating the actions (more than 30 tokens).
   &
-  We remove failed file-editing actions and their corresponding execution outputs from successful trajectories, while preserving the final successful edit and all required preceding context. We then train a student model on the edited trajectory set and compare its distillation performance against that of a model trained on the original trajectories.
+  We prompt an LLM to elaborate the textual part in the agent steps so that the reasoning remains the same but the length is longer than 30 tokens. We then train a student model on the edited trajectory set and compare its distillation performance.
   \\
+  
+  % \textit{(Step-level)} The agent uses the file-editing tool correctly, with no errors or retries.
+  % &
+  % We remove failed file-editing actions and their corresponding execution outputs from successful trajectories, while preserving the final successful edit and all required preceding context. We then train a student model on the edited trajectory set and compare its distillation performance against that of a model trained on the original trajectories.
+  % \\
   
   \bottomrule
   \end{tabular}
