@@ -521,16 +521,16 @@
 \citation{gpt5}
 \citation{gemini3flash}
 \citation{qwen25coder}
-\citation{swegym}
-\citation{hybrid-gym}
 \@writefile{toc}{\contentsline {section}{\numberline {6.5}Proposed Method 3: Extend to Multiple Models and Tasks}{73}{section.6.5}\protected@file@percent }
 \newlabel{plus:sec:extend-exp}{{6.5}{73}{Proposed Method 3: Extend to Multiple Models and Tasks}{section.6.5}{}}
 \newlabel{plus:sec:extend-exp@cref}{{[section][5][6]6.5}{[1][73][]73}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.5.1}Proposed Method}{73}{subsection.6.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.5.2}Proposed Experiments}{73}{subsection.6.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Training Critique Models to Assist Coding Agents}{74}{part.3}\protected@file@percent }
-\newlabel{part:usage}{{III}{75}{Training Critique Models to Assist Coding Agents}{part.3}{}}
-\newlabel{part:usage@cref}{{[part][3][]III}{[1][75][]75}}
+\citation{swegym}
+\citation{hybrid-gym}
+\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Training Critique Models to Assist Coding Agents}{75}{part.3}\protected@file@percent }
+\newlabel{part:usage}{{III}{76}{Training Critique Models to Assist Coding Agents}{part.3}{}}
+\newlabel{part:usage@cref}{{[part][3][]III}{[1][76][]76}}
 \citation{hallucination-survey,empirical-factuality}
 \citation{finetuning-on-new,understand-finetuning,unfamiliar-finetuning}
 \citation{ITI,DoLA}
@@ -542,35 +542,35 @@
 \citation{prometheus,AutoJ}
 \citation{FLAMe}
 \citation{longform}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Improving Generator Factuality by Training an Evaluator Model \textcolor {aquablue}{(\textit  {completed})}}{76}{chapter.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Improving Generator Factuality by Training an Evaluator Model \textcolor {aquablue}{(\textit  {completed})}}{77}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{chap:fence}{{7}{76}{Improving Generator Factuality by Training an Evaluator Model \textcolor {aquablue}{(\textit {completed})}}{chapter.7}{}}
-\newlabel{chap:fence@cref}{{[chapter][7][]7}{[1][76][]76}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Introduction}{76}{section.7.1}\protected@file@percent }
+\newlabel{chap:fence}{{7}{77}{Improving Generator Factuality by Training an Evaluator Model \textcolor {aquablue}{(\textit {completed})}}{chapter.7}{}}
+\newlabel{chap:fence@cref}{{[chapter][7][]7}{[1][77][]77}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Introduction}{77}{section.7.1}\protected@file@percent }
 \citation{factscore}
 \citation{truthfulqa}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces \textit  {(Left)} The framework to train an evaluator, \textsc  {FenCE}\xspace  , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit  {(Right)} The framework to improve model factuality with \textsc  {FenCE}\xspace  . We construct training data by leveraging \textsc  {FenCE}\xspace  to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }}{77}{figure.caption.47}\protected@file@percent }
-\newlabel{fig:overview}{{7.1}{77}{\textit {(Left)} The framework to train an evaluator, \fencemodelname , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit {(Right)} The framework to improve model factuality with \fencemodelname . We construct training data by leveraging \fencemodelname to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }{figure.caption.47}{}}
-\newlabel{fig:overview@cref}{{[figure][1][7]7.1}{[1][76][]77}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces \textit  {(Left)} The framework to train an evaluator, \textsc  {FenCE}\xspace  , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit  {(Right)} The framework to improve model factuality with \textsc  {FenCE}\xspace  . We construct training data by leveraging \textsc  {FenCE}\xspace  to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }}{78}{figure.caption.47}\protected@file@percent }
+\newlabel{fig:overview}{{7.1}{78}{\textit {(Left)} The framework to train an evaluator, \fencemodelname , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit {(Right)} The framework to improve model factuality with \fencemodelname . We construct training data by leveraging \fencemodelname to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }{figure.caption.47}{}}
+\newlabel{fig:overview@cref}{{[figure][1][7]7.1}{[1][77][]78}}
 \citation{FLAMe}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Framework of evaluator training. (\textit  {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit  {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }}{78}{figure.caption.48}\protected@file@percent }
-\newlabel{fig:evaluator_train}{{7.2}{78}{Framework of evaluator training. (\textit {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }{figure.caption.48}{}}
-\newlabel{fig:evaluator_train@cref}{{[figure][2][7]7.2}{[1][78][]78}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.2}Methodology}{78}{section.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}\textsc  {FenCE}\xspace  : Factuality Evaluator Training}{78}{subsection.7.2.1}\protected@file@percent }
-\newlabel{sec:evaluator_training}{{7.2.1}{78}{\fencemodelname : Factuality Evaluator Training}{subsection.7.2.1}{}}
-\newlabel{sec:evaluator_training@cref}{{[subsection][1][7,2]7.2.1}{[1][78][]78}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Framework of evaluator training. (\textit  {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit  {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }}{79}{figure.caption.48}\protected@file@percent }
+\newlabel{fig:evaluator_train}{{7.2}{79}{Framework of evaluator training. (\textit {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }{figure.caption.48}{}}
+\newlabel{fig:evaluator_train@cref}{{[figure][2][7]7.2}{[1][79][]79}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Methodology}{79}{section.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}\textsc  {FenCE}\xspace  : Factuality Evaluator Training}{79}{subsection.7.2.1}\protected@file@percent }
+\newlabel{sec:evaluator_training}{{7.2.1}{79}{\fencemodelname : Factuality Evaluator Training}{subsection.7.2.1}{}}
+\newlabel{sec:evaluator_training@cref}{{[subsection][1][7,2]7.2.1}{[1][79][]79}}
 \citation{understand-finetuning,finetuning-on-new}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces  The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \textsc  {FenCE}\xspace  to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit  {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit  {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }}{80}{figure.caption.49}\protected@file@percent }
-\newlabel{fig:revise}{{7.3}{80}{The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \fencemodelname to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }{figure.caption.49}{}}
-\newlabel{fig:revise@cref}{{[figure][3][7]7.3}{[1][80][]80}}
-\newlabel{eq:evaluator_sft}{{7.1}{80}{\fencemodelname : Factuality Evaluator Training}{equation.7.2.1}{}}
-\newlabel{eq:evaluator_sft@cref}{{[equation][1][7]7.1}{[1][80][]80}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}Improving Generator Factuality with \textsc  {FenCE}\xspace  }{80}{subsection.7.2.2}\protected@file@percent }
-\newlabel{sec:improve_factuality}{{7.2.2}{80}{Improving Generator Factuality with \fencemodelname }{subsection.7.2.2}{}}
-\newlabel{sec:improve_factuality@cref}{{[subsection][2][7,2]7.2.2}{[1][80][]80}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces  The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \textsc  {FenCE}\xspace  to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit  {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit  {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }}{81}{figure.caption.49}\protected@file@percent }
+\newlabel{fig:revise}{{7.3}{81}{The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \fencemodelname to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }{figure.caption.49}{}}
+\newlabel{fig:revise@cref}{{[figure][3][7]7.3}{[1][81][]81}}
+\newlabel{eq:evaluator_sft}{{7.1}{81}{\fencemodelname : Factuality Evaluator Training}{equation.7.2.1}{}}
+\newlabel{eq:evaluator_sft@cref}{{[equation][1][7]7.1}{[1][81][]81}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}Improving Generator Factuality with \textsc  {FenCE}\xspace  }{81}{subsection.7.2.2}\protected@file@percent }
+\newlabel{sec:improve_factuality}{{7.2.2}{81}{Improving Generator Factuality with \fencemodelname }{subsection.7.2.2}{}}
+\newlabel{sec:improve_factuality@cref}{{[subsection][2][7,2]7.2.2}{[1][81][]81}}
 \citation{DPO}
 \citation{DPO}
 \citation{FLAMe}
@@ -588,86 +588,86 @@
 \citation{FLAMe}
 \citation{llm-aggrefact}
 \citation{llm-aggrefact}
-\@writefile{toc}{\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{82}{section.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{82}{subsection.7.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Main Results}{82}{subsection.7.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet  {llm-aggrefact}. \relax }}{83}{table.caption.50}\protected@file@percent }
-\newlabel{tab:res-llm-aggrefact}{{7.1}{83}{Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet {llm-aggrefact}. \relax }{table.caption.50}{}}
-\newlabel{tab:res-llm-aggrefact@cref}{{[table][1][7]7.1}{[1][82][]83}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{83}{subsection.7.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{83}{section.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{83}{subsection.7.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Main Results}{83}{subsection.7.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet  {llm-aggrefact}. \relax }}{84}{table.caption.50}\protected@file@percent }
+\newlabel{tab:res-llm-aggrefact}{{7.1}{84}{Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet {llm-aggrefact}. \relax }{table.caption.50}{}}
+\newlabel{tab:res-llm-aggrefact@cref}{{[table][1][7]7.1}{[1][83][]84}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{84}{subsection.7.3.3}\protected@file@percent }
 \citation{EVER,self-eval-skt}
 \citation{factscore}
 \citation{truthfulqa}
-\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces  The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }}{84}{table.caption.51}\protected@file@percent }
-\newlabel{tab:aug-acc}{{7.2}{84}{The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }{table.caption.51}{}}
-\newlabel{tab:aug-acc@cref}{{[table][2][7]7.2}{[1][83][]84}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{84}{section.7.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{84}{subsection.7.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces  The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }}{85}{table.caption.51}\protected@file@percent }
+\newlabel{tab:aug-acc}{{7.2}{85}{The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }{table.caption.51}{}}
+\newlabel{tab:aug-acc@cref}{{[table][2][7]7.2}{[1][84][]85}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{85}{section.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{85}{subsection.7.4.1}\protected@file@percent }
 \citation{FactTune}
 \citation{self-eval-skt}
 \citation{EVER}
 \citation{RAG}
-\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces  Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \textsc  {FenCE}\xspace  . \relax }}{85}{table.caption.52}\protected@file@percent }
-\newlabel{tab:res-factscore}{{7.3}{85}{Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \fencemodelname . \relax }{table.caption.52}{}}
-\newlabel{tab:res-factscore@cref}{{[table][3][7]7.3}{[1][85][]85}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces  Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \textsc  {FenCE}\xspace  . \relax }}{86}{table.caption.52}\protected@file@percent }
+\newlabel{tab:res-factscore}{{7.3}{86}{Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \fencemodelname . \relax }{table.caption.52}{}}
+\newlabel{tab:res-factscore@cref}{{[table][3][7]7.3}{[1][86][]86}}
 \citation{ITI,DoLA}
-\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces  Ablation study that compares different training recipes when equipped with \textsc  {FenCE}\xspace  as the evaluator. ``SFT + \textsc  {FenCE}\xspace  '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \textsc  {FenCE}\xspace  evaluator. \relax }}{86}{table.caption.53}\protected@file@percent }
-\newlabel{tab:res-ablation}{{7.4}{86}{Ablation study that compares different training recipes when equipped with \fencemodelname as the evaluator. ``SFT + \fencemodelname '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \fencemodelname evaluator. \relax }{table.caption.53}{}}
-\newlabel{tab:res-ablation@cref}{{[table][4][7]7.4}{[1][85][]86}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.2}Main Results}{86}{subsection.7.4.2}\protected@file@percent }
-\newlabel{fig:response_shift_distribution_claims}{{7.4a}{87}{Distribution of claims\relax }{figure.caption.54}{}}
-\newlabel{fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][85][]87}}
-\newlabel{sub@fig:response_shift_distribution_claims}{{a}{87}{Distribution of claims\relax }{figure.caption.54}{}}
-\newlabel{sub@fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][85][]87}}
-\newlabel{fig:response_shift_refused_responses}{{7.4b}{87}{\% Refused responses\relax }{figure.caption.54}{}}
-\newlabel{fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][85][]87}}
-\newlabel{sub@fig:response_shift_refused_responses}{{b}{87}{\% Refused responses\relax }{figure.caption.54}{}}
-\newlabel{sub@fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][85][]87}}
-\newlabel{fig:response_shift_num_facts}{{7.4c}{87}{\% Facts\relax }{figure.caption.54}{}}
-\newlabel{fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][85][]87}}
-\newlabel{sub@fig:response_shift_num_facts}{{c}{87}{\% Facts\relax }{figure.caption.54}{}}
-\newlabel{sub@fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][85][]87}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit  {``Base Model''}), SFT + \textsc  {FenCE}\xspace  (\textit  {``SFT''}), and our method, Edit/Remove + Coarse (\textit  {``DPO''}).\relax }}{87}{figure.caption.54}\protected@file@percent }
-\newlabel{fig:response_shift}{{7.4}{87}{Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit {``Base Model''}), SFT + \fencemodelname (\textit {``SFT''}), and our method, Edit/Remove + Coarse (\textit {``DPO''}).\relax }{figure.caption.54}{}}
-\newlabel{fig:response_shift@cref}{{[figure][4][7]7.4}{[1][85][]87}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }}{87}{figure.caption.55}\protected@file@percent }
-\newlabel{fig:claim_acc_by_cat}{{7.5}{87}{The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }{figure.caption.55}{}}
-\newlabel{fig:claim_acc_by_cat@cref}{{[figure][5][7]7.5}{[1][85][]87}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{87}{subsection.7.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces  Ablation study that compares different training recipes when equipped with \textsc  {FenCE}\xspace  as the evaluator. ``SFT + \textsc  {FenCE}\xspace  '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \textsc  {FenCE}\xspace  evaluator. \relax }}{87}{table.caption.53}\protected@file@percent }
+\newlabel{tab:res-ablation}{{7.4}{87}{Ablation study that compares different training recipes when equipped with \fencemodelname as the evaluator. ``SFT + \fencemodelname '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \fencemodelname evaluator. \relax }{table.caption.53}{}}
+\newlabel{tab:res-ablation@cref}{{[table][4][7]7.4}{[1][86][]87}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.2}Main Results}{87}{subsection.7.4.2}\protected@file@percent }
+\newlabel{fig:response_shift_distribution_claims}{{7.4a}{88}{Distribution of claims\relax }{figure.caption.54}{}}
+\newlabel{fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][86][]88}}
+\newlabel{sub@fig:response_shift_distribution_claims}{{a}{88}{Distribution of claims\relax }{figure.caption.54}{}}
+\newlabel{sub@fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][86][]88}}
+\newlabel{fig:response_shift_refused_responses}{{7.4b}{88}{\% Refused responses\relax }{figure.caption.54}{}}
+\newlabel{fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][86][]88}}
+\newlabel{sub@fig:response_shift_refused_responses}{{b}{88}{\% Refused responses\relax }{figure.caption.54}{}}
+\newlabel{sub@fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][86][]88}}
+\newlabel{fig:response_shift_num_facts}{{7.4c}{88}{\% Facts\relax }{figure.caption.54}{}}
+\newlabel{fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][86][]88}}
+\newlabel{sub@fig:response_shift_num_facts}{{c}{88}{\% Facts\relax }{figure.caption.54}{}}
+\newlabel{sub@fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][86][]88}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit  {``Base Model''}), SFT + \textsc  {FenCE}\xspace  (\textit  {``SFT''}), and our method, Edit/Remove + Coarse (\textit  {``DPO''}).\relax }}{88}{figure.caption.54}\protected@file@percent }
+\newlabel{fig:response_shift}{{7.4}{88}{Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit {``Base Model''}), SFT + \fencemodelname (\textit {``SFT''}), and our method, Edit/Remove + Coarse (\textit {``DPO''}).\relax }{figure.caption.54}{}}
+\newlabel{fig:response_shift@cref}{{[figure][4][7]7.4}{[1][86][]88}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }}{88}{figure.caption.55}\protected@file@percent }
+\newlabel{fig:claim_acc_by_cat}{{7.5}{88}{The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }{figure.caption.55}{}}
+\newlabel{fig:claim_acc_by_cat@cref}{{[figure][5][7]7.5}{[1][86][]88}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{88}{subsection.7.4.3}\protected@file@percent }
 \citation{unfamiliar-finetuning}
-\newlabel{fig:hyper_param_iter}{{7.6a}{88}{Iterations of Revision\relax }{figure.caption.56}{}}
-\newlabel{fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][86][]88}}
-\newlabel{sub@fig:hyper_param_iter}{{a}{88}{Iterations of Revision\relax }{figure.caption.56}{}}
-\newlabel{sub@fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][86][]88}}
-\newlabel{fig:hyper_param_k}{{7.6b}{88}{top-$k$\relax }{figure.caption.56}{}}
-\newlabel{fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][86][]88}}
-\newlabel{sub@fig:hyper_param_k}{{b}{88}{top-$k$\relax }{figure.caption.56}{}}
-\newlabel{sub@fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][86][]88}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }}{88}{figure.caption.56}\protected@file@percent }
-\newlabel{fig:hyper-param}{{7.6}{88}{Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }{figure.caption.56}{}}
-\newlabel{fig:hyper-param@cref}{{[figure][6][7]7.6}{[1][86][]88}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.5}Chapter Summary}{89}{section.7.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }}{90}{table.caption.57}\protected@file@percent }
-\newlabel{tab:case_1}{{7.5}{90}{An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }{table.caption.57}{}}
-\newlabel{tab:case_1@cref}{{[table][5][7]7.5}{[1][89][]90}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }}{91}{table.caption.58}\protected@file@percent }
-\newlabel{tab:case_2}{{7.6}{91}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }{table.caption.58}{}}
-\newlabel{tab:case_2@cref}{{[table][6][7]7.6}{[1][89][]91}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.7}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }}{92}{table.caption.59}\protected@file@percent }
-\newlabel{tab:case_3}{{7.7}{92}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }{table.caption.59}{}}
-\newlabel{tab:case_3@cref}{{[table][7][7]7.7}{[1][89][]92}}
+\newlabel{fig:hyper_param_iter}{{7.6a}{89}{Iterations of Revision\relax }{figure.caption.56}{}}
+\newlabel{fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][87][]89}}
+\newlabel{sub@fig:hyper_param_iter}{{a}{89}{Iterations of Revision\relax }{figure.caption.56}{}}
+\newlabel{sub@fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][87][]89}}
+\newlabel{fig:hyper_param_k}{{7.6b}{89}{top-$k$\relax }{figure.caption.56}{}}
+\newlabel{fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][87][]89}}
+\newlabel{sub@fig:hyper_param_k}{{b}{89}{top-$k$\relax }{figure.caption.56}{}}
+\newlabel{sub@fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][87][]89}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }}{89}{figure.caption.56}\protected@file@percent }
+\newlabel{fig:hyper-param}{{7.6}{89}{Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }{figure.caption.56}{}}
+\newlabel{fig:hyper-param@cref}{{[figure][6][7]7.6}{[1][87][]89}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.5}Chapter Summary}{90}{section.7.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }}{91}{table.caption.57}\protected@file@percent }
+\newlabel{tab:case_1}{{7.5}{91}{An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }{table.caption.57}{}}
+\newlabel{tab:case_1@cref}{{[table][5][7]7.5}{[1][90][]91}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }}{92}{table.caption.58}\protected@file@percent }
+\newlabel{tab:case_2}{{7.6}{92}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }{table.caption.58}{}}
+\newlabel{tab:case_2@cref}{{[table][6][7]7.6}{[1][90][]92}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.7}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }}{93}{table.caption.59}\protected@file@percent }
+\newlabel{tab:case_3}{{7.7}{93}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }{table.caption.59}{}}
+\newlabel{tab:case_3@cref}{{[table][7][7]7.7}{[1][90][]93}}
 \citation{swe-smith,R2EGym,hybrid-gym}
 \citation{R2EGym}
 \citation{cwm}
 \citation{swebench}
 \citation{swe-smith}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit  {proposed})}}{93}{chapter.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit  {proposed})}}{94}{chapter.8}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{chap:critique-training}{{8}{93}{Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit {proposed})}}{chapter.8}{}}
-\newlabel{chap:critique-training@cref}{{[chapter][8][]8}{[1][93][]93}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.1}Overview}{93}{section.8.1}\protected@file@percent }
+\newlabel{chap:critique-training}{{8}{94}{Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit {proposed})}}{chapter.8}{}}
+\newlabel{chap:critique-training@cref}{{[chapter][8][]8}{[1][94][]94}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}Overview}{94}{section.8.1}\protected@file@percent }
 \citation{swebench}
 \citation{sweagent}
 \citation{cwm}
@@ -676,30 +676,30 @@
 \citation{swe-smith}
 \citation{swe-prm}
 \citation{swe-prm}
-\@writefile{toc}{\contentsline {section}{\numberline {8.2}Preliminary Experiments}{94}{section.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.1}Inference-time Critique Models can be Effective}{94}{subsection.8.2.1}\protected@file@percent }
-\newlabel{sec:critique-strong}{{8.2.1}{94}{Inference-time Critique Models can be Effective}{subsection.8.2.1}{}}
-\newlabel{sec:critique-strong@cref}{{[subsection][1][8,2]8.2.1}{[1][94][]94}}
-\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Results on equipping CWM-32B with different critique models on SWE-Bench Verified. ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.\relax }}{95}{table.caption.60}\protected@file@percent }
-\newlabel{tab:critique:prelim}{{8.1}{95}{Results on equipping CWM-32B with different critique models on SWE-Bench Verified. ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.\relax }{table.caption.60}{}}
-\newlabel{tab:critique:prelim@cref}{{[table][1][8]8.1}{[1][95][]95}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.2}Distilled Critique Models also Bring Performance Gains}{95}{subsection.8.2.2}\protected@file@percent }
-\newlabel{sec:critique-sft}{{8.2.2}{95}{Distilled Critique Models also Bring Performance Gains}{subsection.8.2.2}{}}
-\newlabel{sec:critique-sft@cref}{{[subsection][2][8,2]8.2.2}{[1][95][]95}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.3}Proposed Method}{96}{section.8.3}\protected@file@percent }
-\newlabel{sec:critique-proposed}{{8.3}{96}{Proposed Method}{section.8.3}{}}
-\newlabel{sec:critique-proposed@cref}{{[section][3][8]8.3}{[1][96][]96}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.1}Analysis of Distracting Critiques}{96}{subsection.8.3.1}\protected@file@percent }
-\newlabel{sec:critique-analysis}{{8.3.1}{96}{Analysis of Distracting Critiques}{subsection.8.3.1}{}}
-\newlabel{sec:critique-analysis@cref}{{[subsection][1][8,3]8.3.1}{[1][96][]96}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Preliminary Experiments}{95}{section.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.1}Inference-time Critique Models can be Effective}{95}{subsection.8.2.1}\protected@file@percent }
+\newlabel{sec:critique-strong}{{8.2.1}{95}{Inference-time Critique Models can be Effective}{subsection.8.2.1}{}}
+\newlabel{sec:critique-strong@cref}{{[subsection][1][8,2]8.2.1}{[1][95][]95}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Results on equipping CWM-32B with different critique models on SWE-Bench Verified. ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.\relax }}{96}{table.caption.60}\protected@file@percent }
+\newlabel{tab:critique:prelim}{{8.1}{96}{Results on equipping CWM-32B with different critique models on SWE-Bench Verified. ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.\relax }{table.caption.60}{}}
+\newlabel{tab:critique:prelim@cref}{{[table][1][8]8.1}{[1][96][]96}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.2}Distilled Critique Models also Bring Performance Gains}{96}{subsection.8.2.2}\protected@file@percent }
+\newlabel{sec:critique-sft}{{8.2.2}{96}{Distilled Critique Models also Bring Performance Gains}{subsection.8.2.2}{}}
+\newlabel{sec:critique-sft@cref}{{[subsection][2][8,2]8.2.2}{[1][96][]96}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.3}Proposed Method}{97}{section.8.3}\protected@file@percent }
+\newlabel{sec:critique-proposed}{{8.3}{97}{Proposed Method}{section.8.3}{}}
+\newlabel{sec:critique-proposed@cref}{{[section][3][8]8.3}{[1][97][]97}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.1}Analysis of Distracting Critiques}{97}{subsection.8.3.1}\protected@file@percent }
+\newlabel{sec:critique-analysis}{{8.3.1}{97}{Analysis of Distracting Critiques}{subsection.8.3.1}{}}
+\newlabel{sec:critique-analysis@cref}{{[subsection][1][8,3]8.3.1}{[1][97][]97}}
 \citation{swebench}
 \citation{sweagent}
 \citation{cwm}
 \citation{qwen25coder}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.2}Constructing DPO Data to Distill Critique Models}{97}{subsection.8.3.2}\protected@file@percent }
-\newlabel{sec:critique-dpo}{{8.3.2}{97}{Constructing DPO Data to Distill Critique Models}{subsection.8.3.2}{}}
-\newlabel{sec:critique-dpo@cref}{{[subsection][2][8,3]8.3.2}{[1][97][]97}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {9}Conclusion}{99}{chapter.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.2}Constructing DPO Data to Distill Critique Models}{98}{subsection.8.3.2}\protected@file@percent }
+\newlabel{sec:critique-dpo}{{8.3.2}{98}{Constructing DPO Data to Distill Critique Models}{subsection.8.3.2}{}}
+\newlabel{sec:critique-dpo@cref}{{[subsection][2][8,3]8.3.2}{[1][98][]98}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {9}Conclusion}{100}{chapter.9}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
@@ -714,7 +714,7 @@
 \bibcite{claude47}{{7}{2026{}}{{Anthropic}}{{}}}
 \bibcite{swe-search}{{8}{2025}{{Antoniades et~al.}}{{Antoniades, {\"{O}}rwall, Zhang, Xie, Goyal, and Wang}}}
 \bibcite{rejection-sampling}{{9}{2022}{{Bai et~al.}}{{Bai, Kadavath, Kundu, Askell, Kernion, Jones, Chen, Goldie, Mirhoseini, McKinnon, Chen, Olsson, Olah, Hernandez, Drain, Ganguli, Li, Tran-Johnson, Perez, Kerr, Mueller, Ladish, Landau, Ndousse, Lukosuite, Lovitt, Sellitto, Elhage, Schiefer, Mercado, DasSarma, Lasenby, Larson, Ringer, Johnston, Kravec, Showk, Fort, Lanham, Telleen-Lawton, Conerly, Henighan, Hume, Bowman, Hatfield-Dodds, Mann, Amodei, Joseph, McCandlish, Brown, and Kaplan}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{101}{chapter*.61}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{102}{chapter*.61}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
@@ -827,4 +827,4 @@
 \bibcite{hallucination-survey}{{116}{2023{}}{{Zhang et~al.}}{{Zhang, Li, Cui, Cai, Liu, Fu, Huang, Zhao, Zhang, Chen, Wang, Luu, Bi, Shi, and Shi}}}
 \bibcite{commit0}{{117}{2025}{{Zhao et~al.}}{{Zhao, Jiang, Lee, Chiu, Cardie, Gall{\'e}, and Rush}}}
 \bibcite{swe-play}{{118}{2025}{{Zhu et~al.}}{{Zhu, Gandhi, and Neubig}}}
-\gdef \@abspage@last{133}
+\gdef \@abspage@last{134}
