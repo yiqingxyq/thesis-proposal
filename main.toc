@@ -1,99 +1,99 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Thesis Overview}{3}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Proposed Timeline}{4}{section.1.2}%
-\contentsline {chapter}{\numberline {2}Literature Review}{5}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Coding Agent Overview}{5}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Benchmarks for Coding Agents}{5}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Coding Agent Infrastructure}{6}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Training Paradigms for Coding Agent}{7}{subsection.2.1.3}%
-\contentsline {section}{\numberline {2.2}Scalable Coding Agent Post-Training}{7}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Coding Agent Pre-Training}{8}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Improving the High-level Planning Ability of Coding Agents}{9}{section.2.4}%
-\contentsline {part}{I\hspace {1em}Coding Agent Training with Scalable Synthetic Data}{11}{part.1}%
-\contentsline {chapter}{\numberline {3}Constructing Scalable Code Translation Training Data with Comparable Corpora and Multiple References}{13}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Introduction}{13}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Methodology}{16}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Problem Formulation}{16}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Training on Comparable Corpora}{17}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Finetuning with Multiple References}{19}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Results}{19}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Experimental Setup}{20}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Main results}{21}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Performance Analysis}{22}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Influence of Comparable Corpora}{23}{subsection.3.3.4}%
-\contentsline {subsection}{\numberline {3.3.5}Influence of Multiple References}{25}{subsection.3.3.5}%
-\contentsline {subsection}{\numberline {3.3.6}Hyper-parameter analysis}{26}{subsection.3.3.6}%
-\contentsline {subsection}{\numberline {3.3.7}Case Studies}{26}{subsection.3.3.7}%
-\contentsline {section}{\numberline {3.4}Chapter Summary}{27}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Constructing Scalable Coding Agent Training Environments with Sandbox Testing}{28}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Introduction}{28}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Methodology}{30}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Repository and Function Curation}{31}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Sandboxing: Key to Environment Setup}{31}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Test Generation}{33}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Quality Control and Filtering}{34}{subsection.4.2.4}%
-\contentsline {section}{\numberline {4.3}Resulting Datasets: \textsc {RepoST-Train}\xspace and \textsc {RepoST-Eval}\xspace }{35}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Quality Verification with Human Study}{36}{subsection.4.3.1}%
-\contentsline {section}{\numberline {4.4}Code Generation Training Experiments}{37}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Experimental Setup}{38}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Experimental Results}{39}{subsection.4.4.2}%
-\contentsline {section}{\numberline {4.5}Coding Agent Training Experiments}{40}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Experimental Setup}{40}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Experimental Results}{41}{subsection.4.5.2}%
-\contentsline {section}{\numberline {4.6}Chapter Summary}{41}{section.4.6}%
-\contentsline {part}{II\hspace {1em}Training Coding Agents that Generalize across Tasks}{43}{part.2}%
-\contentsline {chapter}{\numberline {5}Training General-Purpose Coding Agents with Scalable Tasks \textcolor {aquablue}{(\textit {in-progress})}}{45}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introduction}{45}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Methodology}{47}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Analysis of Coding Agent Task Transferability}{48}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Principles for Training Task Design}{50}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}\textsc {Hybrid-Gym}\xspace Tasks}{50}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Verification of \textsc {Hybrid-Gym}\xspace Tasks}{52}{subsection.5.2.4}%
-\contentsline {section}{\numberline {5.3}Results}{53}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Experimental Setup}{53}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Main Results}{54}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}Detailed Results}{56}{subsection.5.3.3}%
-\contentsline {section}{\numberline {5.4}Analysis of Task Transferability}{57}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Output Format Must Match Downstream Tasks}{57}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Script-level Agentic Tasks Do NOT Generalize to Repo-level Tasks}{58}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Task and Trajectory Complexity Matters}{58}{subsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.4.4}Even Successful Trajectories of the Same Task Instances may have Different Impact}{59}{subsection.5.4.4}%
-\contentsline {subsection}{\numberline {5.4.5}Sampling Strategies Affects Effectiveness}{60}{subsection.5.4.5}%
-\contentsline {section}{\numberline {5.5}Chapter Summary}{60}{section.5.5}%
-\contentsline {chapter}{\numberline {6}On the Agent Behaviors that Generalize across Coding Tasks \textcolor {mediumgreen}{(\textit {proposed})}}{62}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Introduction}{62}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Limitations of Preliminary Experiments}{64}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Proposed Method 1: Categorization of Agent Behaviors}{65}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Proposed Method}{65}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Proposed Experiments}{66}{subsection.6.3.2}%
-\contentsline {section}{\numberline {6.4}Proposed Method 2: Controlled Experiments based on Trajectory Editing}{67}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Proposed Method}{67}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Proposed Experiments}{67}{subsection.6.4.2}%
-\contentsline {section}{\numberline {6.5}Proposed Method 3: Extend to Multiple Models and Tasks}{68}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Proposed Method}{68}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}Proposed Experiments}{68}{subsection.6.5.2}%
-\contentsline {part}{III\hspace {1em}Training Critique Models to Assist Coding Agents}{69}{part.3}%
-\contentsline {chapter}{\numberline {7}Improving Generator Factuality by Training an Evaluator Model}{71}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Introduction}{71}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Methodology}{73}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}\textsc {FenCE}\xspace : Factuality Evaluator Training}{73}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Improving Generator Factuality with \textsc {FenCE}\xspace }{75}{subsection.7.2.2}%
-\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{77}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{77}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Main Results}{77}{subsection.7.3.2}%
-\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{78}{subsection.7.3.3}%
-\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{79}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{79}{subsection.7.4.1}%
-\contentsline {subsection}{\numberline {7.4.2}Main Results}{81}{subsection.7.4.2}%
-\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{82}{subsection.7.4.3}%
-\contentsline {section}{\numberline {7.5}Chapter Summary}{84}{section.7.5}%
-\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit {proposed})}}{88}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Overview}{88}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Preliminary Experiments}{89}{section.8.2}%
-\contentsline {subsection}{\numberline {8.2.1}Inference-time Critique Models can be Effective}{89}{subsection.8.2.1}%
-\contentsline {subsection}{\numberline {8.2.2}Distilled Critique Models also Bring Performance Gains}{90}{subsection.8.2.2}%
-\contentsline {section}{\numberline {8.3}Proposed Method}{91}{section.8.3}%
-\contentsline {subsection}{\numberline {8.3.1}Analysis of Distracting Critiques}{91}{subsection.8.3.1}%
-\contentsline {subsection}{\numberline {8.3.2}Constructing DPO Data to Distill Critique Models}{92}{subsection.8.3.2}%
-\contentsline {chapter}{\numberline {9}Conclusion}{94}{chapter.9}%
-\contentsline {chapter}{Bibliography}{96}{chapter*.59}%
+\contentsline {section}{\numberline {1.2}Proposed Timeline}{5}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Literature Review}{6}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Coding Agent Overview}{6}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Benchmarks for Coding Agents}{6}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Coding Agent Infrastructure}{7}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Training Paradigms for Coding Agent}{8}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Scalable Coding Agent Post-Training}{8}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Coding Agent Pre-Training}{9}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Improving the High-level Planning Ability of Coding Agents}{10}{section.2.4}%
+\contentsline {part}{I\hspace {1em}Coding Agent Training with Scalable Synthetic Data}{12}{part.1}%
+\contentsline {chapter}{\numberline {3}Constructing Scalable Code Translation Training Data with Comparable Corpora and Multiple References \textcolor {aquablue}{(\textit {completed})}}{14}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Introduction}{14}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Methodology}{17}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Problem Formulation}{17}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Training on Comparable Corpora}{18}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Finetuning with Multiple References}{20}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Results}{20}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Experimental Setup}{21}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Main results}{22}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Performance Analysis}{23}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Influence of Comparable Corpora}{24}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.5}Influence of Multiple References}{26}{subsection.3.3.5}%
+\contentsline {subsection}{\numberline {3.3.6}Hyper-parameter analysis}{27}{subsection.3.3.6}%
+\contentsline {subsection}{\numberline {3.3.7}Case Studies}{27}{subsection.3.3.7}%
+\contentsline {section}{\numberline {3.4}Chapter Summary}{28}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Constructing Scalable Coding Agent Training Environments with Sandbox Testing \textcolor {aquablue}{(\textit {completed})}}{29}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Introduction}{29}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Methodology}{31}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Repository and Function Curation}{32}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Sandboxing: Key to Environment Setup}{32}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Test Generation}{34}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Quality Control and Filtering}{35}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}Resulting Datasets: \textsc {RepoST-Train}\xspace and \textsc {RepoST-Eval}\xspace }{36}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Quality Verification with Human Study}{37}{subsection.4.3.1}%
+\contentsline {section}{\numberline {4.4}Code Generation Training Experiments}{38}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Experimental Setup}{39}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Experimental Results}{40}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Coding Agent Training Experiments}{41}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Experimental Setup}{41}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Experimental Results}{42}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Chapter Summary}{42}{section.4.6}%
+\contentsline {part}{II\hspace {1em}Training Coding Agents that Generalize across Tasks}{44}{part.2}%
+\contentsline {chapter}{\numberline {5}Training General-Purpose Coding Agents with Scalable Tasks \textcolor {aquablue}{(\textit {completed})}}{46}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introduction}{46}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Methodology}{48}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Analysis of Coding Agent Task Transferability}{49}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Principles for Training Task Design}{51}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}\textsc {Hybrid-Gym}\xspace Tasks}{51}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Verification of \textsc {Hybrid-Gym}\xspace Tasks}{53}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}Results}{54}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Experimental Setup}{54}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Main Results}{55}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Detailed Results}{57}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Analysis of Task Transferability}{58}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Output Format Must Match Downstream Tasks}{58}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Script-level Agentic Tasks Do NOT Generalize to Repo-level Tasks}{59}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Task and Trajectory Complexity Matters}{59}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Even Successful Trajectories of the Same Task Instances may have Different Impact}{60}{subsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.4.5}Sampling Strategies Affects Effectiveness}{61}{subsection.5.4.5}%
+\contentsline {section}{\numberline {5.5}Chapter Summary}{61}{section.5.5}%
+\contentsline {chapter}{\numberline {6}On the Agent Behaviors that Generalize across Coding Tasks \textcolor {mediumgreen}{(\textit {proposed})}}{63}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduction}{63}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Overview of Proposed Methods}{66}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Proposed Method 1: Candidate Agent Behavior Discovery for Different Abstraction Levels}{66}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Proposed Method}{66}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Proposed Experiments}{69}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Proposed Method 2: Controlled Experiments based on Trajectory Editing}{70}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Proposed Method}{70}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Proposed Experiments}{72}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}Proposed Method 3: Extend to Multiple Models and Tasks}{73}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Proposed Method}{73}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Proposed Experiments}{73}{subsection.6.5.2}%
+\contentsline {part}{III\hspace {1em}Training Critique Models to Assist Coding Agents}{74}{part.3}%
+\contentsline {chapter}{\numberline {7}Improving Generator Factuality by Training an Evaluator Model \textcolor {aquablue}{(\textit {completed})}}{76}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Introduction}{76}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Methodology}{78}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}\textsc {FenCE}\xspace : Factuality Evaluator Training}{78}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Improving Generator Factuality with \textsc {FenCE}\xspace }{80}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{82}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{82}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Main Results}{82}{subsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{83}{subsection.7.3.3}%
+\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{84}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{84}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Main Results}{86}{subsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{87}{subsection.7.4.3}%
+\contentsline {section}{\numberline {7.5}Chapter Summary}{89}{section.7.5}%
+\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit {proposed})}}{93}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Overview}{93}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Preliminary Experiments}{94}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Inference-time Critique Models can be Effective}{94}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Distilled Critique Models also Bring Performance Gains}{95}{subsection.8.2.2}%
+\contentsline {section}{\numberline {8.3}Proposed Method}{96}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Analysis of Distracting Critiques}{96}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Constructing DPO Data to Distill Critique Models}{97}{subsection.8.3.2}%
+\contentsline {chapter}{\numberline {9}Conclusion}{99}{chapter.9}%
+\contentsline {chapter}{Bibliography}{101}{chapter*.61}%

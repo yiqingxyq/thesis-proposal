@@ -60,7 +60,7 @@
 \trnumber{}
 
 \committee{
-Carolyn Rosé, Chair \\
+Carolyn Rosé (Chair) \\
 Daniel Fried \\
 Graham Neubig \\
 Dan Roth
@@ -164,6 +164,8 @@ Such lack of understanding creates a significant gap between current coding agen
 \start{The Performance Saturation with Respect to Data Scale}
 Even if the first two challenges are addressed, empirically, we observe that for a specific model, especially the one with limited size (e.g., Qwen2.5Coder-7B and 14B~\cite{qwen25coder}), increasing the size of training data yields little or no further gain after a certain point~\cite{swe-smith,R2EGym}.
 To better understand this limitation, we break down the abilities required for coding agent training into high-level planning (producing intermediate steps about what should be done and in what order) and low-level implementation (generating concrete executable actions to perform the intermediate steps).
+An example of high-level planning is decomposing the function localization task into discovering the repository structure, localizing relevant files, and locating the relevant functions inside the candidate files.
+An example of low-level implementation is using the ``file-editing'' tool to generate code patches with no errors and retries.
 Our analysis suggests that high-level planning remains a major bottleneck: even after training, there is still a substantial gap between these models and frontier models such as Claude Sonnet 4.6~\cite{claude46}.
 Although increasing the size of the base model can raise the performance ceiling, it also requires more computational resources, which is particularly limited in academia.
 

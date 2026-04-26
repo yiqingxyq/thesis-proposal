@@ -1,4 +1,4 @@
-\begin{thebibliography}{115}
+\begin{thebibliography}{118}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -152,6 +152,11 @@ Gaurav~Rohit Ghosal, Tatsunori Hashimoto, and Aditi Raghunathan.
 \newblock In \emph{Forty-first International Conference on Machine Learning}, 2024.
 \newblock URL \url{https://openreview.net/forum?id=cPsn9AcOYh}.
 
+\bibitem[Google(2025)]{gemini3flash}
+Google.
+\newblock Gemini 3 flash: frontier intelligence built for speed, 2025.
+\newblock URL \url{https://blog.google/products-and-platforms/products/gemini/gemini-3-flash/}.
+
 \bibitem[He et~al.(2025)He, Liu, Du, Yan, Fan, Huang, Yuan, and Ma]{sweperf}
 Xinyi He, Qian Liu, Mingzhe Du, Lin Yan, Zhijie Fan, Yiming Huang, Zejian Yuan, and Zejun Ma.
 \newblock Swe-perf: Can language models optimize code performance on real-world repositories?, 2025.
@@ -221,6 +226,11 @@ Carlos~E Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press
 \newblock {SWE}-bench: Can language models resolve real-world github issues?
 \newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
 \newblock URL \url{https://openreview.net/forum?id=VTF8yNQM66}.
+
+\bibitem[Jin et~al.(2026)Jin, Paladugu, and Xiong]{beneficial-reasoning}
+Jiahe Jin, Abhijay Paladugu, and Chenyan Xiong.
+\newblock Beneficial reasoning behaviors in agentic search and effective post-training to obtain them, 2026.
+\newblock URL \url{https://arxiv.org/abs/2510.06534}.
 
 \bibitem[Kang et~al.(2024{\natexlab{a}})Kang, Ni, and Yao]{EVER}
 Haoqiang Kang, Juntong Ni, and Huaxiu Yao.
@@ -361,9 +371,14 @@ OpenAI.
 \newblock Gpt-4.5, 2025{\natexlab{a}}.
 \newblock URL \url{https://openai.com/index/introducing-gpt-4-5}.
 
-\bibitem[OpenAI(2025{\natexlab{b}})]{o3_mini}
+\bibitem[OpenAI(2025{\natexlab{b}})]{gpt5}
 OpenAI.
-\newblock Openai o3-mini, 2025{\natexlab{b}}.
+\newblock Gpt5, 2025{\natexlab{b}}.
+\newblock URL \url{https://platform.openai.com/docs/models/gpt-5}.
+
+\bibitem[OpenAI(2025{\natexlab{c}})]{o3_mini}
+OpenAI.
+\newblock Openai o3-mini, 2025{\natexlab{c}}.
 \newblock URL \url{https://openai.com/index/openai-o3-mini/}.
 
 \bibitem[OpenAI(2026)]{gpt53codex}

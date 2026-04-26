@@ -12,16 +12,13 @@ To address this limitation, in this part, we develop an critique model to provid
 While the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, the critique model is specialized for planning.
 Since the optimum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning, training a specialized critique model may lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
 
-% Specifically, we identify two key principles that an ideal auxiliary model should follow: (1) it should provide additional performance gains when collaborating with the primary coding agent, and (2) it should specialize in capabilities that are different from the main coding agent.
-% We then show that a critique model that is trained to provide textual critiques for the main model during inference can achieve both principles, for both seq-to-seq NLP tasks (\autoref{chap:fence}) and coding agent tasks (\autoref{chap:critique-training}).
-
 To demonstrate the utility of critique model, in \autoref{chap:fence}, we show that a critique model can improve the factuality of a generator model by either interacting with it in inference or providing feedback to assist training. We further improve the effectiveness of the critique model by constructing tailored training data.
 
 When it comes to the domain of coding agent, in a \proposedWork (\autoref{chap:critique-training}), we first show that using a frontier model (e.g., Claude) to provide critique during inference substantially improves the correctness of a coding agent. Then we distill a more cost-efficient critique model by constructing synthetic supervised-finetuning training data. To further improve its effectiveness, we propose a method to construct direct preference optimization (DPO) training data, focusing on its gap between the frontier critique model.
 
 
 
-\chapter{Improving Generator Factuality by Training an Evaluator Model}
+\chapter{Improving Generator Factuality by Training an Evaluator Model \textcolor{aquablue}{(\textit{completed})}}
 \label{chap:fence}
 
 \begin{figure}[t]

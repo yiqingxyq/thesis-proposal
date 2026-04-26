@@ -36,7 +36,7 @@ Then, we propose two trajectory augmentation methods to inject beneficial charac
 
 
 
-\chapter{Training General-Purpose Coding Agents with Scalable Tasks \textcolor{aquablue}{(\textit{in-progress})}}
+\chapter{Training General-Purpose Coding Agents with Scalable Tasks \textcolor{aquablue}{(\textit{completed})}}
 \label{chap:hybrid-gym}
 
 
@@ -757,7 +757,7 @@ We thus propose \autoref{chap:effective-analysis} to investigate more training d
 
 
 \section{Introduction}
-
+\label{plus:sec:introduction}
 In \autoref{chap:hybrid-gym}, we introduce Hybrid-Gym~\cite{hybrid-gym}, which trains a general-purpose coding agent by deriving a set of training task design principles. 
 However, \textbf{having proper training tasks is not the only condition for effective coding agent training}.
 
@@ -793,26 +793,34 @@ Hybrid-Gym~\cite{hybrid-gym} shows that training on trajectories with more steps
 \label{ablation:self-vs-claude}
 \end{table}
 
-In this chapter, we show that beyond task success, the specific agent behaviors in the training trajectories substantially affect the effectiveness of training, and \textbf{we aim to discover and verify the particular agent behaviors that affect training effectiveness, for both in-domain and task-transfer training}.
-As shown in \autoref{ablation:self-vs-claude}, we use a frontier model (Claude-Sonnet-3.7) and a smaller model (Qwen2.5Coder-32B) to generate successful trajectories on the exact same set of 400 function localization instances and distill Qwen2.5Coder-7B.
-We can see that distilling from Claude-Sonnet-3.7 achieves a substantially higher performance.
-After manually examining the training trajectories, as shown in \autoref{tab:plus:prelim1}, we observe that although both models succeed on the task, Claude-3.7 adopts a more systematic repo-exploration strategy. For instance, it first narrows down the candidate files to a limited number, and then locates relevant functions inside the candidate files by keyword searching. In contrast, Qwen2.5Coder-32B typically locates functions by directly reading the entire candidate file instead of keyword searching, which could be very inefficient when the file is large.
+In this chapter, we show that beyond task success, the specific agent behaviors in the training trajectories substantially affect the effectiveness of training, and \textbf{we aim to discover and verify the particular agent behaviors that affect training effectiveness, for both in-domain and task-transfer training}. Our study provide insights into why and how task generalization can be achieved for coding agents. Furthermore, our study provides guidelines for the construction and selection of training data before running the training.
 
-In our \textcolor{aquablue}{\textbf{preliminary experiments}}, we verify that one of the key behaviors we find, using keyword searching to locate functions inside files, is indeed beneficial for training.
+In our \textcolor{aquablue}{\textbf{preliminary experiments}}, as shown in \autoref{ablation:self-vs-claude}, we use a frontier model (Claude-Sonnet-3.7) and a weaker model (Qwen2.5Coder-32B) to generate successful trajectories on the exact same set of 400 function localization instances and distill Qwen2.5Coder-7B.
+We can see that distilling from Claude-Sonnet-3.7 achieves a substantially higher performance.
+
+We first discover the differences between the two models' successful trajectories. Inspired by existing research that extract agent behavior patterns in general domains~\cite{beneficial-reasoning}, we use an LLM agent to discover the differences, with the two models' successful trajectories as context.
+After manually examining the LLM agent's output, we observe that although both models succeed on the task, Claude-3.7 adopts a more systematic repo-exploration strategy. For instance, it first narrows down the candidate files to a limited number, and then locates relevant functions inside the candidate files by keyword searching. In contrast, Qwen2.5Coder-32B typically locates functions by directly reading the entire candidate file instead of keyword searching, which could be very inefficient when the file is large.
+
+We then verify that one of the key behaviors we found: using keyword searching to locate functions inside files, is indeed beneficial for training.
 In particular, we add a more detailed repo-exploration instruction to the prompt for generating training trajectories. We then generate 400 successful trajectories with Qwen2.5Coder-32B and compare the distillation performance with the original prompt.
 As shown in \autoref{ablation:self-vs-claude}, we observe that (1) the distillation performance is improved from 4.0\% to 8.0\% with the new prompt, and (2) the model distilled from the new prompt also generates more keyword searching actions when localizing code inside files.
 
-However, our preliminary experiments have three limitations: (1) the discovery of key behaviors is ad-hoc, (2) using prompt to control the agent behaviors is not reliable -- it also depends on whether the model can follow the instruction correctly, and (3) the analysis is conducted on only one particular teacher model pair and one training task.
+Our preliminary experiments show that we can discover important agent behaviors that affect distillation performance by first discovering candidate agent behaviors based on the differences between two teacher model's successful trajectories, and then verifying their importance by conducting controlled experiments.
+However, our preliminary experiments have three \textbf{limitations}: 
+(1) the discovery of key behaviors is still challenging for the agent, which requires extracting patterns from the entire trajectories that contain 20-30 steps on average,
+(2) prompt engineering is not always effective to control the presence of particular agent behaviors -- it also depends on whether the model can follow the instruction correctly, and we may need to carefully tune the prompt, and 
+(3) the analysis is conducted on only one particular teacher model pair and one training task.
 
 To address the limitations, we \textcolor{mediumgreen}{\textbf{propose}} a more comprehensive analysis. In particular,
 
-\noindent(1) we categorize agent behaviors based on whether it is about high-level strategies or concrete actions. Specifically, we categorizes behaviors into stage-level, stage-strategy-level, and step-level behaviors, which enables more complete agent behavior discovery.
+\noindent(1) To make candidate agent behavior discovery easier, we categorizes behaviors into stage-level, stage-strategy-level, and step-level behaviors based on whether they are about high-level strategies or concrete steps. We provide different types of context to the LLM agent to discover the behaviors at different levels.
 
-\noindent(2) we conduct controlled experiments based on trajectory editing. 
-Particularly, we design trajectory editing methods specifically for each behavior we want to verify, which adds or removes the behavior from the training trajectories. Then we train a student model on the original and edited trajectories and compare the distillation performance.
-If trajectory editing is not trivial, we fallback to the prompt engineering and data filtering method, as introduced in the preliminary experiments.
+\noindent(2) To make the presence of particular agent behaviors in trajectories more controllable, we propose trajectory editing methods that adds or removes a target behavior from the training trajectories.
+We propose a list of rules to describe conditions where we can alter steps in a trajectory without breaking the trajectory's consistency.
+If trajectory editing is not trivial for some behaviors, we fallback to the prompt engineering and data filtering method, as introduced in the preliminary experiments.
+Finally, similar to the preliminary experiments, we train a student model on the original and edited trajectories and compare the distillation performance.
 
-\noindent(3) we extend the analysis to multiple training tasks and multiple teacher model pairs. We keep a global list of agent behaviors and update the list whenever we add a new analysis setting. The analysis of multiple teacher models enables us to have a more comprehensive list of key agent behaviors. The analysis of multiple training tasks reveals agent behaviors that are transferable across different tasks.
+\noindent(3) We extend the analysis to multiple training tasks and multiple teacher model pairs. We keep a global list of important agent behaviors and update the list whenever we add a new analysis setting. The analysis of multiple teacher models enables us to have a more comprehensive list of key agent behaviors. The analysis of multiple training tasks reveals agent behaviors that are transferable across different tasks.
 
 
 
@@ -847,44 +855,83 @@ If trajectory editing is not trivial, we fallback to the prompt engineering and 
 
 
 
-\section{Limitations of Preliminary Experiments}
-\label{plus:sec:limpreliminary}
-% While the preliminary experiments demonstrate a successful case of discovering agent behaviors that affect distillation performance, it still has the following limitations:
-We identify the following limitations of the preliminary experiments:
 
-\start{Limitation 1: The discovery process is ad-hoc}
-In the preliminary experiments, we manually check the training trajectories, come up with the different agent behaviors, and verify that such differences exist by designing metrics (e.g., the frequency of in-file keyword searching actions). This process is ad-hoc and we still need a more systematic approach to discover a more comprehensive set of agent behaviors that potentially affect distillation performance.
+\section{Overview of Proposed Methods}
+The main motivation of this project is to reveal what exact agent behaviors are important for the effectiveness of coding agent training, for both in-domain and task-transfer training.
 
+The proposed methdos consist of two parts: (1) \textbf{discovery} of candidate agent behaviors that could potentially affect performance by finding the differences between these two models' successful trajectories, and (2) \textbf{verification} of the importance of these behaviors by conducting controlled experiments to reveal their effects on distillation performance.
 
-\start{Limitation 2: Using prompt to control agent behaviors is not reliable}
-In the preliminary experiments, we use a prompt to control the agent behaviors. However, this method is not always effective -- it also depends on whether the model can follow the instruction correctly. It is possible that even with a more advanced prompt, the model still does not have the agent behavior we want to verify.
-We need a more reliable method to control the presence of particular agent behaviors in training trajectories.
+The proposed framework that aims to address the limitations mentioned in \autoref{plus:sec:introduction} is as follows:
+for the discovery part (\autoref{plus:sec:categorization}), we categorize agent behaviors based on whether they are about high-level strategies or concrete steps. When we apply an LLM agent to discover the behaviors at different levels, we provide different types of context to the agent.
+The agent iteratively discovers new candidate behaviors based on the differences between the frontier and weaker teacher model's successful trajectories, examines whether the behaviors are well-defined and distinguishing, and discover new candidate behaviors.
+For the verification part (\autoref{plus:sec:controlled-exp}), for each candidate agent behavior, we conduct controlled experiments by editing the training trajectories to add or remove the behavior. We provide a list of rules to describe conditions where we can edit trajectories without affecting its validity. We then compare the distillation performance on the original and edited trajectories to assess the importance of the behaviors.
+We prioritize the candidate behaviors that are directly related to the key outcome of the task (e.g., the final code patch and the function and file it locates for the issue-solving task).
+We iteratively perform the discovery and verification processes until we cannot find any new candidate agent behaviors.
 
-
-\start{Limitation 3: The analysis focuses on only one model pair and one training task}
-Our goal is to discover agent behaviors that transfer across different coding agent tasks. As a result, we need to conduct analysis on multiple training tasks. Furthermore, we can discover a larger number of agent behaviors by comparing the differences between multiple teacher model pairs.
-
-To address the limitations, in the following sections, we propose three methods to conduct a more comprehensive analysis on agent behaviors that affect distillation performance:
+Finally, we further extend the analysis to multiple teacher model pairs and multiple coding agent training tasks to obtain a more comprehensive list of important agent behaviors that affect distillation performance (\autoref{plus:sec:extend-exp}).
 
 
-\section{Proposed Method 1: Categorization of Agent Behaviors}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{plus_figs/trajectory_comparison.pdf}
+  \caption{An example of how we represent trajectories at different abstraction levels. We show the categorization of each agent step in the format of ``stage label (strategy label)''. Note that the agent step can be categorized into multiple stages and strategies.}
+  \label{fig:plus:abstraction}
+\end{figure}
+
+
+\section{Proposed Method 1: Candidate Agent Behavior Discovery for Different Abstraction Levels}
 \label{plus:sec:categorization}
 \subsection{Proposed Method}
-We aim to discover the different agent behaviors in two teacher model's successful trajectories.
-To define the scope of the agent behaviors, we categorize agent behaviors into stage-level, stage-strategy-level, and step-level behaviors, where stage-level behaviors focus on the most high-level problem-solving plans, and step-level behaviors focus on the concrete actions (e.g., specific tool calls or textual messages) generated by the agent.
+Previous work and our preliminary experiments discover candidate agent behaviors by presenting the entire successful trajectories generated by two teacher models as context to an LLM agent and prompting it to discover different behaviors, which is still challenging for the agent.
+Towards this challenge, our key intuition is that agent behaviors arise at different abstraction levels, and discovering them does not always require access to the full trajectory.
+For example, we only need the high-level summary of the trajectory to identify whether an agent repeatedly performs verification after implementation.
+Another example is that to compare the strategy used by the agent to localize a function, we only need to look at the function localization steps rather than the entire trajectory.
 
-The definition of the categories is as follows:
+In summary, we categorize agent behaviors into three abstraction levels: \textbf{stage-level}, \textbf{stage-strategy-level}, and \textbf{step-level}, which enables us to design different types of context for the LLM agent to discover the behaviors at different levels.
+
+
+\start{Represent Trajectories at Different Abstraction Levels}
+The categorization of agent behaviors is based on how we represent each agent step at different abstraction levels.
+In particular, we define:
 \begin{itemize}
-  \item \textbf{Stage-level}: the transition between different stages to solve coding agent tasks, where the same stage can be performed multiple times. We pre-define the stages that are shared across different coding tasks: repository discovery, file localization, function localization, code reproduction, solution implementation, and solution verification.
-  Here is an example of a stage-level behavior: the agent transit from the ``file localization'' stage to the ``function localization'' stage when the number of candidate files is reduced to a limited number.
-  \item \textbf{Stage-strategy-level}: the plan of performing actions to complete a particular stage. For instance, for the function localization stage, given a set of candidate files,  the agent may perform several infile keyword searching actions to locate the relevant lines of code inside the candidate files. Then it perform file-reading actions to read the corresponding lines.
-  \item \textbf{Step-level}: the specific messages generated by the agent. For instance, the agent correctly uses the ``file-editing'' tool to generate code patches with no errors and retries. Another example is that the agent generates concise reasoning before generating the actions.
+  \item \textbf{The Stage of Coding Tasks}: Build upon the analysis of Hybrid-Gym~\cite{hybrid-gym}, we pre-define the stages that are shared across different coding tasks: planning, repository discovery (e.g., checking the structure of the repository), file localization, code-line localization, code reproduction, solution implementation, and solution verification. Based on the analysis in Hybrid-Gym, the stages are shared across three downstream coding tasks: issue-solving, test generation, and library construction, and four synthetic training tasks: function localization, issue localization, dependency search, and function generation.
+  \item \textbf{The Strategy to Complete a Stage}: For each stage, we define the strategy to complete the stage, or equivalently, the purpose of each action that is used to complete the stage. For instance, for the code-line localization stage, the strategy includes searching for keywords inside candidate files, reading the candidate files, executing relevant code and observing the error message, etc.
 \end{itemize}
 
-Note that it is unrealistic to develop a perfect categorization before conducting full analyses. We therefore iteratively update the categories when we conducting new analyses and discovering new agent behaviors.
+As shown in \autoref{fig:plus:abstraction}, given a set of trajectories, we assign a stage label and a strategy label to each agent step. 
+We iteratively update the categories when we conducting new analyses and discovering new agent behaviors.
+We keep adding new stages or strategies if we find agent steps that are not covered by the existing categories.
+We can also break down a category into smaller categories if we find that it is too broad.
+
+
+
+\start{Agent Behaviors at Different Abstraction Levels}
+We categorize the agent behaviors based on which abstraction level of trajectory they are be represented at.
+\begin{itemize}
+  \item \textbf{Stage-level Behaviors}: the presence, order, or transition of different stages in the trajectory.
+  For example, as shown in \autoref{fig:plus:abstraction}, Claude-3.7 has a ``solution verification'' stage after ``solution implementation''.
+  % transits from the ``file localization'' stage to the ``function localization'' stage only when the number of candidate files is reduced to a limited number.
+  \item \textbf{Stage-strategy-level Behaviors}: the presence, order, or transition of different strategies to complete a particular stage.
+  For example, as shown in \autoref{fig:plus:abstraction}, for the function localization stage, Claude-3.7 performs several keyword searching actions that present both the file and the located lines of code. Then it perform file-reading actions to read the corresponding lines.
+  \item \textbf{Step-level Behaviors}: properties of the specific messages generated by the agent. For instance, the agent correctly uses the ``file-editing'' tool to generate code patches with no errors and retries. Another example is that the agent generates long reasoning before generating the actions.
+\end{itemize}
+
+Note that in Hybrid-Gym~\cite{hybrid-gym} (\autoref{chap:hybrid-gym}), we present three principles for effective task design: (1) the tasks should generate a code patch as the outcome, (2) the tasks should involve a meaningful repository-exploration phase, and (3) the tasks should require non-trivial reasoning.
+All the three principles can be translated to the agent behaviors with our definition: (1) the trajectory contains the ``solution implementation'' stage, (2) the trajectory contains the ``repository discovery'', ``file localization'', or ``code-line localization'' stages, and (3) the trajectory contains the ``planning'' stage, which are all stage-level behaviors. In this study, we conduct a more comprehensive analysis by including behaviors from all the three levels.
+
+
+\start{Discovering Candidate Agent Behaviors at Different Abstraction Levels}
+Similar to the preliminary experiments, we use an LLM agent to discover different agent behaviors in the two sets of trajectories.
+In addition to access to the entire trajectories, we provide different context for the discovery of behaviors at different levels.
+For stage-level behaviors, we provide the trajectories that are abstracted with the stage labels.
+For stage-strategy-level behaviors, we provide the steps in the trajectories that belong to a particular stage. We additionally provide the strategy labels of these steps.
+For step-level behaviors, we do not provide additional context other than the full trajectories, but we explicitly prompt the LLM agent to focus on the content of the single step.
+
+The agent iteratively discovers new candidate behaviors based on the differences between the frontier and weaker teacher model's successful trajectories, examines whether the behaviors are well-defined and distinguishing, and discovers new candidate behaviors.
+
 
 \subsection{Proposed Experiments}
-Since the goal is to discover the agent behaviors that lead to the different distillation performances, we examine the two properties of each agent behavior we discover: (1) Well-defined. (2) Distinguishable.
+Since the goal is to discover the agent behaviors that lead to the different distillation performances, we examine the two properties of each candidate agent behavior we discover: (1) Well-defined. (2) Distinguishing.
 
 \start{Verification of Well-defined Agent Behaviors}
 An agent behavior is well-defined if there exists a deterministic method to determine whether a trajectory contains the behavior. Furthermore, the behavior can be represented by a binary feature. For instance, the agent behavior ``using keyword searching to locate functions inside files'' is well-defined, but the agent behavior ``has comprehensive repository exploration'' is not, because it is ambiguous and does not have a precise operational definition.
@@ -895,8 +942,8 @@ We additionally validate the LLM annotations based on its agreement with human a
 To verify whether a candidate agent behavior is well-defined, we randomly sample $k$ instances where both of the two teacher models generate a successful trajectory, and apply the LLM-based annotator to all of the $2k$ trajectories. We compute the rate of \texttt{unable\_to\_determine} outputs for that behavior. We only retain behaviors whose indeterminate rate is below a threshold $\tau$ (e.g., $5\%$).
 
 
-\start{Verification of Distinguishable Agent Behaviors}
-To verify whether an agent behavior is distinguishable, similar to the above experiment, we randomly sample $k$ successful trajectories from each of the two teacher models and apply the LLM-based annotator to all of the $2k$ trajectories.
+\start{Verification of Distinguishing Agent Behaviors}
+To verify whether an agent behavior is distinguishing, similar to the above experiment, we randomly sample $k$ successful trajectories from each of the two teacher models and apply the LLM-based annotator to all of the $2k$ trajectories.
 
 For each well-defined behavior, we define a binary feature for each trajectory: 1 the behavior is present in trajectory, and 0 otherwise.
 We then test whether the prevalence of this behavior differs significantly between the two teacher models. Since this feature is binary, we use a chi-square test as the statistical test. 
@@ -908,29 +955,104 @@ Specifically, we construct a $2 \times 2$ contingency table over \{teacher model
 \section{Proposed Method 2: Controlled Experiments based on Trajectory Editing}
 \label{plus:sec:controlled-exp}
 \subsection{Proposed Method}
-The goal of this part is to verify the effect of agent behaviors on distillation performance. To this end, we propose to conduct controlled experiments by editing training trajectories so that the target behavior is added or removed, while keeping other factors as unchanged as possible. Then we compare the distillation performance of training on the original and edited trajectories.
+The goal of this part is to verify whether particular agent behaviors affect distillation performance.
+A main limitation of the preliminary experiments is that, even if we prompt the teacher model to exhibit or avoid a target behavior, the model may not reliably follow the instruction. 
 
-We manually design the editing methods for each behavior, whenever it is possible.
-For example, to test whether the behavior ``having more than three failed file-editing actions'' affects distillation performance, we can remove the extra failed file-editing actions and their execution outputs from the trajectory while leaving the successful actions unchanged. 
-Similarly, for the behavior ``performing explicit verification after implementation,'' we may delete the corresponding verification actions and their execution outputs.
+To address this limitation, we propose to conduct controlled experiments by directly editing the training trajectories to add, remove, or modify a target behavior whenever such editing is feasible.
 
+The key intuition behind trajectory editing is that we only focus on trajectories that \emph{successfully} solve the task.
+If an agent successfully solves the task, it is also likely to produce the \emph{essential intermediate outcomes} when completing the task.
+For example, in the function localization task, where the agent must identify a target function from its description and generate a docstring for it, it is likely that the agent sees the target filename and the function content in some of the action outputs, and there must exist a step that edits the target function.
+This observation makes it possible to edit some behaviors locally while preserving the overall consistency of the problem-solving process, as long as the edited part is producing the same essential intermediate outcome.
+In other words, trajectory editing is suitable for behaviors that do not alter the essential intermediate outcome, but only changes \emph{how} the agent reaches or expresses that outcome.
+
+
+
+\start{Principles of Trajectory Editing}
+The main challenge of trajectory editing is to ensure that the edited trajectory remains \emph{consistent}. Here, consistency means that the edited trajectory still constitutes a valid successful problem-solving process, where (1) at least one step must still produce the final task outcome (e.g., a code patch that satisfies the task requirements), and (2) each step must have sufficient information from the previous context to justify its action.
+
+We define a set of rules describing when trajectory steps can be added, removed, or modified without affecting the trajectory's consistency:
+\begin{itemize}
+    \item \textbf{Equivalent step substitution.} If two sets of agent steps require the same context and produce the same essential intermediate outcome, then one can be substituted for the other without affecting trajectory consistency. For example, in the file localization stage, the agent may perform search with different keywords. As long as target file appears in the search results, we can substitute the search steps.
+    
+    \item \textbf{Removal of non-essential steps.} Steps that do not provide necessary information for any subsequent step can be removed. Examples include file-search actions that do not lead to relevant results, verification of the generated code patch after it is already applied, or any actions that are failed to applied because the syntax is incorrect. 
+    Note that removing such steps may make some later actions appear less well-motivated or less sound, but the trajectory still remains consistent.
+    
+    \item \textbf{Editing textual content.} The textual content of a step can be modified as long as the revised content remains consistent with the previous context. The reason is that only the action generated by the agent will be executed, and the execution output is not affected by the textual content.
+    For instance, an action rationale may be rewritten to be more concise, or a message may be rephrased without changing the information it conveys.
+\end{itemize}
+
+We would like to note that these rules serve as an initial set of editing principles rather than a complete characterization. 
+As the project progresses, we will introduce additional editing rules when new trajectory patterns and edge cases are identified.
+
+
+
+
+
+\start{Examples of Controlled Experiment Design based on Trajectory Editing}
+In \autoref{tab:plus:controlled-editing-examples}, we provide examples of how to design controlled experiments to verify the importance of a particular candidate agent behavior. Each example corresponds to a principle of trajectory editing we defined above.
+
+% Candidate agent behavior: (stage-strategy-level) when locating specific lines of code, only perform file reading when the number of candidate files is reduced to a limited number.
+% Controlled experiment design: given two trajectories, where one of them starts file reading when the number of candidate files is still large, as shown in \autoref{fig:plus:abstraction}, we replace its file localization steps with the ones in the other trajectory, and train a student model on the edited trajectory.
+
+% Candidate agent behavior: (stage-level) the agent verifies the solution after implementation.
+% Controlled experiment design: we remove all the solution verification steps, and train a student model on the edited trajectory.
+
+% Candidate agent behavior: (step-level) the agent uses the file-editing tool correctly, with no errors and retries.
+% Controlled experiment design: we remove all the failed file-editing actions and their execution outputs, and train a student model on the edited trajectory.
+
+
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{p{0.3\textwidth} p{0.65\textwidth}}
+  \toprule
+  \textbf{Candidate Agent Behavior} & \textbf{Controlled Experiment Design} \\
+  \midrule
+  
+  \textit{(Stage-strategy-level)} When localizing specific lines of code, the agent only begins file reading after the number of candidate files has been reduced to a limited set. 
+  &
+  Given two successful trajectories, if one trajectory starts file reading while the candidate file set is still large, we replace its file-localization steps with the corresponding steps from another trajectory that first narrows down the candidate files before reading them. We then train a student model on the edited trajectory set and compare its distillation performance with that of a model trained on the original trajectories.
+  \\[0.8em]
+  
+  \textit{(Stage-level)} The agent performs solution verification after implementation.
+  &
+  We remove all solution-verification steps from otherwise successful trajectories, while keeping the implementation steps and final successful outcome unchanged. We then train a student model on the edited trajectory set and compare its distillation performance against that of a model trained on the original trajectories.
+  \\[0.8em]
+  
+  \textit{(Step-level)} The agent uses the file-editing tool correctly, with no errors or retries.
+  &
+  We remove failed file-editing actions and their corresponding execution outputs from successful trajectories, while preserving the final successful edit and all required preceding context. We then train a student model on the edited trajectory set and compare its distillation performance against that of a model trained on the original trajectories.
+  \\
+  
+  \bottomrule
+  \end{tabular}
+  \caption{Examples of candidate agent behaviors and the corresponding controlled experiment designs based on trajectory editing.}
+  \label{tab:plus:controlled-editing-examples}
+  \end{table}
+
+
+
+\start{The Fallback Method: Prompt Engineering and Data Filtering}
 Note that not all behaviors can be easily added or removed from the trajectory.
-For instance, for the behavior ``having more than 20 agent steps'', it is generally not possible to add or remove steps without affecting other factors.
 In such cases, we fallback to the prompt engineering and data filtering method, as introduced in the preliminary experiments.
 Specifically, we rewrite the trajectory-generation prompt to encourage or discourage the target behavior, and then generate new trajectories under the modified prompt. Finally, we conduct data filtering and only keep trajectories that have or do not have the target behavior.
 
 
+In case we found a large number of candidate behaviors that could potentially affect distillation performance, we prioritize the candidate behaviors that are directly related to the key outcome of the task (e.g., the final code patch and the function and file it locates for the issue-solving task).
+We iteratively perform the discovery and verification processes until we cannot find any new candidate agent behaviors.
+
 
 
 \subsection{Proposed Experiments}
-For each target behavior, we construct two training sets with the same number of trajectories: a \emph{control} set that preserves the original trajectories, and an \emph{edited} set in which the target behavior is added or removed.
+For each candidate behavior, we construct two training sets with the same number of trajectories: a \emph{control} set that preserves the original trajectories, and an \emph{edited} set in which the candidate behavior is added or removed.
 We train a student model on each of the two training sets, with all hyper-parameters fixed.
 We then compare the two student models on downstream coding tasks (e.g., the SWE-Bench Verified issue-solving task) to determine whether editing the behavior leads to a measurable change in performance.
 
 To reduce variance, we repeat each training comparison with multiple seeds (e.g., three seeds) and report the mean and variance of the distillation performance. We then test whether the edited and original conditions differ significantly using a two-tailed t-test.
 
 We only keep the agent behaviors where the distillation performance on the two training sets are significantly different.
-
 
 
 
@@ -950,10 +1072,10 @@ Through this analysis, we expect to find that (1) teacher models with weak disti
 
 
 \subsection{Proposed Experiments}
-We propose to repeat the analyses in \autoref{plus:sec:categorization} and \autoref{plus:sec:controlled-exp} by comparing Claude-3.7 with several weaker teacher models from different model families: GPT-5-mini, Gemini-3.1-Flash-Lite, and Qwen2.5-Coder-32B. 
+We propose to repeat the analyses in \autoref{plus:sec:categorization} and \autoref{plus:sec:controlled-exp} by comparing Claude-3.7 with several weaker teacher models from different model families: GPT-5-mini~\cite{gpt5}, Gemini-3.1-Flash-Lite~\cite{gemini3flash}, and Qwen2.5-Coder-32B~\cite{qwen25coder}. 
 We choose these models in part based on serving cost, with the goal of focusing on teacher models that are substantially cheaper than Claude-3.7, yet still capable of producing successful trajectories for meaningful comparison.
 
-We further propose to conduct these comparisons across a diverse set of training tasks, including SWE-Gym issue solving, Hybrid-Gym function localization, issue localization, dependency search, and function generation. 
+We further propose to conduct these comparisons across a diverse set of training tasks, including SWE-Gym issue solving~\cite{swegym}, Hybrid-Gym function localization and function generation~\cite{hybrid-gym}. 
 All the tasks are shown to be effective for generalizing to the issue-solving task.
 This enables us to verify whether the desired behaviors are transferable across different tasks.
 

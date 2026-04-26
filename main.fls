@@ -1505,6 +1505,7 @@ INPUT part_scalability.tex
 INPUT ./part_scalability.tex
 INPUT ./part_scalability.tex
 INPUT part_scalability.tex
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ec-qplbi.tfm
 INPUT ./CMTrans_figs/diagram_intro_v2.pdf
 INPUT ./CMTrans_figs/diagram_intro_v2.pdf
 INPUT CMTrans_figs/diagram_intro_v2.pdf
@@ -1613,7 +1614,6 @@ INPUT part_generalizability.tex
 INPUT ./part_generalizability.tex
 INPUT ./part_generalizability.tex
 INPUT part_generalizability.tex
-INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ec-qplbi.tfm
 INPUT ./HybridGym_figs/intro.pdf
 INPUT ./HybridGym_figs/intro.pdf
 INPUT HybridGym_figs/intro.pdf
@@ -1644,6 +1644,11 @@ INPUT HybridGym_figs/fig_sampling_teacher_combined.pdf
 INPUT ./HybridGym_figs/fig_sampling_teacher_combined.pdf
 INPUT ./HybridGym_figs/fig_sampling_teacher_combined.pdf
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ec-qplri.tfm
+INPUT ./plus_figs/trajectory_comparison.pdf
+INPUT ./plus_figs/trajectory_comparison.pdf
+INPUT plus_figs/trajectory_comparison.pdf
+INPUT ./plus_figs/trajectory_comparison.pdf
+INPUT ./plus_figs/trajectory_comparison.pdf
 INPUT ./part_usage.tex
 INPUT ./part_usage.tex
 INPUT ./part_usage.tex
