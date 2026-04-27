@@ -786,33 +786,62 @@ Title: Chadwick Boseman | Biography, Movies, Black Panther, \& Death ... \\
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \chapter{Improving Coding Agent Effectiveness by Training a Critique Model \textcolor{mediumgreen}{(\textit{proposed})}}
 \label{chap:critique-training}
 
 \section{Overview}
 Synthetic data has proven effective for training coding agents~\cite{swe-smith,R2EGym,hybrid-gym}. 
-% However, as in many machine learning settings, the effectiveness of a coding agent is ultimately bottlenecked by the capacity of its base model. 
-However, empirically, we still observe that the performance satuates with respect to data scale after a certain point, and the high-level planning ability remains a major bottleneck.
-For instance, prior work~\cite{R2EGym} shows that, when using Qwen2.5Coder-14B as the base model, coding-agent performance already saturates after roughly 800 training trajectories.
+However, empirically, we observe that for a base model with limited size, the performance satuates with respect to data scale after a certain point.
+For instance, prior work~\cite{R2EGym} shows that, when using Qwen2.5Coder-14B as the base model, its performance on the SWE-Bench Verified issue-solving dataset~\cite{swebench} already saturates when trained on roughly 800 issue-solving trajectories.
+In particular, we observe that the high-level planning ability remains a major bottleneck. As shown in \autoref{fig:error-analysis}, there is still a substantial gap between the finetuned coding agent and the frontier model in the proportion of examples that exhibit sufficient reasoning.
 
-% To overcome this limitation, we propose training an auxiliary model to assist the coding agent at inference time. Similar to \autoref{chap:fence}, an ideal auxiliary model should satisfy two properties: (1) it should provide additional performance gains when paired with the primary coding agent, and (2) it should develop capabilities that differ from those of the main coding agent, allowing the two models to be optimized for distinct objectives.
+In this chapter, following the high-level idea of \autoref{chap:fence}, \textbf{we aim to overcome this bottleneck by training a critique model that specializes in planning and provides guidance to the coding agent during inference.}
+The key motivation is that the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, and the optinum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning. As a result, training a specialized critique model may potentially lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
 
-In this chapter, following the high-level idea of \autoref{chap:fence}, we show that a critique model trained to provide free-form textual feedback to the main model during inference can be effective for coding-agent tasks. 
-Using a strong critique model such as Claude-Sonnet-4.6, we improve the performance of CWM-32B~\cite{cwm} on SWE-Bench Verified-mini~\cite{swebench} from 29.4\% to 61.0\%. Moreover, we find that using a model fine-tuned for coding-agent tasks, such as SWE-Smith-7B~\cite{swe-smith}, as the critique model does not yield additional gains beyond those achieved by the coding agent alone. This suggests that the critique model requires a different set of capabilities and should be optimized differently from the coding agent itself.
+Although there could exist approaches to overcome the bottleneck by directly improving the coding agent itself, such as constructing more effective training data (e.g., by constructing training instances more carefully) or using more advanved training paradigms (e.g., reinforcement learning), our approach of critique model training has the following advantages:
+(1) We can directly use existing coding agent training datasets to construct critique training data, without constructing new training instances or environments, and 
+(2) We can train a smaller critique model to assist a larger coding agent (see details in \autoref{sec:critique-sft}), which requires much less computational resources for training.
+Furthermore, combining critique model training with the approaches to improve the coding agent itself could potentially lead to additive improvements, because even with the advanced training techniques, the optimum for coding agent training may still be different from the optimum for planning.
 
-Because using a frontier model as the critique model, such as Claude-Sonnet-4.6, remains expensive at inference time, our \textcolor{aquablue}{\textbf{preliminary experiments}} focus on constructing synthetic data to distill a more cost-efficient critique model, such as Qwen3-8B, that can provide free-form textual critiques to assist the main coding agent during inference. Specifically, we distill Qwen3-8B from Claude-generated critiques using standard supervised fine-tuning (SFT), and this already improves CWM-32B's performance on SWE-Bench Verified from 29.4\% to 33.4\%.
 
-However, we observe that the fine-tuned critique model does not fully reproduce the behavior of the frontier critique model. In particular, its critiques tend to be more verbose, repeating, and contain more unnecessary details, which can distract the main coding agent. These distractions often lead the agent to take unnecessary actions and exhaust the budget of action steps before producing a valid code patch.
-In particular, we observe that the vanilla coding agent generates an non-empty code patch for 89.0\% of the examples in SWE-Bench Verified, but when paired with the SFT critique model, the non-empty rate is significantly reduced to 73.4\%.
-This indicates that reducing distracting critiques and improving the non-empty rate could be a promising direction to further improve the performance of the system.
+In our \textcolor{aquablue}{\textbf{preliminary experiments}}, we show that using a strong critique model to provide free-form textual feedback to the main model during inference can substantially improve the performance.
+As shown in \autoref{tab:critique:prelim}, with Claude-Sonnet-4.6 as the critique model, we significantly improve the performance of CWM-32B~\cite{cwm} on SWE-Bench Verified-mini~\cite{swebench} from 29.4\% to 61.0\%.
+Furthermore, we show that a smaller model (Qwen3-8B~\cite{qwen3}) distilled from Claude-Sonnet-4.6's critiques can also bring performance gains from 29.4\% to 35.8\%.
+The results are especially appealing because we demonstrate that it is possible to train a smaller critique model (8B) to assist a larger coding agent (32B), which requires much less computational resources compared to training the coding agent itself.
 
-Motivated by these observations, we \textcolor{mediumgreen}{\textbf{propose}} to (1) systematically analyze the characteristics of distracting critiques that lead to unnecessary actions, and (2) construct direct preference optimization (DPO) data to further improve the critique model by encouraging it to generate fewer distracting critiques.
+
+However, we observe that there is still a large performance gap between the frontier critique model and the SFT-trained critique model.
+By manually comparing the trajectories guided by the frontier and SFT critique models, we observe that the SFT critique model generates more distracting critiques that lead to more unnecessary actions (i.e., actions that do not produce useful results for the task), repeating actions, and syntactically incorrect actions.
+This also leads to longer trajectory lengths and the coding agent becomes more likely to exceed the budget of 150 agent steps per example before generating a valid code patch. As shown in \autoref{tab:critique:prelim}, with the SFT critique model, the proportion of examples where the coding agent generates a non-empty code patch is even lower than using the coding agent alone (decreasing from 89.0\% to 85.6\%).
+
+To fill the gap, we \textcolor{mediumgreen}{\textbf{propose}} to:
+(1) analyze the differences between the critiques generated by the frontier and SFT critique models that could potentially affect the overall performance,
+(2) improve the supervised-finetuning (SFT) training data based on the differences we find, and
+(3) if the improved SFT data still does not close the gap, we will construct direct preference optimization (DPO) data to further improve the performance of the critique model.
 
 
 \section{Preliminary Experiments}
 In our preliminary experiments, we first show that a strong critique model can bring substantial performance gains to the coding agent in inference (\S\ref{sec:critique-strong}).
 Then we show that we can further train a more cost-efficient critique model (e.g., Qwen3-8B) by distilling it from the strong critique model (e.g., Claude-Sonnet-4.6) using vanilla supervised-finetuning (SFT) (\S\ref{sec:critique-sft}).
-Finally, we reveal the remaining gaps between the student critique model and the teacher critique model, which motivates our proposed method (\S\ref{sec:critique-proposed}).
 
 \subsection{Inference-time Critique Models can be Effective}
 \label{sec:critique-strong}
@@ -820,14 +849,14 @@ Finally, we reveal the remaining gaps between the student critique model and the
 \start{Experimental Setup}
 We experiment with the SWE-Bench Verified dataset~\cite{swebench} with mini-SWE-Agent as the infrastructure~\cite{sweagent}. We use CWM-32B~\cite{cwm} as the coding agent and experiment with three critique models: a frontier model, Claude-Sonnet-4.6~\cite{claude46}, a cost-efficient open-source model, Qwen3-8B~\cite{qwen3}, and a model finetuned for coding agent tasks, SWE-Smith-7B~\cite{swe-smith}.
 
-Following previous work~\cite{swe-prm}, we adopt the setting where the critique model provides free-form textual critique for the main coding agent every $k$ steps during inference. We use $k=5$ in our experiments. The coding agent can perform at most $150$ steps. After exceeding the limit, the process will be terminated, even if no coding patch is generated.
+Following previous work~\cite{swe-prm}, we adopt the setting where the critique model provides free-form textual critique for the main coding agent every $k$ steps during inference. We use $k=10$ in our experiments. The coding agent can perform at most $150$ steps. After exceeding the limit, the process will be terminated, even if no coding patch is generated.
 
 We prompt the critique model to include (1) error analysis for the current trajectory, (2) high-level instructions for completing the task, and (3) the reasoning process for generating the critique, which is shown to be effective empirically~\cite{swe-prm}. 
 
 \start{Experimental Results}
 As shown in \autoref{tab:critique:prelim}, we observe that:
 (1) The frontier critique model (Claude-Sonnet-4.6) can bring substantial performance gains to the coding agent, improving the resolved rate from 29.4\% to 61.0\%.
-(2) Using a weak critique model such as Qwen3-8B may even reduce the performance of the coding agent, but the performance loss is not significant.
+(2) Using an untrained weak critique model such as Qwen3-8B may even reduce the performance of the coding agent, but the performance loss is not significant.
 (3) The model finetuned for coding agent tasks (SWE-Smith-7B) is not an effective critique model, which performs even worse than Qwen3-8B. This indicates that the critique model and the coding agent require different capabilities and should be optimized differently.
 
 
@@ -851,12 +880,14 @@ As shown in \autoref{tab:critique:prelim}, we observe that:
   SWE-Smith-7B & \bad 21.2 & 62.2 & 41.07 \\
   Claude-Sonnet-4.6   & \better \bf 61.0 &  90.0 & 30.28 \\
   \midrule
-  Qwen3-8B + SFT & \good 33.4 & 73.4 & 61.39 \\
-  \quad + fallback & \good 36.4 & 94.8 & \textemdash \\
+  Qwen3-8B + SFT & \good 35.8 & 85.6 & 48.01 \\
+  % \quad + fallback & \good 37.4 & 96.2 & \textemdash \\
   \bottomrule
   \end{tabular}%
   }
-  \caption{Results on equipping CWM-32B with different critique models on SWE-Bench Verified. ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.}
+  \caption{Results on equipping CWM-32B with different critique models on SWE-Bench Verified. 
+  % ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.
+  }
   \label{tab:critique:prelim}
 \end{table}
 
@@ -871,54 +902,85 @@ We build training data from 500 trajectories with CWM-32B as the coding agent an
 We train the model on 8 L-40 GPUs, with a batch size of 8, and a learning rate of 5e-6. We train the model for 3 epochs.
 
 \start{Experimental Results}
-As shown in \autoref{tab:critique:prelim}, we observe that the SFT model can also bring performance gains to the coding agent, improving the resolved rate from 29.4\% to 33.4\%.
-However, the performance gap with using the frontier critique model is still large, indicating that there is still a large room for improvement.
-
-\start{The Remaining Gaps}
-We observe that one major reason that limits the performance of the SFT-critique model is that is has a much lower non-empty rate than the base coding agent (reducing from 89.0\% to 73.4\%). What happens is that when the critique is distracting, the coding agent performs on average more actions than before (increasing from 34.54 to 61.39). It exceeds the limit of 150 steps more often, where the process is terminated before a valid code patch is generated.
-
-We present a simple fix to the limit-exceeding problem denoted as ``+ fallback'' in \autoref{tab:critique:prelim}. Specifically, when the coding agent exceeds the limit, we start from the first step again and run inference with the coding agent alone, without any critique models. This improves the non-empty rate from 73.4\% to 94.8\% and improves the resolved rate from 33.4\% to 36.4\%.
-
-However, to reduce inference latency, we aim to train the critique model itself to avoid distracting behaviors. In the next section, we propose to systematically investigate the characteristics of the distracting critiques that lead to unnecessary actions, and construct training data to reduce such distracting behaviors.
+As shown in \autoref{tab:critique:prelim}, we observe that the SFT model can also bring performance gains to the coding agent, improving the resolved rate from 29.4\% to 35.8\%.
+However, the performance gap with using the frontier critique model is still large, indicating that there is still a large room for improvement. In our proposed methods, we will discuss the root causes of the performance gap and propose methods to close the gap.
 
 
 
-\section{Proposed Method}
-\label{sec:critique-proposed}
 
-\subsection{Analysis of Distracting Critiques}
+\section{Proposed Method 1: Analysis of Distracting Critiques}
 \label{sec:critique-analysis}
-\start{Proposed Method}
-To investigate what types of critiques are distracting and lead to unnecessary actions, we propose to manually check a subset of trajectories where using the SFT critique model exceeds the limit but using Claude-4.6 as the critique model does not, and discover a list of differences between the critiques they generate.
+\subsection{Proposed Method}
+We manually compare the critiques generated by the frontier and SFT critique models to identify the differences that could potentially affect the overall performance.
+In particular, we focus on the instances where the agent guided by the Claude-Sonnet-4.6 critique model succeeds but the agent guided by the SFT critique model fails.
 
-Below is a list of differences that we already observed. Note that the list is not complete and will be updated as we conduct further analysis.
+Below is a list of differences that we already observed, and why we assume they may affect the overall performance. 
+Note that the list is not complete and will be updated as we conduct further analysis.
 \begin{itemize}
-  \item \textbf{The SFT critique model generates more implementation-level suggestions and the frontier model generates more high-level instructions}. For instance, the SFT critique model generates the concrete commands to execute, while the frontier model generates the general plan to locate the relevant files or fix the issue. We observe that when provided with implementation-level guidance, the coding agent tends to follow the exactly same suggestions in the critique. When the critique is distracting, the coding agent performs more unnecessary actions than before and exceeds the limit more often. Furthermore, the training data for the critique model contains much fewer concrete actions than the coding agent model. In this way, it is likely that the critique model has weaker action generation capability than the coding agent, making it unreasonable for the coding agent to follow its suggested actions.
-  \item \textbf{The SFT critique model generates more complex critiques that contain more suggestions than the frontier model}. We observe that the SFT critique model tends to generate long critiques, while the frontier model generates shorter critiques and dynamically adjusts its suggestions based on the coding agent's progress.
-  \item \textbf{The critique generated by the SFT model does not align well with the coding agent's recent progress}. We observe that there are cases where the SFT critique model generates the same instruction multiple times, even if the coding agent has already completed the first few steps in the instruction. In this way, the coding agent is likely to start over from the first step, stucking in a loop until the step limit is reached.
+  \item \textbf{[Potentially harmful behavior \#1] The SFT critique model generates more concrete actions than the frontier model}. We observe that there are a number of cases where the frontier model generates the general plan (e.g., ``you can use keyword search to locate relevant files''), and the SFT critique model generates the concrete actions to execute the plan (e.g., the exact ``grep'' command to perform keyword search).
+  However, since the SFT critique model is not directly optimized for generating actions and it has a smaller size than the main coding agent, it is likely that compared to the coding agent, the critique model has weaker capability in generating actions that both follow the high-level planning and have the correct syntax.
+  As a result, it is not reasonable for the coding agent to follow the concrete actions generated by the SFT critique model.
+  \item \textbf{[Potentially harmful behavior \#2] The SFT critique model generates a larger number of instructions than the frontier model}. We observe that the SFT critique model tends to generate longer critiques with a larger number of instructions.
+  We assume that it could potentially affect the performance because we observe that the instruction-following ability of the coding agent is limited. When we provide it with too many instructions, where some of the instructions are more essential than others, the coding agent does not always start with the most essential instruction.
+  \item \textbf{[Potentially harmful behavior \#3] The critique generated by the SFT model does not align well with the coding agent's recent progress}. We observe that there are cases where the SFT critique model generates the same instruction multiple times, even if the coding agent has already completed the first few steps in the instruction. In this way, the coding agent is likely to start over from the first step and stuck in a loop until the step limit is reached.
 \end{itemize}
 
-\start{Proposed Experiments}
-In the next step, we propose to design controlled experiments to verify our hypothesis that the behaviors mentioned above are indeed harmful to the performance of the coding agent.
+\subsection{Proposed Experiments}
+To verify whether these behaviors indeed lead to performance degradation, for each potentially harmful behavior we find, we directly prompt the SFT critique model to avoid this behavior in inference, and compare the performance with the original prompt.
 
-Specifically, for each type of behaviors that are potentially distracting, we use a frontier model to detect such critiques during inference. Whenever it observes such behaviors, we prompt the frontier model to revise the critique by removing such behaviors and keeping the remaining parts the same.
-Then we compare the performance with the original and revised critiques.
-If the revised critiques can bring significant performance gains, we can verify our hypothesis that such behavirors are indeed distracting and should be reduced from the critique.
+Specifically, to test the effect of ``potentially harmful behavior \#1'', we prompt the SFT critique model with the instruction: ``only generate high-level guidance and do NOT generate concrete actions in the critique'', followed by examples of high-level guidance and concrete actions.
+
+To test the effect of ``potentially harmful behavior \#2'', we prompt the SFT critique model with the instruction: ``do NOT generate more than 3 instructions in the critique''.
+
+To test the effect of ``potentially harmful behavior \#3'', we prompt the SFT critique model with the chain-of-thought process, which first generates the initial set of instructions, checks whether the coding agent has already completed any of the instructions, and then generates the revised set of instructions. We only provide the coding agent with the revised set of instructions.
+
+We compare the performance of using the SFT critique model with the original prompt and the revised prompts on the SWE-Bench Verified dataset~\cite{swebench}. If the revised prompts lead to performance gains, we can verify that such behaviors are indeed harmful to the performance of the coding agent.
+
+We have already observed that with the revised prompt to test ``potentially harmful behavior \#1'', the overall performance of the coding agent increases from 32\% to 26\% on a subset of 50 SWE-Bench Verified examples, which indicates that it is likely that outputing concrete actions in the critique is harmful to the performance of the coding agent. We will conduct further experiments to test the other two potentially harmful behaviors.
 
 
-\subsection{Constructing DPO Data to Distill Critique Models}
+
+\section{Proposed Method 2: Improving SFT Data to Distill Critique Models}
+\label{sec:critique-advanced-sft}
+
+\subsection{Proposed Method}
+After identifying the behaviors that are potentially harmful to the performance of the coding agent (\autoref{sec:critique-analysis}), we propose to improve the SFT data by avoiding these behaviors in the training data.
+In particular, when generating SFT data, we prompt the frontier critique model to avoid such behaviors, using the same instructions introduced in \autoref{sec:critique-analysis}.
+
+In case that the frontier critique model fails to follow the prompt, we perform a data filtering step and only include critiques that do not contain any concrete actions, do not contain more than 3 instructions, etc., in the SFT data for distillation.
+
+
+\subsection{Proposed Experiments}
+Similar to the preliminary experiments, we generate a new set of critique data based on 500 issue-solving trajectories, with CWM-32B as the coding agent and Claude-Sonnet-4.6 as the critique model.
+We instruct Claude-Sonnet-4.6 with the new prompt and use it to generate critiques every 10 steps.
+
+We use an LLM (e.g., GPT-5-mini~\cite{gpt5}) to check whether the critiques follow all the requirements in the new prompt, and only include critiques that pass the check in the SFT data for distillation.
+
+We distill a new critique model with the new SFT data, with Qwen3-8B as the base model and the exact same training settings as the preliminary experiments. 
+Then we apply the new critique model to assist CWM-32B on the SWE-Bench Verified dataset~\cite{swebench}.
+We compare to the original SFT critique model on:
+(1) the percentage of critiques that avoid the potentially harmful behaviors, and 
+(2) the final performance of the coding agent (i.e., the resolved rate).
+
+
+
+\section{Proposed Method 3: Constructing DPO Data to Distill Critique Models}
 \label{sec:critique-dpo}
-\start{Proposed Method}
-After identifying the characteristics of the distracting critiques, we can construct directed preference optimization (DPO) data to further improve the performance of the critique model.
+\subsection{Proposed Method}
+Note that even with the improved SFT data, with no harmful behaviors in the training critiques, it is still possible that the distillation is not effective enough and the student critique model still has harmful behaviors in some of the critiques.
 
-Similarly to the proposed analysis, we select ``breakpoints'' in the training trajectory, leverage the SFT critique model to generate multiple critiques, and prompt the frontier model to score the critiques based on whether they avoid the distracting behaviors. We will use the critiques with higher scores as the preferred responses and the critiques with lower scores as the rejected responses, and train the critique model with DPO.
+To further improve the performance of the critique model, we propose to add a direct preference optimization (DPO) stage after SFT.
+
+In particular, we apply the SFT critique model to assist CWM-32B on another set of training instances. Whenever we observe that the critique model generates a harmful behavior in the critique, we prompt it to generate additional $n$ critiques (e.g., $n=5$) and use the frontier model (e.g., Claude-Sonnet-4.6) to rank the critiques based on their effectiveness, correctness, and whether they avoid the harmful behaviors.
+We use the critique with the highest score as the preferred response and the critiques with the lowest scores as the rejected responses, and train the critique model with DPO.
 
 
 
-\start{Proposed Experiments}
-We expect to find that the DPO-trained critique model can generate fewer distracting critiques and improve the performance of the coding agent.
+\subsection{Proposed Experiments}
+We generate 300 pairs of preferred and rejected critiques, and train the SFT critique model with DPO.
+We conduct hyper-parameter search over the learning rate, batch sie, and number of training epochs.
 
-In particular, we evaluate the performance of coding agents on the SWE-Bench Verified dataset~\cite{swebench} with mini-SWE-Agent as the infrastructure~\cite{sweagent}.
-We experiment on two base coding agents: CWM-32B~\cite{cwm} and Qwen2.5Coder-32B~\cite{qwen25coder}.
-We expect to see that the performance of using the DPO-trained critique model is significantly better than three baselines and ablations: (1) inference with the coding agent alone, without any critique models,  (2) inference with the untrained model (Qwen3-8B or Qwen2.5Coder-32B) as the critique model, and (3) inference with the SFT-trained critique model.
+Similar to \autoref{sec:critique-advanced-sft}, we apply the DPO-trained critique model to assist CWM-32B on the SWE-Bench Verified dataset~\cite{swebench}.
+Then we compare the proportion of harmful behaviors and the final resolved rate with the SFT critique model.
+
 

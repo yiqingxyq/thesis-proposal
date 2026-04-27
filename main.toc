@@ -90,10 +90,16 @@
 \contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit {proposed})}}{94}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Overview}{94}{section.8.1}%
 \contentsline {section}{\numberline {8.2}Preliminary Experiments}{95}{section.8.2}%
-\contentsline {subsection}{\numberline {8.2.1}Inference-time Critique Models can be Effective}{95}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.1}Inference-time Critique Models can be Effective}{96}{subsection.8.2.1}%
 \contentsline {subsection}{\numberline {8.2.2}Distilled Critique Models also Bring Performance Gains}{96}{subsection.8.2.2}%
-\contentsline {section}{\numberline {8.3}Proposed Method}{97}{section.8.3}%
-\contentsline {subsection}{\numberline {8.3.1}Analysis of Distracting Critiques}{97}{subsection.8.3.1}%
-\contentsline {subsection}{\numberline {8.3.2}Constructing DPO Data to Distill Critique Models}{98}{subsection.8.3.2}%
-\contentsline {chapter}{\numberline {9}Conclusion}{100}{chapter.9}%
-\contentsline {chapter}{Bibliography}{102}{chapter*.61}%
+\contentsline {section}{\numberline {8.3}Proposed Method 1: Analysis of Distracting Critiques}{97}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Proposed Method}{97}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Proposed Experiments}{98}{subsection.8.3.2}%
+\contentsline {section}{\numberline {8.4}Proposed Method 2: Improving SFT Data to Distill Critique Models}{99}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}Proposed Method}{99}{subsection.8.4.1}%
+\contentsline {subsection}{\numberline {8.4.2}Proposed Experiments}{99}{subsection.8.4.2}%
+\contentsline {section}{\numberline {8.5}Proposed Method 3: Constructing DPO Data to Distill Critique Models}{100}{section.8.5}%
+\contentsline {subsection}{\numberline {8.5.1}Proposed Method}{100}{subsection.8.5.1}%
+\contentsline {subsection}{\numberline {8.5.2}Proposed Experiments}{100}{subsection.8.5.2}%
+\contentsline {chapter}{\numberline {9}Conclusion}{101}{chapter.9}%
+\contentsline {chapter}{Bibliography}{103}{chapter*.61}%

@@ -35,6 +35,6 @@
 \contentsline {table}{\numberline {7.6}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }}{92}{table.caption.58}%
 \contentsline {table}{\numberline {7.7}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }}{93}{table.caption.59}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {8.1}{\ignorespaces Results on equipping CWM-32B with different critique models on SWE-Bench Verified. ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.\relax }}{96}{table.caption.60}%
+\contentsline {table}{\numberline {8.1}{\ignorespaces Results on equipping CWM-32B with different critique models on SWE-Bench Verified. \relax }}{97}{table.caption.60}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
