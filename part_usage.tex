@@ -813,7 +813,14 @@ Synthetic data has proven effective for training coding agents~\cite{swe-smith,R
 However, empirically, we observe that for a base model with limited size, the performance satuates with respect to data scale after a certain point.
 For instance, prior work~\cite{R2EGym} shows that, when using Qwen2.5Coder-14B as the base model, its performance on the SWE-Bench Verified issue-solving dataset~\cite{swebench} already saturates when trained on roughly 800 issue-solving trajectories.
 
-% In particular, we observe that the high-level planning ability remains a major bottleneck. As shown in \autoref{fig:error-analysis}, there is still a substantial gap between the finetuned coding agent and the frontier model in the proportion of examples that exhibit sufficient reasoning.
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.9\columnwidth]{plus_figs/planning_def.pdf}
+  \caption{Examples of high-level planning and low-level implementation in coding tasks by our definition. 
+  We define ``high-level planning'' as the process of producing intermediate steps about what should be done and in what order, where the intermediate steps do not need to be executable and hence do not have to be syntactically correct.
+  We define ``low-level implementation'' as the process of generating concrete executable actions to perform the intermediate steps. The challenge is to generate the action that precisely follows the high-level planning and has the correct syntax (i.e., so that the action can be successfully executed to obtain outputs).}
+  \label{fig:plus:planning_def}
+\end{figure}
 
 To better understand this limitation, we break down the abilities required for coding agent training into \textbf{high-level planning} (producing intermediate steps about what should be done and in what order) and \textbf{low-level implementation} (generating concrete executable actions to perform the intermediate steps). As shown in \autoref{fig:plus:planning_def}, an example of high-level planning is decomposing the function localization task into discovering the repository structure, localizing relevant files, and locating the relevant functions inside the candidate files.
 An example of low-level implementation is calling the ``execute\_bash'' tool to use a ``grep'' command to perform keyword search with the correct syntax.
@@ -824,26 +831,15 @@ As pointed out by multiple previous work, even after finetuning, the high-level 
 \citet{hybrid-gym} shows that there is still a substantial gap between the finetuned coding agent and the frontier model in the proportion of examples that exhibit adequate reasoning.
 
 In this chapter, following the high-level idea of \autoref{chap:fence}, \textbf{we aim to overcome this bottleneck by training a critique model that specializes in planning and provides guidance to the coding agent during inference.}
-The key motivation is that the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, and theoretically, the optinum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning. 
+The key motivation is that the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, and the optinum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning. 
 As a result, training a specialized critique model may potentially lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
 
 Although there could exist approaches to overcome the bottleneck by directly improving the coding agent itself, such as constructing more effective training data (e.g., by constructing training instances more carefully) or using more advanved training paradigms (e.g., reinforcement learning), our approach of critique model training has the following advantages:
-(1) we can directly use existing coding agent training datasets to construct critique training data, without constructing new training instances or environments, 
-(2) we can train a smaller critique model to assist a larger coding agent (see details in \autoref{sec:critique-sft}), which requires much less computational resources for training, and 
+(1) we can train a smaller critique model to assist a larger coding agent (see details in \autoref{sec:critique-sft}), which requires much less computational resources for training, 
+(2) to train the critique model, we can re-use the same datasets for coding agent training, without constructing new training tasks or environments, 
 (3) it provides a computationally cost-efficient way to adjust model behavior during inference, without retraining the main model. 
 This is especially compelling for API users, who may not have direct access to the main model.
-\TBD{Can we claim that ``some API service terms of use do not allow for distillation of reasoning''? I am not sure about this.}
 Furthermore, combining critique model training with the approaches to improve the coding agent itself could potentially lead to additive improvements, because even with the advanced training techniques, the optimum for coding agent training may still be different from the optimum for planning.
-
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=0.9\columnwidth]{plus_figs/planning_def.pdf}
-  \caption{Examples of high-level planning and low-level implementation in coding tasks by our definition. 
-  We define ``high-level planning'' as the process of producing intermediate steps about what should be done and in what order, where the intermediate steps do not need to be executable and hence do not have to be syntactically correct.
-  We define ``low-level implementation'' as the process of generating concrete executable actions to perform the intermediate steps. The challenge is to generate the action that precisely follows the high-level planning and has the correct syntax (i.e., so that the action can be successfully executed to obtain outputs).}
-  \label{fig:plus:planning_def}
-\end{figure}
 
 
 
@@ -958,9 +954,11 @@ To test the effect of ``potentially distracting critique \#2'', we prompt the SF
 
 To test the effect of ``potentially distracting critique \#3'', we prompt the SFT critique model with the chain-of-thought process, which first generates the initial set of instructions, checks whether the coding agent has already completed any of the instructions, and then generates the revised set of instructions. We only provide the coding agent with the revised set of instructions.
 
-We compare the performance of using the SFT critique model with the original prompt and the revised prompts on the SWE-Bench Verified dataset~\cite{swebench}. If the revised prompts lead to performance gains, we can verify that such behaviors are indeed harmful to the performance of the coding agent.
+We compare the performance of using the SFT critique model with the original prompt and the revised prompts on the SWE-Bench Verified dataset~\cite{swebench}. 
+We also compute (1) the percentage of critiques that contain concrete actions, (2) the average number of instructions in the critiques, and (3) the percentage of repeating critiques to verify whether the revised prompts reduce those potentially distracting behaviors.
+If the revised prompts lead to performance gains and the potentially distracting behaviors are reduced, we can verify that such behaviors are indeed harmful to the performance of the coding agent.
 
-We have already observed that with the revised prompt to test ``potentially distracting critique \#1'', the overall performance of the coding agent increases from 32\% to 38\% on a subset of 50 SWE-Bench Verified examples, which indicates that it is likely that outputing concrete actions in the critique is harmful to the performance of the coding agent. We will conduct further experiments to test the other two potentially distracting critiques.
+We have already observed that with the revised prompt to test ``potentially distracting critique \#1'', the overall performance of the coding agent increases from 32\% to 38\% on a subset of 50 SWE-Bench Verified examples and the proportion of critiques that contain concrete actions is reduced, which indicates that it is likely that outputing concrete actions in the critique is harmful to the performance of the coding agent. We will conduct further experiments to test the other two potentially distracting critiques.
 
 
 
