@@ -18,6 +18,7 @@
 \citation{codet5}
 \citation{transcoderST}
 \citation{swegym}
+\citation{hybrid-gym}
 \citation{avatar}
 \citation{llm-aggrefact}
 \citation{sweagent}
@@ -499,35 +500,40 @@
 \@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Frequency of infile keyword searching actions in the training trajectories of Qwen-32B and Claude-3.7 and the evaluation trajectories of their student models. We observe that the student models inherit the teacher's strategies in training trajectories.\relax }}{65}{table.caption.44}\protected@file@percent }
 \newlabel{tab:plus:prelim1}{{6.2}{65}{Frequency of infile keyword searching actions in the training trajectories of Qwen-32B and Claude-3.7 and the evaluation trajectories of their student models. We observe that the student models inherit the teacher's strategies in training trajectories.\relax }{table.caption.44}{}}
 \newlabel{tab:plus:prelim1@cref}{{[table][2][6]6.2}{[1][65][]65}}
+\citation{hybrid-gym}
+\citation{hybrid-gym}
 \@writefile{toc}{\contentsline {section}{\numberline {6.2}Overview of Proposed Methods}{66}{section.6.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6.3}Proposed Method 1: Candidate Agent Behavior Discovery for Different Abstraction Levels}{66}{section.6.3}\protected@file@percent }
 \newlabel{plus:sec:categorization}{{6.3}{66}{Proposed Method 1: Candidate Agent Behavior Discovery for Different Abstraction Levels}{section.6.3}{}}
 \newlabel{plus:sec:categorization@cref}{{[section][3][6]6.3}{[1][66][]66}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Proposed Method}{66}{subsection.6.3.1}\protected@file@percent }
 \citation{hybrid-gym}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces An example of how we represent trajectories at different abstraction levels. We show the categorization of each agent step in the format of ``stage label (strategy label)''. Note that the agent step can be categorized into multiple stages and strategies.\relax }}{67}{figure.caption.45}\protected@file@percent }
-\newlabel{fig:plus:abstraction}{{6.1}{67}{An example of how we represent trajectories at different abstraction levels. We show the categorization of each agent step in the format of ``stage label (strategy label)''. Note that the agent step can be categorized into multiple stages and strategies.\relax }{figure.caption.45}{}}
-\newlabel{fig:plus:abstraction@cref}{{[figure][1][6]6.1}{[1][66][]67}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Examples of the stages of coding tasks and the strategies to complete each stage. We design the stages by improving the task decomposition in Hybrid-Gym\nobreakspace  {}\cite  {hybrid-gym}, which are generally shared across different coding tasks. To define the strategies for each stage, we first use an LLM to categorize the agent steps into different stages, and then we summarize the purpose of each action. We keep improving the set of strategies when we discover agent steps that cannot be covered by existing strategies.\relax }}{67}{figure.caption.45}\protected@file@percent }
+\newlabel{fig:plus:taxonomy}{{6.1}{67}{Examples of the stages of coding tasks and the strategies to complete each stage. We design the stages by improving the task decomposition in Hybrid-Gym~\cite {hybrid-gym}, which are generally shared across different coding tasks. To define the strategies for each stage, we first use an LLM to categorize the agent steps into different stages, and then we summarize the purpose of each action. We keep improving the set of strategies when we discover agent steps that cannot be covered by existing strategies.\relax }{figure.caption.45}{}}
+\newlabel{fig:plus:taxonomy@cref}{{[figure][1][6]6.1}{[1][66][]67}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces An example of how we represent trajectories at different abstraction levels. We show the categorization of each agent step in the format of ``stage label (strategy label)''. Note that the agent step can be categorized into multiple stages and strategies.\relax }}{68}{figure.caption.46}\protected@file@percent }
+\newlabel{fig:plus:example}{{6.2}{68}{An example of how we represent trajectories at different abstraction levels. We show the categorization of each agent step in the format of ``stage label (strategy label)''. Note that the agent step can be categorized into multiple stages and strategies.\relax }{figure.caption.46}{}}
+\newlabel{fig:plus:example@cref}{{[figure][2][6]6.2}{[1][66][]68}}
 \citation{hybrid-gym}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Proposed Experiments}{69}{subsection.6.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}Proposed Method 2: Controlled Experiments based on Trajectory Editing}{70}{section.6.4}\protected@file@percent }
-\newlabel{plus:sec:controlled-exp}{{6.4}{70}{Proposed Method 2: Controlled Experiments based on Trajectory Editing}{section.6.4}{}}
-\newlabel{plus:sec:controlled-exp@cref}{{[section][4][6]6.4}{[1][70][]70}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Proposed Method}{70}{subsection.6.4.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Examples of candidate agent behaviors and the corresponding controlled experiment designs based on trajectory editing.\relax }}{72}{table.caption.46}\protected@file@percent }
-\newlabel{tab:plus:controlled-editing-examples}{{6.3}{72}{Examples of candidate agent behaviors and the corresponding controlled experiment designs based on trajectory editing.\relax }{table.caption.46}{}}
-\newlabel{tab:plus:controlled-editing-examples@cref}{{[table][3][6]6.3}{[1][71][]72}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Proposed Method 2: Controlled Experiments based on Trajectory Editing}{71}{section.6.4}\protected@file@percent }
+\newlabel{plus:sec:controlled-exp}{{6.4}{71}{Proposed Method 2: Controlled Experiments based on Trajectory Editing}{section.6.4}{}}
+\newlabel{plus:sec:controlled-exp@cref}{{[section][4][6]6.4}{[1][70][]71}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Proposed Method}{71}{subsection.6.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Proposed Experiments}{72}{subsection.6.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Examples of candidate agent behaviors and the corresponding controlled experiment designs based on trajectory editing.\relax }}{73}{table.caption.47}\protected@file@percent }
+\newlabel{tab:plus:controlled-editing-examples}{{6.3}{73}{Examples of candidate agent behaviors and the corresponding controlled experiment designs based on trajectory editing.\relax }{table.caption.47}{}}
+\newlabel{tab:plus:controlled-editing-examples@cref}{{[table][3][6]6.3}{[1][72][]73}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}Proposed Method 3: Extend to Multiple Models and Tasks}{73}{section.6.5}\protected@file@percent }
+\newlabel{plus:sec:extend-exp}{{6.5}{73}{Proposed Method 3: Extend to Multiple Models and Tasks}{section.6.5}{}}
+\newlabel{plus:sec:extend-exp@cref}{{[section][5][6]6.5}{[1][73][]73}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.1}Proposed Method}{73}{subsection.6.5.1}\protected@file@percent }
 \citation{gpt5}
 \citation{gemini3flash}
 \citation{qwen25coder}
 \citation{swegym}
 \citation{hybrid-gym}
-\@writefile{toc}{\contentsline {section}{\numberline {6.5}Proposed Method 3: Extend to Multiple Models and Tasks}{73}{section.6.5}\protected@file@percent }
-\newlabel{plus:sec:extend-exp}{{6.5}{73}{Proposed Method 3: Extend to Multiple Models and Tasks}{section.6.5}{}}
-\newlabel{plus:sec:extend-exp@cref}{{[section][5][6]6.5}{[1][73][]73}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.1}Proposed Method}{73}{subsection.6.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.2}Proposed Experiments}{73}{subsection.6.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.2}Proposed Experiments}{74}{subsection.6.5.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {part}{III\hspace  {1em}Training Critique Models to Assist Coding Agents}{75}{part.3}\protected@file@percent }
 \newlabel{part:usage}{{III}{76}{Training Critique Models to Assist Coding Agents}{part.3}{}}
 \newlabel{part:usage@cref}{{[part][3][]III}{[1][76][]76}}
@@ -551,20 +557,20 @@
 \@writefile{toc}{\contentsline {section}{\numberline {7.1}Introduction}{77}{section.7.1}\protected@file@percent }
 \citation{factscore}
 \citation{truthfulqa}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces \textit  {(Left)} The framework to train an evaluator, \textsc  {FenCE}\xspace  , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit  {(Right)} The framework to improve model factuality with \textsc  {FenCE}\xspace  . We construct training data by leveraging \textsc  {FenCE}\xspace  to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }}{78}{figure.caption.47}\protected@file@percent }
-\newlabel{fig:overview}{{7.1}{78}{\textit {(Left)} The framework to train an evaluator, \fencemodelname , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit {(Right)} The framework to improve model factuality with \fencemodelname . We construct training data by leveraging \fencemodelname to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }{figure.caption.47}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces \textit  {(Left)} The framework to train an evaluator, \textsc  {FenCE}\xspace  , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit  {(Right)} The framework to improve model factuality with \textsc  {FenCE}\xspace  . We construct training data by leveraging \textsc  {FenCE}\xspace  to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }}{78}{figure.caption.48}\protected@file@percent }
+\newlabel{fig:overview}{{7.1}{78}{\textit {(Left)} The framework to train an evaluator, \fencemodelname , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit {(Right)} The framework to improve model factuality with \fencemodelname . We construct training data by leveraging \fencemodelname to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }{figure.caption.48}{}}
 \newlabel{fig:overview@cref}{{[figure][1][7]7.1}{[1][77][]78}}
 \citation{FLAMe}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Framework of evaluator training. (\textit  {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit  {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }}{79}{figure.caption.48}\protected@file@percent }
-\newlabel{fig:evaluator_train}{{7.2}{79}{Framework of evaluator training. (\textit {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }{figure.caption.48}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Framework of evaluator training. (\textit  {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit  {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }}{79}{figure.caption.49}\protected@file@percent }
+\newlabel{fig:evaluator_train}{{7.2}{79}{Framework of evaluator training. (\textit {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }{figure.caption.49}{}}
 \newlabel{fig:evaluator_train@cref}{{[figure][2][7]7.2}{[1][79][]79}}
 \@writefile{toc}{\contentsline {section}{\numberline {7.2}Methodology}{79}{section.7.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}\textsc  {FenCE}\xspace  : Factuality Evaluator Training}{79}{subsection.7.2.1}\protected@file@percent }
 \newlabel{sec:evaluator_training}{{7.2.1}{79}{\fencemodelname : Factuality Evaluator Training}{subsection.7.2.1}{}}
 \newlabel{sec:evaluator_training@cref}{{[subsection][1][7,2]7.2.1}{[1][79][]79}}
 \citation{understand-finetuning,finetuning-on-new}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces  The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \textsc  {FenCE}\xspace  to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit  {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit  {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }}{81}{figure.caption.49}\protected@file@percent }
-\newlabel{fig:revise}{{7.3}{81}{The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \fencemodelname to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }{figure.caption.49}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces  The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \textsc  {FenCE}\xspace  to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit  {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit  {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }}{81}{figure.caption.50}\protected@file@percent }
+\newlabel{fig:revise}{{7.3}{81}{The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \fencemodelname to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }{figure.caption.50}{}}
 \newlabel{fig:revise@cref}{{[figure][3][7]7.3}{[1][81][]81}}
 \newlabel{eq:evaluator_sft}{{7.1}{81}{\fencemodelname : Factuality Evaluator Training}{equation.7.2.1}{}}
 \newlabel{eq:evaluator_sft@cref}{{[equation][1][7]7.1}{[1][81][]81}}
@@ -591,15 +597,15 @@
 \@writefile{toc}{\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{83}{section.7.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{83}{subsection.7.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Main Results}{83}{subsection.7.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet  {llm-aggrefact}. \relax }}{84}{table.caption.50}\protected@file@percent }
-\newlabel{tab:res-llm-aggrefact}{{7.1}{84}{Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet {llm-aggrefact}. \relax }{table.caption.50}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet  {llm-aggrefact}. \relax }}{84}{table.caption.51}\protected@file@percent }
+\newlabel{tab:res-llm-aggrefact}{{7.1}{84}{Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet {llm-aggrefact}. \relax }{table.caption.51}{}}
 \newlabel{tab:res-llm-aggrefact@cref}{{[table][1][7]7.1}{[1][83][]84}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{84}{subsection.7.3.3}\protected@file@percent }
 \citation{EVER,self-eval-skt}
 \citation{factscore}
 \citation{truthfulqa}
-\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces  The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }}{85}{table.caption.51}\protected@file@percent }
-\newlabel{tab:aug-acc}{{7.2}{85}{The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }{table.caption.51}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces  The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }}{85}{table.caption.52}\protected@file@percent }
+\newlabel{tab:aug-acc}{{7.2}{85}{The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }{table.caption.52}{}}
 \newlabel{tab:aug-acc@cref}{{[table][2][7]7.2}{[1][84][]85}}
 \@writefile{toc}{\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{85}{section.7.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{85}{subsection.7.4.1}\protected@file@percent }
@@ -607,58 +613,61 @@
 \citation{self-eval-skt}
 \citation{EVER}
 \citation{RAG}
-\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces  Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \textsc  {FenCE}\xspace  . \relax }}{86}{table.caption.52}\protected@file@percent }
-\newlabel{tab:res-factscore}{{7.3}{86}{Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \fencemodelname . \relax }{table.caption.52}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces  Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \textsc  {FenCE}\xspace  . \relax }}{86}{table.caption.53}\protected@file@percent }
+\newlabel{tab:res-factscore}{{7.3}{86}{Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \fencemodelname . \relax }{table.caption.53}{}}
 \newlabel{tab:res-factscore@cref}{{[table][3][7]7.3}{[1][86][]86}}
 \citation{ITI,DoLA}
-\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces  Ablation study that compares different training recipes when equipped with \textsc  {FenCE}\xspace  as the evaluator. ``SFT + \textsc  {FenCE}\xspace  '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \textsc  {FenCE}\xspace  evaluator. \relax }}{87}{table.caption.53}\protected@file@percent }
-\newlabel{tab:res-ablation}{{7.4}{87}{Ablation study that compares different training recipes when equipped with \fencemodelname as the evaluator. ``SFT + \fencemodelname '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \fencemodelname evaluator. \relax }{table.caption.53}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces  Ablation study that compares different training recipes when equipped with \textsc  {FenCE}\xspace  as the evaluator. ``SFT + \textsc  {FenCE}\xspace  '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \textsc  {FenCE}\xspace  evaluator. \relax }}{87}{table.caption.54}\protected@file@percent }
+\newlabel{tab:res-ablation}{{7.4}{87}{Ablation study that compares different training recipes when equipped with \fencemodelname as the evaluator. ``SFT + \fencemodelname '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \fencemodelname evaluator. \relax }{table.caption.54}{}}
 \newlabel{tab:res-ablation@cref}{{[table][4][7]7.4}{[1][86][]87}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.4.2}Main Results}{87}{subsection.7.4.2}\protected@file@percent }
-\newlabel{fig:response_shift_distribution_claims}{{7.4a}{88}{Distribution of claims\relax }{figure.caption.54}{}}
+\newlabel{fig:response_shift_distribution_claims}{{7.4a}{88}{Distribution of claims\relax }{figure.caption.55}{}}
 \newlabel{fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][86][]88}}
-\newlabel{sub@fig:response_shift_distribution_claims}{{a}{88}{Distribution of claims\relax }{figure.caption.54}{}}
+\newlabel{sub@fig:response_shift_distribution_claims}{{a}{88}{Distribution of claims\relax }{figure.caption.55}{}}
 \newlabel{sub@fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][86][]88}}
-\newlabel{fig:response_shift_refused_responses}{{7.4b}{88}{\% Refused responses\relax }{figure.caption.54}{}}
+\newlabel{fig:response_shift_refused_responses}{{7.4b}{88}{\% Refused responses\relax }{figure.caption.55}{}}
 \newlabel{fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][86][]88}}
-\newlabel{sub@fig:response_shift_refused_responses}{{b}{88}{\% Refused responses\relax }{figure.caption.54}{}}
+\newlabel{sub@fig:response_shift_refused_responses}{{b}{88}{\% Refused responses\relax }{figure.caption.55}{}}
 \newlabel{sub@fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][86][]88}}
-\newlabel{fig:response_shift_num_facts}{{7.4c}{88}{\% Facts\relax }{figure.caption.54}{}}
+\newlabel{fig:response_shift_num_facts}{{7.4c}{88}{\% Facts\relax }{figure.caption.55}{}}
 \newlabel{fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][86][]88}}
-\newlabel{sub@fig:response_shift_num_facts}{{c}{88}{\% Facts\relax }{figure.caption.54}{}}
+\newlabel{sub@fig:response_shift_num_facts}{{c}{88}{\% Facts\relax }{figure.caption.55}{}}
 \newlabel{sub@fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][86][]88}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit  {``Base Model''}), SFT + \textsc  {FenCE}\xspace  (\textit  {``SFT''}), and our method, Edit/Remove + Coarse (\textit  {``DPO''}).\relax }}{88}{figure.caption.54}\protected@file@percent }
-\newlabel{fig:response_shift}{{7.4}{88}{Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit {``Base Model''}), SFT + \fencemodelname (\textit {``SFT''}), and our method, Edit/Remove + Coarse (\textit {``DPO''}).\relax }{figure.caption.54}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit  {``Base Model''}), SFT + \textsc  {FenCE}\xspace  (\textit  {``SFT''}), and our method, Edit/Remove + Coarse (\textit  {``DPO''}).\relax }}{88}{figure.caption.55}\protected@file@percent }
+\newlabel{fig:response_shift}{{7.4}{88}{Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit {``Base Model''}), SFT + \fencemodelname (\textit {``SFT''}), and our method, Edit/Remove + Coarse (\textit {``DPO''}).\relax }{figure.caption.55}{}}
 \newlabel{fig:response_shift@cref}{{[figure][4][7]7.4}{[1][86][]88}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }}{88}{figure.caption.55}\protected@file@percent }
-\newlabel{fig:claim_acc_by_cat}{{7.5}{88}{The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }{figure.caption.55}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }}{88}{figure.caption.56}\protected@file@percent }
+\newlabel{fig:claim_acc_by_cat}{{7.5}{88}{The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }{figure.caption.56}{}}
 \newlabel{fig:claim_acc_by_cat@cref}{{[figure][5][7]7.5}{[1][86][]88}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{88}{subsection.7.4.3}\protected@file@percent }
 \citation{unfamiliar-finetuning}
-\newlabel{fig:hyper_param_iter}{{7.6a}{89}{Iterations of Revision\relax }{figure.caption.56}{}}
+\newlabel{fig:hyper_param_iter}{{7.6a}{89}{Iterations of Revision\relax }{figure.caption.57}{}}
 \newlabel{fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][87][]89}}
-\newlabel{sub@fig:hyper_param_iter}{{a}{89}{Iterations of Revision\relax }{figure.caption.56}{}}
+\newlabel{sub@fig:hyper_param_iter}{{a}{89}{Iterations of Revision\relax }{figure.caption.57}{}}
 \newlabel{sub@fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][87][]89}}
-\newlabel{fig:hyper_param_k}{{7.6b}{89}{top-$k$\relax }{figure.caption.56}{}}
+\newlabel{fig:hyper_param_k}{{7.6b}{89}{top-$k$\relax }{figure.caption.57}{}}
 \newlabel{fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][87][]89}}
-\newlabel{sub@fig:hyper_param_k}{{b}{89}{top-$k$\relax }{figure.caption.56}{}}
+\newlabel{sub@fig:hyper_param_k}{{b}{89}{top-$k$\relax }{figure.caption.57}{}}
 \newlabel{sub@fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][87][]89}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }}{89}{figure.caption.56}\protected@file@percent }
-\newlabel{fig:hyper-param}{{7.6}{89}{Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }{figure.caption.56}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }}{89}{figure.caption.57}\protected@file@percent }
+\newlabel{fig:hyper-param}{{7.6}{89}{Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }{figure.caption.57}{}}
 \newlabel{fig:hyper-param@cref}{{[figure][6][7]7.6}{[1][87][]89}}
 \@writefile{toc}{\contentsline {section}{\numberline {7.5}Chapter Summary}{90}{section.7.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }}{91}{table.caption.57}\protected@file@percent }
-\newlabel{tab:case_1}{{7.5}{91}{An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }{table.caption.57}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }}{91}{table.caption.58}\protected@file@percent }
+\newlabel{tab:case_1}{{7.5}{91}{An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }{table.caption.58}{}}
 \newlabel{tab:case_1@cref}{{[table][5][7]7.5}{[1][90][]91}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }}{92}{table.caption.58}\protected@file@percent }
-\newlabel{tab:case_2}{{7.6}{92}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }{table.caption.58}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }}{92}{table.caption.59}\protected@file@percent }
+\newlabel{tab:case_2}{{7.6}{92}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }{table.caption.59}{}}
 \newlabel{tab:case_2@cref}{{[table][6][7]7.6}{[1][90][]92}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.7}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }}{93}{table.caption.59}\protected@file@percent }
-\newlabel{tab:case_3}{{7.7}{93}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }{table.caption.59}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.7}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }}{93}{table.caption.60}\protected@file@percent }
+\newlabel{tab:case_3}{{7.7}{93}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }{table.caption.60}{}}
 \newlabel{tab:case_3@cref}{{[table][7][7]7.7}{[1][90][]93}}
 \citation{swe-smith,R2EGym,hybrid-gym}
 \citation{R2EGym}
 \citation{swebench}
+\citation{swe-empirical-failures}
+\citation{openhands-rubric-critique}
+\citation{hybrid-gym}
 \@writefile{toc}{\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critique Model \textcolor {mediumgreen}{(\textit  {proposed})}}{94}{chapter.8}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -669,7 +678,10 @@
 \citation{cwm}
 \citation{swebench}
 \citation{qwen3}
-\@writefile{toc}{\contentsline {section}{\numberline {8.2}Preliminary Experiments}{95}{section.8.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8.1}{\ignorespaces Examples of high-level planning and low-level implementation in coding tasks by our definition. We define ``high-level planning'' as the process of producing intermediate steps about what should be done and in what order, where the intermediate steps do not need to be executable and hence do not have to be syntactically correct. We define ``low-level implementation'' as the process of generating concrete executable actions to perform the intermediate steps. The challenge is to generate the action that precisely follows the high-level planning and has the correct syntax (i.e., so that the action can be successfully executed to obtain outputs).\relax }}{96}{figure.caption.61}\protected@file@percent }
+\newlabel{fig:plus:planning_def}{{8.1}{96}{Examples of high-level planning and low-level implementation in coding tasks by our definition. We define ``high-level planning'' as the process of producing intermediate steps about what should be done and in what order, where the intermediate steps do not need to be executable and hence do not have to be syntactically correct. We define ``low-level implementation'' as the process of generating concrete executable actions to perform the intermediate steps. The challenge is to generate the action that precisely follows the high-level planning and has the correct syntax (i.e., so that the action can be successfully executed to obtain outputs).\relax }{figure.caption.61}{}}
+\newlabel{fig:plus:planning_def@cref}{{[figure][1][8]8.1}{[1][95][]96}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Preliminary Experiments}{96}{section.8.2}\protected@file@percent }
 \citation{swebench}
 \citation{sweagent}
 \citation{cwm}
@@ -678,35 +690,35 @@
 \citation{swe-smith}
 \citation{swe-prm}
 \citation{swe-prm}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.1}Inference-time Critique Models can be Effective}{96}{subsection.8.2.1}\protected@file@percent }
-\newlabel{sec:critique-strong}{{8.2.1}{96}{Inference-time Critique Models can be Effective}{subsection.8.2.1}{}}
-\newlabel{sec:critique-strong@cref}{{[subsection][1][8,2]8.2.1}{[1][96][]96}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.2}Distilled Critique Models also Bring Performance Gains}{96}{subsection.8.2.2}\protected@file@percent }
-\newlabel{sec:critique-sft}{{8.2.2}{96}{Distilled Critique Models also Bring Performance Gains}{subsection.8.2.2}{}}
-\newlabel{sec:critique-sft@cref}{{[subsection][2][8,2]8.2.2}{[1][96][]96}}
-\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Results on equipping CWM-32B with different critique models on SWE-Bench Verified. \relax }}{97}{table.caption.60}\protected@file@percent }
-\newlabel{tab:critique:prelim}{{8.1}{97}{Results on equipping CWM-32B with different critique models on SWE-Bench Verified. \relax }{table.caption.60}{}}
-\newlabel{tab:critique:prelim@cref}{{[table][1][8]8.1}{[1][96][]97}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.3}Proposed Method 1: Analysis of Distracting Critiques}{97}{section.8.3}\protected@file@percent }
-\newlabel{sec:critique-analysis}{{8.3}{97}{Proposed Method 1: Analysis of Distracting Critiques}{section.8.3}{}}
-\newlabel{sec:critique-analysis@cref}{{[section][3][8]8.3}{[1][97][]97}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.1}Proposed Method}{97}{subsection.8.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Results on equipping CWM-32B with different critique models on SWE-Bench Verified. \relax }}{97}{table.caption.62}\protected@file@percent }
+\newlabel{tab:critique:prelim}{{8.1}{97}{Results on equipping CWM-32B with different critique models on SWE-Bench Verified. \relax }{table.caption.62}{}}
+\newlabel{tab:critique:prelim@cref}{{[table][1][8]8.1}{[1][97][]97}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.1}Inference-time Critique Models can be Effective}{97}{subsection.8.2.1}\protected@file@percent }
+\newlabel{sec:critique-strong}{{8.2.1}{97}{Inference-time Critique Models can be Effective}{subsection.8.2.1}{}}
+\newlabel{sec:critique-strong@cref}{{[subsection][1][8,2]8.2.1}{[1][97][]97}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.2}Distilled Critique Models also Bring Performance Gains}{98}{subsection.8.2.2}\protected@file@percent }
+\newlabel{sec:critique-sft}{{8.2.2}{98}{Distilled Critique Models also Bring Performance Gains}{subsection.8.2.2}{}}
+\newlabel{sec:critique-sft@cref}{{[subsection][2][8,2]8.2.2}{[1][97][]98}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.3}Proposed Method 1: Analysis of Distracting Critiques}{98}{section.8.3}\protected@file@percent }
+\newlabel{sec:critique-analysis}{{8.3}{98}{Proposed Method 1: Analysis of Distracting Critiques}{section.8.3}{}}
+\newlabel{sec:critique-analysis@cref}{{[section][3][8]8.3}{[1][98][]98}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.1}Proposed Method}{98}{subsection.8.3.1}\protected@file@percent }
 \citation{swebench}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.2}Proposed Experiments}{98}{subsection.8.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.2}Proposed Experiments}{99}{subsection.8.3.2}\protected@file@percent }
 \citation{gpt5}
 \citation{swebench}
-\@writefile{toc}{\contentsline {section}{\numberline {8.4}Proposed Method 2: Improving SFT Data to Distill Critique Models}{99}{section.8.4}\protected@file@percent }
-\newlabel{sec:critique-advanced-sft}{{8.4}{99}{Proposed Method 2: Improving SFT Data to Distill Critique Models}{section.8.4}{}}
-\newlabel{sec:critique-advanced-sft@cref}{{[section][4][8]8.4}{[1][99][]99}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.4.1}Proposed Method}{99}{subsection.8.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.4.2}Proposed Experiments}{99}{subsection.8.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.4}Proposed Method 2: Improving SFT Data to Distill Critique Models}{100}{section.8.4}\protected@file@percent }
+\newlabel{sec:critique-advanced-sft}{{8.4}{100}{Proposed Method 2: Improving SFT Data to Distill Critique Models}{section.8.4}{}}
+\newlabel{sec:critique-advanced-sft@cref}{{[section][4][8]8.4}{[1][100][]100}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4.1}Proposed Method}{100}{subsection.8.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4.2}Proposed Experiments}{100}{subsection.8.4.2}\protected@file@percent }
 \citation{swebench}
-\@writefile{toc}{\contentsline {section}{\numberline {8.5}Proposed Method 3: Constructing DPO Data to Distill Critique Models}{100}{section.8.5}\protected@file@percent }
-\newlabel{sec:critique-dpo}{{8.5}{100}{Proposed Method 3: Constructing DPO Data to Distill Critique Models}{section.8.5}{}}
-\newlabel{sec:critique-dpo@cref}{{[section][5][8]8.5}{[1][99][]100}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.5.1}Proposed Method}{100}{subsection.8.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.5.2}Proposed Experiments}{100}{subsection.8.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {9}Conclusion}{101}{chapter.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.5}Proposed Method 3: Constructing DPO Data to Distill Critique Models}{101}{section.8.5}\protected@file@percent }
+\newlabel{sec:critique-dpo}{{8.5}{101}{Proposed Method 3: Constructing DPO Data to Distill Critique Models}{section.8.5}{}}
+\newlabel{sec:critique-dpo@cref}{{[section][5][8]8.5}{[1][100][]101}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5.1}Proposed Method}{101}{subsection.8.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5.2}Proposed Experiments}{101}{subsection.8.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {9}Conclusion}{102}{chapter.9}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
@@ -721,7 +733,7 @@
 \bibcite{claude47}{{7}{2026{}}{{Anthropic}}{{}}}
 \bibcite{swe-search}{{8}{2025}{{Antoniades et~al.}}{{Antoniades, {\"{O}}rwall, Zhang, Xie, Goyal, and Wang}}}
 \bibcite{rejection-sampling}{{9}{2022}{{Bai et~al.}}{{Bai, Kadavath, Kundu, Askell, Kernion, Jones, Chen, Goldie, Mirhoseini, McKinnon, Chen, Olsson, Olah, Hernandez, Drain, Ganguli, Li, Tran-Johnson, Perez, Kerr, Mueller, Ladish, Landau, Ndousse, Lukosuite, Lovitt, Sellitto, Elhage, Schiefer, Mercado, DasSarma, Lasenby, Larson, Ringer, Johnston, Kravec, Showk, Fort, Lanham, Telleen-Lawton, Conerly, Henighan, Hume, Bowman, Hatfield-Dodds, Mann, Amodei, Joseph, McCandlish, Brown, and Kaplan}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{103}{chapter*.61}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{104}{chapter*.63}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
@@ -770,68 +782,70 @@
 \bibcite{ITI}{{52}{2024{}}{{Li et~al.}}{{Li, Patel, Vi\'{e}gas, Pfister, and Wattenberg}}}
 \bibcite{truthfulqa}{{53}{2022}{{Lin et~al.}}{{Lin, Hilton, and Evans}}}
 \bibcite{RLTF}{{54}{2023}{{Liu et~al.}}{{Liu, Zhu, Xiao, FU, Han, Wei, and Ye}}}
-\bibcite{mlagent}{{55}{2025}{{Liu et~al.}}{{Liu, Chai, Zhu, Tang, Ye, Zhang, Bai, and Chen}}}
-\bibcite{starcoder2}{{56}{2024}{{Lozhkov et~al.}}{{Lozhkov, Li, Allal, Cassano, Lamy-Poirier, Tazi, Tang, Pykhtar, Liu, Wei, Liu, Tian, Kocetkov, Zucker, Belkada, Wang, Liu, Abulkhanov, Paul, Li, Li, Risdal, Li, Zhu, Zhuo, Zheltonozhskii, Dade, Yu, Krauß, Jain, Su, He, Dey, Abati, Chai, Muennighoff, Tang, Oblokulov, Akiki, Marone, Mou, Mishra, Gu, Hui, Dao, Zebaze, Dehaene, Patry, Xu, McAuley, Hu, Scholak, Paquet, Robinson, Anderson, Chapados, Patwary, Tajbakhsh, Jernite, Ferrandis, Zhang, Hughes, Wolf, Guha, von Werra, and de~Vries}}}
-\bibcite{codexglue}{{57}{2021}{{Lu et~al.}}{{Lu, Guo, Ren, Huang, Svyatkovskiy, Blanco, Clement, Drain, Jiang, Tang, Li, Zhou, Shou, Zhou, Tufano, GONG, Zhou, Duan, Sundaresan, Deng, Fu, and LIU}}}
-\bibcite{swefficiency}{{58}{2025}{{Ma et~al.}}{{Ma, Hashemi, Yazdanbakhsh, Swersky, Press, Li, Reddi, and Ranganathan}}}
-\bibcite{xsum-hallucination}{{59}{2020}{{Maynez et~al.}}{{Maynez, Narayan, Bohnet, and Mcdonald}}}
-\bibcite{terminalbench}{{60}{2026}{{Merrill et~al.}}{{Merrill, Shaw, Carlini, Li, Raj, Bercovich, Shi, Shin, Walshe, Buchanan, Shen, Ye, Lin, Poulos, Wang, Nezhurina, Jitsev, Lu, Mastromichalakis, Xu, Chen, Liu, Zhang, Chen, Kashyap, Uslu, Li, Wu, Yan, Bian, Sharma, Sun, Dillmann, Anand, Lanpouthakoun, Koopah, Hu, Guha, Dreiman, Zhu, Krauth, Zhong, Muennighoff, Amanfu, Tan, Pimpalgaonkar, Aggarwal, Lin, Lan, Zhao, Liang, Wang, Wang, Zhou, Heineman, Liu, Trivedi, Yang, Lin, Shetty, Yang, Omi, Raoof, Li, Zhuo, Lin, Dai, Wang, Chai, Zhou, Wahdany, She, Hu, Dong, Zhu, Cui, Saiyed, Kolbeinsson, Hu, Rytting, Marten, Wang, Dimakis, Konwinski, and Schmidt}}}
-\bibcite{factscore}{{61}{2023}{{Min et~al.}}{{Min, Krishna, Lyu, Lewis, Yih, Koh, Iyyer, Zettlemoyer, and Hajishirzi}}}
-\bibcite{minimax25}{{62}{2026}{{MiniMax}}{{}}}
-\bibcite{FAVA}{{63}{2024}{{Mishra et~al.}}{{Mishra, Asai, Balachandran, Wang, Neubig, Tsvetkov, and Hajishirzi}}}
-\bibcite{swt-bench}{{64}{2024}{{M\"{u}ndler et~al.}}{{M\"{u}ndler, M\"{u}ller, He, and Vechev}}}
-\bibcite{NEXT}{{65}{2024}{{Ni et~al.}}{{Ni, Allamanis, Cohan, Deng, Shi, Sutton, and Yin}}}
-\bibcite{ragtruth}{{66}{2024}{{Niu et~al.}}{{Niu, Wu, Zhu, Xu, Shum, Zhong, Song, and Zhang}}}
-\bibcite{gpt45}{{67}{2025{}}{{OpenAI}}{{}}}
-\bibcite{gpt5}{{68}{2025{}}{{OpenAI}}{{}}}
-\bibcite{o3_mini}{{69}{2025{}}{{OpenAI}}{{}}}
-\bibcite{gpt53codex}{{70}{2026}{{OpenAI}}{{}}}
-\bibcite{kernelbench}{{71}{2025{}}{{Ouyang et~al.}}{{Ouyang, Guo, Arora, Zhang, Hu, Re, and Mirhoseini}}}
-\bibcite{repograph}{{72}{2025{}}{{Ouyang et~al.}}{{Ouyang, Yu, Ma, Xiao, Zhang, Jia, Han, Zhang, and Yu}}}
-\bibcite{FRANK}{{73}{2021}{{Pagnoni et~al.}}{{Pagnoni, Balachandran, and Tsvetkov}}}
-\bibcite{swegym}{{74}{2024}{{Pan et~al.}}{{Pan, Wang, Neubig, Jaitly, Ji, Suhr, and Zhang}}}
-\bibcite{BLEU}{{75}{2002}{{Papineni et~al.}}{{Papineni, Roukos, Ward, and Zhu}}}
-\bibcite{hyperagent}{{76}{2025}{{Phan et~al.}}{{Phan, Nguyen, Nguyen, and Bui}}}
-\bibcite{codenet}{{77}{2021}{{Puri et~al.}}{{Puri, Kung, Janssen, Zhang, Domeniconi, Zolotov, Dolby, Chen, Choudhury, Decker, Thost, Buratti, Pujar, Ramji, Finkler, Malaika, and Reiss}}}
-\bibcite{chatdev}{{78}{2024}{{Qian et~al.}}{{Qian, Liu, Liu, Chen, Dang, Li, Yang, Chen, Su, Cong, Xu, Li, Liu, and Sun}}}
-\bibcite{DPO}{{79}{2023}{{Rafailov et~al.}}{{Rafailov, Sharma, Mitchell, Ermon, Manning, and Finn}}}
-\bibcite{devstral}{{80}{2025}{{Rastogi et~al.}}{{Rastogi, Yang, Jiang, Liu, Sablayrolles, Héliou, Martin, Agarwal, Ehrenberg, Lo, Roux, Darcet, Mensch, Bout, Rozière, Monicault, Bamford, Wallenwein, Renaudin, Lanfranchi, Denoix, Barreau, Mizelle, de~las Casas, Chane-Sane, Fugier, Hanna, Berrada, Delerce, Guinet, Novikov, Neubig, Lample, Martin, Jaju, Ludziejewski, Rute, Delignon, Chabran, Studnia, Barmentlo, Amar, Roberts, Denize, Saxena, Yadav, Khandelwal, Chandu, Jain, Lavaud, Blier, Zhao, Martin, Saulnier, Gao, Pellat, Guillaumin, Felardos, Dinot, Darrin, Augustin, Seznec, Gupta, Raghuraman, Duchenne, Wang, von Platen, Saffer, Jacob, Wambergue, Kurylowicz, Chagniot, Stock, Agrawal, Delacourt, Soletskyi, Sauvestre, Vaze, Gandhi, Subramanian, Dalal, Gandhi, Ghosh, Mishra, Aithal, Antoniak, Scao, Lavril, Schueller, Foubert, Robert, Wang, Lacroix, Bewley, Nemychnikova, Paltz, Richard, Li, Marshall, Wang, Zhang, Wan, and Tang}}}
-\bibcite{codebleu}{{81}{2020}{{Ren et~al.}}{{Ren, Guo, Lu, Zhou, Liu, Tang, Sundaresan, Zhou, Blanco, and Ma}}}
-\bibcite{transcoder}{{82}{2020}{{Roziere et~al.}}{{Roziere, Lachaux, Chanussot, and Lample}}}
-\bibcite{transcoderST}{{83}{2022}{{Roziere et~al.}}{{Roziere, Zhang, Charton, Harman, Synnaeve, and Lample}}}
-\bibcite{mgdebugger}{{84}{2025}{{Shi et~al.}}{{Shi, Wang, Wan, Wang, and Gu}}}
-\bibcite{reflexion}{{85}{2023}{{Shinn et~al.}}{{Shinn, Cassano, Gopinath, Narasimhan, and Yao}}}
-\bibcite{llm-aggrefact}{{86}{2024}{{Tang et~al.}}{{Tang, Laban, and Durrett}}}
-\bibcite{cwm}{{87}{2025}{{team et~al.}}{{team, Copet, Carbonneaux, Cohen, Gehring, Kahn, Kossen, Kreuk, McMilin, Meyer, Wei, Zhang, Zheng, Armengol-Estapé, Bashiri, Beck, Chambon, Charnalia, Cummins, Decugis, Fisches, Fleuret, Gloeckle, Gu, Hassid, Haziza, Idrissi, Keller, Kindi, Leather, Maimon, Markosyan, Massa, Mazaré, Mella, Murray, Muzumdar, O'Hearn, Pagliardini, Pedchenko, Remez, Seeker, Selvi, Sultan, Wang, Wehrstedt, Yoran, Zhang, Cohen, Adi, and Synnaeve}}}
-\bibcite{kimik2}{{88}{2025}{{Team et~al.}}{{Team, Bai, Bao, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Cui, Ding, Dong, Du, Du, Du, Du, Fan, Feng, Fu, Gao, Gao, Gao, Gao, Gu, Guan, Guo, Guo, Hu, Hao, He, He, He, Hong, Hu, Hu, Huang, Huang, Huang, Jiang, Jiang, Jin, Kang, Lai, Li, Li, Li, Li, Li, Li, Li, Li, Li, Lin, Lin, Lin, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Lu, Lu, Ma, Ma, Ma, Mao, Mei, Men, Miao, Pan, Peng, Qin, Qu, Shang, Shi, Shi, Song, Su, Su, Sun, Sung, Tang, Tao, Teng, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wei, Wei, Wu, Wu, Wu, Xiao, Xie, Xiong, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Yan, Yan, Yang, Yang, Yang, Yang, Yang, Yao, Yao, Ye, Ye, Yin, Yu, Yuan, Yuan, Yuan, Zhan, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhao, Zhao, Zheng, Zheng, Zhou, Zhou, Zhou, Zhu, Zhuang, and Zu}}}
-\bibcite{kimik25}{{89}{2026}{{Team et~al.}}{{Team, Bai, Bai, Bao, Cai, Cao, Charles, Che, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Cheng, Chu, Cui, Deng, Diao, Ding, Dong, Dong, Dong, Dong, Du, Du, Du, Du, Du, Fan, Fang, Feng, Feng, Fu, Fu, Gao, Gao, Ge, Geng, Gong, Gong, Gongque, Gu, Gu, Gu, Guan, Guo, Hao, He, He, He, Hong, Hu, Hu, Hu, Hu, Huang, Huang, Huang, Huang, Jiang, Jiang, Jin, Jing, Lai, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Liao, Lin, Lin, Lin, Lin, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Lu, Lu, Lu, Luo, Luo, Luo, Ma, Ma, Mao, Mei, Men, Meng, Meng, Miao, Ni, Ouyang, Pan, Pang, Qian, Qin, Qin, Qiu, Qu, Shang, Shao, Shen, Shen, Shi, Shi, Shi, Song, Song, Song, Song, Su, Su, Su, Sui, Sun, Sun, Sun, Sung, Tai, Tang, Tang, Tang, Tang, Tao, Teng, Tian, Tian, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wei, Wei, Wen, Wen, Wu, Wu, Wu, Wu, Wu, Wu, Wu, Wu, Wu, Xiao, Xie, Xie, Xie, Xin, Xing, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Yan, Yan, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yao, Ye, Ye, Ye, Yin, Yu, Yu, Yu, Yu, Yuan, Yuan, Yuan, Yue, Zeng, Zha, Zhan, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhao, Zhao, Zhao, Zhao, Zhao, Zhao, Zhao, Zheng, Zheng, Zheng, Zheng, Zhong, Zhong, Zhong, Zhou, Zhou, Zhou, Zhou, Zhu, Zhu, Zhu, Zhu, Zhu, Zhuang, Zhuang, Zou, and Zu}}}
-\bibcite{FactTune}{{90}{2024}{{Tian et~al.}}{{Tian, Mitchell, Yao, Manning, and Finn}}}
-\bibcite{FLAMe}{{91}{2024}{{Vu et~al.}}{{Vu, Krishna, Alzubi, Tar, Faruqui, and Sung}}}
-\bibcite{QAGS}{{92}{2020}{{Wang et~al.}}{{Wang, Cho, and Lewis}}}
-\bibcite{openhands}{{93}{2025}{{Wang et~al.}}{{Wang, Li, Song, Xu, Tang, Zhuge, Pan, Song, Li, Singh, Tran, Li, Ma, Zheng, Qian, Shao, Muennighoff, Zhang, Hui, Lin, Brennan, Peng, Ji, and Neubig}}}
-\bibcite{rlcoder}{{94}{2024}{{Wang et~al.}}{{Wang, Wang, Guo, Chen, Zhang, Ma, and Zheng}}}
-\bibcite{codet5}{{95}{2021}{{Wang et~al.}}{{Wang, Wang, Joty, and Hoi}}}
-\bibcite{longform}{{96}{2024}{{Wei et~al.}}{{Wei, Yang, Song, Lu, Hu, Huang, Tran, Peng, Liu, Huang, Du, and Le}}}
-\bibcite{swerl}{{97}{2025}{{Wei et~al.}}{{Wei, Duchenne, Copet, Carbonneaux, ZHANG, Fried, Synnaeve, Singh, and Wang}}}
-\bibcite{repoformer}{{98}{2024}{{Wu et~al.}}{{Wu, Ahmad, Zhang, Ramanathan, and Ma}}}
-\bibcite{autogen}{{99}{2023}{{Wu et~al.}}{{Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang, Liu, Awadallah, White, Burger, and Wang}}}
-\bibcite{agentless}{{100}{2025{}}{{Xia et~al.}}{{Xia, Deng, Dunn, and Zhang}}}
-\bibcite{live-swe-agent}{{101}{2025{}}{{Xia et~al.}}{{Xia, Wang, Yang, Wei, and Zhang}}}
-\bibcite{repost}{{102}{2025}{{Xie et~al.}}{{Xie, Xie, Sheth, Liu, Fried, and Rose}}}
-\bibcite{hybrid-gym}{{103}{2026}{{Xie et~al.}}{{Xie, Liu, Zhang, Kotalwar, Gandhi, Acharya, Wang, Rose, Neubig, and Fried}}}
-\bibcite{self-bias}{{104}{2024}{{Xu et~al.}}{{Xu, Zhu, Zhao, Pan, Li, and Wang}}}
-\bibcite{qwen3}{{105}{2025{}}{{Yang et~al.}}{{Yang, Li, Yang, Zhang, Hui, Zheng, Yu, Gao, Huang, Lv, Zheng, Liu, Zhou, Huang, Hu, Ge, Wei, Lin, Tang, Yang, Tu, Zhang, Yang, Yang, Zhou, Zhou, Lin, Dang, Bao, Yang, Yu, Deng, Li, Xue, Li, Zhang, Wang, Zhu, Men, Gao, Liu, Luo, Li, Tang, Yin, Ren, Wang, Zhang, Ren, Fan, Su, Zhang, Zhang, Wan, Liu, Wang, Cui, Zhang, Zhou, and Qiu}}}
-\bibcite{sweagent}{{106}{2024}{{Yang et~al.}}{{Yang, Jimenez, Wettig, Lieret, Yao, Narasimhan, and Press}}}
-\bibcite{swebench-multimodal}{{107}{2025{}}{{Yang et~al.}}{{Yang, Jimenez, Zhang, Lieret, Yang, Wu, Press, Muennighoff, Synnaeve, Narasimhan, Yang, Wang, and Press}}}
-\bibcite{swe-smith}{{108}{2025{}}{{Yang et~al.}}{{Yang, Lieret, Jimenez, Wettig, Khandpur, Zhang, Hui, Press, Schmidt, and Yang}}}
-\bibcite{GLM-5}{{109}{2026}{{Z.ai}}{{}}}
-\bibcite{multi-swe-bench}{{110}{2025}{{Zan et~al.}}{{Zan, Huang, Liu, Chen, Zhang, Xin, Chen, Liu, Zhong, Li, Liu, Xiao, Chen, Zhang, Su, Liu, Long, Shen, and Xiang}}}
-\bibcite{artifactsbench}{{111}{2025}{{Zhang et~al.}}{{Zhang, Li, Xu, Liu, Liu, Zhou, Deng, Wu, Huang, Li, Yi, Xiong, Hu, Zhang, Jiang, Xu, Zhang, Zhou, Zhou, and Lian}}}
-\bibcite{plum}{{112}{2024{}}{{Zhang et~al.}}{{Zhang, Diao, Zou, and Peng}}}
-\bibcite{repocoder}{{113}{2023{}}{{Zhang et~al.}}{{Zhang, Chen, Zhang, Keung, Liu, Zan, Mao, Lou, and Chen}}}
-\bibcite{self-eval-skt}{{114}{2024{}}{{Zhang et~al.}}{{Zhang, Peng, Tian, Zhou, Jin, Song, Mi, and Meng}}}
-\bibcite{codereval}{{115}{2024{}}{{Zhang et~al.}}{{Zhang, Zhang, Ran, Zhu, Dou, Hao, Xie, and Zhang}}}
-\bibcite{hallucination-survey}{{116}{2023{}}{{Zhang et~al.}}{{Zhang, Li, Cui, Cai, Liu, Fu, Huang, Zhao, Zhang, Chen, Wang, Luu, Bi, Shi, and Shi}}}
-\bibcite{commit0}{{117}{2025}{{Zhao et~al.}}{{Zhao, Jiang, Lee, Chiu, Cardie, Gall{\'e}, and Rush}}}
-\bibcite{swe-play}{{118}{2025}{{Zhu et~al.}}{{Zhu, Gandhi, and Neubig}}}
-\gdef \@abspage@last{135}
+\bibcite{swe-empirical-failures}{{55}{2025{}}{{Liu et~al.}}{{Liu, Liu, Li, Tan, Zhu, Lian, and Zhang}}}
+\bibcite{mlagent}{{56}{2025{}}{{Liu et~al.}}{{Liu, Chai, Zhu, Tang, Ye, Zhang, Bai, and Chen}}}
+\bibcite{starcoder2}{{57}{2024}{{Lozhkov et~al.}}{{Lozhkov, Li, Allal, Cassano, Lamy-Poirier, Tazi, Tang, Pykhtar, Liu, Wei, Liu, Tian, Kocetkov, Zucker, Belkada, Wang, Liu, Abulkhanov, Paul, Li, Li, Risdal, Li, Zhu, Zhuo, Zheltonozhskii, Dade, Yu, Krauß, Jain, Su, He, Dey, Abati, Chai, Muennighoff, Tang, Oblokulov, Akiki, Marone, Mou, Mishra, Gu, Hui, Dao, Zebaze, Dehaene, Patry, Xu, McAuley, Hu, Scholak, Paquet, Robinson, Anderson, Chapados, Patwary, Tajbakhsh, Jernite, Ferrandis, Zhang, Hughes, Wolf, Guha, von Werra, and de~Vries}}}
+\bibcite{codexglue}{{58}{2021}{{Lu et~al.}}{{Lu, Guo, Ren, Huang, Svyatkovskiy, Blanco, Clement, Drain, Jiang, Tang, Li, Zhou, Shou, Zhou, Tufano, GONG, Zhou, Duan, Sundaresan, Deng, Fu, and LIU}}}
+\bibcite{swefficiency}{{59}{2025}{{Ma et~al.}}{{Ma, Hashemi, Yazdanbakhsh, Swersky, Press, Li, Reddi, and Ranganathan}}}
+\bibcite{xsum-hallucination}{{60}{2020}{{Maynez et~al.}}{{Maynez, Narayan, Bohnet, and Mcdonald}}}
+\bibcite{terminalbench}{{61}{2026}{{Merrill et~al.}}{{Merrill, Shaw, Carlini, Li, Raj, Bercovich, Shi, Shin, Walshe, Buchanan, Shen, Ye, Lin, Poulos, Wang, Nezhurina, Jitsev, Lu, Mastromichalakis, Xu, Chen, Liu, Zhang, Chen, Kashyap, Uslu, Li, Wu, Yan, Bian, Sharma, Sun, Dillmann, Anand, Lanpouthakoun, Koopah, Hu, Guha, Dreiman, Zhu, Krauth, Zhong, Muennighoff, Amanfu, Tan, Pimpalgaonkar, Aggarwal, Lin, Lan, Zhao, Liang, Wang, Wang, Zhou, Heineman, Liu, Trivedi, Yang, Lin, Shetty, Yang, Omi, Raoof, Li, Zhuo, Lin, Dai, Wang, Chai, Zhou, Wahdany, She, Hu, Dong, Zhu, Cui, Saiyed, Kolbeinsson, Hu, Rytting, Marten, Wang, Dimakis, Konwinski, and Schmidt}}}
+\bibcite{factscore}{{62}{2023}{{Min et~al.}}{{Min, Krishna, Lyu, Lewis, Yih, Koh, Iyyer, Zettlemoyer, and Hajishirzi}}}
+\bibcite{minimax25}{{63}{2026}{{MiniMax}}{{}}}
+\bibcite{FAVA}{{64}{2024}{{Mishra et~al.}}{{Mishra, Asai, Balachandran, Wang, Neubig, Tsvetkov, and Hajishirzi}}}
+\bibcite{swt-bench}{{65}{2024}{{M\"{u}ndler et~al.}}{{M\"{u}ndler, M\"{u}ller, He, and Vechev}}}
+\bibcite{NEXT}{{66}{2024}{{Ni et~al.}}{{Ni, Allamanis, Cohan, Deng, Shi, Sutton, and Yin}}}
+\bibcite{ragtruth}{{67}{2024}{{Niu et~al.}}{{Niu, Wu, Zhu, Xu, Shum, Zhong, Song, and Zhang}}}
+\bibcite{gpt45}{{68}{2025{}}{{OpenAI}}{{}}}
+\bibcite{gpt5}{{69}{2025{}}{{OpenAI}}{{}}}
+\bibcite{o3_mini}{{70}{2025{}}{{OpenAI}}{{}}}
+\bibcite{gpt53codex}{{71}{2026}{{OpenAI}}{{}}}
+\bibcite{kernelbench}{{72}{2025{}}{{Ouyang et~al.}}{{Ouyang, Guo, Arora, Zhang, Hu, Re, and Mirhoseini}}}
+\bibcite{repograph}{{73}{2025{}}{{Ouyang et~al.}}{{Ouyang, Yu, Ma, Xiao, Zhang, Jia, Han, Zhang, and Yu}}}
+\bibcite{FRANK}{{74}{2021}{{Pagnoni et~al.}}{{Pagnoni, Balachandran, and Tsvetkov}}}
+\bibcite{swegym}{{75}{2024}{{Pan et~al.}}{{Pan, Wang, Neubig, Jaitly, Ji, Suhr, and Zhang}}}
+\bibcite{BLEU}{{76}{2002}{{Papineni et~al.}}{{Papineni, Roukos, Ward, and Zhu}}}
+\bibcite{hyperagent}{{77}{2025}{{Phan et~al.}}{{Phan, Nguyen, Nguyen, and Bui}}}
+\bibcite{codenet}{{78}{2021}{{Puri et~al.}}{{Puri, Kung, Janssen, Zhang, Domeniconi, Zolotov, Dolby, Chen, Choudhury, Decker, Thost, Buratti, Pujar, Ramji, Finkler, Malaika, and Reiss}}}
+\bibcite{chatdev}{{79}{2024}{{Qian et~al.}}{{Qian, Liu, Liu, Chen, Dang, Li, Yang, Chen, Su, Cong, Xu, Li, Liu, and Sun}}}
+\bibcite{DPO}{{80}{2023}{{Rafailov et~al.}}{{Rafailov, Sharma, Mitchell, Ermon, Manning, and Finn}}}
+\bibcite{devstral}{{81}{2025}{{Rastogi et~al.}}{{Rastogi, Yang, Jiang, Liu, Sablayrolles, Héliou, Martin, Agarwal, Ehrenberg, Lo, Roux, Darcet, Mensch, Bout, Rozière, Monicault, Bamford, Wallenwein, Renaudin, Lanfranchi, Denoix, Barreau, Mizelle, de~las Casas, Chane-Sane, Fugier, Hanna, Berrada, Delerce, Guinet, Novikov, Neubig, Lample, Martin, Jaju, Ludziejewski, Rute, Delignon, Chabran, Studnia, Barmentlo, Amar, Roberts, Denize, Saxena, Yadav, Khandelwal, Chandu, Jain, Lavaud, Blier, Zhao, Martin, Saulnier, Gao, Pellat, Guillaumin, Felardos, Dinot, Darrin, Augustin, Seznec, Gupta, Raghuraman, Duchenne, Wang, von Platen, Saffer, Jacob, Wambergue, Kurylowicz, Chagniot, Stock, Agrawal, Delacourt, Soletskyi, Sauvestre, Vaze, Gandhi, Subramanian, Dalal, Gandhi, Ghosh, Mishra, Aithal, Antoniak, Scao, Lavril, Schueller, Foubert, Robert, Wang, Lacroix, Bewley, Nemychnikova, Paltz, Richard, Li, Marshall, Wang, Zhang, Wan, and Tang}}}
+\bibcite{codebleu}{{82}{2020}{{Ren et~al.}}{{Ren, Guo, Lu, Zhou, Liu, Tang, Sundaresan, Zhou, Blanco, and Ma}}}
+\bibcite{transcoder}{{83}{2020}{{Roziere et~al.}}{{Roziere, Lachaux, Chanussot, and Lample}}}
+\bibcite{transcoderST}{{84}{2022}{{Roziere et~al.}}{{Roziere, Zhang, Charton, Harman, Synnaeve, and Lample}}}
+\bibcite{mgdebugger}{{85}{2025}{{Shi et~al.}}{{Shi, Wang, Wan, Wang, and Gu}}}
+\bibcite{reflexion}{{86}{2023}{{Shinn et~al.}}{{Shinn, Cassano, Gopinath, Narasimhan, and Yao}}}
+\bibcite{llm-aggrefact}{{87}{2024}{{Tang et~al.}}{{Tang, Laban, and Durrett}}}
+\bibcite{cwm}{{88}{2025}{{team et~al.}}{{team, Copet, Carbonneaux, Cohen, Gehring, Kahn, Kossen, Kreuk, McMilin, Meyer, Wei, Zhang, Zheng, Armengol-Estapé, Bashiri, Beck, Chambon, Charnalia, Cummins, Decugis, Fisches, Fleuret, Gloeckle, Gu, Hassid, Haziza, Idrissi, Keller, Kindi, Leather, Maimon, Markosyan, Massa, Mazaré, Mella, Murray, Muzumdar, O'Hearn, Pagliardini, Pedchenko, Remez, Seeker, Selvi, Sultan, Wang, Wehrstedt, Yoran, Zhang, Cohen, Adi, and Synnaeve}}}
+\bibcite{kimik2}{{89}{2025}{{Team et~al.}}{{Team, Bai, Bao, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Cui, Ding, Dong, Du, Du, Du, Du, Fan, Feng, Fu, Gao, Gao, Gao, Gao, Gu, Guan, Guo, Guo, Hu, Hao, He, He, He, Hong, Hu, Hu, Huang, Huang, Huang, Jiang, Jiang, Jin, Kang, Lai, Li, Li, Li, Li, Li, Li, Li, Li, Li, Lin, Lin, Lin, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Lu, Lu, Ma, Ma, Ma, Mao, Mei, Men, Miao, Pan, Peng, Qin, Qu, Shang, Shi, Shi, Song, Su, Su, Sun, Sung, Tang, Tao, Teng, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wei, Wei, Wu, Wu, Wu, Xiao, Xie, Xiong, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Yan, Yan, Yang, Yang, Yang, Yang, Yang, Yao, Yao, Ye, Ye, Yin, Yu, Yuan, Yuan, Yuan, Zhan, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhao, Zhao, Zheng, Zheng, Zhou, Zhou, Zhou, Zhu, Zhuang, and Zu}}}
+\bibcite{kimik25}{{90}{2026}{{Team et~al.}}{{Team, Bai, Bai, Bao, Cai, Cao, Charles, Che, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Cheng, Chu, Cui, Deng, Diao, Ding, Dong, Dong, Dong, Dong, Du, Du, Du, Du, Du, Fan, Fang, Feng, Feng, Fu, Fu, Gao, Gao, Ge, Geng, Gong, Gong, Gongque, Gu, Gu, Gu, Guan, Guo, Hao, He, He, He, Hong, Hu, Hu, Hu, Hu, Huang, Huang, Huang, Huang, Jiang, Jiang, Jin, Jing, Lai, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Li, Liao, Lin, Lin, Lin, Lin, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Liu, Lu, Lu, Lu, Luo, Luo, Luo, Ma, Ma, Mao, Mei, Men, Meng, Meng, Miao, Ni, Ouyang, Pan, Pang, Qian, Qin, Qin, Qiu, Qu, Shang, Shao, Shen, Shen, Shi, Shi, Shi, Song, Song, Song, Song, Su, Su, Su, Sui, Sun, Sun, Sun, Sung, Tai, Tang, Tang, Tang, Tang, Tao, Teng, Tian, Tian, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wei, Wei, Wen, Wen, Wu, Wu, Wu, Wu, Wu, Wu, Wu, Wu, Wu, Xiao, Xie, Xie, Xie, Xin, Xing, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Xu, Yan, Yan, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yang, Yao, Ye, Ye, Ye, Yin, Yu, Yu, Yu, Yu, Yuan, Yuan, Yuan, Yue, Zeng, Zha, Zhan, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhao, Zhao, Zhao, Zhao, Zhao, Zhao, Zhao, Zheng, Zheng, Zheng, Zheng, Zhong, Zhong, Zhong, Zhou, Zhou, Zhou, Zhou, Zhu, Zhu, Zhu, Zhu, Zhu, Zhuang, Zhuang, Zou, and Zu}}}
+\bibcite{FactTune}{{91}{2024}{{Tian et~al.}}{{Tian, Mitchell, Yao, Manning, and Finn}}}
+\bibcite{FLAMe}{{92}{2024}{{Vu et~al.}}{{Vu, Krishna, Alzubi, Tar, Faruqui, and Sung}}}
+\bibcite{QAGS}{{93}{2020}{{Wang et~al.}}{{Wang, Cho, and Lewis}}}
+\bibcite{openhands}{{94}{2025}{{Wang et~al.}}{{Wang, Li, Song, Xu, Tang, Zhuge, Pan, Song, Li, Singh, Tran, Li, Ma, Zheng, Qian, Shao, Muennighoff, Zhang, Hui, Lin, Brennan, Peng, Ji, and Neubig}}}
+\bibcite{openhands-rubric-critique}{{95}{2026}{{Wang et~al.}}{{Wang, Chen, Ji, and Neubig}}}
+\bibcite{rlcoder}{{96}{2024}{{Wang et~al.}}{{Wang, Wang, Guo, Chen, Zhang, Ma, and Zheng}}}
+\bibcite{codet5}{{97}{2021}{{Wang et~al.}}{{Wang, Wang, Joty, and Hoi}}}
+\bibcite{longform}{{98}{2024}{{Wei et~al.}}{{Wei, Yang, Song, Lu, Hu, Huang, Tran, Peng, Liu, Huang, Du, and Le}}}
+\bibcite{swerl}{{99}{2025}{{Wei et~al.}}{{Wei, Duchenne, Copet, Carbonneaux, ZHANG, Fried, Synnaeve, Singh, and Wang}}}
+\bibcite{repoformer}{{100}{2024}{{Wu et~al.}}{{Wu, Ahmad, Zhang, Ramanathan, and Ma}}}
+\bibcite{autogen}{{101}{2023}{{Wu et~al.}}{{Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang, Liu, Awadallah, White, Burger, and Wang}}}
+\bibcite{agentless}{{102}{2025{}}{{Xia et~al.}}{{Xia, Deng, Dunn, and Zhang}}}
+\bibcite{live-swe-agent}{{103}{2025{}}{{Xia et~al.}}{{Xia, Wang, Yang, Wei, and Zhang}}}
+\bibcite{repost}{{104}{2025}{{Xie et~al.}}{{Xie, Xie, Sheth, Liu, Fried, and Rose}}}
+\bibcite{hybrid-gym}{{105}{2026}{{Xie et~al.}}{{Xie, Liu, Zhang, Kotalwar, Gandhi, Acharya, Wang, Rose, Neubig, and Fried}}}
+\bibcite{self-bias}{{106}{2024}{{Xu et~al.}}{{Xu, Zhu, Zhao, Pan, Li, and Wang}}}
+\bibcite{qwen3}{{107}{2025{}}{{Yang et~al.}}{{Yang, Li, Yang, Zhang, Hui, Zheng, Yu, Gao, Huang, Lv, Zheng, Liu, Zhou, Huang, Hu, Ge, Wei, Lin, Tang, Yang, Tu, Zhang, Yang, Yang, Zhou, Zhou, Lin, Dang, Bao, Yang, Yu, Deng, Li, Xue, Li, Zhang, Wang, Zhu, Men, Gao, Liu, Luo, Li, Tang, Yin, Ren, Wang, Zhang, Ren, Fan, Su, Zhang, Zhang, Wan, Liu, Wang, Cui, Zhang, Zhou, and Qiu}}}
+\bibcite{sweagent}{{108}{2024}{{Yang et~al.}}{{Yang, Jimenez, Wettig, Lieret, Yao, Narasimhan, and Press}}}
+\bibcite{swebench-multimodal}{{109}{2025{}}{{Yang et~al.}}{{Yang, Jimenez, Zhang, Lieret, Yang, Wu, Press, Muennighoff, Synnaeve, Narasimhan, Yang, Wang, and Press}}}
+\bibcite{swe-smith}{{110}{2025{}}{{Yang et~al.}}{{Yang, Lieret, Jimenez, Wettig, Khandpur, Zhang, Hui, Press, Schmidt, and Yang}}}
+\bibcite{GLM-5}{{111}{2026}{{Z.ai}}{{}}}
+\bibcite{multi-swe-bench}{{112}{2025}{{Zan et~al.}}{{Zan, Huang, Liu, Chen, Zhang, Xin, Chen, Liu, Zhong, Li, Liu, Xiao, Chen, Zhang, Su, Liu, Long, Shen, and Xiang}}}
+\bibcite{artifactsbench}{{113}{2025}{{Zhang et~al.}}{{Zhang, Li, Xu, Liu, Liu, Zhou, Deng, Wu, Huang, Li, Yi, Xiong, Hu, Zhang, Jiang, Xu, Zhang, Zhou, Zhou, and Lian}}}
+\bibcite{plum}{{114}{2024{}}{{Zhang et~al.}}{{Zhang, Diao, Zou, and Peng}}}
+\bibcite{repocoder}{{115}{2023{}}{{Zhang et~al.}}{{Zhang, Chen, Zhang, Keung, Liu, Zan, Mao, Lou, and Chen}}}
+\bibcite{self-eval-skt}{{116}{2024{}}{{Zhang et~al.}}{{Zhang, Peng, Tian, Zhou, Jin, Song, Mi, and Meng}}}
+\bibcite{codereval}{{117}{2024{}}{{Zhang et~al.}}{{Zhang, Zhang, Ran, Zhu, Dou, Hao, Xie, and Zhang}}}
+\bibcite{hallucination-survey}{{118}{2023{}}{{Zhang et~al.}}{{Zhang, Li, Cui, Cai, Liu, Fu, Huang, Zhao, Zhang, Chen, Wang, Luu, Bi, Shi, and Shi}}}
+\bibcite{commit0}{{119}{2025}{{Zhao et~al.}}{{Zhao, Jiang, Lee, Chiu, Cardie, Gall{\'e}, and Rush}}}
+\bibcite{swe-play}{{120}{2025}{{Zhu et~al.}}{{Zhu, Gandhi, and Neubig}}}
+\gdef \@abspage@last{136}

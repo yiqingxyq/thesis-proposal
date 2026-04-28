@@ -1644,6 +1644,11 @@ INPUT HybridGym_figs/fig_sampling_teacher_combined.pdf
 INPUT ./HybridGym_figs/fig_sampling_teacher_combined.pdf
 INPUT ./HybridGym_figs/fig_sampling_teacher_combined.pdf
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ec-qplri.tfm
+INPUT ./plus_figs/abstraction.pdf
+INPUT ./plus_figs/abstraction.pdf
+INPUT plus_figs/abstraction.pdf
+INPUT ./plus_figs/abstraction.pdf
+INPUT ./plus_figs/abstraction.pdf
 INPUT ./plus_figs/trajectory_comparison.pdf
 INPUT ./plus_figs/trajectory_comparison.pdf
 INPUT plus_figs/trajectory_comparison.pdf
@@ -1703,6 +1708,11 @@ INPUT ./FenCE_figures/hyper_param_topk.pdf
 INPUT FenCE_figures/hyper_param_topk.pdf
 INPUT ./FenCE_figures/hyper_param_topk.pdf
 INPUT ./FenCE_figures/hyper_param_topk.pdf
+INPUT ./plus_figs/planning_def.pdf
+INPUT ./plus_figs/planning_def.pdf
+INPUT plus_figs/planning_def.pdf
+INPUT ./plus_figs/planning_def.pdf
+INPUT ./plus_figs/planning_def.pdf
 INPUT ./main.bbl
 INPUT main.bbl
 INPUT ./main.bbl

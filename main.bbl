@@ -1,4 +1,4 @@
-\begin{thebibliography}{118}
+\begin{thebibliography}{120}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -303,10 +303,15 @@ Jiate Liu, Yiqin Zhu, Kaiwen Xiao, QIANG FU, Xiao Han, Yang Wei, and Deheng Ye.
 \newblock ISSN 2835-8856.
 \newblock URL \url{https://openreview.net/forum?id=hjYmsV6nXZ}.
 
-\bibitem[Liu et~al.(2025)Liu, Chai, Zhu, Tang, Ye, Zhang, Bai, and Chen]{mlagent}
+\bibitem[Liu et~al.(2025{\natexlab{a}})Liu, Liu, Li, Tan, Zhu, Lian, and Zhang]{swe-empirical-failures}
+Simiao Liu, Fang Liu, Liehao Li, Xin Tan, Yinghao Zhu, Xiaoli Lian, and Li~Zhang.
+\newblock An empirical study on failures in automated issue solving, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2509.13941}.
+
+\bibitem[Liu et~al.(2025{\natexlab{b}})Liu, Chai, Zhu, Tang, Ye, Zhang, Bai, and Chen]{mlagent}
 Zexi Liu, Jingyi Chai, Xinyu Zhu, Shuo Tang, Rui Ye, Bo~Zhang, Lei Bai, and Siheng Chen.
 \newblock Ml-agent: Reinforcing llm agents for autonomous machine learning engineering.
-\newblock \emph{arXiv preprint arXiv: 2505.23723}, 2025.
+\newblock \emph{arXiv preprint arXiv: 2505.23723}, 2025{\natexlab{b}}.
 
 \bibitem[Lozhkov et~al.(2024)Lozhkov, Li, Allal, Cassano, Lamy-Poirier, Tazi, Tang, Pykhtar, Liu, Wei, Liu, Tian, Kocetkov, Zucker, Belkada, Wang, Liu, Abulkhanov, Paul, Li, Li, Risdal, Li, Zhu, Zhuo, Zheltonozhskii, Dade, Yu, Krauß, Jain, Su, He, Dey, Abati, Chai, Muennighoff, Tang, Oblokulov, Akiki, Marone, Mou, Mishra, Gu, Hui, Dao, Zebaze, Dehaene, Patry, Xu, McAuley, Hu, Scholak, Paquet, Robinson, Anderson, Chapados, Patwary, Tajbakhsh, Jernite, Ferrandis, Zhang, Hughes, Wolf, Guha, von Werra, and de~Vries]{starcoder2}
 Anton Lozhkov, Raymond Li, Loubna~Ben Allal, Federico Cassano, Joel Lamy-Poirier, Nouamane Tazi, Ao~Tang, Dmytro Pykhtar, Jiawei Liu, Yuxiang Wei, Tianyang Liu, Max Tian, Denis Kocetkov, Arthur Zucker, Younes Belkada, Zijian Wang, Qian Liu, Dmitry Abulkhanov, Indraneil Paul, Zhuang Li, Wen-Ding Li, Megan Risdal, Jia Li, Jian Zhu, Terry~Yue Zhuo, Evgenii Zheltonozhskii, Nii Osae~Osae Dade, Wenhao Yu, Lucas Krauß, Naman Jain, Yixuan Su, Xuanli He, Manan Dey, Edoardo Abati, Yekun Chai, Niklas Muennighoff, Xiangru Tang, Muhtasham Oblokulov, Christopher Akiki, Marc Marone, Chenghao Mou, Mayank Mishra, Alex Gu, Binyuan Hui, Tri Dao, Armel Zebaze, Olivier Dehaene, Nicolas Patry, Canwen Xu, Julian McAuley, Han Hu, Torsten Scholak, Sebastien Paquet, Jennifer Robinson, Carolyn~Jane Anderson, Nicolas Chapados, Mostofa Patwary, Nima Tajbakhsh, Yacine Jernite, Carlos~Muñoz Ferrandis, Lingming Zhang, Sean Hughes, Thomas Wolf, Arjun Guha, Leandro von Werra, and Harm de~Vries.
@@ -507,6 +512,11 @@ Xingyao Wang, Boxuan Li, Yufan Song, Frank~F. Xu, Xiangru Tang, Mingchen Zhuge, 
 \newblock Openhands: An open platform for {AI} software developers as generalist agents.
 \newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
 \newblock URL \url{https://openreview.net/forum?id=OJd3ayDDoF}.
+
+\bibitem[Wang et~al.(2026)Wang, Chen, Ji, and Neubig]{openhands-rubric-critique}
+Xingyao Wang, Valerie Chen, Heng Ji, and Graham Neubig.
+\newblock A rubric-supervised critic from sparse real-world outcomes, 2026.
+\newblock URL \url{https://arxiv.org/abs/2603.03800}.
 
 \bibitem[Wang et~al.(2024)Wang, Wang, Guo, Chen, Zhang, Ma, and Zheng]{rlcoder}
 Yanlin Wang, Yanli Wang, Daya Guo, Jiachi Chen, Ruikai Zhang, Yuchi Ma, and Zibin Zheng.

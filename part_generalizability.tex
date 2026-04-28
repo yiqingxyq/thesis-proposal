@@ -873,9 +873,16 @@ Finally, we further extend the analysis to multiple teacher model pairs and mult
 
 \begin{figure}[t]
   \centering
+  \includegraphics[width=0.9\columnwidth]{plus_figs/abstraction.pdf}
+  \caption{Examples of the stages of coding tasks and the strategies to complete each stage. We design the stages by improving the task decomposition in Hybrid-Gym~\cite{hybrid-gym}, which are generally shared across different coding tasks. To define the strategies for each stage, we first use an LLM to categorize the agent steps into different stages, and then we summarize the purpose of each action. We keep improving the set of strategies when we discover agent steps that cannot be covered by existing strategies.}
+  \label{fig:plus:taxonomy}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
   \includegraphics[width=\columnwidth]{plus_figs/trajectory_comparison.pdf}
   \caption{An example of how we represent trajectories at different abstraction levels. We show the categorization of each agent step in the format of ``stage label (strategy label)''. Note that the agent step can be categorized into multiple stages and strategies.}
-  \label{fig:plus:abstraction}
+  \label{fig:plus:example}
 \end{figure}
 
 
@@ -892,13 +899,15 @@ In summary, we categorize agent behaviors into three abstraction levels: \textbf
 
 \start{Represent Trajectories at Different Abstraction Levels}
 The categorization of agent behaviors is based on how we represent each agent step at different abstraction levels.
-In particular, we define:
+In particular, as shown in \autoref{fig:plus:taxonomy}, we define:
 \begin{itemize}
   \item \textbf{The Stage of Coding Tasks}: Build upon the analysis of Hybrid-Gym~\cite{hybrid-gym}, we pre-define the stages that are shared across different coding tasks: planning, repository discovery (e.g., checking the structure of the repository), file localization, code-line localization, code reproduction, solution implementation, and solution verification. Based on the analysis in Hybrid-Gym, the stages are shared across three downstream coding tasks: issue-solving, test generation, and library construction, and four synthetic training tasks: function localization, issue localization, dependency search, and function generation.
-  \item \textbf{The Strategy to Complete a Stage}: For each stage, we define the strategy to complete the stage, or equivalently, the purpose of each action that is used to complete the stage. For instance, for the code-line localization stage, the strategy includes searching for keywords inside candidate files, reading the candidate files, executing relevant code and observing the error message, etc.
+  \item \textbf{The Strategy to Complete a Stage}: For each stage, we define the strategy to complete the stage. 
+  Specifically, we first use an LLM to categorize the agent steps into different stages, and then we summarize the purpose of each action. We keep improving the set of strategies when we discover agent steps that cannot be covered by existing strategies.
+  For instance, for the code-line localization stage, the strategy includes searching for keywords inside candidate files, reading the candidate files, executing relevant code and observing the error message, etc.
 \end{itemize}
 
-As shown in \autoref{fig:plus:abstraction}, given a set of trajectories, we assign a stage label and a strategy label to each agent step. 
+As shown in \autoref{fig:plus:example}, given a set of trajectories, we assign a stage label and a strategy label to each agent step. 
 We iteratively update the categories when we conducting new analyses and discovering new agent behaviors.
 We keep adding new stages or strategies if we find agent steps that are not covered by the existing categories.
 We can also break down a category into smaller categories if we find that it is too broad.
@@ -909,10 +918,10 @@ We can also break down a category into smaller categories if we find that it is 
 We categorize the agent behaviors based on which abstraction level of trajectory they are be represented at.
 \begin{itemize}
   \item \textbf{Stage-level Behaviors}: the presence, order, or transition of different stages in the trajectory.
-  For example, as shown in \autoref{fig:plus:abstraction}, Claude-3.7 has a ``solution verification'' stage after ``solution implementation''.
+  For example, as shown in \autoref{fig:plus:example}, Claude-3.7 has a ``solution verification'' stage after ``solution implementation''.
   % transits from the ``file localization'' stage to the ``function localization'' stage only when the number of candidate files is reduced to a limited number.
   \item \textbf{Stage-strategy-level Behaviors}: the presence, order, or transition of different strategies to complete a particular stage.
-  For example, as shown in \autoref{fig:plus:abstraction}, for the function localization stage, Claude-3.7 performs several keyword searching actions that present both the file and the located lines of code. Then it perform file-reading actions to read the corresponding lines.
+  For example, as shown in \autoref{fig:plus:example}, for the function localization stage, Claude-3.7 performs several keyword searching actions that present both the file and the located lines of code. Then it perform file-reading actions to read the corresponding lines.
   \item \textbf{Step-level Behaviors}: properties of the specific messages generated by the agent. For instance, the agent correctly uses the ``file-editing'' tool to generate code patches with no errors and retries. Another example is that the agent generates long reasoning before generating the actions.
 \end{itemize}
 
@@ -977,7 +986,8 @@ We define a set of rules describing when trajectory steps can be added, removed,
 \begin{itemize}
     \item \textbf{Equivalent step substitution.} If two sets of agent steps require the same context and produce the same essential intermediate outcome, then one can be substituted for the other without affecting trajectory consistency. For example, in the file localization stage, the agent may perform search with different keywords. As long as target file appears in the search results, we can substitute the search steps.
     
-    \item \textbf{Removal of non-essential steps.} Steps that do not provide necessary information for any subsequent step can be removed. Examples include file-search actions that do not lead to relevant results, verification of the generated code patch after it is already applied, or any actions that are failed to applied because the syntax is incorrect. 
+    \item \textbf{Removal of steps without essential information.} Steps that do not provide necessary information for any subsequent step can be removed. To automatically identify such steps, we feed the trajectory to an LLM and prompt it to identify whether each step requires information from any previous steps.
+    Examples of steps without essential information include file-search actions that do not lead to relevant results, verification of the generated code patch after it is already applied, or any actions that are failed to applied because the syntax is incorrect. 
     Note that removing such steps may make some later actions appear less well-motivated or less sound, but the trajectory still remains consistent.
     
     \item \textbf{Editing textual content.} The textual content of a step can be modified as long as the revised content remains consistent with the previous context. The reason is that only the action generated by the agent will be executed, and the execution output is not affected by the textual content.
@@ -995,7 +1005,7 @@ As the project progresses, we will introduce additional editing rules when new t
 In \autoref{tab:plus:controlled-editing-examples}, we provide examples of how to design controlled experiments to verify the importance of a particular candidate agent behavior. Each example corresponds to a principle of trajectory editing we defined above.
 
 % Candidate agent behavior: (stage-strategy-level) when locating specific lines of code, only perform file reading when the number of candidate files is reduced to a limited number.
-% Controlled experiment design: given two trajectories, where one of them starts file reading when the number of candidate files is still large, as shown in \autoref{fig:plus:abstraction}, we replace its file localization steps with the ones in the other trajectory, and train a student model on the edited trajectory.
+% Controlled experiment design: given two trajectories, where one of them starts file reading when the number of candidate files is still large, as shown in \autoref{fig:plus:example}, we replace its file localization steps with the ones in the other trajectory, and train a student model on the edited trajectory.
 
 % Candidate agent behavior: (stage-level) the agent verifies the solution after implementation.
 % Controlled experiment design: we remove all the solution verification steps, and train a student model on the edited trajectory.
