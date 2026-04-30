@@ -177,13 +177,14 @@ This thesis contains three parts targeting the three above challenges, respectiv
 \start{Part 1: Coding Agent Training with Scalable Synthetic Data}
 As abstractions of real-world coding setups, training environments are typically complex and require substantial human or agent effort to construct.
 In our work, we aim to find an appropriate level of abstraction for training environments.
-Specifically, we identify the execution support for the entire codebase to be the major bottleneck of training environment construction, and propose training settings that avoid code execution or only require execution for a particular module in the codebase.
-This simplifies the construction of training environments while preserving training effectiveness.
+Specifically, inspired by our work that investigates the abstraction level of training data for code translation~\cite{cmtrans}, which is published in \textcolor{aquablue}{\textbf{EMNLP Findings 2023}}, we identify the execution support for the entire codebase to be the major bottleneck of training environment construction, and explore training settings that avoid code execution or only require execution for a particular module in the codebase.
+This simplifies the construction of training environments while preserving training effectiveness~\cite{repost}. This work is published in \textcolor{aquablue}{\textbf{COLM 2025}}.
 
 \start{Part 2: Training Coding Agents that Generalize across Tasks}
 Most existing open-sourced coding agent post-training datasets only focus on a single task, which does not reliably generalize to other tasks.
 In our work, we open a direction of training coding agents that generalize across tasks.
 Specifically, we conduct systematic analyses on the commonalities shared across diverse downstream coding tasks, and design synthetic training tasks that can generalize across tasks.
+The work has been accepted to \textcolor{aquablue}{\textbf{ICML 2026}}.
 In the \textbf{\textcolor{treegreen}{proposed work}}, we take a step forward and analyze the exact trajectory behaviors (including problem-solving strategies and concrete actions) that are transferrable across tasks. Then we propose a data selection method based on such desired behaviors beyond task success.
 
 \start{Part 3: Training Critique Models to Assist Coding Agent}
@@ -191,7 +192,7 @@ While the first two parts aim to improve the effectiveness of coding agent train
 To address this limitation, in our work, we develop critique models that provide guidance to the coding agent at inference time.
 While the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, the critique model is specialized for planning.
 Since the optimum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning, training a specialized critique model may lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
-We first show that the high-level idea of ``training a specialized model to provide guidance to the main model'' can be beneficial in general NLP tasks such as factuality generation.
+We first show that the high-level idea of ``training a specialized model to provide guidance to the main model'' can be beneficial in general NLP tasks such as factuality generation~\cite{fence} in an \textcolor{aquablue}{\textbf{ACL 2025}} paper.
 Then in the \textbf{\textcolor{treegreen}{proposed work}}, we apply this idea to coding agent training and train critique models to assist coding agents in inference.
 We show that there is a large room of improvement for training critique models for coding agents, and propose a recipe to train critique models.
 

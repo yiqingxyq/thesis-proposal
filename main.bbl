@@ -1,4 +1,4 @@
-\begin{thebibliography}{120}
+\begin{thebibliography}{121}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -560,15 +560,24 @@ Chunqiu~Steven Xia, Zhe Wang, Yan Yang, Yuxiang Wei, and Lingming Zhang.
 \newblock Live-swe-agent: Can software engineering agents self-evolve on the fly?
 \newblock \emph{arXiv preprint}, 2025{\natexlab{b}}.
 
-\bibitem[Xie et~al.(2025)Xie, Xie, Sheth, Liu, Fried, and Rose]{repost}
+\bibitem[Xie et~al.(2023)Xie, Naik, Fried, and Rose]{cmtrans}
+Yiqing Xie, Atharva Naik, Daniel Fried, and Carolyn Rose.
+\newblock Data augmentation for code translation with comparable corpora and multiple references.
+\newblock In Houda Bouamor, Juan Pino, and Kalika Bali, editors, \emph{Findings of the Association for Computational Linguistics: EMNLP 2023}, pages 13725--13739, Singapore, December 2023. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2023.findings-emnlp.917}.
+\newblock URL \url{https://aclanthology.org/2023.findings-emnlp.917/}.
+
+\bibitem[Xie et~al.(2025{\natexlab{a}})Xie, Xie, Sheth, Liu, Fried, and Rose]{repost}
 Yiqing Xie, Alex Xie, Divyanshu Sheth, Pengfei Liu, Daniel Fried, and Carolyn Rose.
 \newblock Repo{ST}: Scalable repository-level coding environment construction with sandbox testing.
-\newblock In \emph{Second Conference on Language Modeling}, 2025.
+\newblock In \emph{Second Conference on Language Modeling}, 2025{\natexlab{a}}.
 \newblock URL \url{https://openreview.net/forum?id=2txrMBpw3q}.
 
-\bibitem[Xie et~al.(2026)Xie, Liu, Zhang, Kotalwar, Gandhi, Acharya, Wang, Rose, Neubig, and Fried]{hybrid-gym}
-Yiqing Xie, Emmy Liu, Gaokai Zhang, Nachiket Kotalwar, Shubham Gandhi, Sathwik Acharya, Xingyao Wang, Carolyn Rose, Graham Neubig, and Daniel Fried.
-\newblock Hybrid-gym: Training coding agents to generalize across tasks, 2026.
+\bibitem[Xie et~al.(2025{\natexlab{b}})Xie, Zhou, Prakash, Jin, Mao, Fettes, Talebzadeh, Wang, Fang, Rose, Fried, and Zhang]{fence}
+Yiqing Xie, Wenxuan Zhou, Pradyot Prakash, Di~Jin, Yuning Mao, Quintin Fettes, Arya Talebzadeh, Sinong Wang, Han Fang, Carolyn Rose, Daniel Fried, and Hejia Zhang.
+\newblock Improving model factuality with fine-grained critique-based evaluator.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, Vienna, Austria, July 2025{\natexlab{b}}. Association for Computational Linguistics.
+\newblock URL \url{https://aclanthology.org/2025.acl-long.400/}.
 
 \bibitem[Xu et~al.(2024)Xu, Zhu, Zhao, Pan, Li, and Wang]{self-bias}
 Wenda Xu, Guanglei Zhu, Xuandong Zhao, Liangming Pan, Lei Li, and William~Yang Wang.

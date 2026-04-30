@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.26)  28 APR 2026 17:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.26)  30 APR 2026 15:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1054,9 +1054,8 @@ Overfull \hbox (5.70505pt too wide) in paragraph at lines 23--23
 Underfull \vbox (badness 2189) has occurred while \output is active []
 
  [9{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
-Overfull \hbox (4.7138pt too wide) in paragraph at lines 26--26
- \T1/qpl/m/n/12 We de-sign the stages by im-prov-ing the task de-com-po-si-tion in Hybrid-Gym [[]], 
- []
+
+Package natbib Warning: Citation `hybrid-gym' on page x undefined on input line 26.
 
 
 Overfull \hbox (6.869pt too wide) in paragraph at lines 29--29
@@ -1111,7 +1110,7 @@ Overfull \hbox (7.91788pt too wide) in paragraph at lines 27--27
 
  [14] [15]
 Chapter 1.
-<figs/proposal_intro.pdf, id=909, 968.61874pt x 588.1975pt>
+<figs/proposal_intro.pdf, id=907, 968.61874pt x 588.1975pt>
 File: figs/proposal_intro.pdf Graphic file (type pdf)
 <use figs/proposal_intro.pdf>
 Package pdftex.def Info: figs/proposal_intro.pdf  used on input line 144.
@@ -1126,7 +1125,7 @@ Underfull \vbox (badness 1817) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2] [3] [4]
-Overfull \hbox (51.21555pt too wide) in paragraph at lines 211--212
+Overfull \hbox (51.21555pt too wide) in paragraph at lines 212--213
  [][] 
  []
 
@@ -1135,7 +1134,7 @@ Chapter 2.
 [6
 
 ]
-Overfull \hbox (9.29459pt too wide) in paragraph at lines 256--262
+Overfull \hbox (9.29459pt too wide) in paragraph at lines 257--263
 []\T1/qpl/m/n/12 Agent in-fras-truc-ture such as SWE-Agent [[]] and Open-Hands [[]] pro-vide agent-computer
  []
 
@@ -1143,12 +1142,12 @@ Overfull \hbox (9.29459pt too wide) in paragraph at lines 256--262
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7] [8]
-Overfull \hbox (1.56662pt too wide) in paragraph at lines 305--309
+Overfull \hbox (1.56662pt too wide) in paragraph at lines 306--310
 []\T1/qpl/m/n/12 What is miss-ing in both single-task post-training ([]sec-tion 2.2[][]) and cod-ing agent pre-training
  []
 
 [9]
-Overfull \hbox (19.70421pt too wide) in paragraph at lines 311--311
+Overfull \hbox (19.70421pt too wide) in paragraph at lines 312--312
 []\T1/qpl/b/n/17.28 Improving the High-level Plan-ning Abil-ity of Cod-ing Agents 
  []
 
@@ -1156,22 +1155,22 @@ Overfull \hbox (19.70421pt too wide) in paragraph at lines 311--311
 
 ] [13]
 Chapter 3.
-<CMTrans_figs/diagram_intro_v2.pdf, id=1151, 459.7175pt x 253.94875pt>
+<CMTrans_figs/diagram_intro_v2.pdf, id=1154, 459.7175pt x 253.94875pt>
 File: CMTrans_figs/diagram_intro_v2.pdf Graphic file (type pdf)
 <use CMTrans_figs/diagram_intro_v2.pdf>
 Package pdftex.def Info: CMTrans_figs/diagram_intro_v2.pdf  used on input line 34.
 (pdftex.def)             Requested size: 245.71893pt x 135.73917pt.
-<CMTrans_figs/examples_intro.pdf, id=1152, 1086.0575pt x 370.38374pt>
+<CMTrans_figs/examples_intro.pdf, id=1155, 1086.0575pt x 370.38374pt>
 File: CMTrans_figs/examples_intro.pdf Graphic file (type pdf)
 <use CMTrans_figs/examples_intro.pdf>
 Package pdftex.def Info: CMTrans_figs/examples_intro.pdf  used on input line 42.
 (pdftex.def)             Requested size: 491.43787pt x 167.59799pt.
-<CMTrans_figs/ppl_java2python.pdf, id=1153, 481.6877pt x 431.07077pt>
+<CMTrans_figs/ppl_java2python.pdf, id=1156, 481.6877pt x 431.07077pt>
 File: CMTrans_figs/ppl_java2python.pdf Graphic file (type pdf)
 <use CMTrans_figs/ppl_java2python.pdf>
 Package pdftex.def Info: CMTrans_figs/ppl_java2python.pdf  used on input line 53.
 (pdftex.def)             Requested size: 196.57214pt x 175.91795pt.
-<CMTrans_figs/ppl_python2java.pdf, id=1154, 481.00893pt x 409.19243pt>
+<CMTrans_figs/ppl_python2java.pdf, id=1157, 481.00893pt x 409.19243pt>
 File: CMTrans_figs/ppl_python2java.pdf Graphic file (type pdf)
 <use CMTrans_figs/ppl_python2java.pdf>
 Package pdftex.def Info: CMTrans_figs/ppl_python2java.pdf  used on input line 60.
@@ -1183,7 +1182,7 @@ Overfull \hbox (1.08171pt too wide) in paragraph at lines 116--119
 \T1/qpl/m/n/12 model trained with \T1/qpl/b/n/12 C\T1/qpl/m/n/12 omparable cor-pora and \T1/qpl/b/n/12 M\T1/qpl/m/n/12 ultiple ref-er-ences. Ex-ten-sive ex-per-i-ments show
  []
 
-<CMTrans_figs/method_v2.pdf, id=1369, 1632.0975pt x 722.7pt>
+<CMTrans_figs/method_v2.pdf, id=1372, 1632.0975pt x 722.7pt>
 File: CMTrans_figs/method_v2.pdf Graphic file (type pdf)
 <use CMTrans_figs/method_v2.pdf>
 Package pdftex.def Info: CMTrans_figs/method_v2.pdf  used on input line 167.
@@ -1213,18 +1212,18 @@ Overfull \hbox (3.19398pt too wide) in paragraph at lines 453--457
  []
 
 [23]
-<CMTrans_figs/size_analysis_fig.pdf, id=1586, 1203.94127pt x 551.87743pt>
+<CMTrans_figs/size_analysis_fig.pdf, id=1589, 1203.94127pt x 551.87743pt>
 File: CMTrans_figs/size_analysis_fig.pdf Graphic file (type pdf)
 <use CMTrans_figs/size_analysis_fig.pdf>
 Package pdftex.def Info: CMTrans_figs/size_analysis_fig.pdf  used on input line 464.
 (pdftex.def)             Requested size: 344.005pt x 157.68248pt.
  [24 <./CMTrans_figs/size_analysis_fig.pdf>]
-<CMTrans_figs/unique_java2python.pdf, id=1681, 550.81094pt x 443.19263pt>
+<CMTrans_figs/unique_java2python.pdf, id=1684, 550.81094pt x 443.19263pt>
 File: CMTrans_figs/unique_java2python.pdf Graphic file (type pdf)
 <use CMTrans_figs/unique_java2python.pdf>
 Package pdftex.def Info: CMTrans_figs/unique_java2python.pdf  used on input line 556.
 (pdftex.def)             Requested size: 196.57214pt x 158.16289pt.
-<CMTrans_figs/unique_python2java.pdf, id=1682, 550.81094pt x 443.19263pt>
+<CMTrans_figs/unique_python2java.pdf, id=1685, 550.81094pt x 443.19263pt>
 File: CMTrans_figs/unique_python2java.pdf Graphic file (type pdf)
 <use CMTrans_figs/unique_python2java.pdf>
 Package pdftex.def Info: CMTrans_figs/unique_python2java.pdf  used on input line 561.
@@ -1233,18 +1232,18 @@ Package pdftex.def Info: CMTrans_figs/unique_python2java.pdf  used on input line
 Underfull \vbox (badness 3460) has occurred while \output is active []
 
  [25]
-<CMTrans_figs/hyper_CC_analysis.pdf, id=1687, 1177.05861pt x 492.91528pt>
+<CMTrans_figs/hyper_CC_analysis.pdf, id=1690, 1177.05861pt x 492.91528pt>
 File: CMTrans_figs/hyper_CC_analysis.pdf Graphic file (type pdf)
 <use CMTrans_figs/hyper_CC_analysis.pdf>
 Package pdftex.def Info: CMTrans_figs/hyper_CC_analysis.pdf  used on input line 574.
 (pdftex.def)             Requested size: 344.005pt x 144.05492pt.
-<CMTrans_figs/hyper_multi_analysis.pdf, id=1688, 1159.16498pt x 492.91528pt>
+<CMTrans_figs/hyper_multi_analysis.pdf, id=1691, 1159.16498pt x 492.91528pt>
 File: CMTrans_figs/hyper_multi_analysis.pdf Graphic file (type pdf)
 <use CMTrans_figs/hyper_multi_analysis.pdf>
 Package pdftex.def Info: CMTrans_figs/hyper_multi_analysis.pdf  used on input line 581.
 (pdftex.def)             Requested size: 344.005pt x 146.2812pt.
  [26 <./CMTrans_figs/unique_java2python.pdf> <./CMTrans_figs/unique_python2java.pdf> <./CMTrans_figs/hyper_CC_analysis.pdf>] [27 <./CMTrans_figs/hyper_multi_analysis.pdf>]
-<CMTrans_figs/case_short_fig_v2.pdf, id=1945, 1163.34625pt x 197.73875pt>
+<CMTrans_figs/case_short_fig_v2.pdf, id=1948, 1163.34625pt x 197.73875pt>
 File: CMTrans_figs/case_short_fig_v2.pdf Graphic file (type pdf)
 <use CMTrans_figs/case_short_fig_v2.pdf>
 Package pdftex.def Info: CMTrans_figs/case_short_fig_v2.pdf  used on input line 619.
@@ -1254,7 +1253,7 @@ Chapter 4.
 [29
 
 ]
-<RepoST_figs/intro.pdf, id=1995, 411.5375pt x 310.15875pt>
+<RepoST_figs/intro.pdf, id=1998, 411.5375pt x 310.15875pt>
 File: RepoST_figs/intro.pdf Graphic file (type pdf)
 <use RepoST_figs/intro.pdf>
 Package pdftex.def Info: RepoST_figs/intro.pdf  used on input line 686.
@@ -1263,7 +1262,7 @@ Package pdftex.def Info: RepoST_figs/intro.pdf  used on input line 686.
 Underfull \vbox (badness 2269) has occurred while \output is active []
 
  [30 <./RepoST_figs/intro.pdf>]
-<RepoST_figs/framework.pdf, id=2097, 1494.58376pt x 371.3875pt>
+<RepoST_figs/framework.pdf, id=2100, 1494.58376pt x 371.3875pt>
 File: RepoST_figs/framework.pdf Graphic file (type pdf)
 <use RepoST_figs/framework.pdf>
 Package pdftex.def Info: RepoST_figs/framework.pdf  used on input line 738.
@@ -1272,7 +1271,7 @@ Package pdftex.def Info: RepoST_figs/framework.pdf  used on input line 738.
 Underfull \vbox (badness 5490) has occurred while \output is active []
 
  [31]
-<RepoST_figs/sandboxing.pdf, id=2106, 487.8225pt x 422.57875pt>
+<RepoST_figs/sandboxing.pdf, id=2109, 487.8225pt x 422.57875pt>
 File: RepoST_figs/sandboxing.pdf Graphic file (type pdf)
 <use RepoST_figs/sandboxing.pdf>
 Package pdftex.def Info: RepoST_figs/sandboxing.pdf  used on input line 766.
@@ -1281,12 +1280,12 @@ Package pdftex.def Info: RepoST_figs/sandboxing.pdf  used on input line 766.
 Underfull \vbox (badness 3323) has occurred while \output is active []
 
  [39]
-<RepoST_figs/scaling_law.pdf, id=2350, 237.90129pt x 223.74341pt>
+<RepoST_figs/scaling_law.pdf, id=2353, 237.90129pt x 223.74341pt>
 File: RepoST_figs/scaling_law.pdf Graphic file (type pdf)
 <use RepoST_figs/scaling_law.pdf>
 Package pdftex.def Info: RepoST_figs/scaling_law.pdf  used on input line 1131.
 (pdftex.def)             Requested size: 196.57214pt x 184.88077pt.
-<RepoST_figs/repo_diversity.pdf, id=2351, 213.965pt x 253.16708pt>
+<RepoST_figs/repo_diversity.pdf, id=2354, 213.965pt x 253.16708pt>
 File: RepoST_figs/repo_diversity.pdf Graphic file (type pdf)
 <use RepoST_figs/repo_diversity.pdf>
 Package pdftex.def Info: RepoST_figs/repo_diversity.pdf  used on input line 1137.
@@ -1308,7 +1307,7 @@ Overfull \hbox (29.14485pt too wide) in paragraph at lines 1180--1186
 
 ] [45]
 Chapter 5.
-<HybridGym_figs/intro.pdf, id=2500, 2364.835pt x 573.14125pt>
+<HybridGym_figs/intro.pdf, id=2503, 2364.835pt x 573.14125pt>
 File: HybridGym_figs/intro.pdf Graphic file (type pdf)
 <use HybridGym_figs/intro.pdf>
 Package pdftex.def Info: HybridGym_figs/intro.pdf  used on input line 48.
@@ -1324,7 +1323,7 @@ Overfull \hbox (22.6206pt too wide) in paragraph at lines 92--95
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [47 <./HybridGym_figs/intro.pdf>]
-<HybridGym_figs/error_analysis.pdf, id=2594, 1004.69794pt x 571.06372pt>
+<HybridGym_figs/error_analysis.pdf, id=2600, 1004.69794pt x 571.06372pt>
 File: HybridGym_figs/error_analysis.pdf Graphic file (type pdf)
 <use HybridGym_figs/error_analysis.pdf>
 Package pdftex.def Info: HybridGym_figs/error_analysis.pdf  used on input line 153.
@@ -1343,7 +1342,7 @@ Underfull \vbox (badness 1199) has occurred while \output is active []
  [52]
 
 pdfTeX warning: pdflatex (file ./HybridGym_figs/fig_scaling_law_v2.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<HybridGym_figs/fig_scaling_law_v2.pdf, id=2695, 416.88448pt x 308.47656pt>
+<HybridGym_figs/fig_scaling_law_v2.pdf, id=2701, 416.88448pt x 308.47656pt>
 File: HybridGym_figs/fig_scaling_law_v2.pdf Graphic file (type pdf)
 <use HybridGym_figs/fig_scaling_law_v2.pdf>
 Package pdftex.def Info: HybridGym_figs/fig_scaling_law_v2.pdf  used on input line 363.
@@ -1367,7 +1366,7 @@ Overfull \hbox (3.5299pt too wide) in paragraph at lines 521--526
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [56]
-<HybridGym_figs/fig_combined_bcde.pdf, id=2838, 1417.73352pt x 333.28265pt>
+<HybridGym_figs/fig_combined_bcde.pdf, id=2844, 1417.73352pt x 333.28265pt>
 File: HybridGym_figs/fig_combined_bcde.pdf Graphic file (type pdf)
 <use HybridGym_figs/fig_combined_bcde.pdf>
 Package pdftex.def Info: HybridGym_figs/fig_combined_bcde.pdf  used on input line 586.
@@ -1380,13 +1379,22 @@ Overfull \hbox (7.97586pt too wide) in paragraph at lines 630--633
 \T1/qpl/m/n/12 task, LCB is not ef-fec-tive for trans-fer to SWE-bench. This neg-a-tive re-sult sug-gests that repository-
  []
 
-<HybridGym_figs/fig_sampling_teacher_combined.pdf, id=2915, 983.79483pt x 514.11899pt>
+<HybridGym_figs/fig_sampling_teacher_combined.pdf, id=2921, 983.79483pt x 514.11899pt>
 File: HybridGym_figs/fig_sampling_teacher_combined.pdf Graphic file (type pdf)
 <use HybridGym_figs/fig_sampling_teacher_combined.pdf>
 Package pdftex.def Info: HybridGym_figs/fig_sampling_teacher_combined.pdf  used on input line 638.
 (pdftex.def)             Requested size: 344.005pt x 179.77174pt.
 [59] [60 <./HybridGym_figs/fig_sampling_teacher_combined.pdf>] [61] [62]
 Chapter 6.
+
+Package natbib Warning: Citation `hybrid-gym' on page 63 undefined on input line 761.
+
+
+Package natbib Warning: Citation `hybrid-gym' on page 63 undefined on input line 766.
+
+
+Package natbib Warning: Citation `hybrid-gym' on page 63 undefined on input line 767.
+
 
 Overfull \hbox (6.9017pt too wide) in paragraph at lines 764--768
 \T1/qpl/m/n/12 fac-tors of the train-ing out-come. With re-jec-tion sam-pling fine-tun-ing as the train-ing paradigm [[]],
@@ -1403,20 +1411,35 @@ Underfull \hbox (badness 1226) in paragraph at lines 792--792
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [65]
-<plus_figs/abstraction.pdf, id=3026, 1197.47375pt x 496.85625pt>
+<plus_figs/abstraction.pdf, id=3029, 1197.47375pt x 496.85625pt>
 File: plus_figs/abstraction.pdf Graphic file (type pdf)
 <use plus_figs/abstraction.pdf>
 Package pdftex.def Info: plus_figs/abstraction.pdf  used on input line 876.
 (pdftex.def)             Requested size: 442.29108pt x 183.5155pt.
-<plus_figs/trajectory_comparison.pdf, id=3029, 569.25815pt x 243.75917pt>
+
+
+Package natbib Warning: Citation `hybrid-gym' on page 66 undefined on input line 877.
+
+
+Package natbib Warning: Citation `hybrid-gym' on page 66 undefined on input line 877.
+
+<plus_figs/trajectory_comparison.pdf, id=3030, 569.25815pt x 243.75917pt>
 File: plus_figs/trajectory_comparison.pdf Graphic file (type pdf)
 <use plus_figs/trajectory_comparison.pdf>
 Package pdftex.def Info: plus_figs/trajectory_comparison.pdf  used on input line 883.
 (pdftex.def)             Requested size: 491.43787pt x 210.43591pt.
- [66]
+[66]
+
+Package natbib Warning: Citation `hybrid-gym' on page 67 undefined on input line 904.
+
+
 Underfull \vbox (badness 1478) has occurred while \output is active []
 
- [67 <./plus_figs/abstraction.pdf>] [68 <./plus_figs/trajectory_comparison.pdf>] [69]
+ [67 <./plus_figs/abstraction.pdf>] [68 <./plus_figs/trajectory_comparison.pdf>]
+
+Package natbib Warning: Citation `hybrid-gym' on page 69 undefined on input line 928.
+
+[69]
 Overfull \hbox (0.62694pt too wide) in paragraph at lines 953--954
 \T1/qpl/m/n/12 LLM-based an-no-ta-tor to all of the $\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 k$ \T1/qpl/m/n/12 tra-jec-to-ries. We com-pute the rate of \T1/cmtt/m/n/12 unable_to_determine
  []
@@ -1439,11 +1462,15 @@ Underfull \hbox (badness 2229) in paragraph at lines 1036--1037
 []|\T1/qpl/m/it/10.95 (Step-level) \T1/qpl/m/n/10.95 The agent gen-er-
  []
 
-[72] [73]) (./part_usage.tex [74] [75
+[72] [73]
+
+Package natbib Warning: Citation `hybrid-gym' on page 74 undefined on input line 1095.
+
+) (./part_usage.tex [74] [75
 
 ] [76]
 Chapter 7.
-<FenCE_figures/overall.pdf, id=3143, 2066.72125pt x 429.605pt>
+<FenCE_figures/overall.pdf, id=3141, 2066.72125pt x 429.605pt>
 File: FenCE_figures/overall.pdf Graphic file (type pdf)
 <use FenCE_figures/overall.pdf>
 Package pdftex.def Info: FenCE_figures/overall.pdf  used on input line 27.
@@ -1451,7 +1478,7 @@ Package pdftex.def Info: FenCE_figures/overall.pdf  used on input line 27.
 [77
 
 ] [78 <./FenCE_figures/overall.pdf>]
-<FenCE_figures/evaluator_train.pdf, id=3261, 2096.83376pt x 433.62pt>
+<FenCE_figures/evaluator_train.pdf, id=3259, 2096.83376pt x 433.62pt>
 File: FenCE_figures/evaluator_train.pdf Graphic file (type pdf)
 <use FenCE_figures/evaluator_train.pdf>
 Package pdftex.def Info: FenCE_figures/evaluator_train.pdf  used on input line 84.
@@ -1460,7 +1487,7 @@ Package pdftex.def Info: FenCE_figures/evaluator_train.pdf  used on input line 8
 Underfull \vbox (badness 2418) has occurred while \output is active []
 
  [80]
-<FenCE_figures/improve_factuality_v2.pdf, id=3344, 2516.40125pt x 656.4525pt>
+<FenCE_figures/improve_factuality_v2.pdf, id=3342, 2516.40125pt x 656.4525pt>
 File: FenCE_figures/improve_factuality_v2.pdf Graphic file (type pdf)
 <use FenCE_figures/improve_factuality_v2.pdf>
 Package pdftex.def Info: FenCE_figures/improve_factuality_v2.pdf  used on input line 139.
@@ -1471,22 +1498,22 @@ Overfull \hbox (0.926pt too wide) in paragraph at lines 301--305
  []
 
 [84] [85]
-<FenCE_figures/distribution_claims_by_group.pdf, id=3491, 627.95541pt x 399.26038pt>
+<FenCE_figures/distribution_claims_by_group.pdf, id=3489, 627.95541pt x 399.26038pt>
 File: FenCE_figures/distribution_claims_by_group.pdf Graphic file (type pdf)
 <use FenCE_figures/distribution_claims_by_group.pdf>
 Package pdftex.def Info: FenCE_figures/distribution_claims_by_group.pdf  used on input line 440.
 (pdftex.def)             Requested size: 162.17538pt x 103.11073pt.
-<FenCE_figures/percent_refused_responses_by_group.pdf, id=3492, 611.7621pt x 399.26038pt>
+<FenCE_figures/percent_refused_responses_by_group.pdf, id=3490, 611.7621pt x 399.26038pt>
 File: FenCE_figures/percent_refused_responses_by_group.pdf Graphic file (type pdf)
 <use FenCE_figures/percent_refused_responses_by_group.pdf>
 Package pdftex.def Info: FenCE_figures/percent_refused_responses_by_group.pdf  used on input line 445.
 (pdftex.def)             Requested size: 157.2637pt x 102.63554pt.
-<FenCE_figures/percent_facts_by_group.pdf, id=3493, 596.34354pt x 399.26038pt>
+<FenCE_figures/percent_facts_by_group.pdf, id=3491, 596.34354pt x 399.26038pt>
 File: FenCE_figures/percent_facts_by_group.pdf Graphic file (type pdf)
 <use FenCE_figures/percent_facts_by_group.pdf>
 Package pdftex.def Info: FenCE_figures/percent_facts_by_group.pdf  used on input line 450.
 (pdftex.def)             Requested size: 157.2637pt x 105.29175pt.
-<FenCE_figures/facts_by_cat.pdf, id=3494, 759.2271pt x 385.24937pt>
+<FenCE_figures/facts_by_cat.pdf, id=3492, 759.2271pt x 385.24937pt>
 File: FenCE_figures/facts_by_cat.pdf Graphic file (type pdf)
 <use FenCE_figures/facts_by_cat.pdf>
 Package pdftex.def Info: FenCE_figures/facts_by_cat.pdf  used on input line 461.
@@ -1495,12 +1522,12 @@ Package pdftex.def Info: FenCE_figures/facts_by_cat.pdf  used on input line 461.
 Underfull \vbox (badness 4859) has occurred while \output is active []
 
  [86]
-<FenCE_figures/hyper_param.pdf, id=3506, 354.9605pt x 314.20888pt>
+<FenCE_figures/hyper_param.pdf, id=3504, 354.9605pt x 314.20888pt>
 File: FenCE_figures/hyper_param.pdf Graphic file (type pdf)
 <use FenCE_figures/hyper_param.pdf>
 Package pdftex.def Info: FenCE_figures/hyper_param.pdf  used on input line 493.
 (pdftex.def)             Requested size: 196.57214pt x 174.00443pt.
-<FenCE_figures/hyper_param_topk.pdf, id=3507, 331.81978pt x 313.44038pt>
+<FenCE_figures/hyper_param_topk.pdf, id=3505, 331.81978pt x 313.44038pt>
 File: FenCE_figures/hyper_param_topk.pdf Graphic file (type pdf)
 <use FenCE_figures/hyper_param_topk.pdf>
 Package pdftex.def Info: FenCE_figures/hyper_param_topk.pdf  used on input line 500.
@@ -1519,11 +1546,17 @@ LaTeX Warning: Float too large for page by 44.573pt on input line 779.
 
 [90] [91] [92] [93]
 Chapter 8.
-<plus_figs/planning_def.pdf, id=3905, 1304.875pt x 519.9425pt>
+
+Package natbib Warning: Citation `hybrid-gym' on page 94 undefined on input line 812.
+
+<plus_figs/planning_def.pdf, id=3902, 1304.875pt x 519.9425pt>
 File: plus_figs/planning_def.pdf Graphic file (type pdf)
 <use plus_figs/planning_def.pdf>
 Package pdftex.def Info: plus_figs/planning_def.pdf  used on input line 818.
 (pdftex.def)             Requested size: 442.29108pt x 176.23862pt.
+
+Package natbib Warning: Citation `hybrid-gym' on page 94 undefined on input line 831.
+
 [94
 
 ]
@@ -1653,18 +1686,25 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [119]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [120]) [121] (./main.aux)
+ [120]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [121])
+
+Package natbib Warning: There were undefined citations.
+
+[122] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 897E0E726458D255BAA57D57FF1B31E9;25688.
  ) 
 Here is how much of TeX's memory you used:
- 42729 strings out of 476025
- 886936 string characters out of 5790017
+ 42734 strings out of 476025
+ 886981 string characters out of 5790017
  1912388 words of memory out of 5000000
- 62112 multiletter control sequences out of 15000+600000
+ 62115 multiletter control sequences out of 15000+600000
  616517 words of font info for 129 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,19n,83p,4091b,777s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 88i,19n,83p,4091b,789s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
 
@@ -1672,10 +1712,10 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplbi.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (136 pages, 9821959 bytes).
+Output written on main.pdf (137 pages, 9826538 bytes).
 PDF statistics:
- 4419 PDF objects out of 5155 (max. 8388607)
- 2751 compressed objects within 28 object streams
- 429 named destinations out of 1000 (max. 500000)
+ 4426 PDF objects out of 5155 (max. 8388607)
+ 2757 compressed objects within 28 object streams
+ 431 named destinations out of 1000 (max. 500000)
  1023 words of extra memory for PDF output out of 10000 (max. 10000000)
 
