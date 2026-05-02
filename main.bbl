@@ -1,4 +1,4 @@
-\begin{thebibliography}{121}
+\begin{thebibliography}{122}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -578,6 +578,11 @@ Yiqing Xie, Wenxuan Zhou, Pradyot Prakash, Di~Jin, Yuning Mao, Quintin Fettes, A
 \newblock Improving model factuality with fine-grained critique-based evaluator.
 \newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, Vienna, Austria, July 2025{\natexlab{b}}. Association for Computational Linguistics.
 \newblock URL \url{https://aclanthology.org/2025.acl-long.400/}.
+
+\bibitem[Xie et~al.(2026)Xie, Liu, Zhang, Kotalwar, Gandhi, Acharya, Wang, Rose, Neubig, and Fried]{hybrid-gym}
+Yiqing Xie, Emmy Liu, Gaokai Zhang, Nachiket Kotalwar, Shubham Gandhi, Sathwik Acharya, Xingyao Wang, Carolyn Rose, Graham Neubig, and Daniel Fried.
+\newblock Hybrid-gym: Training coding agents to generalize across tasks.
+\newblock In \emph{Forty-third International Conference on Machine Learning}, 2026.
 
 \bibitem[Xu et~al.(2024)Xu, Zhu, Zhao, Pan, Li, and Wang]{self-bias}
 Wenda Xu, Guanglei Zhu, Xuandong Zhao, Liangming Pan, Lei Li, and William~Yang Wang.

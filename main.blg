@@ -3,46 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: plainnat.bst
 Database file #1: register.bib
-Warning--I didn't find a database entry for "hybrid-gym"
-You've used 121 entries,
+You've used 122 entries,
             2773 wiz_defined-function locations,
-            1184 strings with 51396 characters,
-and the built_in function-call counts, 126533 in all, are:
-= -- 8978
-> -- 16491
+            1187 strings with 51683 characters,
+and the built_in function-call counts, 127326 in all, are:
+= -- 9033
+> -- 16584
 < -- 26
-+ -- 5521
-- -- 5377
-* -- 13094
-:= -- 21246
-add.period$ -- 434
-call.type$ -- 121
-change.case$ -- 2138
-chr.to.int$ -- 98
-cite$ -- 242
-duplicate$ -- 2485
-empty$ -- 4543
-format.name$ -- 5500
-if$ -- 24541
++ -- 5552
+- -- 5407
+* -- 13171
+:= -- 21376
+add.period$ -- 437
+call.type$ -- 122
+change.case$ -- 2151
+chr.to.int$ -- 99
+cite$ -- 244
+duplicate$ -- 2509
+empty$ -- 4584
+format.name$ -- 5531
+if$ -- 24698
 int.to.chr$ -- 24
 int.to.str$ -- 1
-missing$ -- 58
-newline$ -- 664
-num.names$ -- 508
-pop$ -- 4570
+missing$ -- 59
+newline$ -- 669
+num.names$ -- 512
+pop$ -- 4600
 preamble$ -- 1
-purify$ -- 2017
+purify$ -- 2029
 quote$ -- 0
-skip$ -- 3387
+skip$ -- 3409
 stack$ -- 0
-substring$ -- 751
-swap$ -- 347
+substring$ -- 753
+swap$ -- 349
 text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1331
+type$ -- 1342
 warning$ -- 0
-while$ -- 409
+while$ -- 412
 width$ -- 0
-write$ -- 1618
-(There was 1 warning)
+write$ -- 1630

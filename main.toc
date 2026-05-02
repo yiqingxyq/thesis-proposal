@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {2.2}Scalable Coding Agent Post-Training}{8}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Coding Agent Pre-Training}{9}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Improving the High-level Planning Ability of Coding Agents}{10}{section.2.4}%
-\contentsline {part}{I\hspace {1em}Coding Agent Training with Scalable Synthetic Data}{12}{part.1}%
+\contentsline {part}{I\hspace {1em}TrainingCoding Agents with Scalable Synthetic Data}{12}{part.1}%
 \contentsline {chapter}{\numberline {3}Constructing Scalable Code Translation Training Data with Comparable Corpora and Multiple References \textcolor {aquablue}{(\textit {completed})}}{14}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Introduction}{14}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Methodology}{17}{section.3.2}%
@@ -41,7 +41,7 @@
 \contentsline {subsection}{\numberline {4.5.1}Experimental Setup}{41}{subsection.4.5.1}%
 \contentsline {subsection}{\numberline {4.5.2}Experimental Results}{42}{subsection.4.5.2}%
 \contentsline {section}{\numberline {4.6}Chapter Summary}{42}{section.4.6}%
-\contentsline {part}{II\hspace {1em}Training Coding Agents that Generalize across Tasks}{44}{part.2}%
+\contentsline {part}{II\hspace {1em}Training Coding Agents to Generalize across Tasks}{44}{part.2}%
 \contentsline {chapter}{\numberline {5}Training General-Purpose Coding Agents with Scalable Tasks \textcolor {aquablue}{(\textit {completed})}}{46}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Introduction}{46}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Methodology}{48}{section.5.2}%

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1777577165 "main.aux" "main.bbl" "main" 1777594292 0
-  "./register.bib" 1777576750 145580 cd0ef5a5f718d0477a5ab95fd5ab40b3 ""
+["bibtex main"] 1777700501 "main.aux" "main.bbl" "main" 1777700503 0
+  "./register.bib" 1777700498 145554 8505ab5c40759f922ed52963f0614cc7 ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "main.aux" 1777594292 99034 d3a44ea807b97dd37db3aef26b610803 "pdflatex"
+  "main.aux" 1777700503 99155 029fdd9a9833a06376f8a23b922abc3c "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1777594290 "/Users/veronicium/Downloads/proposal/main.tex" "main.pdf" "main" 1777594292 0
+["pdflatex"] 1777700501 "/Users/veronicium/Downloads/proposal/main.tex" "main.pdf" "main" 1777700503 0
   "/Users/veronicium/Downloads/proposal/main.tex" 1777594289 33035 e0456a79cf32975a70f794b749be3164 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec-sc.enc" 1529098226 2881 8e2aef9e38084b946e7656b60672fedb ""
@@ -295,17 +295,17 @@
   "RepoST_figs/scaling_law.pdf" 1776625320 19982 fe594a3f32225030a809053bc2b2f258 ""
   "cmuthesis.cls" 1776625320 7169 04d19da112fd077e5e7362d7c36cd821 ""
   "figs/proposal_intro.pdf" 1776625320 389811 cff02a68182a0882800ac348dc8bb3da ""
-  "main.aux" 1777594292 99034 d3a44ea807b97dd37db3aef26b610803 "pdflatex"
-  "main.bbl" 1777577165 67286 7823d23ba93c4e8a421429f4e58e3c94 "bibtex main"
-  "main.lof" 1777594292 11643 75e6472d421cafd9675e6028c371be31 "pdflatex"
-  "main.lot" 1777594292 9410 db1cbfb7eadf466c2a36ecf24613df5d "pdflatex"
-  "main.out" 1777594292 25688 897e0e726458d255baa57d57ff1b31e9 "pdflatex"
+  "main.aux" 1777700503 99155 029fdd9a9833a06376f8a23b922abc3c "pdflatex"
+  "main.bbl" 1777700501 67705 95a076e3e31a01ec37fa7f6651aebf88 "bibtex main"
+  "main.lof" 1777700503 11643 75e6472d421cafd9675e6028c371be31 "pdflatex"
+  "main.lot" 1777700503 9410 db1cbfb7eadf466c2a36ecf24613df5d "pdflatex"
+  "main.out" 1777700503 25675 14922a0eabaca2efcc13055ebb64d4a5 "pdflatex"
   "main.tex" 1777594289 33035 e0456a79cf32975a70f794b749be3164 ""
-  "main.toc" 1777594292 10360 95b656e7f7461340fb613c12fe4ac11d "pdflatex"
+  "main.toc" 1777700503 10358 42c5c27679b26823e822fcea8a6c82e6 "pdflatex"
   "packages.tex" 1776625320 5659 01c9e6c846a880d50f3efe141048936d ""
-  "part_generalizability.tex" 1777348467 86172 30676debd37e837d5e737cff65cfd4dd ""
-  "part_scalability.tex" 1777148985 83214 82dc48f5d86e865da8ce9d85dd5fdb6e ""
-  "part_usage.tex" 1777410791 76565 df36bffecca329db1038961522303a27 ""
+  "part_generalizability.tex" 1777594675 86170 dfd76a658c400e74c57d784e407c1ea0 ""
+  "part_scalability.tex" 1777594686 83214 fe50117202b447828c8b70f26fba1943 ""
+  "part_usage.tex" 1777594722 76565 df36bffecca329db1038961522303a27 ""
   "plus_figs/abstraction.pdf" 1777346814 52864 ae6c81aa2b4d46f865b33f9c8fbdc76f ""
   "plus_figs/planning_def.pdf" 1777348867 48952 fa42eecb6dc461ac668f21107089c054 ""
   "plus_figs/trajectory_comparison.pdf" 1777347733 284612 e128d6c2aceea61851b777d517b75ff0 ""
