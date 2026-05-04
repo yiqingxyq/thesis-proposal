@@ -40,7 +40,7 @@
 \contentsline {section}{\numberline {4.5}Coding Agent Training Experiments}{41}{section.4.5}%
 \contentsline {subsection}{\numberline {4.5.1}Experimental Setup}{41}{subsection.4.5.1}%
 \contentsline {subsection}{\numberline {4.5.2}Experimental Results}{42}{subsection.4.5.2}%
-\contentsline {section}{\numberline {4.6}Chapter Summary}{42}{section.4.6}%
+\contentsline {section}{\numberline {4.6}Chapter Summary}{43}{section.4.6}%
 \contentsline {part}{II\hspace {1em}Training Coding Agents to Generalize across Tasks}{44}{part.2}%
 \contentsline {chapter}{\numberline {5}Training General-Purpose Coding Agents with Scalable Tasks \textcolor {aquablue}{(\textit {completed})}}{46}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Introduction}{46}{section.5.1}%
@@ -102,4 +102,4 @@
 \contentsline {subsection}{\numberline {8.5.1}Proposed Method}{101}{subsection.8.5.1}%
 \contentsline {subsection}{\numberline {8.5.2}Proposed Experiments}{101}{subsection.8.5.2}%
 \contentsline {chapter}{\numberline {9}Conclusion}{102}{chapter.9}%
-\contentsline {chapter}{Bibliography}{104}{chapter*.63}%
+\contentsline {chapter}{Bibliography}{104}{chapter*.64}%

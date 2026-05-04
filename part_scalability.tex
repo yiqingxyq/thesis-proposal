@@ -1184,6 +1184,9 @@ This demonstrates that the \repostmethodName training environments are also effe
 Note that we only train the agent on 500 successful trajectories (generated from around 1200 \reposttrainsetName instances) due to computational budget.
 It is possible to generate a larger training set based on the entire \reposttrainsetName dataset. We leave the exploration to future work.
 
+\autoref{tab:repost-r2e-comparison} shows the performance of the Qwen2.5Coder-7B agent on SWE-Bench Verified after training with R2E and \reposttrainsetName.
+Both methods build function generation tasks for training from the same set of GitHub repositories, but R2E~\citep{R2E} yields only 74 successful trajectories and improves the resolved rate from 1.8\% to 3.4\%, whereas we collect 500 successful trajectories with \reposttrainsetName and reach 7.8\%.
+In other words, compared to existing methods, the sandbox testing method scales to more training environments from a fixed repository pool and produce a more powerful coding agent.
 
 \begin{table}[t]
 \centering
@@ -1206,6 +1209,27 @@ Qwen2.5Coder-7B & 1.8 & 0.23 & 4.80 \\
 }
 \label{tab:repost-agent}
 \end{table}
+
+
+\begin{table}[t]
+  \centering
+  \small
+  \resizebox{0.7\columnwidth}{!}{%
+  \begin{tabular}{l cc}
+  \toprule
+  \bf Methods & \bf |Train Set| & \bf SWE-Bench Resolved \% \\
+  \midrule
+  Qwen2.5Coder-7B & \textemdash & 1.8 \\
+  + R2E RFT & 74 & 3.4~{\textcolor{treegreen}{$\uparrow$1.6}} \\
+  + \reposttrainsetName RFT & 500
+  & \bf 7.8~{\textcolor{treegreen}{$\uparrow$6.0}} \\
+  \bottomrule
+  \end{tabular}%
+  }
+  \caption{Performance of the Qwen2.5Coder-7B agent on SWE-Bench Verified after training with R2E and \reposttrainsetName. For fair comparison, for both methods, we build function generation training data from the same set of repositories on GitHub.
+  }
+  \label{tab:repost-r2e-comparison}
+  \end{table}
 
 
 
