@@ -926,7 +926,9 @@ We categorize the agent behaviors based on which abstraction level of trajectory
 \end{itemize}
 
 Note that in Hybrid-Gym~\cite{hybrid-gym} (\autoref{chap:hybrid-gym}), we present three principles for effective task design: (1) the tasks should generate a code patch as the outcome, (2) the tasks should involve a meaningful repository-exploration phase, and (3) the tasks should require non-trivial reasoning.
-All the three principles can be translated to the agent behaviors with our definition: (1) the trajectory contains the ``solution implementation'' stage, (2) the trajectory contains the ``repository discovery'', ``file localization'', or ``code-line localization'' stages, and (3) the trajectory contains the ``planning'' stage, which are all stage-level behaviors. In this study, we conduct a more comprehensive analysis by including behaviors from all the three levels.
+The first principle can be translated to a stage-strategy-level behavior: (1) the ``solution implementation'' stage must contain a ``file-editing'' process.
+The other two principles can be translated to stage-level behaviors: (2) the trajectory contains the ``repository discovery'', ``file localization'', or ``code-line localization'' stages, and (3) the trajectory contains the ``planning'' stage, which are all stage-level behaviors. 
+In this study, we aim to improve the analysis and find a more comprehensive set of important agent behaviors from all the three levels.
 
 
 \start{Discovering Candidate Agent Behaviors at Different Abstraction Levels}
