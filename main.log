@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.26)  6 MAY 2026 23:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.26)  11 MAY 2026 22:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1527,14 +1527,11 @@ Package pdftex.def Info: plus_figs/planning_def.pdf  used on input line 818.
 ]
 Underfull \vbox (badness 4084) has occurred while \output is active []
 
- [95 <./plus_figs/planning_def.pdf>]
-Underfull \vbox (badness 1107) has occurred while \output is active []
-
- [96]
+ [95 <./plus_figs/planning_def.pdf>] [96]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [97]
-Overfull \hbox (1.60162pt too wide) in paragraph at lines 920--921
+Overfull \hbox (1.60162pt too wide) in paragraph at lines 952--953
 []\T1/qpl/m/n/12 We build train-ing data from 500 tra-jec-to-ries with CWM-32B as the cod-ing agent and Claude-
  []
 
@@ -1673,7 +1670,7 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplbi.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (137 pages, 9829725 bytes).
+Output written on main.pdf (137 pages, 9829749 bytes).
 PDF statistics:
  4449 PDF objects out of 5155 (max. 8388607)
  2779 compressed objects within 28 object streams
