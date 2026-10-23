@@ -1,18 +1,15 @@
 
 
-\part{Training Coding Agents to Generalize across Tasks}
+\part{Analyses and Insights: What Makes Coding Agent Training Effective?}
 \label{part:generalizability}
 
-
 \start{Overview of Part~\ref{part:generalizability}}
-\autoref{part:scalability} presented two works for constructing scalable training data while preserving effectiveness. 
-However, both works only focus on training and evaluation for a single task, whereas real-world coding agents are applied to a diverse set of applications.
+\autoref{part:scalability} focused on constructing scalable environments for training coding agents while preserving effectiveness. 
+The studies limit to (1) training on a single task, and (2) using task success as the only metric for selecting training demonstrations.
+However, our further analyses show that (1) training on a single task is NOT sufficient for generalizing to diverse downstream tasks, and (2) even successful demonstrations may have substantially different impacts in training.
 
-
-In this part, we construct scalable training data for \emph{general-purpose coding agents} that generalize across a broad range of downstream tasks
-This part contains two chapters.
-In both chapters, we first conduct an in-depth analysis of the capabilities that the agent has not yet learned, but are required across diverse downstream tasks. 
-Then we derive training data design principles based on the analysis results.
+In this part, we take a step back and study the factors that make coding agent training effective.
+Both chapters follow the same structure: we first investigate the abilities that the coding agent need to learn, and then derive training data design principles based on the investigation results.
 
 In \autoref{chap:hybrid-gym}, we investigate the transferable skills shared across diverse tasks by decomposing trajectories into fine-grained components (e.g., repository exploration) and derive a set of principles for training task design, such as matching the output format of downstream tasks and requiring non-trivial repository exploration.
 Guided by these principles, we build our dataset on a set of scalable synthetic tasks, for instance, function localization and dependency search.
@@ -29,14 +26,7 @@ Then, we propose two trajectory augmentation methods to inject beneficial charac
 
 
 
-
-
-
-
-
-
-
-\chapter{Training General-Purpose Coding Agents with Scalable Tasks \textcolor{aquablue}{(\textit{completed})}}
+\chapter{Constructing Effective Synthetic Tasks for Training Coding Agents}
 \label{chap:hybrid-gym}
 
 
@@ -751,350 +741,548 @@ We thus propose \autoref{chap:effective-analysis} to investigate more training d
 
 
 
-\chapter{On the Agent Behaviors that Generalize across Coding Tasks \textcolor{mediumgreen}{(\textit{proposed})}}
+
+
+
+
+
+
+
+\chapter{Discovering Effective Demonstration Behaviors for Training Coding Agents}
 \label{chap:effective-analysis}
 
+% Paper-specific macros are local to the CATRadar chapter.
+% \begingroup
 
+\start{Chapter Overview}
+Most coding agent training methods judge the quality of demonstrations based on their final outcome, such as execution results or rubric scores.
+However, we observe that the effectiveness of training also substantially depends on \emph{how} the demonstrations achieve the results.
+Previous work has manually made hypotheses about which demonstration behaviors influence the performance.
+To find such influential behaviors for \textbf{C}oding \textbf{A}gent \textbf{T}raining more efficiently, we present \toolName, an analysis method to automatically discover candidate behaviors by defining, extracting, and comparing the behaviors of different trained agents.
+\toolName enables us to find behaviors that are influential to at least one model, including specific repo-exploration strategies, the planning and verification patterns, and the verbosity of the reasoning text.
+Our insights also translate to performance gains by various methods, including data selection, agent step synthesis, and behavior-conditioned rollout.
+Results show that our agent step synthesis method improves Qwen3-8B's resolved rate from 11.6\% to 17.6\% on SWE-Bench Verified.
 
 \section{Introduction}
-\label{plus:sec:introduction}
-In \autoref{chap:hybrid-gym}, we introduce Hybrid-Gym~\cite{hybrid-gym}, which trains a general-purpose coding agent by deriving a set of training task design principles. 
-However, \textbf{having proper training tasks is not the only condition for effective coding agent training}.
 
-In addition to training tasks, both Hybrid-Gym and previous work discover other crucial factors of the training outcome.
-With rejection sampling finetuning as the training paradigm~\cite{rejection-sampling}, SWE-Gym~\cite{swegym} and SWE-Smith~\cite{swe-smith} find that training instances with a balanced difficulty distribution improve training results.
-RepoST~\cite{repost}, SWE-Smith~\cite{swe-smith}, and Hybrid-Gym~\cite{hybrid-gym} demonstrate that it is beneficial to cover diverse repositories in the training data.
-Hybrid-Gym~\cite{hybrid-gym} shows that training on trajectories with more steps improves performance.
+Agents have been trained to be effective in diverse real-world coding applications~\citep{swt-bench,commit0}.
+Existing research improves coding agent post-training by constructing scalable environments~\citep{swegym,swe-smith}, designing training methods~\citep{swerl,swemaster}, and synthesizing training signals~\citep{openhands-rubric-critique,sweworld}.
+Most of them still derive training signals based on the final outcome of the demonstrations, which is either obtained by execution in sandbox environments or simulated with manually-designed rubrics~\citep{openhands-rubric-critique} or LLM judges~\citep{sweworld}.
 
-\begin{table}[t]
-  \centering
-  \small
-  \resizebox{\columnwidth}{!}{%
-  \begin{tabular}{l ccc}
-  \toprule
-  \multirow{2}{*}{\bf Teacher Model (|Train Size|)} &
-  \multicolumn{3}{c}{\bf SWE-Bench Verified (Easy 50)} \\
-  \cmidrule(lr){2-4}
-  & Resolved \% & Localized \% & Non-Empty \% \\
-  \midrule
-  \sdlrow & \multicolumn{3}{c}{\textit{Base Model: Qwen2.5Coder-7B}} \\
-  \midrule
-  \textemdash & \worse 2.0 & 4.0 & 8.0 \\
-  \midrule
-  Qwen2.5Coder-32B (400) & \bad 4.0 & 20.0 & 48.0 \\
-  Qwen2.5Coder-32B (Advanced Prompt) (400) & \good 8.0 & 46.0 & 68.0 \\
-  Claude-Sonnet-3.7 (400)   & \better \bf 26.0 & 68.0 & 86.0 \\
-  \bottomrule
-  \end{tabular}%
-  }
-  \caption{Results on training Qwen2.5Coder-7B on successful trajectories of the exact same 400 function localization instances generated by Claude-3.7, Qwen2.5Coder-32B, and Qwen2.5Coder-32B with the more detailed prompt we develop in the preliminary experiments (denoted as Advanced Prompt). 
-  We evaluate the student models on a subset of the SWE-bench Verified issue-solving dataset after training. 
-  }
-\label{ablation:self-vs-claude}
-\end{table}
+However, we observe that even when we only use successful rollouts as demonstrations in training, the exact \textbf{behaviors} reflected in the demonstrations also substantially affect the performance of the trained model. 
+We conduct a preliminary study under the setting of distilling a student model from the teacher's successful rollouts.
+As shown in \autoref{catradar:fig:different-teacher}, on the same set of training instances and for a fixed student model, distilling from different teachers leads to substantially different performance.
+Although they all successfully solve the task, the teacher models may apply different problem-solving strategies, use different tools, and generate concrete actions with different patterns.
 
-In this chapter, we show that beyond task success, the specific agent behaviors in the training trajectories substantially affect the effectiveness of training, and \textbf{we aim to discover and verify the particular agent behaviors that affect training effectiveness, for both in-domain and task-transfer training}. Our study provide insights into why and how task generalization can be achieved for coding agents. Furthermore, our study provides guidelines for the construction and selection of training data before running the training.
-
-In our \textcolor{aquablue}{\textbf{preliminary experiments}}, as shown in \autoref{ablation:self-vs-claude}, we use a frontier model (Claude-Sonnet-3.7) and a weaker model (Qwen2.5Coder-32B) to generate successful trajectories on the exact same set of 400 function localization instances and distill Qwen2.5Coder-7B.
-We can see that distilling from Claude-Sonnet-3.7 achieves a substantially higher performance.
-
-We first discover the differences between the two models' successful trajectories. Inspired by existing research that extract agent behavior patterns in general domains~\cite{beneficial-reasoning}, we use an LLM agent to discover the differences, with the two models' successful trajectories as context.
-After manually examining the LLM agent's output, we observe that although both models succeed on the task, Claude-3.7 adopts a more systematic repo-exploration strategy. For instance, it first narrows down the candidate files to a limited number, and then locates relevant functions inside the candidate files by keyword searching. In contrast, Qwen2.5Coder-32B typically locates functions by directly reading the entire candidate file instead of keyword searching, which could be very inefficient when the file is large.
-
-We then verify that one of the key behaviors we found: using keyword searching to locate functions inside files, is indeed beneficial for training.
-In particular, we add a more detailed repo-exploration instruction to the prompt for generating training trajectories. We then generate 400 successful trajectories with Qwen2.5Coder-32B and compare the distillation performance with the original prompt.
-As shown in \autoref{ablation:self-vs-claude}, we observe that (1) the distillation performance is improved from 4.0\% to 8.0\% with the new prompt, and (2) the model distilled from the new prompt also generates more keyword searching actions when localizing code inside files.
-
-Our preliminary experiments show that we can discover important agent behaviors that affect distillation performance by first discovering candidate agent behaviors based on the differences between two teacher model's successful trajectories, and then verifying their importance by conducting controlled experiments.
-However, our preliminary experiments have three \textbf{limitations}: 
-(1) the discovery of key behaviors is still challenging for the agent, which requires extracting patterns from the entire trajectories that contain 20-30 steps on average,
-(2) prompt engineering is not always effective to control the presence of particular agent behaviors -- it also depends on whether the model can follow the instruction correctly, and we may need to carefully tune the prompt, and 
-(3) the analysis is conducted on only one particular teacher model pair and one training task.
-
-To address the limitations, we \textcolor{mediumgreen}{\textbf{propose}} a more comprehensive analysis. In particular,
-
-\noindent(1) To make candidate agent behavior discovery easier, we categorizes behaviors into stage-level, stage-strategy-level, and step-level behaviors based on whether they are about high-level strategies or concrete steps. We provide different types of context to the LLM agent to discover the behaviors at different levels.
-
-\noindent(2) To make the presence of particular agent behaviors in trajectories more controllable, we propose trajectory editing methods that adds or removes a target behavior from the training trajectories.
-We propose a list of rules to describe conditions where we can alter steps in a trajectory without breaking the trajectory's consistency.
-If trajectory editing is not trivial for some behaviors, we fallback to the prompt engineering and data filtering method, as introduced in the preliminary experiments.
-Finally, similar to the preliminary experiments, we train a student model on the original and edited trajectories and compare the distillation performance.
-
-\noindent(3) We extend the analysis to multiple training tasks and multiple teacher model pairs. We keep a global list of important agent behaviors and update the list whenever we add a new analysis setting. The analysis of multiple teacher models enables us to have a more comprehensive list of key agent behaviors. The analysis of multiple training tasks reveals agent behaviors that are transferable across different tasks.
-
-
-
-\begin{table}[t]
-  \centering
-  \small
-  \resizebox{\columnwidth}{!}{%
-  \begin{tabular}{l ccc}
-  \toprule
-  \multirow{2}{*}{\bf Features} &
-  \multicolumn{3}{c}{\bf Training Data (Function Localization)} \\
-  \cmidrule(lr){2-4}
-  & Qwen-32B & Qwen-32B (Advanced Prompt) & Claude-3.7 \\
-  \midrule
-  \# of In-file Search Actions & \bad 0.34 & \better 1.73 & \better 1.62 \\
-  \bottomrule
-  \\
-  \toprule 
-  \multirow{2}{*}{\bf Features} &
-  \multicolumn{3}{c}{\bf SWE-Bench Verified (Easy 50)} \\
-  \cmidrule(lr){2-4}
-  & Student of Qwen-32B & Student of Qwen-32B (Advanced Prompt) & Student of Claude-3.7 \\
-  \midrule
-  \# of In-file Search Actions & \bad 1.57 & \good 2.10 & \better 7.30 \\
-  \bottomrule
-  \end{tabular}%
-  }
-  \caption{Frequency of infile keyword searching actions in the training trajectories of Qwen-32B and Claude-3.7 and the evaluation trajectories of their student models. We observe that the student models inherit the teacher's strategies in training trajectories.}
-  \label{tab:plus:prelim1}
-\end{table}
-
-
-
-
-
-\section{Overview of Proposed Methods}
-The main motivation of this project is to reveal what exact agent behaviors are important for the effectiveness of coding agent training, for both in-domain and task-transfer training.
-
-The proposed methdos consist of two parts: (1) \textbf{discovery} of candidate agent behaviors that could potentially affect performance by finding the differences between these two models' successful trajectories, and (2) \textbf{verification} of the importance of these behaviors by conducting controlled experiments to reveal their effects on distillation performance.
-
-The proposed framework that aims to address the limitations mentioned in \autoref{plus:sec:introduction} is as follows:
-for the discovery part (\autoref{plus:sec:categorization}), we categorize agent behaviors based on whether they are about high-level strategies or concrete steps. When we apply an LLM agent to discover the behaviors at different levels, we provide different types of context to the agent.
-The agent iteratively discovers new candidate behaviors based on the differences between the frontier and weaker teacher model's successful trajectories, examines whether the behaviors are well-defined and distinguishing, and discover new candidate behaviors.
-For the verification part (\autoref{plus:sec:controlled-exp}), for each candidate agent behavior, we conduct controlled experiments by editing the training trajectories to add or remove the behavior. We provide a list of rules to describe conditions where we can edit trajectories without affecting its validity. We then compare the distillation performance on the original and edited trajectories to assess the importance of the behaviors.
-We prioritize the candidate behaviors that are directly related to the key outcome of the task (e.g., the final code patch and the function and file it locates for the issue-solving task).
-We iteratively perform the discovery and verification processes until we cannot find any new candidate agent behaviors.
-
-Finally, we further extend the analysis to multiple teacher model pairs and multiple coding agent training tasks to obtain a more comprehensive list of important agent behaviors that affect distillation performance (\autoref{plus:sec:extend-exp}).
-
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=0.9\columnwidth]{plus_figs/abstraction.pdf}
-  \caption{Examples of the stages of coding tasks and the strategies to complete each stage. We design the stages by improving the task decomposition in Hybrid-Gym~\cite{hybrid-gym}, which are generally shared across different coding tasks. To define the strategies for each stage, we first use an LLM to categorize the agent steps into different stages, and then we summarize the purpose of each action. We keep improving the set of strategies when we discover agent steps that cannot be covered by existing strategies.}
-  \label{fig:plus:taxonomy}
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.6\linewidth]{CATRadar_figs/agent_behaviors/intro_half.pdf}
+    \caption{
+        To find demonstration behaviors that affect the effectiveness of training, (\textit{left}) prior works rely on human experts to manually make hypotheses, while (\textit{right}) \toolName narrows down the search space by
+        automatically 
+        discovering candidate behaviors by extracting and comparing the behaviors of different trained agents.
+    }
+    \label{catradar:fig:behavior-discovery-overview}
 \end{figure}
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{plus_figs/trajectory_comparison.pdf}
-  \caption{An example of how we represent trajectories at different abstraction levels. We show the categorization of each agent step in the format of ``stage label (strategy label)''. Note that the agent step can be categorized into multiple stages and strategies.}
-  \label{fig:plus:example}
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.6\linewidth]{CATRadar_figs/agent_behaviors/figure1.pdf}
+    \caption{
+    Across different training sets,
+    on the same sets of task instances, 
+    successful demonstrations generated by different teacher models lead to substantially different performance,
+    and higher teacher performance does not necessarily transfer to better student performance.
+    }
+    \label{catradar:fig:different-teacher}
 \end{figure}
 
 
-\section{Proposed Method 1: Candidate Agent Behavior Discovery for Different Abstraction Levels}
-\label{plus:sec:categorization}
-\subsection{Proposed Method}
-Previous work and our preliminary experiments discover candidate agent behaviors by presenting the entire successful trajectories generated by two teacher models as context to an LLM agent and prompting it to discover different behaviors, which is still challenging for the agent.
-Towards this challenge, our key intuition is that agent behaviors arise at different abstraction levels, and discovering them does not always require access to the full trajectory.
-For example, we only need the high-level summary of the trajectory to identify whether an agent repeatedly performs verification after implementation.
-Another example is that to compare the strategy used by the agent to localize a function, we only need to look at the function localization steps rather than the entire trajectory.
+We thus would like to answer the question: \emph{what are the demonstration behaviors that affect coding agent training performance?}
+Existing research presents manually defined rubrics on agent behaviors and empirically examines their impact on training~\citep{terminal-lego,openhands-rubric-critique,hybrid-gym}.
+However, the space of coding agent behaviors is vast and open-ended, ranging from high-level problem-solving strategies to low-level tool-use patterns.
+The influence of a behavior could also vary across training configurations and base models.
+Manually enumerating behavioral hypotheses lacks scalability and human expertise may be limited to specific experimental settings.
 
-In summary, we categorize agent behaviors into three abstraction levels: \textbf{stage-level}, \textbf{stage-strategy-level}, and \textbf{step-level}, which enables us to design different types of context for the LLM agent to discover the behaviors at different levels.
-
-
-\start{Represent Trajectories at Different Abstraction Levels}
-The categorization of agent behaviors is based on how we represent each agent step at different abstraction levels.
-In particular, as shown in \autoref{fig:plus:taxonomy}, we define:
-\begin{itemize}
-  \item \textbf{The Stage of Coding Tasks}: Build upon the analysis of Hybrid-Gym~\cite{hybrid-gym}, we pre-define the stages that are shared across different coding tasks: planning, repository discovery (e.g., checking the structure of the repository), file localization, code-line localization, code reproduction, solution implementation, and solution verification. Based on the analysis in Hybrid-Gym, the stages are shared across three downstream coding tasks: issue-solving, test generation, and library construction, and four synthetic training tasks: function localization, issue localization, dependency search, and function generation.
-  \item \textbf{The Strategy to Complete a Stage}: For each stage, we define the strategy to complete the stage. 
-  Specifically, we first use an LLM to categorize the agent steps into different stages, and then we summarize the purpose of each action. We keep improving the set of strategies when we discover agent steps that cannot be covered by existing strategies.
-  For instance, for the code-line localization stage, the strategy includes searching for keywords inside candidate files, reading the candidate files, executing relevant code and observing the error message, etc.
-\end{itemize}
-
-As shown in \autoref{fig:plus:example}, given a set of trajectories, we assign a stage label and a strategy label to each agent step. 
-We iteratively update the categories when we conducting new analyses and discovering new agent behaviors.
-We keep adding new stages or strategies if we find agent steps that are not covered by the existing categories.
-We can also break down a category into smaller categories if we find that it is too broad.
+In this paper, we present \toolName, an automatic analysis method to efficiently discover candidate behaviors in training demonstrations that could potentially affect \textbf{C}oding \textbf{A}gent \textbf{T}raining performance.
+We leverage an LLM agent to automatically define, extract, and compare the behaviors of coding agents trained on different data sources that have different performances.
+We only keep candidate behaviors that are well-defined and can distinguish the two agents we compare.
+After \toolName narrows down the search space of behaviors, we examine the impact of those candidate behaviors through controlled interventions on the presence of each behavior in the training data.
 
 
-
-\start{Agent Behaviors at Different Abstraction Levels}
-We categorize the agent behaviors based on which abstraction level of trajectory they are be represented at.
-\begin{itemize}
-  \item \textbf{Stage-level Behaviors}: the presence, order, or transition of different stages in the trajectory.
-  For example, as shown in \autoref{fig:plus:example}, Claude-3.7 has a ``solution verification'' stage after ``solution implementation''.
-  % transits from the ``file localization'' stage to the ``function localization'' stage only when the number of candidate files is reduced to a limited number.
-  \item \textbf{Stage-strategy-level Behaviors}: the presence, order, or transition of different strategies to complete a particular stage.
-  For example, as shown in \autoref{fig:plus:example}, for the function localization stage, Claude-3.7 performs several keyword searching actions that present both the file and the located lines of code. Then it perform file-reading actions to read the corresponding lines.
-  \item \textbf{Step-level Behaviors}: properties of the specific messages generated by the agent. For instance, the agent correctly uses the ``file-editing'' tool to generate code patches with no errors and retries. Another example is that the agent generates long reasoning before generating the actions.
-\end{itemize}
-
-Note that in Hybrid-Gym~\cite{hybrid-gym} (\autoref{chap:hybrid-gym}), we present three principles for effective task design: (1) the tasks should generate a code patch as the outcome, (2) the tasks should involve a meaningful repository-exploration phase, and (3) the tasks should require non-trivial reasoning.
-The first principle can be translated to a stage-strategy-level behavior: (1) the ``solution implementation'' stage must contain a ``file-editing'' process.
-The other two principles can be translated to stage-level behaviors: (2) the trajectory contains the ``repository discovery'', ``file localization'', or ``code-line localization'' stages, and (3) the trajectory contains the ``planning'' stage, which are all stage-level behaviors. 
-In this study, we aim to improve the analysis and find a more comprehensive set of important agent behaviors from all the three levels.
+We apply \toolName to 8 teacher models and 3 student models for two training tasks: R2EGym \citep{R2EGym} and Hybrid-Gym \citep{hybrid-gym}.
+Guided by \toolName, we examine the impact of 10 behaviors of coding agent demonstrations and 7 of them are shown to positively affect at least one model's performance.
+As shown in \autoref{catradar:fig:behavior-discovery-overview}, such influential behaviors include specific repo-exploration strategies, planning and verification patterns, and the verbosity of reasoning text.
 
 
-\start{Discovering Candidate Agent Behaviors at Different Abstraction Levels}
-Similar to the preliminary experiments, we use an LLM agent to discover different agent behaviors in the two sets of trajectories.
-In addition to access to the entire trajectories, we provide different context for the discovery of behaviors at different levels.
-For stage-level behaviors, we provide the trajectories that are abstracted with the stage labels.
-For stage-strategy-level behaviors, we provide the steps in the trajectories that belong to a particular stage. We additionally provide the strategy labels of these steps.
-For step-level behaviors, we do not provide additional context other than the full trajectories, but we explicitly prompt the LLM agent to focus on the content of the single step.
-
-The agent iteratively discovers new candidate behaviors based on the differences between the frontier and weaker teacher model's successful trajectories, examines whether the behaviors are well-defined and distinguishing, and discovers new candidate behaviors.
-
-
-\subsection{Proposed Experiments}
-We follow the preliminary experiments and compare the trajectories generated by a frontier and a weaker teacher model (e.g., Claude-3.7 and Qwen2.5Coder-32B). We start with training on the function localization task and evaluating on the SWE-Bench Verified issue-solving dataset. We will then extend the analysis to multiple teacher model pairs and multiple coding agent training tasks, which will be introduced in \autoref{plus:sec:extend-exp}.
-
-Since the goal is to discover the agent behaviors that lead to the different distillation performances, we examine the two properties of each candidate agent behavior we discover: (1) Well-defined. (2) Distinguishing.
-
-\start{Verification of Well-defined Agent Behaviors}
-An agent behavior is well-defined if there exists a deterministic method to determine whether a trajectory contains the behavior. Furthermore, the behavior can be represented by a binary feature. For instance, the agent behavior ``using keyword searching to locate functions inside files'' is well-defined, but the agent behavior ``has comprehensive repository exploration'' is not, because it is ambiguous and does not have a precise operational definition.
-
-For each candidate behavior, we use an LLM-based annotator to determine whether the behavior is present in a trajectory. The annotator outputs one of three labels: \texttt{present}, \texttt{absent}, or \texttt{unable\_to\_determine}. The annotation prompt includes the behavior definition and the formatted trajectory. To reduce annotation noise, we use a fixed prompt template and keep the annotator model unchanged across all experiments. 
-We additionally validate the LLM annotations based on its agreement with human annotations on a small subset of trajectories.
-
-To verify whether a candidate agent behavior is well-defined, we randomly sample $k$ instances where both of the two teacher models generate a successful trajectory, and apply the LLM-based annotator to all of the $2k$ trajectories. We compute the rate of \texttt{unable\_to\_determine} outputs for that behavior. We only retain behaviors whose indeterminate rate is below a threshold $\tau$ (e.g., $5\%$).
-
-
-\start{Verification of Distinguishing Agent Behaviors}
-To verify whether an agent behavior is distinguishing, similar to the above experiment, we randomly sample $k$ successful trajectories from each of the two teacher models and apply the LLM-based annotator to all of the $2k$ trajectories.
-
-For each well-defined behavior, we define a binary feature for each trajectory: 1 the behavior is present in trajectory, and 0 otherwise.
-We then test whether the prevalence of this behavior differs significantly between the two teacher models. Since this feature is binary, we use a chi-square test as the statistical test. 
-
-Specifically, we construct a $2 \times 2$ contingency table over \{teacher model A, teacher model B\} and \{behavior present, behavior absent\}, and compute a p-value for the null hypothesis that the behavior occurs at the same rate in both models. We retain behaviors with a p-value below a threshold $\delta$ (e.g., $0.05$).
-
-
-
-\section{Proposed Method 2: Controlled Experiments based on Trajectory Editing}
-\label{plus:sec:controlled-exp}
-\subsection{Proposed Method}
-The goal of this part is to verify whether particular agent behaviors affect distillation performance.
-A main limitation of the preliminary experiments is that, even if we prompt the teacher model to exhibit or avoid a target behavior, the model may not reliably follow the instruction. 
-
-To address this limitation, we propose to conduct controlled experiments by directly editing the training trajectories to add, remove, or modify a target behavior whenever such editing is feasible.
-
-The key intuition behind trajectory editing is that we only focus on trajectories that \emph{successfully} solve the task.
-If an agent successfully solves the task, it is also likely to produce the \emph{essential intermediate outcomes} when completing the task.
-For example, in the function localization task, where the agent must identify a target function from its description and generate a docstring for it, it is likely that the agent sees the target filename and the function content in some of the action outputs, and there must exist a step that edits the target function.
-This observation makes it possible to edit some behaviors locally while preserving the overall consistency of the problem-solving process, as long as the edited part is producing the same essential intermediate outcome.
-In other words, trajectory editing is suitable for behaviors that do not alter the essential intermediate outcome, but only changes \emph{how} the agent reaches or expresses that outcome.
-
-
-
-\start{Principles of Trajectory Editing}
-The main challenge of trajectory editing is to ensure that the edited trajectory remains \emph{consistent}. Here, consistency means that the edited trajectory still constitutes a valid successful problem-solving process, where (1) at least one step must still produce the final task outcome (e.g., a code patch that satisfies the task requirements), and (2) each step must have sufficient information from the previous context to justify its action.
-
-We define a set of rules describing when trajectory steps can be added, removed, or modified without affecting the trajectory's consistency:
-\begin{itemize}
-    \item \textbf{Equivalent step substitution.} If two sets of agent steps require the same context and produce the same essential intermediate outcome, then one can be substituted for the other without affecting trajectory consistency. For example, in the file localization stage, the agent may perform search with different keywords. As long as target file appears in the search results, we can substitute the search steps.
-    
-    \item \textbf{Removal of steps without essential information.} Steps that do not provide necessary information for any subsequent step can be removed. To automatically identify such steps, we feed the trajectory to an LLM and prompt it to identify whether each step requires information from any previous steps.
-    Examples of steps without essential information include file-search actions that do not lead to relevant results, verification of the generated code patch after it is already applied, or any actions that are failed to applied because the syntax is incorrect. 
-    Note that removing such steps may make some later actions appear less well-motivated or less sound, but the trajectory still remains consistent.
-    
-    \item \textbf{Editing textual content.} The textual content of a step can be modified as long as the revised content remains consistent with the previous context. The reason is that only the action generated by the agent will be executed, and the execution output is not affected by the textual content.
-    For instance, an action rationale may be rewritten to be more concise, or a message may be rephrased without changing the information it conveys.
-\end{itemize}
-
-We would like to note that these rules serve as an initial set of editing principles rather than a complete characterization. 
-As the project progresses, we will introduce additional editing rules when new trajectory patterns and edge cases are identified.
+Furthermore, we demonstrate that finding such influential behaviors can lead to actual performance gains by various methods, including data selection, agent step synthesis, and behavior-conditioned rollout.
+For instance, we demonstrate that data selection based on the repo-exploration strategies we discover improves all three student models on SWE-Bench Verified~\citep{swebench} (e.g., improving the resolved rate of Qwen3-8B from 4.8\% to 11.6\%).
+We also discover that simply adding 4 LLM-synthesized planning steps to each demonstration improves the resolved rates of all three student models (e.g., improving Qwen3-8B's resolved rate from 11.6\% to 17.6\%).
 
 
 
 
-
-\start{Examples of Controlled Experiment Design based on Trajectory Editing}
-In \autoref{tab:plus:controlled-editing-examples}, we provide examples of how to design controlled experiments to verify the importance of a particular candidate agent behavior. Each example corresponds to a principle of trajectory editing we defined above.
-
-% Candidate agent behavior: (stage-strategy-level) when locating specific lines of code, only perform file reading when the number of candidate files is reduced to a limited number.
-% Controlled experiment design: given two trajectories, where one of them starts file reading when the number of candidate files is still large, as shown in \autoref{fig:plus:example}, we replace its file localization steps with the ones in the other trajectory, and train a student model on the edited trajectory.
-
-% Candidate agent behavior: (stage-level) the agent verifies the solution after implementation.
-% Controlled experiment design: we remove all the solution verification steps, and train a student model on the edited trajectory.
-
-% Candidate agent behavior: (step-level) the agent uses the file-editing tool correctly, with no errors and retries.
-% Controlled experiment design: we remove all the failed file-editing actions and their execution outputs, and train a student model on the edited trajectory.
+\begin{figure*}[!t]
+    \centering
+    \includegraphics[width=\linewidth]{CATRadar_figs/agent_behaviors/framework.pdf}
+    \caption{
+    Overview of the \toolName automatic behavior discovery framework (\S\ref{catradar:sec:rubric-discovery}).
+    We run two trained coding agents on the same task instances, use a discovery agent to propose behavioral differences with a well-defined judge metric, and verify the distinguishability of each behavior by fitting a logistic regression.
+    }
+    \label{catradar:fig:method-overview}
+\end{figure*}
 
 
 
-\begin{table}[t]
-  \centering
-  \small
-  \begin{tabular}{p{0.3\textwidth} p{0.65\textwidth}}
-  \toprule
-  \textbf{Candidate Agent Behavior} & \textbf{Controlled Experiment Design} \\
-  \midrule
-  
-  \textit{(Stage-strategy-level)} When localizing specific lines of code, the agent only begins file reading after the number of candidate files has been reduced to a limited set. 
-  &
-  Given two successful trajectories, if one trajectory starts file reading while the candidate file set is still large, we replace its file-localization steps with the corresponding steps from another trajectory that first narrows down the candidate files before reading them. We then train a student model on the edited trajectory set and compare its distillation performance with that of a model trained on the original trajectories.
-  \\[0.8em]
-  
-  \textit{(Stage-level)} The agent performs solution verification after implementation.
-  &
-  We remove all solution-verification steps from otherwise successful trajectories, while keeping the implementation steps and final successful outcome unchanged. We then train a student model on the edited trajectory set and compare its distillation performance against that of a model trained on the original trajectories.
-  \\[0.8em]
-
-  \textit{(Step-level)} The agent generates long reasoning before generating the actions (more than 30 tokens).
-  &
-  We prompt an LLM to elaborate the textual part in the agent steps so that the reasoning remains the same but the length is longer than 30 tokens. We then train a student model on the edited trajectory set and compare its distillation performance.
-  \\
-  
-  % \textit{(Step-level)} The agent uses the file-editing tool correctly, with no errors or retries.
-  % &
-  % We remove failed file-editing actions and their corresponding execution outputs from successful trajectories, while preserving the final successful edit and all required preceding context. We then train a student model on the edited trajectory set and compare its distillation performance against that of a model trained on the original trajectories.
-  % \\
-  
-  \bottomrule
-  \end{tabular}
-  \caption{Examples of candidate agent behaviors and the corresponding controlled experiment designs based on trajectory editing.}
-  \label{tab:plus:controlled-editing-examples}
-  \end{table}
+\section{Analysis Method: Discovering Influential Behaviors of Demonstrations}
+\autoref{catradar:fig:different-teacher} shows that coding agents trained on demonstrations produced by different models can achieve different performances, but the success rates of the demonstrations cannot explain the performance gap.
+We hence hypothesize that there exist a set of properties of \textbf{how} the final results are achieved that account for the performance gap, which we denote as \textbf{influential behaviors}.
+Identifying such behaviors is challenging because the space of coding agent behaviors is vast, spanning from high-level problem-solving strategies to low-level implementation details.
+In this section, we first present \toolName (\S\ref{catradar:sec:rubric-discovery}) to automatically narrow down the space of candidate behaviors by discovering the different behaviors of coding agents with different performances.
+We then conduct controlled data intervention experiments (\S\ref{catradar:sec:controlled-exp}) to empirically examine the impact of the candidate behaviors we discovered.
+We released the code of the \toolName framework and all the data intervention experiments we designed.
 
 
+\subsection{\toolName: Automatic Candidate Behavior Discovery}
+\label{catradar:sec:rubric-discovery}
 
-\start{The Fallback Method: Prompt Engineering and Data Filtering}
-Note that not all behaviors can be easily added or removed from the trajectory.
-In such cases, we fallback to the prompt engineering and data filtering method, as introduced in the preliminary experiments.
-Specifically, we rewrite the trajectory-generation prompt to encourage or discourage the target behavior, and then generate new trajectories under the modified prompt. Finally, we conduct data filtering and only keep trajectories that have or do not have the target behavior.
+\autoref{catradar:fig:method-overview} shows the overview of \toolName.
 
+\start{Rollout and Discover Distinguishing Behaviors}
+We run two coding agents on the same set of task instances and provide their trajectories, paired by instance, to a discovery agent (e.g., Claude-Opus-4.7).
+We prompt the discovery agent to discover different \emph{behaviors} between the two agents, where each behavior is defined by a judge metric that specifies a rule for computing either a numerical or a categorical value for each trajectory.
+\autoref{catradar:tab:distinct-behaviors} presents examples of behaviors and their associated judge metrics.
+We only retain the behaviors with a \textbf{well-defined} judge metric that can either be computed by a deterministic script or scored by an LLM judge with high consistency.
+Both are generated by the discovery agent and manually examined.
+We check consistency by applying the LLM judge to the same set of examples for multiple times.
 
-In case we found a large number of candidate behaviors that could potentially affect distillation performance, we prioritize the candidate behaviors that are directly related to the key outcome of the task (e.g., the final code patch and the function and file it locates for the issue-solving task).
-We iteratively perform the discovery and verification processes until we cannot find any new candidate agent behaviors.
+\start{Verify Distinguishability}
+Given a candidate behavior and its associated judge metric, we compute the metric score for each trajectory based on its definition.
+Then we treat each trajectory as one observation and fit a separate logistic regression, with agent identity (i.e., the agent that produces the trajectory) as the dependent variable and the judge metric score as the predictor, where we encode categorical values with indicator variables.
+We label $N=50$ trajectories for each agent and consider the behavior to be \textbf{distinguishing} if the Wald test rejects the null hypothesis with p-value$<0.01$.
+
+\start{Scale Up}
+We add all well-defined behaviors that pass the distinguishability test to the candidate behavior list and repeat the discovery-and-verification procedure for at most $k=5$ iterations per task set and agent pair.
+In each subsequent iteration, we provide the discovery agent with all existing behaviors and prompt it to identify additional differences.
+We repeat this procedure across multiple training tasks and agent pairs.
+We manually review and prioritize the retained behaviors for the data intervention experiments (\S\ref{catradar:sec:controlled-exp}) to examine their impact on the training performance.
 
 
 
-\subsection{Proposed Experiments}
-For each candidate behavior, we construct two training sets with the same number of trajectories: a \emph{control} set that preserves the original trajectories, and an \emph{edited} set in which the candidate behavior is added or removed.
-We train a student model on each of the two training sets, with all hyper-parameters fixed.
-We then compare the two student models on downstream coding tasks (e.g., the SWE-Bench Verified issue-solving task) to determine whether editing the behavior leads to a measurable change in performance.
 
-To reduce variance, we repeat each training comparison with multiple seeds (e.g., three seeds) and report the mean and variance of the distillation performance. We then test whether the edited and original conditions differ significantly using a two-tailed t-test.
+\begin{table*}[!t]
+    \centering
+    \resizebox{\linewidth}{!}{
+    \begin{tabular}{>{\raggedright\arraybackslash}m{4.5cm} >{\raggedright\arraybackslash}m{10cm} >{\centering\arraybackslash}m{0.7cm} >{\centering\arraybackslash}m{0.7cm} >{\centering\arraybackslash}m{0.7cm} >{\centering\arraybackslash}m{0.7cm} }
+        \toprule
+        \bf Behavior & \bf Judge Metric & LEGO & Hybrid & Others & \bf Ours \\
+        \midrule
+        Multi-round search & Run keyword searching commands for $\geq 2$ times &  &  &  & \cmark \\
+        Has fine-grained keywords & Search for fine-grained keywords (e.g., specific filenames) instead of only broad keywords (e.g., \texttt{def} or \texttt{class}) &  &  &  & \cmark \\
+        Limit target files before read & Limit the candidates to $\leq 30$ files before reading any file &  &  &  & \cmark \\
+        Use task-tracker & Use the \texttt{\textless function=task\_tracker\textgreater} tool for explicit reasoning &  &  &  & \cmark \\
+        Verify after edit & Has verification steps after the final file-editing action & \cmark &  &  & \cmark \\
+        Use think & Use the \texttt{\textless function=think\textgreater} tool for explicit reasoning &  &  &  & \cmark \\
+        Reasoning text verbosity & The length of the text part outside tool calls &  & \cmark &  & \cmark \\
+        Stuck in loop & Try different commands after failing for 3 times & U &  &  & U \\
+        Exploration length & The number of actions before the first file-editing action ($\geq$ 16: high; 6--15: medium; $\leq$ 5: low) &  &  &  & U \\
+        Trajectory length & Has $\leq 7$ agent actions: short; $\geq 8$ agent actions: long & U & \cmark & \cmark & U \\
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{Some of the behaviors discovered and examined by our framework. 
+    We present the full list of candidate behaviors in \S\ref{catradar:sec:full-candidate-behaviors}.
+    We use ``\cmark'' to indicate that the behavior is shown to be relevant to the final performance for some student models in related works and use ``U'' to indicate that the behavior is tested but not shown to be relevant.
+    ``LEGO'' \citep{terminal-lego}, ``Hybrid'' \citep{hybrid-gym}, and ``Others'' refer to existing works.}
+    \label{catradar:tab:distinct-behaviors}
+\end{table*}
 
-We only keep the agent behaviors where the distillation performance on the two training sets are significantly different.
+
+
+\subsection{Data Intervention Methods}
+\label{catradar:sec:controlled-exp}
+This section aims to isolate and measure the impact of each candidate behavior discovered in \S\ref{catradar:sec:rubric-discovery} on the training performance.
+We introduce two complementary intervention methods that control the presence of a target behavior while minimizing changes to other properties of the demonstrations.
+For both methods, we consider a behavior to be \textbf{influential} if the presence or absence of the behavior leads to a substantial performance change.
+
+
+\start{Trajectory Post-Editing}
+This method adds, modifies, or removes one or more trajectory steps to control the presence of a target behavior, which can be performed by deterministic rules or an LLM.
+One example is to remove the ``verify after edit'' behavior (as defined in \autoref{catradar:tab:distinct-behaviors}) from a trajectory by identifying the final file-editing action by pattern matching and removing all subsequent steps.
+
+One major challenge is to only conduct edits that preserve \emph{trajectory consistency}: every retained step must remain supported by its preceding context.
+Here we provide a non-exhaustive list of classes of edits that preserve consistency:
+(1) Interchanging two sequences of steps that produce the same intermediate results that are crucial for resolving the task (e.g., two search sequences that both locate the target file);
+(2) Removing steps whose outputs and state effects are not required by subsequent actions, such as unsuccessful searches whose results do not appear in subsequent actions; and
+(3) Modifying steps that neither change the environment state nor provide information to subsequent actions, including steps that contained only chain-of-thought reasoning text and actions that are not executed due to wrong syntax.
+
+
+\start{Behavior-Conditioned Trajectory Generation}
+For behaviors that are difficult to manipulate through local edits, we generate new demonstrations for the same task instances by prompting the agent to exhibit the target behavior.
+To limit differences unrelated to the target behavior, we retain an original-generated trajectory pair only if both trajectories successfully solve the task and reach the same set of essential intermediate results, which are pre-defined based on the task.
+For example, in the issue-solving task, we require the original and newly generated trajectories to identify the exact same set of target files and pass all the unit tests.
+
+
+\begin{figure}[!t]
+    \centering
+    \begin{subfigure}[t]{0.3\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{CATRadar_figs/agent_behaviors/teacher_acc_student_acc.pdf}
+        \caption{Teacher performance}
+        \label{catradar:fig:teacher-acc-student-acc}
+    \end{subfigure}
+    % \hfill
+    \begin{subfigure}[t]{0.3\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{CATRadar_figs/agent_behaviors/teacher_len_student_acc.pdf}
+        \caption{Trajectory length}
+        \label{catradar:fig:teacher-len-student-acc}
+    \end{subfigure}
+    \caption{Student performance (Qwen2.5Coder-7B) is not significantly correlated with trajectory-level features such as teacher success rate or trajectory length.}
+    \label{catradar:fig:metric-student-correlations}
+\end{figure}
+
+
+\section{Analysis Results: What Behaviors Affect Coding Agent Training?}
+\label{catradar:sec:analysis-results}
+
+This section presents the analysis results of the \toolName method.
+As a proof of concept, we focus on the distillation setting. 
+In principle, \toolName can also be applied to other settings such as self-training or reinforcement learning.
+
+\start{Experimental Setup}
+We conduct analysis on both in-domain training: the R2E-Gym issue-solving dataset~\citep{R2EGym}, and transfer learning: the Hybrid-Gym function localization dataset~\citep{hybrid-gym}, with SWE-Bench Verified~\citep{swebench} as the evaluation dataset.
+We adopt the distillation setting and apply \toolName to 8 teacher models and 3 student models, as described in \S\ref{catradar:sec:analysis-setup}.
+We use the OpenHands agent harness~\citep{openhands} for all the experiments.
+Since the impact of one behavior may depend on other factors such as other teacher behaviors or the student's capabilities, when we conduct data intervention experiments and compare the performance with the original data (\S\ref{catradar:sec:controlled-exp}), we experiment on multiple training tasks, teacher models, and student models (if applicable).
+
+\subsection{\smalltoolName Discovers Diverse Candidates}
+\label{catradar:sec:distinct-behaviors}
+\autoref{catradar:tab:distinct-behaviors} summarizes the candidate behaviors discovered by \toolName and examined in our experiments, along with their definitions. Compared with the behaviors that are manually hypothesized and examined in prior work, \toolName discovers a broader range of behaviors of diverse granularity, spanning trajectory-level features, problem-solving strategies, and tool-use patterns.
+Our experiments show that 7 of the 10 behaviors affect student performance in at least one combination of student model, teacher model, and training dataset. Some of these findings are also consistent with prior work. For instance, Terminal-LEGO~\citep{terminal-lego} shows that verification steps in training improve performance. \toolName also discovers ``verify after edit'' as a potentially important behavior.
 
 
 
-\section{Proposed Method 3: Extend to Multiple Models and Tasks}
-\label{plus:sec:extend-exp}
-\subsection{Proposed Method}
-As an extension of the preliminary experiments, we propose to apply the analyses in \autoref{plus:sec:categorization} and \autoref{plus:sec:controlled-exp} to multiple teacher-model pairs and multiple coding-agent training tasks. The goal is to obtain a more comprehensive list of desired agent behaviors that affect distillation performance, and to verify whether the behaviors are transferable across different tasks.
+\subsection{Trajectory-Level Features are Not Good Indicators of Training Effectiveness}
+\label{catradar:sec:traj-features}
+Longer trajectories are commonly viewed as more useful training examples because they provide the model more information~\citep{swe-play}.
+Under the setting of distillation, it is also a common belief that strong models often produce stronger students~\citep{swegym}. 
 
-The final outcome of this project will include:
-\begin{itemize}
-  \item a set of desired agent behaviors that have a positive effect on distillation performance;
-  \item for each training task, a checklist over teacher models showing the proportion of successful trajectories that contain each desired behavior;
-  \item a checklist over training tasks showing the proportion of successful trajectories that contain each desired behavior. Here we only consider the trajectories generated by the strongest teacher model.
-\end{itemize}
-
-Through this analysis, we expect to find that (1) teacher models with weak distillation performance are missing one or more of the desired behaviors identified in our controlled experiments, and (2) at least a subset of these desired behaviors are shared across different coding-agent training tasks. 
+Our results challenge both assumptions. As shown in \autoref{catradar:fig:metric-student-correlations} and \autoref{catradar:fig:exp-len-correlation}, none of the trajectory-level features we examine is significantly correlated with student performance. 
+Our hypothesis is that longer trajectories may reflect overly complicated problem-solving strategies, which may not be suitable for the student model.
+Similarly, a stronger teacher model's strategies may rely on its sophisticated context understanding abilities, which are difficult to transfer to the student model, making the learned strategies less effective.
 
 
-\subsection{Proposed Experiments}
-We propose to repeat the analyses in \autoref{plus:sec:categorization} and \autoref{plus:sec:controlled-exp} by comparing Claude-3.7 with several weaker teacher models from different model families: GPT-5-mini~\cite{gpt5}, Gemini-3.1-Flash-Lite~\cite{gemini3flash}, and Qwen2.5-Coder-32B~\cite{qwen25coder}. 
-We choose these models in part based on serving cost, with the goal of focusing on teacher models that are substantially cheaper than Claude-3.7, yet still capable of producing successful trajectories for meaningful comparison.
 
-We further propose to conduct these comparisons across a diverse set of training tasks, including SWE-Gym issue solving~\cite{swegym}, Hybrid-Gym function localization and function generation~\cite{hybrid-gym}. 
-All the tasks are shown to be effective for generalizing to the issue-solving task.
-This enables us to verify whether the desired behaviors are transferable across different tasks.
+
+\begin{table}[!t]
+    \centering
+    \resizebox{0.6\linewidth}{!}{
+    \begin{tabular}{
+        >{\raggedright\arraybackslash}m{9.6cm} 
+        }
+        \toprule
+        \blrow \textbf{[Case 1]} Multi-Search: \cmark \quad Target-Read: \textcolor{textRed}{\xmark} \quad Suff-Explore: \cmark \\
+        \begin{tabular}{@{}p{7.3cm}@{\quad}c@{\enspace}l@{}}
+            \texttt{grep -r ``def '' --include='*.py' .} & $\rightarrow$ & \textcolor{textRed}{\bf 1771} files \\
+            Search for keywords ``model'' & $\rightarrow$ & \textcolor{textRed}{\bf 105} files \\
+            Read \texttt{core/optimizers/function\_marker.py} & $\rightarrow$ & ...
+        \end{tabular} \\
+        \\
+        \blrow \textbf{[Case 2]} Multi-Search: \textcolor{textRed}{\xmark} \quad Target-Read: \cmark \quad Suff-Explore: \cmark \\
+        \begin{tabular}{@{}p{7.3cm}@{\quad}c@{\enspace}l@{}}
+            \texttt{grep -r ``node'' --include='*.py' .} & $\rightarrow$ & \textcolor{textGreen}{\bf 6} files \\
+            Read \texttt{core/optimizers/function\_marker.py} & $\rightarrow$ & ...
+        \end{tabular} \\
+        \\
+        \blrow \textbf{[Case 3]} Multi-Search: \cmark \quad Target-Read: \cmark \quad Suff-Explore: \cmark \\
+        \begin{tabular}{@{}p{7.3cm}@{\quad}c@{\enspace}l@{}}
+            \texttt{grep -r ``model'' --include='*.py' .} & $\rightarrow$ & \textcolor{textRed}{\bf 105} files \\
+            \texttt{grep -r ``node'' --include='*.py' .} & $\rightarrow$ & \textcolor{textGreen}{\bf 6} files \\
+            Read \texttt{core/optimizers/function\_marker.py} & $\rightarrow$ & ...
+        \end{tabular} \\
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{A case study showing that demonstrations with different repo-exploration strategies can all be labeled as ``sufficient exploration'' by the LLM judge.
+    }
+    \label{catradar:tab:localize-case}
+\end{table}
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.6\linewidth]{CATRadar_figs/agent_behaviors/task_tracker_ablation.pdf}
+    \caption{Planning steps in demonstrations have different effects on different models. 
+    We \textbf{highlight} significant performance changes after removing all task-tracker actions from demonstrations (with p-value $< 0.05$).
+    }
+    \label{catradar:fig:tracker-ablation}
+\end{figure}
+
+
+
+\subsection{\toolName Discovers Effective Problem-Solving Strategies}
+\label{catradar:sec:repo-exploration}
+Prior work shows that demonstrations should include a non-trivial repository-exploration stage and leverage an LLM judge to check whether it conducts sufficient exploration \citep{hybrid-gym}.
+However, it does not specify \emph{how} the exploration is conducted.
+Instead, \toolName goes a step further by identifying two concrete exploration strategies: 
+\textbf{Multi-Search}, which searches for multiple keywords iteratively, and
+\textbf{Target-Read}, which only reads a file after narrowing down the target to a few files.
+As shown in \autoref{catradar:tab:localize-case}, the two strategies we discovered capture more fine-grained information than the high-level rubric used in prior works.
+
+
+We think these two strategies are potentially useful for training for the following reasons:
+by having multiple search actions in the demonstrations, the agent is trained to try different keywords if the previous ones are too broad or fail to match any files.
+``Target-Read'' teaches the model not to blindly read files with low relevance, which improves the efficiency of localizing the target file.
+We will show in \S\ref{catradar:sec:data-selection} and \S\ref{catradar:sec:prompt-tuning} that demonstrations containing these specific strategies improve training performance.
+
+
+
+
+
+
+\begin{table*}[!t]
+    \centering
+    \resizebox{\linewidth}{!}{
+        \begin{tabular}{lccccccccccccc}
+            \toprule
+            \multirow[b]{2}{*}{\makecell{\textbf{Teacher Model} \\ (Hybrid-Gym)}}
+            & \bf Teacher
+            & \multicolumn{4}{c}{\bf Qwen2.5Coder-7B} & \multicolumn{4}{c}{\bf Qwen3-4B} & \multicolumn{4}{c}{\bf Qwen3-8B} \\
+            \cmidrule(lr){2-2} \cmidrule(lr){3-6} \cmidrule(lr){7-10} \cmidrule(lr){11-14}
+            & \bf \# Verify
+            & \bf \# Verify & \bf Res\% & \bf Loc\% & \bf Patch\%
+            & \bf \# Verify & \bf Res\% & \bf Loc\% & \bf Patch\%
+            & \bf \# Verify & \bf Res\% & \bf Loc\% & \bf Patch\% \\
+            \midrule
+            Opus-4.5 & \bf 4.4 & \bf 13.3 & \bf 13.6 & \bf 42.8 & \bf 57.2 & \bf 11.6 & 16.0 & 43.0 & 55.0 & \bf 14.4 & \bf 17.2 & \bf 41.4 & \bf 54.6 \\ 
+            \quad Remove Verify & 0.0 & 8.9 & 11.0 \sigdown{-2.6} & 39.6 & 53.0 & 7.0 & \textbf{18.6} \sigup{+2.6} & \bf 46.4 & \bf 60.2 & 7.7 & 15.8 \down{-1.4} & 37.4 & 50.9 \\ 
+            \addlinespace
+            Opus-4.7 & 1.1 & 4.3 & 9.4 & 32.8 & 47.8 & 4.7 & 12.2 & 33.4 & 46.8 & 9.3 & 11.6 & 30.2 & 45.4 \\ 
+            \quad Add Verify & \bf 4.2 & \bf 11.2 & \textbf{10.8} \up{+1.4} & \bf 34.0 & \bf 54.2 & \bf 9.9 & \textbf{13.4} \up{+1.2} & \bf 38.4 & \bf 50.8 & \bf 15.2 & \textbf{15.0} \sigup{+3.4} & \bf 36.2 & \bf 50.8 \\ 
+            \bottomrule
+        \end{tabular}
+    }
+    \caption{Verification procedure in a simple training task (e.g., function localization) transfers to more complex tasks (e.g., issue-solving). However, the effect of verification steps depends on the student and teacher model. 
+    We highlight significant \ctext{applegreen!25}{increases} and \ctext{red!16}{decreases} in resolved rates (with p-value $< 0.05$).}
+    \label{catradar:tab:verification-ablation}
+\end{table*}
+
+
+
+\subsection{Planning Steps have Different Effects on Different Models}
+\toolName discovers that the planning pattern also vary across different demonstrations.
+For instance, OpenHands has a ``task-tracker'' tool that creates and keeps a to-do list for the task, which is frequently used by some agents but not others.
+Intuitively, the task-tracker tool assists high-level planning and plays a similar role as chain-of-thought reasoning~\citep{CoT}, which conducts explicit reasoning to guide the agent's decision-making process.
+
+To examine whether the usage of task-tracker affects the performance, we directly remove all the task-tracker actions from the demonstrations and train the model. 
+We additionally query an LLM to rewrite the text that explicitly refer to the removed steps to maintain the consistency of the trajectory.
+
+However, results in \autoref{catradar:fig:tracker-ablation} show that having more planning steps in training does not always improve performance.
+On the demonstrations generated by Claude-Opus-4.5, the presence of task-tracker steps improves the performance of Qwen2.5Coder-7B and Qwen3-8B, while degrading the performance of Qwen3-4B.
+One possible explanation is that the 4B model has lower capacity and could benefit more from simpler and more straightforward demonstrations, while the larger models can better exploit complex reasoning patterns.
+We will further show in \S\ref{catradar:sec:synthetic-steps} that inserting LLM-synthesized task-tracker steps improves both the 7B and 8B models.
+
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.6\linewidth]{CATRadar_figs/agent_behaviors/verbosity.pdf}
+    \caption{When the verbosity of reasoning text increases (including non-tool-call text and content of the ``think'' actions), the trajectory length in general increases, and the performance first increases and then decreases.}
+    \label{catradar:fig:verbosity}
+\end{figure}
+
+
+
+
+\subsection{Verification Abilities Transfer from Simple Tasks to Complex Tasks}
+\label{catradar:sec:verification}
+Verification is an important stage for coding agent tasks, where the agent examines its solution after it is generated.
+It can be complex for some tasks (e.g., issue-solving, where the agent needs to execute unit tests) but simple for others (e.g., function localization, where the agent only needs to read files and conduct reasoning).
+\toolName discovers that the average number of verification steps varies across different teacher models.
+
+To examine the effect of verification steps in training, we design the following data intervention experiments to control the presence of verification steps in training demonstrations:
+(1) ``Remove Verify'', where we remove all the steps after the last file-editing action, and 
+(2) ``Add Verify'': for demonstrations without any verification steps, we copy the verification steps from the demonstration of the same task instance generated by another agent (e.g., Claude-Opus-4.5). Other demonstrations are kept unchanged.
+
+Surprisingly, as shown in \autoref{catradar:tab:verification-ablation}, we observe that the verification behavior transfers across different tasks.
+When training the agent on function localization demonstrations with more verification steps, it also learns to perform more verification steps on the issue-solving task.
+
+However, similar to the planning behavior, we observe that verification improves the performance of the 7B and 8B models, but does not consistently improve Qwen3-4B.
+This can also be explained by the hypothesis that models with lower capacity could benefit more from simpler demonstrations.
+
+Our results make a further step beyond the finding in Terminal-LEGO~\citep{terminal-lego}, which shows that the inspect-act-verify pattern in training trajectories improves coding agents' performance on terminal tasks.
+We further show that the impact of verification also depends on other factors such as properties of the student model.
+
+
+
+\begin{table*}[!t]
+    \centering
+    \resizebox{0.95\linewidth}{!}{
+        \begin{tabular}{lccccccccc}
+            \toprule
+            & \multicolumn{9}{c}{\bf SWE-Bench Verified} \\
+            \cmidrule(lr){2-10}
+            \multirow{2}{*}{\bf Teacher Model}  & \multicolumn{3}{c}{\bf Qwen2.5Coder-7B} & \multicolumn{3}{c}{\bf Qwen3-4B} & \multicolumn{3}{c}{\bf Qwen3-8B} \\
+            \cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
+            & \bf Res\% & \bf Loc\% & \bf Patch\% & \bf Res\% & \bf Loc\% & \bf Patch\% & \bf Res\% & \bf Loc\% & \bf Patch\% \\
+            \midrule 
+            \dlrow \multicolumn{10}{l}{\it \textbf{Training}: R2E-Gym Issue-Solving} \\
+            \multicolumn{9}{l}{\it GPT5-mini Subsets (250 examples)} \\
+            \quad w/o Multi-Search & 9.0 & 34.4 & 52.4 & 10.0 & 43.8 & 62.2 & 10.2 & 43.8 & 60.4 \\
+            \quad w/o Target-Read & 8.6 & 36.2 & 52.0 & 13.2 & 48.8 & 62.4 & 10.4 & 42.4 & 56.6 \\
+            \quad \bf Both Strategies (ours) & \textbf{11.4} \sigupTwo{+2.8} & \bf 49.4 & \bf 63.6 & \textbf{14.2} \sigupTwo{+4.2} & \bf 58.4 & \bf 75.4 & \textbf{13.8} \sigup{+3.6} & \bf 48.2 & \bf 63.2 \\
+            \midrule
+            \dlrow \multicolumn{10}{l}{\it \textbf{Training}: Hybrid-Gym Func-Localize} \\
+            \multicolumn{9}{l}{\it Claude-Opus-4.5 Subsets (250 examples)} \\
+            \quad w/o Multi-Search & 2.8 & 13.6 & 31.6 & 11.8 & \bf 38.0 & \bf 51.4 & 4.8 & 15.2 & 29.2 \\
+            \quad w/o Target-Read & 5.4 & 17.6 & 33.0 & 8.0 & 16.6 & 44.0 & 5.8 & 15.4 & 30.4 \\
+            \quad \bf Both Strategies (ours) & \textbf{7.2} \sigup{+4.4} & \bf 21.2 & \bf 39.0 & \textbf{13.2} \sigupTwo{+5.2} & 35.4 & 50.8 & \textbf{11.6} \sigup{+6.8} & \bf 28.4 & \bf 41.8 \\
+            \addlinespace
+            \multicolumn{9}{l}{\it Claude-Opus-4.7 Subsets (350 examples)} \\
+            \quad w/o Multi-Search & 2.8 & 15.8 & 42.8 & 7.2 & \bf 27.5 & \bf 40.0 & 8.6 & 26.8 & \bf 40.2 \\
+            \quad w/o Target-Read & 3.4 & 9.4 & 25.0 & 7.6 & 20.6 & 33.6 & 4.2 & 11.8 & 26.8 \\
+            \quad \bf Both Strategies (ours) & \textbf{6.0} \sigup{+3.2} & \bf 27.2 & \bf 61.4 & \textbf{9.6} \up{+2.4} & 25.8 & 36.8 & \textbf{10.2} \sigupTwo{+6.0} & \bf 27.2 & 39.4 \\
+            \bottomrule
+            \end{tabular}
+    }
+    \caption{Data selection results with the repo-exploration strategies we discovered.
+    Parenthesized results are absolute gains compared to the lower resolved rate of the two ablations. We highlight gains for resolved rates that are significantly better than \ctext{applegreen!25}{both ablations} and \ctext{applegreen!10}{one of the ablations} (with p-value $< 0.05$).
+    }
+    \label{catradar:tab:data-selection-strategies}
+\end{table*}
+
+
+
+
+\subsection{Training on Reasoning Text Increases Trajectory Length}
+\label{catradar:sec:verbosity}
+
+\toolName discovers that the length of the text outside tool calls varies across different teacher models, which is on average 39 tokens for Claude-Opus-4.5, 98 for Qwen3-80B-NEXT, and 298 for GPT-5-mini on Hybrid-Gym.
+
+To examine the effect of the verbosity of the reasoning text, we design an experiment that prompts an LLM to rewrite the reasoning text to reduce or increase the verbosity proportionally to its original length without adding new information. We define ``reasoning text'' as the combination of (1) the non-tool-call text and (2) the content of the ``think'' actions.
+We conduct post-checking with an LLM checker to ensure the rewritten text is natural and does not add new information.
+We also include a ``0x'' ablation that removes all reasoning text.
+
+Surprisingly, \autoref{catradar:fig:verbosity} shows that increasing the verbosity of the reasoning text increases the trajectory length.
+Our hypothesis is that more verbose reasoning encourages the model to articulate additional intermediate considerations, which in turn induces extra tool interactions.
+Similarly, we observe in \autoref{catradar:fig:verbosity_text_only} that when we completely remove the non-tool-call text but keep the ``think'' actions, the trajectory length still substantially decreases.
+
+
+
+
+
+
+\section{Practical Utility of Our Discoveries}
+We apply the discoveries in \S\ref{catradar:sec:analysis-results} through three methods, ordered by increasing data-construction cost: selecting demonstrations with beneficial behaviors (\S\ref{catradar:sec:data-selection}), augmenting existing demonstrations with synthesized steps (\S\ref{catradar:sec:synthetic-steps}), and generating new demonstrations with influential behaviors (\S\ref{catradar:sec:prompt-tuning}).
+
+\subsection{Method 1: Behavior-Aware Data Selection}
+\label{catradar:sec:data-selection}
+
+\start{Data Selection}
+Given a fixed training-data budget, we select demonstrations that exhibit beneficial behaviors identified by \toolName.
+Following \S\ref{catradar:sec:repo-exploration}, we retain demonstrations that exhibit both the \textbf{Multi-Search} strategy (at least three keyword searches) and \textbf{Target-Read} (narrow down to $\leq 50$ candidate files before reading).
+We compare against equally sized subsets lacking either strategy: ``w/o Multi-Search'' and ``w/o Target-Read''.
+
+\start{Results}
+\autoref{catradar:tab:data-selection-strategies} shows that selecting demonstrations with both strategies consistently yields higher resolved rates than either ablation across the evaluated settings.
+For example, training Qwen3-8B on 250 Claude-Opus-4.5 function-localization demonstrations with both strategies achieves 11.6\% on SWE-Bench Verified, compared with 4.8\% without Multi-Search and 5.8\% without Target-Read.
+A possible explanation is that agents trained on the ``w/o Multi-Search'' ablation do not learn to recover from unsuccessful searches, and the ``w/o Target-Read'' ablation does not teach the strategy to progressively narrow down the candidate files.
+One common failure case for agents trained on ``w/o Target-Read'' is to repeatedly read irrelevant files until exhausting their action budget, without a more efficient strategy to locate relevant files.
+
+\begin{table*}[!t]
+    \centering
+    \resizebox{\linewidth}{!}{
+        \begin{tabular}{lccc|cccccc}
+            \toprule
+            & \multicolumn{3}{c|}{\bf Teacher (Hybrid-Gym Func-Loc)}
+            & \multicolumn{5}{c}{\bf Student (SWE-Bench Verified)} \\
+            \cmidrule(lr){2-4} \cmidrule(lr){5-9}
+            \bf Teacher Model & \bf Multi-Search\% & \bf Target-Read\% & \bf Res\% & \bf Multi-Search\% & \bf Target-Read\% & \bf Res\% & \bf Loc\% & \bf Patch\% \\
+            \midrule
+            GPT-5-mini & 58.8 & 1.5 & \bf 89.7 & 74.9 & 53.2 & 6.0 & 44.6 & 66.2 \\
+            \quad + prompt student & 58.8 & 1.5 & \bf 89.7 & 75.6 & 57.6 & 7.2 \up{+1.2} & \bf 48.2 & \bf 67.0 \\
+            \quad + prompt teacher & \bf 72.5 & \bf 10.4 & 85.9 & \bf 78.2 & \bf 64.3 & \textbf{9.2} \sigup{+3.2} & 43.4 & 55.6 \\
+            \bottomrule
+        \end{tabular}
+    }
+    \caption{Student performance (Qwen2.5Coder-7B) on SWE-Bench Verified under different teacher models and prompting strategies. We highlight \ctext{applegreen!25}{significant changes in resolved rates}.}
+    \label{catradar:tab:prompt-tuning}
+\end{table*}
+
+\begin{table}[!t]
+    \centering
+    \resizebox{0.6\linewidth}{!}{
+        \begin{tabular}{lccc}
+            \toprule
+            \multirow[b]{2}{*}{\makecell{\textbf{Training Setting} \\ (Teacher $\rightarrow$ Student)}}
+            & \multicolumn{3}{c}{\bf SWE-Bench Verified} \\
+            \cmidrule(lr){2-4}
+            & \bf Res\% & \bf Loc\% & \bf Patch\% \\
+            \midrule
+            \dlrow \multicolumn{4}{l}{\it \textbf{Training}: Hybrid-Gym Func-Localize} \\
+            GPT-5-mini $\rightarrow$ Qwen2.5Coder-7B & 6.0 & \bf 44.6 & \bf 66.2 \\
+            \quad Add task-tracker & \textbf{9.6} \sigup{+3.6} & 33.2 & 48.4 \\
+            GPT-5-mini $\rightarrow$ Qwen3-8B & 10.8 & \bf 56.6 & \bf 71.6 \\
+            \quad Add task-tracker & \textbf{13.0} \up{+2.2} & 49.2 & 61.6 \\
+            \midrule
+            Opus-4.7 $\rightarrow$ Qwen2.5Coder-7B & 9.4 & 32.8 & 47.8 \\
+            \quad Add task-tracker & \textbf{12.2} \sigup{+2.8} & \bf 38.6 & \bf 55.2 \\
+            Opus-4.7 $\rightarrow$ Qwen3-8B & 11.6 & 30.2 & 45.4 \\
+            \quad Add task-tracker & \textbf{17.6} \sigup{+6.0} & \bf 40.6 & \bf 53.0 \\
+            \bottomrule
+        \end{tabular}
+    }
+    \caption{We can improve performance by adding synthetic task-planning steps in training trajectories. We highlight \ctext{applegreen!25}{significant improvements in resolved rates}.}
+    \label{catradar:tab:task-tracker-improvement}
+\end{table}
+
+\subsection{Method 2: Adding Synthesized Agent Steps to Training Trajectories}
+\label{catradar:sec:synthetic-steps}
+
+\start{Agent Step Synthesis}
+Another method is to augment existing demonstrations by inserting LLM-synthesized steps that instantiate a beneficial behavior (e.g., has high-level planning).
+Particularly, we prompt an LLM to generate a task-tracker call for each function localization demonstration that specifies a to-do list: identify the target file, locate the function, generate its docstring, and verify correctness.
+We insert subsequent task-tracker calls at completion points to update the corresponding items.
+Implementation details are provided in \S\ref{catradar:sec:exp-implementation}.
+
+\start{Results}
+As shown in \autoref{catradar:tab:task-tracker-improvement}, adding four synthesized task-tracker actions per demonstration improves the resolved rates of Qwen2.5Coder-7B and Qwen3-8B in all evaluated settings.
+For Qwen3-8B trained on Claude-Opus-4.7 demonstrations, the resolved rate increases from 11.6\% to 17.6\%.
+These steps may provide explicit planning structure that helps the student organize subsequent actions.
+Note that we train on the function localization task and improve issue-solving performances, suggesting that the planning behaviors transfer across tasks.
+
+
+\subsection{Method 3: Behavior-Conditioned Demonstration Generation}
+\label{catradar:sec:prompt-tuning}
+
+\start{Prompt Generation}
+For behaviors that are difficult to incorporate through local edits, we generate new demonstrations using a behavior-conditioned teacher prompt (\S\ref{catradar:sec:controlled-exp}).
+We iteratively (1) ask an agent to write a prompt to elicit the target behaviors, (2) generate a small set of demonstrations, and (3) use an LLM judge to label their presence.
+We repeat this procedure until the generated prompt significantly increases the proportion of demonstrations exhibiting the target behaviors ($p<0.05$), then use it to generate the training set.
+
+\start{Results}
+We apply this method to the two repo-exploration strategies we discovered in \S\ref{catradar:sec:repo-exploration}: Multi-Search and Target-Read.
+\autoref{catradar:tab:prompt-tuning} shows that by generating demonstrations with the LLM-generated prompt, we increase the prevalence of the strategies for both the teacher and the student models.
+Furthermore, training Qwen2.5Coder-7B on the resulting demonstrations significantly improves its resolved rate on SWE-Bench Verified from 6.0\% to 9.2\%.
+We also observe that directly prompting the student to follow the same strategies (``prompt student'') yields a smaller gain, from 6.0\% to 7.2\%, suggesting that the student model has limited instruction-following capabilities to incorporate the strategies as prompted, and prompting the teacher model is more effective in this setting.
+
+
+% \section{Related Work}
+% \start{Coding Agent Training}
+% For both supervised finetuning (SFT) and reinforcement learning (RL), the quality of the final patch is typically used as the training signal, which can be defined based on the test execution results~\citep{swe-smith,sweswiss,yuan2026sweminisandbox}, similarity to the reference solution~\citep{shen2026sera,swerl}, or scores produced by a judge model~\citep{shum2025swerm}.
+% Another line of work also incorporate pre-defined metrics for the entire trajectories, including the structure of actions~\citep{tao2026swelego}, trajectory-level, segment-level or step-level qualities~\citep{han2026swetrace,zhang2026chasing,openhands-rubric-critique}, recovery attempts on failures~\citep{liufu2026fcswe}, and data distribution~\citep{repost,zheng2026sweprime}.
+% In comparison to manually-defined rubrics, our \toolName automatically discovers the demonstration behaviors that could potentially affect training effectiveness.
+
+
+% \start{Analyses on Coding Agent Training}
+% Prior work identifies demonstration properties that affect training effectiveness, including retaining failed terminal-agent trajectories~\citep{pi2026terminal}, the pattern of inspect, act, and verify~\citep{terminal-lego}, combining explanary text and actions into the same step~\citep{hybrid-gym}, and combining thinking and non-thinking traces~\citep{ahmad2026openswe}.
+% Particularly, \citet{openhands-rubric-critique} manually define 24 rubrics to assess trajectory quality.
+% Other analyses find that some factors are less predictive of training value, including task difficulty~\citep{swe-smith}, and trajectory length~\citep{terminal-lego}.
+% However, most prior analyses start by manually making hypotheses on influential factors, which is limited by human expertise and potentially confined to particular training settings.
+% Instead, \toolName assists such analyses by narrowing down the search space of potentially influential factors.
+
+\section{Conclusions}
+We present \toolName, an efficient analysis method, to discover potentially influential behaviors for training coding agents.
+Guided by \toolName, we conduct data intervention experiments and find influential behaviors including specific repo-exploration strategies, the planning and verification patterns, and the verbosity of reasoning text.
+Our insights further lead to practical improvements through data selection, agent step synthesis, and behavior-conditioned rollout, with step synthesis improving Qwen3-8B’s resolved rate from 11.6\% to 17.6\% on SWE-Bench Verified. 
+Beyond the supervised finetuning setting studied here, we envision \toolName supporting behavior discovery in other training settings including self-training and reinforcement learning, providing insights for why coding agent training fails or succeeds and guiding the design of the training process.
 

@@ -1,0 +1,192 @@
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{times}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usetikzlibrary{arrows.meta,calc,positioning}
+
+\definecolor{ink}{HTML}{17171B}
+\definecolor{muted}{HTML}{62666D}
+\definecolor{panel}{HTML}{F6F6F6}
+\definecolor{bluehl}{HTML}{E8F3FB}
+\definecolor{yellowhl}{HTML}{FFF4CE}
+\definecolor{greenhl}{HTML}{E3F5E5}
+\definecolor{redhl}{HTML}{FBE2E2}
+\definecolor{purplehl}{HTML}{F1E8FA}
+\definecolor{grayhl}{HTML}{E9EAEC}
+\definecolor{blue}{HTML}{3D82B8}
+\definecolor{green}{HTML}{3B8F5A}
+\definecolor{red}{HTML}{B75555}
+
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm, line cap=round, line join=round]
+  \path[use as bounding box] (0,0) rectangle (20.6,6.60);
+  \fill[white] (0,0) rectangle (20.6,6.60);
+
+  % Four panels, matching the visual language of Figure 2.
+  \fill[panel] (0.05,0.10) rectangle (4.50,6.45);
+  \fill[panel] (4.70,0.10) rectangle (9.35,6.45);
+  \fill[panel] (9.55,0.10) rectangle (14.55,6.45);
+  \fill[panel] (14.75,0.10) rectangle (20.55,6.45);
+  \fill[ink] (4.50,0.10) rectangle (4.70,6.45);
+  \fill[ink] (9.35,0.10) rectangle (9.55,6.45);
+  \fill[ink] (14.55,0.10) rectangle (14.75,6.45);
+
+  % Step headings.
+  \node[draw=ink, fill=white, rounded corners=4pt, line width=0.85pt,
+        font=\bfseries\fontsize{9.5}{10}\selectfont, inner xsep=6pt, inner ysep=3pt]
+    at (2.28,6.08) {1. Run both agents};
+  \node[draw=ink, fill=white, rounded corners=4pt, line width=0.85pt,
+        font=\bfseries\fontsize{9.5}{10}\selectfont, inner xsep=6pt, inner ysep=3pt]
+    at (7.03,6.08) {2. Propose differences};
+  \node[draw=ink, fill=white, rounded corners=4pt, line width=0.85pt,
+        font=\bfseries\fontsize{9.5}{10}\selectfont, inner xsep=6pt, inner ysep=3pt]
+    at (12.05,6.08) {3. Construct rubrics};
+  \node[draw=ink, fill=white, rounded corners=4pt, line width=0.85pt,
+        font=\bfseries\fontsize{9.5}{10}\selectfont, inner xsep=6pt, inner ysep=3pt]
+    at (17.65,6.08) {4. Label \& test};
+
+  % Step 1: shared task set branches to two agents.
+  \node[font=\bfseries\fontsize{7.3}{8}\selectfont] at (0.73,4.94) {Same tasks};
+  \foreach \y/\n in {4.48/1,3.91/2,3.34/3}{
+    \fill[white, rounded corners=2pt] (0.35,\y) rectangle (1.11,{\y+0.40});
+    \draw[ink, rounded corners=2pt, line width=0.55pt]
+      (0.35,\y) rectangle (1.11,{\y+0.40});
+    \node[font=\bfseries\fontsize{6.3}{7}\selectfont] at (0.73,{\y+0.20}) {Task \n};
+  }
+  \draw[ink, line width=0.75pt] (1.17,4.29) -- (1.48,4.29);
+  \draw[ink, line width=0.75pt] (1.48,4.29) -- (1.48,4.88);
+  \draw[ink, line width=0.75pt] (1.48,4.29) -- (1.48,3.51);
+  \draw[ink, line width=0.75pt, -{Latex[length=1.8mm]}] (1.48,4.88) -- (1.79,4.88);
+  \draw[ink, line width=0.75pt, -{Latex[length=1.8mm]}] (1.48,3.51) -- (1.79,3.51);
+
+  \node at (2.08,4.88)
+    {\includegraphics[width=0.57cm]{figures/behaviors.graffle/image2.png}};
+  \node[font=\bfseries\fontsize{6.5}{7}\selectfont] at (2.08,4.43) {Agent A};
+  \node at (2.08,3.51)
+    {\includegraphics[width=0.57cm]{figures/behaviors.graffle/image3.png}};
+  \node[font=\bfseries\fontsize{6.5}{7}\selectfont] at (2.08,3.06) {Agent B};
+
+  \draw[ink, line width=0.75pt, -{Latex[length=1.8mm]}] (2.41,4.88) -- (2.68,4.88);
+  \draw[ink, line width=0.75pt, -{Latex[length=1.8mm]}] (2.41,3.51) -- (2.68,3.51);
+  \foreach \y/\c in {4.98/bluehl,4.55/bluehl,3.61/purplehl,3.18/purplehl}{
+    \fill[\c, rounded corners=2pt] (2.73,\y) rectangle (4.18,{\y+0.31});
+    \draw[ink, rounded corners=2pt, line width=0.48pt]
+      (2.73,\y) rectangle (4.18,{\y+0.31});
+    \fill[ink] (2.88,{\y+0.155}) circle (0.028);
+    \draw[ink, line width=0.48pt] (3.01,{\y+0.155}) -- (3.52,{\y+0.155});
+    \draw[ink, line width=0.48pt] (3.66,{\y+0.155}) -- (4.02,{\y+0.155});
+  }
+  \node[align=center, text=muted, font=\fontsize{6.4}{7.1}\selectfont]
+    at (2.28,2.24) {Each agent produces rollouts\\on the same task instances};
+  \node[font=\bfseries\fontsize{7}{7.6}\selectfont] at (2.28,0.47) {Matched rollout collection};
+
+  % Flow into Step 2.
+  \draw[ink, line width=0.9pt, -{Latex[length=2.2mm]}] (4.25,4.18) -- (4.47,4.18);
+  \draw[ink, line width=0.9pt, -{Latex[length=2.2mm]}] (4.72,4.18) -- (4.94,4.18);
+
+  % Step 2: discovery agent compares trajectories and proposes differences.
+  \node at (5.55,4.16)
+    {\includegraphics[width=1.08cm]{figures/behaviors.graffle/image11.png}};
+  \node[align=center, font=\bfseries\fontsize{7.4}{8}\selectfont]
+    at (5.55,3.36) {Discovery\\agent};
+  \node[align=center, text=muted, font=\fontsize{6.2}{6.9}\selectfont]
+    at (5.55,2.72) {Inspect both sets\\of trajectories};
+  \draw[ink, line width=0.8pt, -{Latex[length=2mm]}] (6.16,4.16) -- (6.52,4.16);
+
+  \node[anchor=west, font=\bfseries\fontsize{7}{7.6}\selectfont] at (6.58,5.12) {Proposed differences};
+  \foreach \y/\c/\label in {
+    4.39/yellowhl/Uses planning?,
+    3.57/bluehl/Long exploration?,
+    2.75/purplehl/Efficient search?
+  }{
+    \fill[\c, rounded corners=3pt] (6.55,\y) rectangle (9.05,{\y+0.58});
+    \draw[ink, rounded corners=3pt, line width=0.55pt]
+      (6.55,\y) rectangle (9.05,{\y+0.58});
+    \node[anchor=west, font=\fontsize{7.2}{7.8}\selectfont] at (6.76,{\y+0.29}) {\label};
+  }
+  \node[align=center, text=muted, font=\fontsize{6.3}{7}\selectfont]
+    at (7.80,1.87) {Differences are proposed from\\observed rollout contrasts};
+  \node[font=\bfseries\fontsize{7}{7.6}\selectfont] at (7.03,0.47) {Automatic candidate generation};
+
+  % Step 3: convert every difference to an operational rubric.
+  \draw[ink, line width=0.9pt, -{Latex[length=2.2mm]}] (9.08,4.18) -- (9.32,4.18);
+  \draw[ink, line width=0.9pt, -{Latex[length=2.2mm]}] (9.58,4.18) -- (9.82,4.18);
+
+  \node[anchor=west, font=\bfseries\fontsize{6.8}{7.4}\selectfont] at (9.87,5.31) {Difference};
+  \node[anchor=west, font=\bfseries\fontsize{6.8}{7.4}\selectfont] at (11.40,5.31) {Operational rubric};
+
+  \fill[yellowhl, rounded corners=3pt] (9.82,4.18) rectangle (14.27,5.08);
+  \draw[ink, rounded corners=3pt, line width=0.58pt] (9.82,4.18) rectangle (14.27,5.08);
+  \node[anchor=west, font=\bfseries\fontsize{6.8}{7.4}\selectfont] at (10.01,4.63) {Planning};
+  \draw[ink, line width=0.65pt, -{Latex[length=1.7mm]}] (10.92,4.63) -- (11.25,4.63);
+  \node[anchor=west, align=left, font=\fontsize{6.3}{7}\selectfont] at (11.39,4.63) {Plans before the\\first environment action};
+  \node[text=green, font=\bfseries\fontsize{9}{9}\selectfont] at (13.98,4.63) {$\checkmark$};
+
+  \fill[bluehl, rounded corners=3pt] (9.82,3.07) rectangle (14.27,3.97);
+  \draw[ink, rounded corners=3pt, line width=0.58pt] (9.82,3.07) rectangle (14.27,3.97);
+  \node[anchor=west, font=\bfseries\fontsize{6.8}{7.4}\selectfont] at (10.01,3.52) {Exploration};
+  \draw[ink, line width=0.65pt, -{Latex[length=1.7mm]}] (10.92,3.52) -- (11.25,3.52);
+  \node[anchor=west, align=left, font=\fontsize{6.3}{7}\selectfont] at (11.39,3.52) {$\geq n$ actions before\\the first file edit};
+  \node[text=green, font=\bfseries\fontsize{9}{9}\selectfont] at (13.98,3.52) {$\checkmark$};
+
+  \fill[grayhl, rounded corners=3pt] (9.82,1.96) rectangle (14.27,2.86);
+  \draw[muted, rounded corners=3pt, line width=0.58pt] (9.82,1.96) rectangle (14.27,2.86);
+  \node[anchor=west, text=muted, font=\bfseries\fontsize{6.8}{7.4}\selectfont] at (10.01,2.41) {Efficiency};
+  \draw[muted, line width=0.65pt, -{Latex[length=1.7mm]}] (10.92,2.41) -- (11.25,2.41);
+  \node[anchor=west, text=muted, font=\fontsize{6.3}{7}\selectfont] at (11.39,2.56) {``Searches efficiently''};
+  \node[align=center, text=red, font=\bfseries\fontsize{5.9}{6.5}\selectfont]
+    at (13.69,2.20) {Ill-defined\\$\Rightarrow$ filter};
+
+  \node[align=center, text=muted, font=\fontsize{6.2}{6.9}\selectfont]
+    at (12.05,1.30) {Only ill-defined rubrics are removed\\at this stage};
+  \node[font=\bfseries\fontsize{7}{7.6}\selectfont] at (12.05,0.47) {Well-defined rubric set};
+
+  % Step 4: judge labels each trajectory, then regression tests distinction.
+  \draw[ink, line width=0.9pt, -{Latex[length=2.2mm]}] (14.30,4.18) -- (14.52,4.18);
+  \draw[ink, line width=0.9pt, -{Latex[length=2.2mm]}] (14.78,4.18) -- (15.00,4.18);
+
+  \node[fill=yellowhl, draw=ink, rounded corners=3pt, line width=0.58pt,
+        align=center, font=\fontsize{5.9}{6.6}\selectfont, inner xsep=4pt, inner ysep=3pt]
+    at (15.45,4.88) {Rubric: planning\\before first action};
+  \node at (15.55,3.78)
+    {\includegraphics[width=0.76cm]{figures/behaviors.graffle/image11.png}};
+  \node[align=center, font=\bfseries\fontsize{6.4}{7}\selectfont] at (15.55,3.16) {LLM judge};
+  \draw[ink, line width=0.72pt, -{Latex[length=1.8mm]}] (16.02,3.78) -- (16.62,3.78);
+
+  \node[font=\bfseries\fontsize{6.4}{7}\selectfont] at (17.35,4.64) {Trajectory labels};
+  \fill[bluehl, rounded corners=2pt] (16.64,4.00) rectangle (18.06,4.42);
+  \fill[purplehl, rounded corners=2pt] (16.64,3.47) rectangle (18.06,3.89);
+  \node[anchor=west, font=\bfseries\fontsize{6.2}{6.8}\selectfont] at (16.77,4.21) {A:};
+  \node[anchor=west, text=green, font=\fontsize{7}{7}\selectfont] at (17.09,4.21) {$\checkmark\;\checkmark\;\checkmark\;\times$};
+  \node[anchor=west, font=\bfseries\fontsize{6.2}{6.8}\selectfont] at (16.77,3.68) {B:};
+  \node[anchor=west, text=red, font=\fontsize{7}{7}\selectfont] at (17.09,3.68) {$\times\;\times\;\checkmark\;\times$};
+  \draw[ink, line width=0.72pt, -{Latex[length=1.8mm]}] (18.09,3.95) -- (18.35,3.95);
+
+  % Logistic regression visualization for the binary agent indicator.
+  \node[font=\bfseries\fontsize{6.4}{7}\selectfont] at (19.36,5.18) {Logistic regression};
+  \draw[ink, line width=0.58pt, -{Latex[length=1.5mm]}] (18.48,3.43) -- (20.27,3.43);
+  \draw[ink, line width=0.58pt, -{Latex[length=1.5mm]}] (18.48,3.43) -- (18.48,4.96);
+  \node[font=\fontsize{5.5}{6}\selectfont] at (18.76,3.24) {Agent A};
+  \node[font=\fontsize{5.5}{6}\selectfont] at (19.96,3.24) {Agent B};
+  \node[anchor=east, font=\fontsize{5.2}{5.8}\selectfont] at (18.40,4.77) {1};
+  \node[anchor=east, font=\fontsize{5.2}{5.8}\selectfont] at (18.40,3.58) {0};
+  \node[rotate=90, font=\fontsize{5.1}{5.7}\selectfont] at (18.18,4.20) {$P(y{=}1)$};
+  \draw[blue, line width=1.05pt]
+    (18.62,4.70) .. controls (19.15,4.68) and (19.30,3.60) .. (20.10,3.56);
+  \fill[blue] (18.76,4.68) circle (0.07);
+  \fill[blue] (19.96,3.58) circle (0.07);
+  \draw[blue!70, line width=0.45pt] (18.76,4.52) -- (18.76,4.84);
+  \draw[blue!70, line width=0.45pt] (19.96,3.47) -- (19.96,3.69);
+  \node[align=center, font=\fontsize{5.4}{6}\selectfont] at (19.32,2.98)
+    {$\mathrm{logit}\,P(y{=}1)$\\$=\beta_0+\beta_1 a$};
+  \node[fill=yellowhl, draw=ink, rounded corners=2pt, line width=0.52pt,
+        font=\bfseries\fontsize{6.2}{6.8}\selectfont, inner xsep=5pt, inner ysep=2pt]
+    at (19.32,2.46) {$p(\beta_1)<0.05$};
+  \node[fill=greenhl, draw=green, rounded corners=3pt, line width=0.68pt,
+        text=green, font=\bfseries\fontsize{7}{7.6}\selectfont, inner xsep=7pt, inner ysep=3pt]
+    at (19.32,1.94) {Distinguishing};
+  \node[align=center, text=muted, font=\fontsize{6.2}{6.9}\selectfont]
+    at (17.65,1.13) {Retain rubrics whose labels are statistically\\associated with agent identity};
+  \node[font=\bfseries\fontsize{7}{7.6}\selectfont] at (17.65,0.47) {Distinguishing behavior set};
+\end{tikzpicture}
+\end{document}

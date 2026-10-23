@@ -1,4 +1,4 @@
-\usepackage{amsmath,amsfonts,bm}
+\usepackage{amsmath,amsfonts,amssymb,bm}
 \usepackage{booktabs} % For formal tables
 \usepackage{graphicx}
 \usepackage{graphics}
@@ -68,6 +68,30 @@
 \newcommand{\plusname}{\textsc{Hybrid-Plus}\xspace}
 
 \newcommand{\proposedWork}{\textbf{\textcolor{treegreen}{proposed work}}}
+
+\newcommand{\toolName}{\textbf{\textsc{CATRadar}}\xspace}
+\newcommand{\smalltoolName}{\textbf{\textsc{CATRadar}}\xspace}
+\newcommand{\up}[1]{\textcolor{treegreen}{(#1)}}
+\newcommand{\down}[1]{\textcolor{red3}{(#1)}}
+\newcommand{\sigup}[1]{\colorbox{applegreen!25}{\textcolor{treegreen}{\textbf{(#1)}}}}
+\newcommand{\sigupTwo}[1]{\colorbox{applegreen!10}{\textcolor{treegreen}{\textbf{(#1)}}}}
+\newcommand{\sigdown}[1]{\colorbox{red!16}{\textcolor{red3}{\textbf{(#1)}}}}
+
+
+\providecommand{\criticdup}[1]{\textcolor{darkgreen}{\xspace($\uparrow$#1)}}
+\providecommand{\criticddn}[1]{\textcolor{red}{\xspace($\downarrow$#1)}}
+\providecommand{\criticdupR}[1]{\textcolor{red}{\xspace($\uparrow$#1)}}
+\providecommand{\criticddnG}[1]{\textcolor{darkgreen}{\xspace($\downarrow$#1)}}
+\providecommand{\criticdzero}{\textcolor{darkgreen}{\xspace(0.0)}}
+\providecommand{\criticapproxzero}{${\sim}0.00$}
+% Cell-level shading (so the Coding Agent column stays unshaded).
+\providecommand{\criticgc}{\cellcolor{applegreen!10}}
+\providecommand{\criticyc}{\cellcolor{gray!20}}
+
+\newcommand{\criticsmallpad}{\hspace{0.9em}}
+\newcommand{\criticlargepad}{\hspace{3em}}
+
+
 
 % circled
 \newcommand{\circled}[1]{\textcircled{\raisebox{-0.9pt}{#1}}}
@@ -179,3 +203,18 @@
 
 \newcommand{\colordg}[1]{\textcolor{darkgreen}{#1}}
 \newcommand{\colorgrey}[1]{\textcolor{Grey}{#1}}
+
+% Critic-training chapter and appendix model names.
+\newcommand{\criticcwm}{\texttt{CWM-32B}}
+\newcommand{\criticqwenEightB}{\texttt{Qwen3-8B}}
+\newcommand{\criticqwenThirtyTwoB}{\texttt{Qwen3-32B}}
+\newcommand{\criticqwenNextEightyB}{\texttt{Qwen3-Next-80B-A3B-Instruct}}
+\newcommand{\criticqwenNext}{\texttt{Qwen3-Next-80B-A3B}}
+\newcommand{\criticopus}{\texttt{Claude-Opus-4.6}}
+
+% Shared formatting for code and prompt listings.
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,breakatwhitespace=false,
+  breakindent=0pt,postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
+  columns=fullflexible,keepspaces=true,showstringspaces=false,upquote=true,
+  literate={—}{{---}}1{“}{{``}}1{”}{{''}}1,
+  xleftmargin=0pt,xrightmargin=0pt,aboveskip=0.6em,belowskip=0.6em}

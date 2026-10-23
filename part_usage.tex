@@ -1,6 +1,6 @@
 
 
-\part{Training Critique Models to Assist Coding Agents}
+\part{Training Auxiliary Models to Assist Coding Agents}
 \label{part:usage}
 
 
@@ -8,17 +8,17 @@
 In \autoref{part:scalability} and \autoref{part:generalizability}, we aim to construct synthetic data to improve coding agent effectiveness. 
 However, empirically, we still observe that the performance satuates with respect to data scale after a certain point, and the high-level planning ability remains a major bottleneck.
 
-To address this limitation, in this part, we develop an critique model to provide guidance to the coding agent at inference time. 
-While the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, the critique model is specialized for planning.
-Since the optimum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning, training a specialized critique model may lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
+To address this limitation, in this part, we develop a critic model to provide guidance to the coding agent at inference time. 
+While the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, the critic model is specialized for planning.
+Since the optimum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning, training a specialized critic model may lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
 
-To demonstrate the utility of critique model, in \autoref{chap:fence}, we show that a critique model can improve the factuality of a generator model by either interacting with it in inference or providing feedback to assist training. We further improve the effectiveness of the critique model by constructing tailored training data.
+To demonstrate the utility of critic model, in \autoref{chap:fence}, we show that a critic model can improve the factuality of a generator model by either interacting with it in inference or providing feedback to assist training. We further improve the effectiveness of the critic model by constructing tailored training data.
 
-When it comes to the domain of coding agent, in a \proposedWork (\autoref{chap:critique-training}), we first show that using a frontier model (e.g., Claude) to provide critique during inference substantially improves the correctness of a coding agent. Then we distill a more cost-efficient critique model by constructing synthetic supervised-finetuning training data. To further improve its effectiveness, we propose a method to construct direct preference optimization (DPO) training data, focusing on its gap between the frontier critique model.
+When it comes to the domain of coding agent, in a \proposedWork (\autoref{chap:critique-training}), we first show that using a frontier model (e.g., Claude) to provide critique during inference substantially improves the correctness of a coding agent. Then we distill a more cost-efficient critic model by constructing synthetic supervised-finetuning training data. To further improve its effectiveness, we propose a method to construct direct preference optimization (DPO) training data, focusing on its gap between the frontier critic model.
 
 
 
-\chapter{Improving Generator Factuality by Training an Evaluator Model \textcolor{aquablue}{(\textit{completed})}}
+\chapter{Improving Generator Factuality by Training a Critic Model}
 \label{chap:fence}
 
 \begin{figure}[t]
@@ -583,7 +583,7 @@ We then present a training recipe that leverages \fencemodelname to finetune LM 
 Experiments show that \fencemodelname outperforms strong proprietary models such as Claude-3 on LLM-AggreFact.
 Our factuality training method improves Llama3-8B-chat's factuality performance by 14.45\% on FActScore and 8.25\% on TruthfulQA.
 
-\autoref{chap:critique-training} adapts the high-level idea of auxiliary model training to coding agent, where we first show that the coding agent performs better in inference if it receives critique from an auxiliary model every $k$ steps. Then, we propose a data construction method to train an open-source critique model. 
+\autoref{chap:critique-training} adapts the high-level idea of auxiliary model training to coding agent, where we first show that the coding agent performs better in inference if it receives critique from an auxiliary model every $k$ steps. Then, we propose a data construction method to train an open-source critic model. 
 
 
 
@@ -805,236 +805,574 @@ Title: Chadwick Boseman | Biography, Movies, Black Panther, \& Death ... \\
 
 
 
-\chapter{Improving Coding Agent Effectiveness by Training a Critique Model \textcolor{mediumgreen}{(\textit{proposed})}}
+\chapter{Improving Coding Agent Effectiveness by Training a Critic Model}
 \label{chap:critique-training}
 
-\section{Overview}
-Synthetic data has proven effective for training coding agents~\cite{swe-smith,R2EGym,hybrid-gym}. 
-However, empirically, we observe that for a base model with limited size, the performance satuates with respect to data scale after a certain point.
-For instance, prior work~\cite{R2EGym} shows that, when using Qwen2.5Coder-14B as the base model, its performance on the SWE-Bench Verified issue-solving dataset~\cite{swebench} already saturates when trained on roughly 800 issue-solving trajectories.
-
+% Imported from 001_introduction.tex
 \begin{figure}[t]
-  \centering
-  \includegraphics[width=0.9\columnwidth]{plus_figs/planning_def.pdf}
-  \caption{Examples of high-level planning and low-level implementation in coding tasks by our definition. 
-  We define ``high-level planning'' as the process of producing intermediate steps about what should be done and in what order, where the intermediate steps do not need to be executable and hence do not have to be syntactically correct.
-  We define ``low-level implementation'' as the process of generating concrete executable actions to perform the intermediate steps. The challenge is to generate the action that precisely follows the high-level planning and has the correct syntax (i.e., so that the action can be successfully executed to obtain outputs).}
-  \label{fig:plus:planning_def}
+    \centering
+    % \includegraphics[width=0.88\linewidth]{main-inference.png}
+    \includegraphics[width=0.6\linewidth]{Critic_figs/intro.pdf}
+    \caption{Inference setup. A trained critic model $C$ provides guidance to a frozen coding agent $\pi_A$ for every $k$ steps. The agent is responsible for all concrete actions and the critic model inspects the current trajectory and generates high-level feedback for its next steps.}
+    \label{critic:fig:inference}
 \end{figure}
 
-To better understand this limitation, we break down the abilities required for coding agent training into \textbf{high-level planning} (producing intermediate steps about what should be done and in what order) and \textbf{low-level implementation} (generating concrete executable actions to perform the intermediate steps). As shown in \autoref{fig:plus:planning_def}, an example of high-level planning is decomposing the function localization task into discovering the repository structure, localizing relevant files, and locating the relevant functions inside the candidate files.
-An example of low-level implementation is calling the ``execute\_bash'' tool to use a ``grep'' command to perform keyword search with the correct syntax.
+\section{Introduction}
+\label{critic:sec:introduction}
 
-As pointed out by multiple previous work, even after finetuning, the high-level planning ability of coding agents remains substantially limited.
-\citet{swe-empirical-failures} reveals that the most dominant cause for failure in issue-solving (approx. 65\% of cases) is flawed reasoning.
-\citet{openhands-rubric-critique} identifies ``insufficient analysis'' as a feature that is highly negatively correlated with the success of pull request merging in real-world software development.
-\citet{hybrid-gym} shows that there is still a substantial gap between the finetuned coding agent and the frontier model in the proportion of examples that exhibit adequate reasoning.
+% \yiqing{We should probably mention the performance saturation issue here (by citing R2EGym's plot). Then we briefly talk about the code agent is optimized for multiple abilities and when the performance saturated, the single abilities are still far from perfect, which motivates training a critic model specialized for planning.}
+% \shubham{Rewrote around the saturation argument with three planning-gap citations.}
+% \yiqing{Be more concise about the optimum doesn't align problem}
+Coding agents have been widely used in real-world programming tasks~\citep{ICLR2024_edac78c3,swe-agent}, and post-training has proven effective for coding agent training~\cite{pmlr-v267-pan25g,yang2025swesmith,xie2026hybridgymtrainingcodingagents}, where the model is optimized for the combination of multiple abilities, including high-level reasoning (e.g., troubleshooting, search, planning) and low-level implementation (executing tool calls correctly).
 
-In this chapter, following the high-level idea of \autoref{chap:fence}, \textbf{we aim to overcome this bottleneck by training a critique model that specializes in planning and provides guidance to the coding agent during inference.}
-The key motivation is that the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, and the optinum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning. 
-As a result, training a specialized critique model may potentially lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
+% However, empirically, this training is resource-intensive and the performance plateaus quickly for base models with limited size. For instance, the issue-solving performance of a 14B model stops growing after training on only roughly 800 trajectories~\cite{jain2025regym}.
+Theoretically, the optima for the joint capabilities could be different from the optima for each individual capability, such as high-level planning.
+Empirically, during post-training, multiple studies have shown that the planning ability of a coding agent is still far from perfect after reaching the plateau on the training data~\cite{xie2026hybridgymtrainingcodingagents,wang2026rubric}.
+For example, about 65\% of coding agent failures come from flawed reasoning, not wrong actions \citep{liu2025empiricalfailures}.
+A possible explanation is that integrating both high-level and low-level knowledge in training makes the learned patterns overly complex, which undercuts the coding agent's ability to learn generalizable patterns and limits the overall performance. 
 
-Although there could exist approaches to overcome the bottleneck by directly improving the coding agent itself, such as constructing more effective training data (e.g., by constructing training instances more carefully) or using more advanved training paradigms (e.g., reinforcement learning), our approach of critique model training has the following advantages:
-(1) we can train a smaller critique model to assist a larger coding agent (see details in \autoref{sec:critique-sft}), which requires much less computational resources for training, 
-(2) to train the critique model, we can re-use the same datasets for coding agent training, without constructing new training tasks or environments, 
-(3) it provides a computationally cost-efficient way to adjust model behavior during inference, without retraining the main model. 
-This is especially compelling for API users, who may not have direct access to the main model.
-Furthermore, combining critique model training with the approaches to improve the coding agent itself could potentially lead to additive improvements, because even with the advanced training techniques, the optimum for coding agent training may still be different from the optimum for planning.
+To address this challenge, we shift part of the high-level planning role to a separate, specialized \textbf{critic model}, which steers the main coding agent by providing feedback during inference.
+The idea is inspired by research on critic and adviser models in other NLP domains such as question-answering~\cite{gou2023critic}, factuality~\cite{xie-etal-2025-factuality}, and mathematical problems~\cite{ICLR2024_aca97732}.
+Compared to training the coding agent itself, we highlight the advantages of training a critic model as follows:
+First, the critic model improves the overall performance by complementing the planning ability of the coding agent.
+Second, critic model training is cost-efficient in terms of both data curation and computational resources.
+\S\ref{critic:sec:method} shows that we can re-use existing coding-agent environments for critic model training, without building new training tasks or environments.
+\S\ref{critic:sec:main_results} shows that to improve the overall performance, we can train a small critic model instead of training the large coding agent, which requires fewer computational resources.
+Finally, the use of critic models is highly adaptive and flexible.
+We can provide critiques to any frozen coding agent at any step with any frequency.
 
+In this paper, we design a two-stage training framework to train the critic models.
+The first training stage (\autoref{critic:fig:training}) uses supervised fine-tuning (SFT), where we distill from a strong teacher model (e.g., \criticopus{}).
+We explicitly require the target critiques to detect the major errors made by the coding agent and provide corresponding high-level guidance to the next steps, without containing any concrete implementation such as specific tool-call commands.
+As shown in our analyses, there is still a substantial gap between the overall guidance generated by the SFT student model and the teacher critic model.
+Therefore, we present the second training stage with direct preference optimization (DPO), where we construct preference pairs based on the quality of the guidance in the critiques.
+Specifically, we design two metrics: correctness and clarity.
+Correctness requires the critiques to ground to the previous error categorization results and suggest the correct direction for future steps.
+Clarity checks whether the critiques provide clear instructions without ambiguity or under-specification.
 
-
-In our \textcolor{aquablue}{\textbf{preliminary experiments}}, we show that using a strong critique model to provide free-form textual feedback to the main model during inference can substantially improve the performance.
-As shown in \autoref{tab:critique:prelim}, with Claude-Opus-4.6 as the critique model, we significantly improve the performance of CWM-32B~\cite{cwm} on SWE-Bench Verified-mini~\cite{swebench} from 29.4\% to 61.0\%.
-Furthermore, we show that a smaller model (Qwen3-8B~\cite{qwen3}) distilled from Claude-Opus-4.6's critiques can also bring performance gains from 29.4\% to 35.8\%.
-The results are especially appealing because we demonstrate that it is possible to train a smaller critique model (8B) to assist a larger coding agent (32B), which requires much less computational resources compared to training the coding agent itself.
-
-
-However, we observe that there is still a large performance gap between the frontier critique model and the SFT-trained critique model.
-By manually comparing the trajectories guided by the frontier and SFT critique models, we observe that the SFT critique model generates more distracting critiques that lead to more unnecessary actions (i.e., actions that do not produce useful results for the task), repeating actions, and syntactically incorrect actions.
-This also leads to longer trajectory lengths and the coding agent becomes more likely to exceed the budget of 150 agent steps per example before generating a valid code patch. As shown in \autoref{tab:critique:prelim}, with the SFT critique model, the proportion of examples where the coding agent generates a non-empty code patch is even lower than using the coding agent alone (decreasing from 89.0\% to 85.6\%).
-
-To fill the gap, we \textcolor{mediumgreen}{\textbf{propose}} to:
-(1) analyze the differences between the critiques generated by the frontier and SFT critique models that could potentially affect the overall performance,
-(2) improve the supervised-finetuning (SFT) training data based on the differences we find, and
-(3) if the improved SFT data still does not close the gap, we will construct direct preference optimization (DPO) data to further improve the performance of the critique model.
-
-
-\section{Preliminary Experiments}
-In our preliminary experiments, we first show that a strong critique model can bring substantial performance gains to the coding agent in inference (\S\ref{sec:critique-strong}).
-Then we show that we can further train a more cost-efficient critique model (e.g., Qwen3-8B) by distilling it from the strong critique model (e.g., Claude-Opus-4.6) using vanilla supervised-finetuning (SFT) (\S\ref{sec:critique-sft}).
-
-\subsection{Inference-time Critique Models can be Effective}
-\label{sec:critique-strong}
-
-\start{Experimental Setup}
-We experiment with the SWE-Bench Verified dataset~\cite{swebench} with mini-SWE-Agent as the infrastructure~\cite{sweagent}. We use CWM-32B~\cite{cwm} as the coding agent and experiment with three critique models: a frontier model, Claude-Opus-4.6~\cite{claude46}, a cost-efficient open-source model, Qwen3-8B~\cite{qwen3}, and a model finetuned for coding agent tasks, SWE-Smith-7B~\cite{swe-smith}.
-
-Following previous work~\cite{swe-prm}, we adopt the setting where the critique model provides free-form textual critique for the main coding agent every $k$ steps during inference. We use $k=10$ in our experiments. The coding agent can perform at most $150$ steps. After exceeding the limit, the process will be terminated, even if no coding patch is generated.
-
-We prompt the critique model to include (1) error analysis for the current trajectory, (2) high-level instructions for completing the task, and (3) the reasoning process for generating the critique, which is shown to be effective empirically~\cite{swe-prm}. 
-
-\start{Experimental Results}
-As shown in \autoref{tab:critique:prelim}, we observe that:
-(1) The frontier critique model (Claude-Opus-4.6) can bring substantial performance gains to the coding agent, improving the resolved rate from 29.4\% to 61.0\%.
-(2) Using an untrained weak critique model such as Qwen3-8B may even reduce the performance of the coding agent, but the performance loss is not significant.
-(3) The model finetuned for coding agent tasks (SWE-Smith-7B) is not an effective critique model, which performs even worse than Qwen3-8B. This indicates that the critique model and the coding agent require different capabilities and should be optimized differently.
+Experiments on SWE-Bench Verified~\cite{ICLR2024_edac78c3} show that our trained critic model improves the resolved rate of six different coding agent models by $5.6\%$--$16.0\%$, without re-training the coding agents. 
+We further demonstrate that our training can transfer across different programming languages and coding agents in training and evaluation.
+For instance, we improve the performance on Multi-SWE-Bench~\cite{zan2025multiswebench} by $2.6\%$--$3.6\%$ on 7 unseen languages.
+We also conduct detailed analyses to demonstrate the effectiveness of the SFT stage, DPO stage, and the design choice of training on high-level critiques only.
+Finally, we provide qualitative analyses and case studies on the critiques generated by our models.
 
 
+% Imported from 003_methodology.tex
+\section{Methodology}
+\label{critic:sec:method}
+
+% \yiqing{Motivate critic models for coding agents. Probably make it shorter.}
+Long-horizon coding agents drift: they over-commit to early hypotheses, repeat failed commands, or allocate steps to subgoals in a suboptimal manner~\cite{gandhi2025sweprm,wang2026rubric}. To overcome this challenge, we leverage a critic as a second model to inspect the trajectory at runtime in order to alert the model to such drift.
+Empirically, pairing a frozen coding agent with a strong proprietary model such as \texttt{Claude-Opus-4.6}~\cite{claude46} as a critic substantially improves the performance but also requires a higher total cost.
+For instance, it improves the resolved rate of \texttt{Qwen3-32B} on SWE-Bench-Verified from 8.8\% to 26.8\%, but also increases the per-instance cost from \$0.05 to \$0.28.
+
+To achieve a better balance between cost and performance, in this section, we train a smaller open-source critic model to guide the coding agent during inference.
+Specifically, we first introduce the formal definitions (\S\ref{critic:sec:critic_models}) and the design of the critique (\S\ref{critic:sec:critique_design}). Then we design training data for the SFT (\S\ref{critic:sec:sft}) and DPO stages (\S\ref{critic:sec:dpo}).
+
+\subsection{Formal Definitions}
+\label{critic:sec:critic_models}
+\start{Coding Agent}
+Given a coding task and a docker environment in which to perform the task, the coding agent has access to a set of tools (e.g., the bash command-line tool) that can be called through tool-call actions.
+In problem-solving, the agent generates a trajectory as the solution 
+$\tau_{1:t} = (a_1, o_1, \ldots, a_t, o_t)$,
+where $a_i$ is the agent's action and $o_i$ the corresponding environment observation.
+We limit the number of steps with a fixed budget $t \leq B$.
+In our setting, $\pi_A$ is held frozen throughout and we only train the critic model $C_\theta$. 
+% Scaffold mechanics and task-instance specification are detailed in App.~\ref{critic:app:method_prelim}.
+% The coding agent $\pi_A$ in Figs.~\ref{critic:fig:inference} and~\ref{critic:fig:training} is the Mini-SWE-Agent scaffold~\cite{swe-agent}\footnote{\url{https://github.com/SWE-agent/mini-swe-agent}}, which has access to the bash command-line tool.
+
+
+\start{Critic Models for Coding Agents}
+Formally, we pair the coding agent $\pi_A$ with a critic model $C$ at inference time.
+For every $k$ agent steps (we use $k=\{5,10\}$ in our experiments), the critic model inspects the task and the current trajectory prefix $\tau_{1:t}$. 
+To preserve continuity across interventions, we also include the feedback the critic produced at earlier intervention points. Let $h_t = (f_k, f_{2k}, \ldots, f_{t-k})$ denote the critic's prior feedback history before step $t$. We form the critic input $z_t = \mathrm{Serialize}(\tau_{1:t}, h_t, x)$, which fits the trajectory to the context window limit $x$ by preserving the start of the trajectory (system prompt and task context) and the most recent steps, including the final user message, and finally truncating the intermediate steps that exceed the context limit.
+We sample feedback $f_t \sim C(\cdot \mid z_t)$, which is appended to the agent's context for the next step.
+% We evaluate intervention intervals $k \in \{5,10\}$.
+
+
+\subsection{Designing the Critique Structure}
+\label{critic:sec:critique_design}
+We design the structure of the critique as follows: it first outputs the major errors made by the coding agent and the recovery action, where the error categories are pre-defined.
+Then it outputs the overall guidance, which contains only high-level feedback instead of the concrete tool call actions.
+Finally, it outputs a reminder when the agent is close to using up the step limit.
+We provide the prompt for critique generation in App. \ref{critic:app:high_level_prompt}.
+
+% \start{What should a critic say}
+% The ``High-level only'' constraint in Fig.~\ref{critic:fig:inference} is enforced through the critique design. Following the observation in §\ref{critic:sec:critic_models} that the trained critic should not inherit the teacher's action-level recipes, the critique we give to the agent has three components: (i) it organizes feedback over the 12-category trajectory-level error taxonomy of \citet{gandhi2025sweprm} (e.g., \emph{Step Repetition}, \emph{Hallucinations}, \emph{Task Derailment}); (ii) it gives \emph{high-level feedback} rather than prescribing explicit actions; and (iii) it adapts as the agent's budget runs out. (i) is inherited from the upstream prompt; (ii) and (iii) are the design choices we study, and they are enforced at different stages: (ii) is a \emph{supervision} property baked in at training time by collecting teacher feedback under the high-level prompt, so the trained critic inherits it; (iii) is an \emph{inference-time} mechanism, budget-aware instructions appended to the trained critic's own input late in the trajectory and never used during data collection. The three paragraphs below introduce each component and the mechanism behind it.
+
+\start{Error Detection for the Coding Agent}
+Multiple existing studies show that coding agents' capability to recover from errors is still limited~\cite{wang2026rubric,gandhi2025sweprm}.
+One example is the ``stuck-in-loop'' behavior, where the agent keeps generating the same tool call action even if it fails every time. 
+To improve error recovery, we prompt the critic model to detect major errors made by the coding agent.
+Inspired by SWE-PRM~\cite{gandhi2025sweprm}, we pre-define 12 trajectory-level error categories covering \emph{Specification}, \emph{Reasoning}, and \emph{Coordination} errors. The complete list is provided in App.~\ref{critic:app:critic_prompts}.
+For each category, the critic model reports whether the error is detected, the supporting evidence, recovery strategies, and a task-status verdict showing whether the error is not significant and the agent is still on track, or the error is serious and needs correction or critical intervention.
+
+\start{High-level Feedback Only, NOT Concrete Actions}
+The motivation for critic model training is to separate the high-level planning ability to a \textbf{specialized} model.
+As a result, we explicitly prompt the critic model NOT to suggest specific technical implementation or code-level changes, such as outputting the exact tool call command.
+To improve correctness, we also require the suggested recovery strategies or overall guidance to be grounded in previous error detection results.
+We additionally prompt the critic model to keep the guidance high-level (1-2 sentences per detected error), without giving too complicated instructions to coding agents that cannot be completed in a few steps. 
+The prompt thereby restricts the teacher to high-level signals such as whether the agent is making progress, looping, relying on an unsupported assumption, or pursuing the wrong subgoal (App.~\ref{critic:app:critic_prompts}).
+
+\start{Budget Awareness}
+A high-level critic that ignores the budget will keep recommending exploration even when the agent is close to running out of steps, leaving useful in-progress work unsubmitted. Therefore, in inference, once the agent passes step $T$ (e.g., we use $T{=}100$ of the $B{=}150$-step budget), we append short budget-aware instructions that state the steps remaining and recommend the coding agent to make a submission as soon as possible (App.~\ref{critic:app:step_aware}).
+
+
+
+\begin{figure}[!t]
+\centering
+% \includegraphics[width=0.88\linewidth]{main-training.png}
+\includegraphics[width=0.6\linewidth]{Critic_figs/method.pdf}
+\caption{SFT training pipeline for critic models. Based on our analysis (\S\ref{critic:sec:critique_design}), the critic contains error detection, budget planning, and only provides high-level feedback instead of concrete actions. We run the frozen coding agent $\pi_A$ on disjoint training tasks and query the teacher critic $C_T$ every $k$ steps. We collect (trajectory prefix, feedback) pairs $(z_t, f_t^*)$ to train a critic $C_\theta$ by supervised fine-tuning (SFT).}
+\label{critic:fig:training}
+\end{figure}
+
+
+
+\subsection{Distilling Critic Models with SFT}
+\label{critic:sec:sft}
+\start{SFT Data Construction}
+As show in \autoref{critic:fig:training}, we prompt the teacher critic model $C_T$ to provide guidance to a frozen coding agent $\pi_A$ every $k$ steps based on the current trajectory $z_t$ on the training dataset $\mathcal{TR_{SFT}}$ (as described in §\ref{critic:sec:setup}) and fine-tune a student critic model $C_\theta$ with the teacher's outputs as targets.
+
+Based on the prompt design introduced in \S\ref{critic:sec:critique_design}, we prompt the teacher model to first detect errors made by the coding agent and then provide overall guidance, with budget-aware alerts. We additionally require it to only generate high-level feedback rather than action-level prescriptions.
+We filter out malformed teacher responses (empty completions or responses that drop out of the critique format) before training (\S\ref{critic:sec:setup}).
+Note that we do NOT filter training critiques based on whether the task is successfully completed, which depends more on the coding agent itself rather than the critic model.
+
+% the supervision source is the \emph{high-level prompt} of §\ref{critic:sec:critique_design}, which constrains the teacher critic $C_T$ to high-level feedback rather than action-level prescriptions; sampling $f_t^* \sim C_T(\cdot \mid z_t)$ under this prompt is what produces our training labels. Second, we collect feedback along trajectories that the agent has actually produced under critic guidance, rather than from off-policy rollouts: we run the agent $\pi_A$ end-to-end with $C_T$ intervening every $k$ steps, so each prefix $\tau_{1:t}$ already reflects the agent's reaction to prior critic interventions $h_t$. This matches the distribution the trained critic will face at inference, where the prefix will be shaped by its own earlier feedback.
+% We use training tasks that are disjoint at the instance level from the evaluation benchmark (R2E-Gym tasks in SWE-Bench repositories; described in §\ref{critic:sec:experimental_setup}), so the critic is never exposed to test-time issues during training. As an ablation, we also collect a parallel corpus under the detailed prompt.
+
+\start{Critic Model Training with SFT}
+As shown in \autoref{critic:fig:training}, we distill $C_\theta$ from $C_T$ by supervised fine-tuning (SFT) with a standard conditional language modeling objective, maximizing likelihood:
+\begin{equation}
+    \max _{\theta} \mathbb{E}_{(z_t, f_t^*) \sim \mathcal{TR_{SFT}}} \log \mathbb{P}_{\theta}(f_t^* \mid z_t).
+\label{critic:eq:sft_loss}
+\end{equation}
+
+The trained critic model $C_\theta$ is then paired with $\pi_A$ at inference..
+
+
+
+
+
+
+\subsection{Improving Critic Models with DPO}
+\label{critic:sec:dpo}
+\start{The Remaining Gap after Distillation}
+We empirically study the gap between the student and teacher critic models after SFT (\S\ref{critic:sec:sft}).
+As shown in App. \ref{critic:app:analyses}, the major gap exists in the \textbf{overall guidance} provided by the critic, instead of the error categorization.
+Among the 132 critiques we sampled, 67\% of the teacher model's critiques both point to the correct direction and contain specific guidance for the next steps.
+In contrast, only 29\% of the SFT student model's critiques are both correct and specific. 53\% point to the correct direction but are under-specified. 18\% suggest the wrong steps to take.
+We use an LLM judge for the judgment. We choose a different model from the teacher model to avoid self-bias~\cite{llmjudge}.
+We thus train the critic model for the second stage, focusing on generating high-quality overall guidance.
+
+\start{DPO Data Construction}
+We design two metrics to judge the quality of the guidance: (1) correctness, where the guidance fixes the serious error made by the coding agent (if any) and assists problem-solving; and (2) clarity, where the guidance is not ambiguous or under-specified.
+We adopt direct preference optimization (DPO) to improve these two metrics.
+
+As shown in \autoref{critic:fig:training_dpo}, we apply the coding agent $\pi_A$ on the training dataset $TR_{DPO}$. For every $k$ steps, we use the SFT critic model $C_{SFT,\theta}$ to generate $N=10$ critiques, with the previous trajectory $z_t$ as context. Then we prompt an LLM judge to select the best and worst ones based on the correctness and clarity of the overall guidance.
+This forms one (chosen, rejected) training pair $(f_c, f_r)$ for every set of critiques. We only keep the training pairs where the error categorization does not have major error, the chosen critique is both correct and clear, and the rejected critique is either not correct or not clear.
+
+\start{Critic Model Training with DPO}
+As shown in \autoref{critic:fig:training_dpo}, we initialize from the SFT critic model $C_{SFT,\theta}$ and conduct DPO training with the following classification loss:
+\begin{equation}
+\begin{aligned}
+    \max _{\mathcal{\theta}} 
+    \mathbb{E}_{\left(z_t, f_c, f_r\right) \sim \mathcal{TR}_{DPO}}
+    & \left[\right.
+    \log \sigma
+    \left(\right. \beta 
+    \log \frac{\pi_\mathcal{\theta}\left(f_c \mid z_t\right)}{\pi_{\text {ref}}\left(f_c \mid z_t\right)} \\
+    & -\beta 
+    \log \frac{\pi_\mathcal{\theta}\left(f_r \mid z_t\right)}{\pi_{\text {ref}}\left(f_r \mid z_t\right)}
+    \left.\right)
+    \left.\right],
+\end{aligned}
+\end{equation}
+
+where $\sigma$ is the Sigmoid function. The reference policy $\pi_{\text {ref}}$ is computed by the SFT checkpoint $C_{SFT,\theta}$ and is frozen throughout training.
+
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.6\linewidth]{Critic_figs/DPO.pdf}
+\caption{DPO training pipeline for critic models. 
+Given a critic model checkpoint $C_{SFT,\theta}$, for every $k$ steps produced by the coding agent $\pi_A$, we use $C_{SFT,\theta}$ to generate $N=10$ critiques, and prompt an LLM judge model $R$ to select the best and worse critique, which forms (chosen, rejected) pairs $(f_c, f_r)$ to train $C_{SFT,\theta}$ by direct preference optimization (DPO).
+We only keep a $(f_c, f_r)$ pair if the chosen critique is both correct and provides clear instruction and the rejected critique misses any of the criteria.
+}
+\label{critic:fig:training_dpo}
+\end{figure}
+
+% Imported from 004_experimental_setup.tex
+
+
+\section{Experiments}
+\label{critic:sec:experiments}
+This section evaluates the performance of our trained critic models on downstream coding tasks. 
+\S\ref{critic:sec:setup} and \S\ref{critic:sec:details} introduces the experimental setup and implementation details.
+\S\ref{critic:sec:main_results} demonstrates the effectiveness of our critic models of different sizes when combined with six different coding agent models.
+\S\ref{critic:sec:detailed_analyses} presents detailed analyses, including the transferability of our critic models across programming languages and training corpus, the cost-performance trade-off of critic models, and the verification of our design choices that the critiques should only contain high-level guidance, not concrete actions.
+\S\ref{critic:sec:qualitative} provides qualitative analyses and case studies for the generated critiques.
+
+
+\subsection{Experimental Setup}
+\label{critic:sec:setup}
+
+\start{Benchmarks}
+We primarily evaluate on SWE-Bench Verified~\citep{ICLR2024_edac78c3}, a benchmark of 500 human-verified GitHub issues drawn from 12 open-source Python repositories. 
+We also conduct evaluation on its multilingual variant, Multi-SWE-Bench~\cite{zan2025multiswebench}, to demonstrate the transferability of our method across programming languages.
+For each instance, the agent is given the issue's problem statement and access to the pre-issue repository snapshot, and must edit the codebase to resolve the issue. An instance is counted as resolved only if the resulting patch satisfies two hidden test sets: \texttt{FAIL\_TO\_PASS} tests that target the reported bug, and \texttt{PASS\_TO\_PASS} tests that guard against regressions in unrelated code.
+
+
+
+
+
+\begin{table*}[!t]
+\centering
+\resizebox{0.9\textwidth}{!}{%
+\begin{tabular}{@{}l@{\hspace{1em}}!{\color{gray!45}\vrule}@{\hspace{1em}}lcccc@{}}
+\toprule
+\bf Coding Agent & \bf Critic Model & \bf Resolved \% & \bf Localized \% & \bf Non-Empty \% & \bf Non-Loop \% \\
+
+\midrule
+\multirow{7}{*}{\texttt{Qwen3-32B}}
+  & No Critic          & 8.8 & 49.2 & 74.8 & 92.0 \\
+  & \texttt{Qwen3-4B}  & 10.2\,\criticdup{1.4} & \textbf{55.4}\,\criticdup{6.2} & \textbf{90.0}\,\criticdup{15.2} & \textbf{95.2}\,\criticdup{3.2} \\
+  & \criticgc + SFT          & \criticgc 11.4\,\criticdup{2.6} & \criticgc 52.4\,\criticdup{3.2} & \criticgc 74.6\,\criticddn{0.2} & \criticgc 90.4\,\criticddn{1.6} \\
+  & \criticgc + SFT + DPO    & \criticgc \textbf{14.4}\,\criticdup{5.6} & \criticgc 52.2\,\criticdup{3.0} & \criticgc 69.2\,\criticddn{5.6} & \criticgc 95.0\,\criticdup{3.0} \\
+  & \texttt{Qwen3-8B}  & 10.0\,\criticdup{1.2} & 49.4\,\criticdup{0.2} & 73.0\,\criticddn{1.8} & 93.0\,\criticdup{1.0} \\
+  & \criticgc + SFT          & \criticgc 13.8\,\criticdup{5.0} & \criticgc 49.8\,\criticdup{0.6} & \criticgc 65.8\,\criticddn{9.0} & \criticgc 93.0\,\criticdup{1.0} \\
+  & \criticyc \texttt{Opus 4.6} (upper bound) & \criticyc \underline{26.8}\,\criticdup{18.0} & \criticyc \underline{67.8}\,\criticdup{18.6} & \criticyc 82.4\,\criticdup{7.6} & \criticyc 92.4\,\criticdup{0.4} \\
+
+\midrule
+\multirow{7}{*}{\shortstack[l]{\texttt{Qwen3-Next-}\\\texttt{80B-A3B}}}
+  & No Critic          & 20.0 & 69.8 & 92.6 & 95.0 \\
+  & \texttt{Qwen3-4B}  & 20.2\,\criticdup{0.2} & 70.4\,\criticdup{0.6} & \textbf{99.8}\,\criticdup{7.2} & 97.8\,\criticdup{2.8} \\
+  & \criticgc + SFT          & \criticgc 24.2\,\criticdup{4.2} & \criticgc 76.8\,\criticdup{7.0} & \criticgc 99.2\,\criticdup{6.6} & \criticgc 98.2\,\criticdup{3.2} \\
+  & \criticgc + SFT + DPO    & \criticgc \textbf{26.2}\,\criticdup{6.2} & \criticgc \textbf{78.4}\,\criticdup{8.6} & \criticgc 99.2\,\criticdup{6.6} & \criticgc \textbf{98.4}\,\criticdup{3.4} \\
+  & \texttt{Qwen3-8B}  & 20.6\,\criticdup{0.6} & 69.4\,\criticddn{0.4} & 97.6\,\criticdup{5.0} & 94.8\,\criticddn{0.2} \\
+  & \criticgc + SFT          & \criticgc 25.2\,\criticdup{5.2} & \criticgc 75.6\,\criticdup{5.8} & \criticgc \textbf{99.8}\,\criticdup{7.2} & \criticgc 96.2\,\criticdup{1.2} \\
+  & \criticyc \texttt{Opus 4.6} (upper bound) & \criticyc \underline{38.2}\,\criticdup{18.2} & \criticyc \underline{81.4}\,\criticdup{11.6} & \criticyc \underline{100.0}\,\criticdup{7.4} & \criticyc \underline{99.4}\,\criticdup{4.4} \\
+
+\midrule
+\multirow{5}{*}{\texttt{GPT-OSS-20B}}
+  & No Critic          & 3.0 & 11.8 & 58.4 & 1.4 \\
+  & \texttt{Qwen3-4B}  & 6.8\,\criticdup{3.8} & 36.6\,\criticdup{24.8} & 98.8\,\criticdup{40.4} & 3.0\,\criticdup{1.6} \\
+  & \criticgc + SFT          & \criticgc 9.8\,\criticdup{6.8} & \criticgc 52.6\,\criticdup{40.8} & \criticgc \textbf{99.6}\,\criticdup{41.2} & \criticgc 5.0\,\criticdup{3.6} \\
+  & \criticgc + SFT + DPO    & \criticgc \textbf{14.8}\,\criticdup{11.8} & \criticgc \textbf{55.0}\,\criticdup{43.2} & \criticgc \textbf{99.6}\,\criticdup{41.2} & \criticgc \textbf{5.6}\,\criticdup{4.2} \\
+  & \criticgc \texttt{Qwen3-8B} + SFT & \criticgc 13.0\,\criticdup{10.0} & \criticgc 52.0\,\criticdup{40.2} & \criticgc 99.4\,\criticdup{41.0} & \criticgc 5.4\,\criticdup{4.0} \\
+
+\midrule
+\multirow{5}{*}{\shortstack[l]{\texttt{GLM-4.7-}\\\texttt{Flash-30B-A3B}}}
+  & No Critic          & 21.6 & 34.8 & 36.0 & 54.8 \\
+  & \texttt{Qwen3-4B}  & 29.8\,\criticdup{8.2} & 62.2\,\criticdup{27.4} & 70.4\,\criticdup{34.4} & 67.2\,\criticdup{12.4} \\
+  & \criticgc + SFT          & \criticgc 35.2\,\criticdup{13.6} & \criticgc 69.6\,\criticdup{34.8} & \criticgc 79.6\,\criticdup{43.6} & \criticgc 74.2\,\criticdup{19.4} \\
+  & \criticgc + SFT + DPO    & \criticgc 35.8\,\criticdup{14.2} & \criticgc 71.0\,\criticdup{36.2} & \criticgc 79.2\,\criticdup{43.2} & \criticgc \textbf{75.0}\,\criticdup{20.2} \\
+  & \criticgc \texttt{Qwen3-8B} + SFT & \criticgc \textbf{37.6}\,\criticdup{16.0} & \criticgc \textbf{73.4}\,\criticdup{38.6} & \criticgc \textbf{83.4}\,\criticdup{47.4} & \criticgc 70.6\,\criticdup{15.8} \\
+
+% \midrule
+% \multirow{2}{*}{\shortstack[l]{\texttt{GPT-OSS-120B}\\(low reasoning)}}
+%   & No Critic          & 12.8 & 42.2 & \bf 99.6 & 93.4 \\
+%   & \criticgc \texttt{Qwen3-8B} + SFT & \criticgc \textbf{20.4}\,\criticdup{7.6} & \criticgc \textbf{57.6}\,\criticdup{15.4} & \criticgc 99.2\,\criticddn{0.4} & \criticgc \textbf{97.8}\,\criticdup{4.4} \\
+
+\midrule
+\multirow{5}{*}{\shortstack[l]{\texttt{GPT-OSS-120B}\\(medium reasoning)}}
+  & No Critic          & 20.4 & 57.4 & 95.2 & 94.2 \\
+  & \texttt{Qwen3-4B}  & 16.8\,\criticddn{3.6} & 46.6\,\criticddn{10.8} & \textbf{100.0}\,\criticdup{4.8} & \textbf{99.2}\,\criticdup{5.0} \\
+  & \criticgc + SFT          & \criticgc 31.2\,\criticdup{10.8} & \criticgc 75.2\,\criticdup{17.8} & \criticgc 99.8\,\criticdup{4.6} & \criticgc 98.0\,\criticdup{3.8} \\
+  & \criticgc + SFT + DPO    & \criticgc \textbf{34.8}\,\criticdup{14.4} & \criticgc \textbf{75.8}\,\criticdup{18.4} & \criticgc 99.2\,\criticdup{4.0} & \criticgc 97.2\,\criticdup{3.0} \\
+  & \criticgc \texttt{Qwen3-8B} + SFT & \criticgc 31.4\,\criticdup{11.0} & \criticgc 74.8\,\criticdup{17.4} & \criticgc 99.2\,\criticdup{4.0} & \criticgc 96.8\,\criticdup{2.6} \\
+
+\midrule
+\multirow{5}{*}{\shortstack[l]{\texttt{o3-mini}\\(200B)}}
+  & No Critic          & 19.0 & 69.4 & 99.4 & \bf 100.0 \\
+  & \texttt{Qwen3-4B}  & 20.4\,\criticdup{1.4} & 64.4\,\criticddn{5.0} & \textbf{100.0}\,\criticdup{0.6} & \textbf{100.0}\,\criticdzero \\
+  & \criticgc + SFT          & \criticgc 27.6\,\criticdup{8.6} & \criticgc 73.2\,\criticdup{3.8} & \criticgc \textbf{100.0}\,\criticdup{0.6} & \criticgc 99.6\,\criticddn{0.4} \\
+  & \criticgc + SFT + DPO    & \criticgc 28.2\,\criticdup{9.2} & \criticgc \textbf{75.2}\,\criticdup{5.8} & \criticgc \textbf{100.0}\,\criticdup{0.6} & \criticgc 99.4\,\criticddn{0.6} \\
+  & \criticgc \texttt{Qwen3-8B} + SFT & \criticgc \textbf{29.4}\,\criticdup{10.4} & \criticgc 71.0\,\criticdup{1.6} & \criticgc \textbf{100.0}\,\criticdup{0.6} & \criticgc 98.8\,\criticddn{1.2} \\
+\bottomrule
+\end{tabular}%
+}
+\caption{Results on SWE-Bench Verified. We report the better result from $k\in\{5,10\}$ for every configuration. \emph{Non-Loop \%} is the fraction of trajectories that do \emph{not} repeat a Bash command in three consecutive steps. ``+ SFT'' is a critic trained on teacher critiques generated with the high-level prompt (a \criticcwm{} + \criticqwenNext{} mix). ``+ SFT + DPO'' further optimizes the 4B SFT critic with DPO on critique preference pairs. All arrows compare to ``No Critic" setting. \textbf{Bold} highlights the best non-Opus value in each column.}
+\label{critic:tab:main}
+\end{table*}
+
+
+
+\start{Evaluation Metrics}
+% \label{critic:sec:setup_metrics}
+We report evaluation metrics on both the output quality and the cost: 
+(i) \underline{Resolve Rate}, the fraction of the 500 instances whose submitted patch passes both the \texttt{FAIL\_TO\_PASS} and \texttt{PASS\_TO\_PASS} test sets; 
+% (ii) \textbf{resolve-on-submitted rate}, resolve rate conditioned on submission, isolating patch quality from any change in submission rate; 
+(ii) \underline{Localized Rate}, the percentage of evaluated instances whose patch edits at least one file also touched by the gold patch~\citep{xia2025agentless}.
+(iii) \underline{Non-Empty Rate}, the fraction of runs that exit through the agent's submit command within the $B{=}150$ budget. 
+(iv) \underline{Non-Stuck-in-Loop Rate}, the percentage of trajectories that do not contain the same command in three consecutive assistant steps.
+(v) \underline{Total Cost per Instance}, the mean combined agent and critic cost in USD per instance, computed from token usage and the rates in App.~\ref{critic:app:pricing}.
+
+
+\start{Coding Agents} 
+We evaluate the critic model with six different coding agents: \textbf{\criticqwenThirtyTwoB{}}, \textbf{\criticqwenNextEightyB{}}~\citep{qwen3}, 
+\textbf{\texttt{GLM-4.7-Flash}}~\citep{glm47flash}, \textbf{\texttt{GPT-OSS-20B}},
+\textbf{\texttt{GPT-OSS-120B}}~\citep{openai2025gptoss}, and \textbf{\texttt{o3-mini}}~\citep{openai2025o3mini}. 
+The coding agents are frozen throughout. 
+We use the same critic model checkpoint for all coding agents.
+
+\start{Critic Models} We first use a strong proprietary LLM as the critic model, \textbf{\criticopus{}} \citep{claude46}, which is also used as the teacher model in the SFT stage and the LLM-judge in the DPO stage.
+Then we evaluate our trained critic models. 
+We conduct SFT training on both \textbf{\texttt{Qwen3-4B}} and \textbf{\criticqwenEightB{}}~\citep{qwen3}. We conduct SFT+DPO training only on the 4B model due to constraints on computational resources.
+We additionally evaluate the untrained 4B and 8B models as the critic models.
+The baseline is denoted as ``No critic'', where the coding agents complete the task without any guidance.
+We design and compare with other ablations in \S\ref{critic:sec:detailed_analyses}.
+
+
+\subsection{Implementation Details}
+\label{critic:sec:details}
+\start{Inference Details}
+All agent uses the mini-SWE-agent scaffold~\cite{swe-agent}, with a budget of $150$ steps, $\$6.0$, and $60$-seconds per-command.
+To reduce variance, every critic-guided run shares its first $k$ agent steps with the "No critic" run. 
+This is based on our observation that differences in early steps could cascade into divergent trajectories.
+% This isolates the critic's contribution from rollout variance: small differences in early actions otherwise cascade into divergent observations (e.g., reading lines $50$-$100$ instead of $100$-$150$ of a file).
+
+\start{Training Details}
+We collect training trajectories from $500$ instances randomly sampled from R2E-Gym tasks in SWE-Bench repositories (disjoint from SWE-Bench Verified at the instance level).
+We collect training corpora using the combination of \criticcwm{} and \criticqwenNext{} as the coding agents.
+Additional details can be found in \autoref{critic:app:details}.
+
+\newcommand{\criticuparr}[1]{\,\textcolor{darkgreen}{\scriptsize($\uparrow$#1)}}
+\newcommand{\criticdownarr}[1]{\,\textcolor{red}{\scriptsize($\downarrow$#1)}}
+
+\subsection{Main Results}
+\label{critic:sec:main_results}
+
+Table~\ref{critic:tab:main} reports our main results on SWE-Bench Verified across six agent models. 
+
+% \paragraph{How well does the trained critic perform?} 
+\start{Our Trained Critic Models Significantly Improve All Six Coding Agents}
+Across the six agent models in \autoref{critic:tab:main}, our critic model improves the resolved rate over the ``No Critic'' baseline by $5.6\%$--$16.0\%$ absolute gain. All six gains are statistically significant (App.~\ref{critic:app:significance}). 
+We can also see that the SFT+DPO method achieves better performance than the SFT-only method for all six coding agents and the SFT-only method always outperforms the untrained critic model and the ``No Critic'' baseline, which demonstrates the effectiveness of both the SFT and the DPO training stages.
+Namely, the performance gain mainly comes from training rather than merely interleaving another model into the agent's loop.
+
+% \paragraph{Is the gain from training, or from interleaving any 8B model?} 
+\start{Training Improves Performance Across Different Critic Model Sizes}
+Relative to the matched untrained 4B critic, SFT improves the resolved rate for all six coding agents by $1.2\%$--$14.4\%$, and DPO adds additional gain of $0.6\%$--$5.0\%$.
+Compared to the untrained 8B critic, SFT improves the resolved rate for the two Qwen agents by $3.8\%$ and $4.6\%$, respectively. 
+The results show that our training data is effective across different critic model sizes.
+
+
+
+
+\subsection{Detailed Ablations and Analyses}
+\label{critic:sec:detailed_analyses}
+\start{Critic Models Transfer across Programming Languages}
+As shown in \autoref{critic:tab:multilingual}, on Multi-SWE-Bench, the 8B SFT critic model improves the resolved rate by $2.0$ points on both \criticqwenNext{} and \criticqwenThirtyTwoB{}. Its SFT data contain only Python trajectories, whereas this 300-instance benchmark spans nine non-Python languages, showing that the trained critic model's guidance transfers beyond its training language distribution.
 
 \begin{table}[t]
-  \centering
-  \small
-  \resizebox{0.6\columnwidth}{!}{%
-  \begin{tabular}{l ccc}
-  \toprule
-  \multirow{2}{*}{\bf Crtique Model} &
-  \multicolumn{3}{c}{\bf SWE-Bench Verified} \\
-  \cmidrule(lr){2-4}
-  & Resolved \% & Non-Empty \% & Avg Steps \\
-  \midrule
-  \sdlrow & \multicolumn{3}{c}{\textit{Coding Agent: CWM-32B}} \\
-  \midrule
-  \textemdash & 29.4 & 89.0 & 34.54 \\
-  \midrule
-  Qwen3-8B & \bad 24.6 & 82.4 & 39.57 \\
-  SWE-Smith-7B & \bad 21.2 & 62.2 & 41.07 \\
-  Claude-Opus-4.6   & \better \bf 61.0 &  90.0 & 30.28 \\
-  \midrule
-  Qwen3-8B + SFT & \good 35.8 & 85.6 & 48.01 \\
-  % \quad + fallback & \good 37.4 & 96.2 & \textemdash \\
-  \bottomrule
-  \end{tabular}%
-  }
-  \caption{Results on equipping CWM-32B with different critique models on SWE-Bench Verified. 
-  % ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.
-  }
-  \label{tab:critique:prelim}
+\centering
+% \small
+% \setlength{\tabcolsep}{4pt}
+\resizebox{0.6\linewidth}{!}{%
+\begin{tabular}{@{}l l c c@{}}
+\toprule
+\textbf{Size} & \textbf{Critic Model} & \textbf{\texttt{Qwen3-Next}} & \textbf{\texttt{Qwen3-32B}} \\
+\midrule
+\multirow{2}{*}{8B} & No Critic & 9.7 & 1.3 \\
+& + SFT & 11.7\,\criticdup{2.0} & \textbf{3.3}\,\criticdup{2.0} \\
+\bottomrule
+\end{tabular}%
+}
+\caption{Resolve rate (\%) on 300 Multi-SWE-Bench instances. The 8B CWM+Qwen critic uses $k{=}5$ and is trained only on Python trajectories. Arrows show gains over the ``No Critic'' baseline.}
+\label{critic:tab:multilingual}
 \end{table}
 
 
-% \begin{table}[t]
-%   \centering
-%   \small
-%   \resizebox{0.6\columnwidth}{!}{%
-%   \begin{tabular}{l c}
-%   \toprule
-%   \multirow{2}{*}{\bf Crtique Model} &
-%   \multicolumn{1}{c}{\bf SWE-Bench Verified} \\
-%   % \cmidrule(lr){2-2}
-%   & Resolved \% \\
-%   \midrule
-%   \sdlrow 
-%   \multicolumn{2}{c}{\textit{Coding Agent: CWM-32B}} \\
-%   \midrule
-%   \textemdash & 29.4 \\
-%   \midrule
-%   Qwen3-8B & \bad 24.6 \\
-%   SWE-Smith-7B & \bad 21.2 \\
-%   Claude-Opus-4.6   & \better \bf 61.0 \\
-%   \midrule
-%   Qwen3-8B + SFT & \good 35.8 \\
-%   % \quad + fallback & \good 37.4 & 96.2 & \textemdash \\
-%   \bottomrule
-%   \end{tabular}%
-%   }
-%   \caption{Results on equipping CWM-32B with different critique models on SWE-Bench Verified. 
-%   % ``fallback'' refers to the setting where if the coding agent exceeds the limit, we run inference on this example again without the critique model.
-%   }
-%   \label{tab:critique:prelim}
-% \end{table}
+\start{Critic Models Transfer Across Different Coding Agents in Training and Evaluation}
+\autoref{critic:tab:critic_ablation} varies the SFT corpus, where we generate critiques on the trajectories generated by the \criticcwm{} model only (denoted as ``CWM-only''), the \criticqwenEightB{} model only (``Qwen-only''), and our default SFT corpus that combines both coding agents (``Qwen+CWM'').
+We can see that the 8B critic model trained on CWM trajectories alone also improves \criticqwenNext{} and \criticqwenThirtyTwoB{} by $+3.6$ and $+2.6$ points, respectively, showing that the learned steering signal transfers beyond coding agents in training and evaluation.
+Furthermore, \criticqwenNext{} favors Qwen-only training at both critic sizes, while Qwen+CWM training produces more balanced gains across the two agents (e.g., with an average gain of 3.4\% for the 4B critic model and 5.1\% for the 8B model).
+This indicates that training on the corpora with multiple coding agents yields better overall gain across diverse coding agents.
+
+\begin{table}[t]
+\centering
+% \small
+% \setlength{\tabcolsep}{3pt}
+\resizebox{0.6\linewidth}{!}{%
+\begin{tabular}{@{}l l c c@{}}
+\toprule
+\textbf{Size} & \textbf{Corpus} & \textbf{\texttt{Qwen3-Next}} & \textbf{\texttt{Qwen3-32B}} \\
+\midrule
+-- & -- & 20.0 & 8.8 \\
+\midrule
+\multirow{2}{*}{4B} 
+& Qwen-only & \textbf{24.6}\,\criticdup{4.6} & 10.8\,\criticdup{2.0} \\
+& Qwen+CWM & 24.2\,\criticdup{4.2} & \textbf{11.4}\,\criticdup{2.6} \\
+\midrule
+\multirow{3}{*}{8B} 
+& CWM-only & 23.6\,\criticdup{3.6} & 11.4\,\criticdup{2.6} \\
+& Qwen-only & \textbf{26.2}\,\criticdup{6.2} & 10.6\,\criticdup{1.8} \\
+& Qwen+CWM & 25.2\,\criticdup{5.2} & \textbf{13.8}\,\criticdup{5.0} \\
+\bottomrule
+\end{tabular}%
+}
+\caption{Resolved rate (\%) of critic models trained with different SFT corpus on SWE-Bench Verified. All critic models use $k{=}5$; arrows show gains over no critic.}
+\label{critic:tab:critic_ablation}
+\end{table}
 
 
-\subsection{Distilled Critique Models also Bring Performance Gains}
-\label{sec:critique-sft}
-\start{Experimental Setup}
-To reduce inference cost, we distill Qwen3-8B from Claude-Opus-4.6 using vanilla supervised-finetuning (SFT).
+% \paragraph{What does the gain cost relative to the teacher critic?} 
+\start{Our Trained Critic Models Achieve Balance between the Coding Agents' Performance and Cost}
+As shown in \autoref{critic:fig:pareto_full500}, on the two Qwen agents, the entire critic-guided system costs \$0.03--\$0.04 per instance with the 8B SFT critic model, versus \$0.17--\$0.27 with \criticopus{}.
+Namely, our trained critic model achieves a $5.2$--$6.0\times$ reduction in total cost.
+% Total per-instance cost is $4$-$5\times$ below \criticopus{} on every agent model. 
+Specifically, on \criticqwenNext{}, the 8B SFT critic model Pareto-dominates the ``No Critic'' baseline, which is strictly better on both resolved rate ($25.2\%$ vs.\ $20.0\%$) and total per-instance cost (\$0.03 vs.\ \$0.08).
+The reason is that with the critic model, the \criticqwenNext{} coding agent requires on average fewer steps to resolve a task, which reduces the overall inference cost.
 
-We build training data from 500 trajectories with CWM-32B as the coding agent and Claude-Opus-4.6 as the critique model. For each piece of critique, we use the partial trajectory before it as the prefix and optimize the probability of the critique.
+% \paragraph{Which prompt format produces the better trained critic?} 
+\start{Having High-level Critique Only Improves Training Performance}
+% The high-level one, even though the detailed prompt wins at the teacher.
+We compare to an ablation called ``Detailed-Prompt'' in \autoref{critic:tab:opus_prompt_ablation}. When we generate SFT data, we do NOT require the teacher critic model to only generate high-level guidance.
+Namely, the SFT critiques contain both high-level guidance and low-level implementation details such as the concrete tool call commands.
+Results show that on both Qwen agents, high-level supervision outperforms detailed supervision: $13.8$ vs.\ $12.6\%$ on \criticqwenThirtyTwoB{} and $25.2$ vs.\ $24.6\%$ on \criticqwenNext{}. 
+This result is consistent with the hypothesis in §\ref{critic:sec:critique_design}, that the \criticopus{} teacher's detailed critiques may contain low-level implementation knowledge that the Qwen agents could in principle exploit, but the smaller student critic model cannot reliably learn. The high-level prompt (i.e., our design choice) instead restricts supervision to signals that the trained critic model can more faithfully inherit.
 
-We train the model on 8 L-40 GPUs, with a batch size of 8, and a learning rate of 5e-6. We train the model for 3 epochs.
-
-\start{Experimental Results}
-As shown in \autoref{tab:critique:prelim}, we observe that the SFT model can also bring performance gains to the coding agent, improving the resolved rate from 29.4\% to 35.8\%.
-However, the performance gap with using the frontier critique model is still large, indicating that there is still a large room for improvement. In our proposed methods, we will discuss the root causes of the performance gap and propose methods to close the gap.
-
-
-
-
-\section{Proposed Method 1: Analysis of Distracting Critiques}
-\label{sec:critique-analysis}
-\subsection{Proposed Method}
-We manually compare the critiques generated by the frontier and SFT critique models to identify the differences that could potentially affect the overall performance.
-In particular, we focus on the instances where the agent guided by the Claude-Opus-4.6 critique model succeeds but the agent guided by the SFT critique model fails.
-
-Below is a list of differences that we already observed, and why we assume they may affect the overall performance. 
-Note that the list is not complete and will be updated as we conduct further analysis.
-\begin{itemize}
-  \item \textbf{[Potentially distracting critique \#1] The SFT critique model generates more concrete actions than the frontier model}. We observe that there are a number of cases where the frontier model generates the general plan (e.g., ``you can use keyword search to locate relevant files''), and the SFT critique model generates the concrete actions to execute the plan (e.g., the exact ``grep'' command to perform keyword search).
-  However, since the SFT critique model is not directly optimized for generating actions and it has a smaller size than the main coding agent, it is likely that compared to the coding agent, the critique model has weaker capability in generating actions that both follow the high-level planning and have the correct syntax.
-  As a result, it is not reasonable for the coding agent to follow the concrete actions generated by the SFT critique model.
-  \item \textbf{[Potentially distracting critique \#2] The SFT critique model generates a larger number of instructions than the frontier model}. We observe that the SFT critique model tends to generate longer critiques with a larger number of instructions.
-  We assume that it could potentially affect the performance because we observe that the instruction-following ability of the coding agent is limited. When we provide it with too many instructions, where some of the instructions are more essential than others, the coding agent does not always start with the most essential instruction.
-  \item \textbf{[Potentially distracting critique \#3] The critique generated by the SFT model does not align well with the coding agent's recent progress}. We observe that there are cases where the SFT critique model generates the same instruction multiple times, even if the coding agent has already completed the first few steps in the instruction. In this way, the coding agent is likely to start over from the first step and stuck in a loop until the step limit is reached.
-\end{itemize}
-
-\subsection{Proposed Experiments}
-To verify whether these behaviors indeed lead to performance degradation, for each potentially distracting critique we find, we directly prompt the SFT critique model to avoid this behavior in inference, and compare the performance with the original prompt.
-
-Specifically, to test the effect of ``potentially distracting critique \#1'', we prompt the SFT critique model with the instruction: ``only generate high-level guidance and do NOT generate concrete actions in the critique'', followed by examples of high-level guidance and concrete actions.
-
-To test the effect of ``potentially distracting critique \#2'', we prompt the SFT critique model with the instruction: ``do NOT generate more than 3 instructions in the critique''.
-
-To test the effect of ``potentially distracting critique \#3'', we prompt the SFT critique model with the chain-of-thought process, which first generates the initial set of instructions, checks whether the coding agent has already completed any of the instructions, and then generates the revised set of instructions. We only provide the coding agent with the revised set of instructions.
-
-We compare the performance of using the SFT critique model with the original prompt and the revised prompts on the SWE-Bench Verified dataset~\cite{swebench}. 
-We also compute (1) the percentage of critiques that contain concrete actions, (2) the average number of instructions in the critiques, and (3) the percentage of repeating critiques to verify whether the revised prompts reduce those potentially distracting behaviors.
-If the revised prompts lead to performance gains and the potentially distracting behaviors are reduced, we can verify that such behaviors are indeed harmful to the performance of the coding agent.
-
-We have already observed that with the revised prompt to test ``potentially distracting critique \#1'', the overall performance of the coding agent increases from 32\% to 38\% on a subset of 50 SWE-Bench Verified examples and the proportion of critiques that contain concrete actions is reduced, which indicates that it is likely that outputing concrete actions in the critique is harmful to the performance of the coding agent. We will conduct further experiments to test the other two potentially distracting critiques.
+% Prompt-format ablation: an 8B critic trained on detailed-prompt vs
+% high-level-prompt teacher critiques, evaluated on the two Qwen agent models.
+% Resolve rate only; same numbers as the corresponding rows of Table~\ref{critic:tab:main}.
+\begin{table}[t]
+\centering
+\resizebox{0.6\linewidth}{!}{%
+\begin{tabular}{@{}l l c c@{}}
+\toprule
+\textbf{Size} & \textbf{Critic Model} & \textbf{\texttt{Qwen3-Next}} & \textbf{\texttt{Qwen3-32B}} \\
+\midrule
+\multirow{3}{*}{8B} & No Critic & 20.0 & 8.8 \\
+& + SFT (Detailed-Prompt) & 24.6\,\criticdup{4.6} & 12.6\,\criticdup{3.8} \\
+& + SFT (High-Level, Ours) & \textbf{25.2}\,\criticdup{5.2} & \textbf{13.8}\,\criticdup{5.0} \\
+\bottomrule
+\end{tabular}%
+}
+% \small
+% \setlength{\tabcolsep}{4pt}
+% \begin{tabular}{@{}lcc@{}}
+% \toprule
+% \textbf{Agent} & \textbf{Detailed} & \textbf{High-Level (Ours)} \\
+% \midrule
+% \criticqwenThirtyTwoB{} & 12.6 & \textbf{13.8} \\
+% \criticqwenNext{} & 24.6 & \textbf{25.2} \\
+% \bottomrule
+% \end{tabular}
+\caption{Resolve rate (\%) on SWE-Bench Verified for 8B critic models trained on SFT data with the detailed critiques vs.\ the high-level teacher critiques (our data).}
+\label{critic:tab:prompt_ablation}
+\end{table}
 
 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.6\linewidth]{Critic_figs/pareto_full500.pdf}
+\caption{Cost versus performance on SWE-Bench Verified across six coding agents. Each agent shows its base (\ding{108}) and the 8B SFT critic ($\bigstar$); the two Qwen agents additionally show the \criticopus{} teacher critic ($\circ$). The cost is for the agent \textbf{plus} the critic model.}
+\label{critic:fig:pareto_full500}
+\end{figure}
 
-\section{Proposed Method 2: Improving SFT Data to Distill Critique Models}
-\label{sec:critique-advanced-sft}
+\subsection{Qualitative Analysis and Case Studies}
+\label{critic:sec:qualitative}
+We conduct qualitative analyses with concrete cases to answer the following research questions: 
+(1) What does the critic model learn from training? And
+(2) The ``Detailed-Prompt'' ablation achieves better performance than our ``High-level'' prompt for the teacher critic model \criticopus{}, is this expected?
+% §\ref{critic:sec:main_results} leaves two follow-ups open. 
+% \emph{What does training actually change in the critic's outputs}, given that an off-the-shelf 8B critic improves resolved rate by at most $1.2$ points? 
+% And \emph{why does the detailed prompt win at the \criticopus{} teacher but lose at the 8B trained critic}, reversing the prompt-format ranking? 
+% All case studies are drawn from base, untrained-critic, and trained-critic runs that diverge in outcome, plus a 50-instance \criticopus{} teacher subsample run under both prompt formats.
 
-\subsection{Proposed Method}
-After identifying the behaviors that are potentially harmful to the performance of the coding agent (\autoref{sec:critique-analysis}), we propose to improve the SFT data by avoiding these behaviors in the training data.
-In particular, when generating SFT data, we prompt the frontier critique model to avoid such behaviors, using the same instructions introduced in \autoref{sec:critique-analysis}.
+\start{What Critic Model Training Removes, and What it Adds} 
+As analyzed in App. \ref{critic:app:untrained_vs_trained}, the untrained \criticqwenEightB{} critic model fails in two ways: only $43.4\%$ of its outputs correctly follow the format in the prompt (vs.\ $85.8\%$ after SFT) and $19.3\%$ contain hallucinated bash command actions that are not grounded in the coding agent's trajectory (vs.\ $0\%$ after SFT). 
+In addition, when the untrained critic model does raise an error, it almost always flags only Verification Failures ($330/354$ firings) with a ``run the test script'' recovery, pulling the agent off self-review even on instances the base agent would otherwise have salvaged. 
 
-In case that the frontier critique model fails to follow the prompt, we perform a data filtering step and only include critiques that do not contain any concrete actions, do not contain more than 3 instructions, etc., in the SFT data for distillation.
+We also check the evaluation instances where the trained critic model helps the coding agent succeed, but the coding agent alone cannot resolve. 
+The common pattern is a strategy-level redirect: the critic identifies the failure category the agent is in and points to a different class of approach, without dictating the specific code. 
+We provide two case studies that illustrate the pattern in App.~\ref{critic:app:untrained_vs_trained} and App.~\ref{critic:app:sandbox_adaptation}. 
+On instance \texttt{django\_\_django-9296}, \texttt{sed} append commands silently duplicate a method each time the pattern matches. The critic jointly flags Step Repetition and Tool Selection Errors and redirects the agent to a heredoc rewrite, which resolves the task. 
+On \texttt{sympy\_\_sympy-22714}, a \texttt{ModuleNotFoundError: mpmath} blocks execution-based verification; the critic names the import as the root cause and tells the agent to bypass it and read the source directly.
 
+% \paragraph{Backseat Driving in the Detailed Teacher Prompt.} 
+\start{Detailed Critiques Work Better than High-level Ones for Strong Teacher Models Because of Backseat Driving}
+We show in \autoref{critic:tab:opus_prompt_ablation} that the teacher critic model performs overall better when we allow it to generate detailed critiques instead of requiring it to only generate high-level guidance (e.g., \criticqwenThirtyTwoB{} achieves a resolved rate of 40.6\% when combined with detailed critiques, but only achieves 26.8\% with high-level critiques).
 
-\subsection{Proposed Experiments}
-Similar to the preliminary experiments, we generate a new set of critique data based on 500 issue-solving trajectories, with CWM-32B as the coding agent and Claude-Opus-4.6 as the critique model.
-We instruct Claude-Opus-4.6 with the new prompt and use it to generate critiques every 10 steps.
+We manually examine the examples and observe that if the critic model suggests a concrete action (e.g., the tool call command),
+the coding agent is likely to directly copy it in its next action.
+\autoref{critic:tab:critic_share} presents an analyses on a 50-instance subsample with the \criticopus{} teacher. 
+If we use the ``detailed'' prompt for the critic model, for 23 out of 50 instances, more than 30\% of the lines in the final submitted code patch are directly copied from the critic model.
+In comparison, when using the high-level prompt, the coding agent copies more than 30\% of the code lines in only 1/50 of the evaluation instances.
+The detailed prompt also increases the average number of lines in the generated critiques (e.g., from $1.3$ to $6.7$ for the $k=5$ experiments).
+% Let $\rho$ denote the fraction of the agent's final-submission lines copied verbatim from the critic. 
+% On a 50-instance subsample with the \criticopus{} teacher, the detailed prompt emits $6.7$ code lines per firing and yields $\rho \geq 0.30$ on $23/50$ instances at $k{=}5$; the high-level prompt cuts these to $1.3$ and $1/50$ (Table~\ref{critic:tab:critic_share}). 
+The results suggest that the detailed critiques' higher resolved rate ($32/50$ vs.\ $22/50$) is driven by direct copying rather than agent reasoning: when the teacher dictates a single patch, the agent transcribes it and resolves; when the teacher offers multiple candidate fixes without committing, the agent picks the wrong action and writes a confidently incorrect patch. 
 
-We use an LLM (e.g., GPT-5-mini~\cite{gpt5}) to check whether the critiques follow all the requirements in the new prompt, and only include critiques that pass the check in the SFT data for distillation.
-
-We distill a new critique model with the new SFT data, with Qwen3-8B as the base model and the exact same training settings as the preliminary experiments. 
-Then we apply the new critique model to assist CWM-32B on the SWE-Bench Verified dataset~\cite{swebench}.
-We compare to the original SFT critique model on:
-(1) the percentage of critiques that avoid the potentially distracting critiques, and 
-(2) the final performance of the coding agent (i.e., the resolved rate).
-
-
-
-\section{Proposed Method 3: Constructing DPO Data to Distill Critique Models}
-\label{sec:critique-dpo}
-\subsection{Proposed Method}
-Note that even with the improved SFT data, with no harmful behaviors in the training critiques, it is still possible that the distillation is not effective enough and the student critique model still has harmful behaviors in some of the critiques.
-
-To further improve the performance of the critique model, we propose to add a direct preference optimization (DPO) stage after SFT.
-
-In particular, we apply the SFT critique model to assist CWM-32B on another set of training instances. Whenever we observe that the critique model generates a harmful behavior in the critique, we prompt it to generate additional $n$ critiques (e.g., $n=5$) and use the frontier model (e.g., Claude-Opus-4.6) to rank the critiques based on their effectiveness, correctness, and whether they avoid the harmful behaviors.
-We use the critique with the highest score as the preferred response and the critiques with the lowest scores as the rejected responses, and train the critique model with DPO.
-
-
-
-\subsection{Proposed Experiments}
-We generate 300 pairs of preferred and rejected critiques, and train the SFT critique model with DPO.
-We conduct hyper-parameter search over the learning rate, batch sie, and number of training epochs.
-
-Similar to \autoref{sec:critique-advanced-sft}, we apply the DPO-trained critique model to assist CWM-32B on the SWE-Bench Verified dataset~\cite{swebench}.
-Then we compare the proportion of harmful behaviors and the final resolved rate with the SFT critique model.
+While the strong proprietary critic model such as \criticopus{} has the capability to generate correct actions, the student critic model has a much smaller model size, even much smaller than the coding agents.
+Therefore, it is unlikely that the distilled 8B critic model is strong at generating both high-level guidance and concrete actions, and training with high-level critiques only yields better overall performance.
 
 
+\begin{table}[t]
+\centering
+% \small
+\setlength{\tabcolsep}{4pt}
+\resizebox{0.6\linewidth}{!}{%
+\begin{tabular}{@{}l c c c c@{}}
+\toprule
+\textbf{Prompt} & $k$ & \textbf{Avg. Critique Lines} & \textbf{Copy\%} & \textbf{$\geq 0.30$\%} \\
+\midrule
+Detailed & 5  & 6.7 & 0.32 & 23/50 \\
+High-Level & 5  & 1.3 & 0.01 & 1/50  \\
+\midrule
+Detailed & 10 & 7.1 & 0.27 & 10/49 \\
+High-Level & 10 & 1.9 & 0.00 & 0/49  \\
+\bottomrule
+\end{tabular}
+}
+\caption{\criticopus{} critic model backseat driving on the 50 SWE-Bench Verified mini examples. 
+\underline{Avg. Critique Lines} denotes the average number of lines in the critiques.
+\underline{Copy\%} denotes the fraction of lines in the submitted code patch that are directly copied from the critic model.
+\underline{$\geq 0.30$\%} counts the instances where more than 30\% of the coding agent’s final submission lines are directly copied from the critic model.
+We test critique frequencies of $k=5$ and $10$.
+}
+\label{critic:tab:critic_share}
+\end{table}
+
+% \section{Related Work}
+% 
+% \start{Critic and Advisor Models for Generation.}
+% A growing body of work studies \emph{critic} or \emph{advisor} models that improve generation through evaluative feedback.
+% \citet{gou2023critic} established critique as an intermediate signal for improving model outputs.
+% In code and math, \citet{mcaleese2024llm, gao2025llm} train critics that give natural-language feedback on model-written solutions, \citet{yadavally2025large} evaluates code edits without execution, and \citet{wang2026rubric} shows that effective critics can be learned from sparse outcome signals using rubric-based supervision.
+% Outside code, \citet{xie-etal-2025-factuality} trains FenCE, a claim-level critic for factuality, while \citet{asawa2026trainadvisorsteeringblackbox} learns small advisor models that steer stronger black-box models via instance-specific instructions.
+% These critics operate on completed outputs or through the agent's initial prompt, without revisiting the agent once generation is underway.
+% Issue resolution instead involves long, tool-using trajectories where many failures stem from flawed reasoning rather than incorrect low-level actions~\citep{liu2025empiricalfailures}.
+% 
+% We therefore train a compact critic that intervenes at intermediate steps to provide trajectory-aware, strategy-level feedback on \emph{how} a frozen coding agent should proceed, rather than judging only the final artifact.
+% % This trades additional inference-time compute (one critic call every $k$ agent steps) for the ability to redirect the agent before it commits to a wrong path.
+% % We show in \S\ref{critic:sec:experiments} that the critic improves resolve rate while having significantly lower total cost than proprietary models.
+% 
+% \start{Auxiliary Models for Coding Agents.}
+% Prior work improves coding agents by altering the agent's context, architecture, or parameters.
+% For example, \citet{wang2026swe} improves issue resolution via context selection and pruning. Modular systems instead decompose software-engineering agents into specialized roles such as planners and executors~\citep{arora2024masaimodulararchitecturesoftwareengineering,10.5555/3780338.3780932}, and post-training methods directly optimize the coding agent itself~\citep{pmlr-v267-pan25g,yang2025swesmith,xie2026hybridgymtrainingcodingagents,jain2025regym}.
+% These approaches still couple strategy-level reasoning with the agent's implementation behavior (tool calls, code edits, prompt-specific action formats).
+% 
+% We instead keep the agent frozen and train the critic model with a more specific role: it only supplies high-level feedback while the agent remains responsible for step implementation.
+% This specific role makes the critic model easier to train from existing training environments, more likely to capture transferable reasoning patterns, and applicable to agents without parameter access.
+% % It also motivates constraining the critic away from concrete commands and toward strategic feedback, such as diagnosing failure modes, suggesting next steps, and deciding when to submit.
+% 
+
+\section{Conclusion and Future Works}
+\label{critic:sec:conclusion}
+
+We study whether a small, trained critic model can provide helpful strategy-level signals for a larger coding agent. 
+We construct SFT and DPO training data using a strong proprietary model (\criticopus{}) as the teacher model and the LLM judge.
+Specifically, for the SFT stage, we design the structure of the critiques, which includes error detection for the coding agent, high-level feedback, and a budget alert.
+We also design preference data for the DPO stage, focusing on the correctness and clarity of the guidance to future steps.
+Experiments show that our trained critic models significantly improve six coding agents by $5.6\%$--$16.0\%$ resolved rates on SWE-Bench Verified.
+We also demonstrate that our training data transfers across programming languages and coding agents and works for critic models with different sizes.
+Our detailed analyses further demonstrate the effectiveness of both the SFT and DPO stages and verify the important design choice of training on high-level critiques only. 
+
+\start{Future Works}
+We encourage future researchers to keep working on the direction of critic model training.
+Specifically, while we observe performance gains in the resolved rate for all coding agents, we do not always improve intermediate metrics such as the non-empty rate or the non-loop rate, and we leave it to future work to have a deep analysis on this phenomenon.
+Furthermore, in this work, we restrict the frequency of giving critiques to every $k=5$ or $10$ steps. However, it is possible to train a critic model to dynamically select the step to provide feedback.
+Finally, the usage of critic models is just one example of multi-model collaboration frameworks in inference.
+We hope there could be more research that studies the inference settings involving multiple agents or models, with the aim of either improving the overall performance or reducing the inference cost.

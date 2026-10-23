@@ -51,7 +51,7 @@
 \pagestyle{empty}
 
 \title{ %% 
-{\it Thesis Proposal} \\
+% {\it Thesis Proposal} \\
 {\bf Synthetic Training Data Construction for Coding Agents}
 }
 \author{Yiqing Xie}
@@ -85,7 +85,7 @@ Dan Roth
 \begin{abstract}
 With the development of AI techniques, the role of AI in software development is shifting from script-level, static code generation to project-level coding agents.
 This dissertation research focuses on the fundamental challenges of training coding agents: the high cost of constructing training data, the difficulty of handling diverse use cases simutaneously, and the performance saturation with respect to data scale.
-To this end, this thesis is structured around three parts: (1) constructing scalable training data, (2) improving the generalizability of coding agents, and (3) training critique models for coding agents.
+To this end, this thesis is structured around three parts: (1) constructing scalable training data, (2) improving the generalizability of coding agents, and (3) training critic models for coding agents.
 
 One major bottleneck of scaling coding agent training data is the construction of training environments, which are abstractions of real-world coding setups.
 Building the environments can require substantial human or agent effort, for example, when the environments support the executability and unit testing of an entire code repository. 
@@ -95,9 +95,9 @@ Building on this lightweight environment construction process, we extend coding 
 
 Even with these advances in coding agent training, empirically, we observe that for a specific model, additional training data yields little or no further gain after a certain point.
 Our analysis further shows that the performance is substantially bottlenecked by the limited high-level planning ability: producing intermediate steps about what should be done and in what order, as opposed to low-level implementation: generating concrete executable actions to perform the intermediate steps.
-In our work, we aim to train an additional critique model that specializes in planning and dynamically provides guidance to the coding agent in inference.
+In our work, we aim to train an additional critic model that specializes in planning and dynamically provides guidance to the coding agent in inference.
 
-Together, this thesis aims to build scalable data to train effective coding agents and critique models that generalize across diverse coding tasks.
+Together, this thesis aims to build scalable data to train effective coding agents and critic models that generalize across diverse coding tasks.
 \end{abstract}
 
 % \begin{acknowledgments}
@@ -169,7 +169,7 @@ An example of low-level implementation is using the ``file-editing'' tool to gen
 Our analysis suggests that high-level planning remains a major bottleneck: even after training, there is still a substantial gap between these models and frontier models such as Claude Sonnet 4.6~\cite{claude46}.
 Although increasing the size of the base model can raise the performance ceiling, it also requires more computational resources, which is particularly limited in academia.
 
-In this thesis, we aim to mitigate the three challenges by (1) constructing scalable training data, (2) improving the generalizability of coding agents, and (3) training critique models to assist coding agents.
+In this thesis, we aim to mitigate the three challenges by (1) constructing scalable training data, (2) improving the generalizability of coding agents, and (3) training critic models to assist coding agents.
 
 \section{Thesis Overview}
 This thesis contains three parts targeting the three above challenges, respectively.
@@ -187,14 +187,14 @@ Specifically, we conduct systematic analyses on the commonalities shared across 
 The work has been accepted to \textcolor{aquablue}{\textbf{ICML 2026}}.
 In the \textbf{\textcolor{treegreen}{proposed work}}, we take a step forward and analyze the exact trajectory behaviors (including problem-solving strategies and concrete actions) that are transferrable across tasks. Then we propose a data selection method based on such desired behaviors beyond task success.
 
-\start{Part 3: Training Critique Models to Assist Coding Agent}
+\start{Part 3: Training Critic Models to Assist Coding Agent}
 While the first two parts aim to improve the effectiveness of coding agent training, empirically, we still observe that the performance satuates with respect to data scale after a certain point, and the high-level planning ability remains a major bottleneck.
-To address this limitation, in our work, we develop critique models that provide guidance to the coding agent at inference time.
-While the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, the critique model is specialized for planning.
-Since the optimum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning, training a specialized critique model may lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
+To address this limitation, in our work, we develop critic models that provide guidance to the coding agent at inference time.
+While the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, the critic model is specialized for planning.
+Since the optimum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning, training a specialized critic model may lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
 We first show that the high-level idea of ``training a specialized model to provide guidance to the main model'' can be beneficial in general NLP tasks such as factuality generation~\cite{fence} in an \textcolor{aquablue}{\textbf{ACL 2025}} paper.
-Then in the \textbf{\textcolor{treegreen}{proposed work}}, we apply this idea to coding agent training and train critique models to assist coding agents in inference.
-We show that there is a large room of improvement for training critique models for coding agents, and propose a recipe to train critique models.
+Then in the \textbf{\textcolor{treegreen}{proposed work}}, we apply this idea to coding agent training and train critic models to assist coding agents in inference.
+We show that there is a large room of improvement for training critic models for coding agents, and propose a recipe to train critic models.
 
 \newpage
 \section{Proposed Timeline}
@@ -226,8 +226,8 @@ In \S\ref{sec:related-scalable}, we discuss existing work that constructs scalab
 Since most coding agent training datasets only focus on a single task, to train coding agents that are capable across a diverse set of applications, in \S\ref{sec:related-generalizability}, we further discuss the generalizability of coding agents, where our work aims to reveal the key abilities that are transferrable across different coding tasks.
 While all the above works show effective ways to directly train coding agents, empirically, we still observe that the performance satuates with respect to data scale after a certain point, and the high-level planning ability remains a major bottleneck.
 To address this limitation, in \S\ref{sec:related-critique}, we discuss how existing work improves the planning ability by either indirect approaches such as optimizing the context, memory, tools, etc, or direct approaches that explicitly train a planner agent.
-Our work opens a direction of critique model training, which falls into the direct approach.
-The critique model is explicitly optimized to tackle the planning bottleneck, and can be integrated with a fixed coding agent without retraining it.
+Our work opens a direction of critic model training, which falls into the direct approach.
+The critic model is explicitly optimized to tackle the planning bottleneck, and can be integrated with a fixed coding agent without retraining it.
 
 
 
@@ -329,10 +329,10 @@ MapCoder~\cite{mapcoder} uses a four-agent pipeline: retrieval, planning, coding
 In addition to the above pipeline-based approaches, AutoGen~\cite{autogen} adopts a more flexible approach by allowing multiple agents to converse with each other to accomplish tasks.
 HyperAgent~\cite{hyperagent} has a centralized Planner that generates resolution strategies and dispatches them asynchronously to the navigator, code editor, and executor agents.
 
-In our work, we propose to train a critique model that is specialized in planning and can provide guidance to the coding agent at inference time, which is a type of direct approach that target the planning bottleneck more explicitly.
+In our work, we propose to train a critic model that is specialized in planning and can provide guidance to the coding agent at inference time, which is a type of direct approach that target the planning bottleneck more explicitly.
 Compared to other direct approaches, our approach is more flexible and generalizable for the following reasons:
-(1) our critique model can be directly integrated with a fixed coding agent without retraining it. It does not need to be paired with other specialized sub-agents that are each optimized for a particular intermediate step of the task, and
-(2) the critique model can be applied at any point during inference and at any desired frequency, thereby enabling flexible control over its use based on user preferences.
+(1) our critic model can be directly integrated with a fixed coding agent without retraining it. It does not need to be paired with other specialized sub-agents that are each optimized for a particular intermediate step of the task, and
+(2) the critic model can be applied at any point during inference and at any desired frequency, thereby enabling flexible control over its use based on user preferences.
 
 
 
@@ -348,21 +348,20 @@ This thesis aims to build synthetic training data for coding agents to resolve t
 In \autoref{part:scalability}, we begin by improving the scalability of training data by finding an appropriate level of abstraction for training environments, with the goal of simplifying the data construction process while preserving effectiveness.
 We provide a successful approach that simplifies the process of external package installation while remaining effective.
 Building on this lightweight environment construction process, in \autoref{part:generalizability}, we extend the scope to general-purpose coding agent training and we aim to conduct systematic analyses on the generalizability of coding agents across different tasks. We start with developing the principles for designing synthetic training tasks for task generalization.
-Finally, in \autoref{part:usage}, towards the empirical observation that the performance satuates with respect to data scale after a certain point, with high-level planning ability remaining a major bottleneck, we aim to raise the performance ceiling by training a critique model that specializes in planning to assist the coding agent. We motivate this approach by showing that critique model training can be effective in general NLP tasks such as factuality generation.
+Finally, in \autoref{part:usage}, towards the empirical observation that the performance satuates with respect to data scale after a certain point, with high-level planning ability remaining a major bottleneck, we aim to raise the performance ceiling by training a critic model that specializes in planning to assist the coding agent. We motivate this approach by showing that critic model training can be effective in general NLP tasks such as factuality generation.
 
 For the next steps, we will continue the research on \autoref{part:generalizability} and \autoref{part:usage} by completing the two proposed works in \autoref{chap:effective-analysis} and \autoref{chap:critique-training}.
 Specifically, for Proposed Work I (\autoref{part:usage}), we will verify that the characteristics we find indeed affect the overall performance (\autoref{sec:critique-analysis}) and construct SFT data targeting the beneficial or distracting characteristics we find (\autoref{sec:critique-advanced-sft}). 
 Meanwhile, we will write the research paper and we aim to submit the paper to EMNLP 2026, where the deadline is in May 25, 2026.
-After we submit the paper for Proposed Work II, we will keep exploring the potential to improve the critique model by constructing DPO data (\autoref{sec:critique-dpo}), which approximately takes one month.
+After we submit the paper for Proposed Work II, we will keep exploring the potential to improve the critic model by constructing DPO data (\autoref{sec:critique-dpo}), which approximately takes one month.
 
-As for Proposed Work II (\autoref{part:generalizability}), we will start with discovering the key agent behaviors by comparing the training trajectories generated by a frontier model, Claude-Sonnet-3.7, and a weaker model, Qwen2.5Coder-32B, with our categorization of agent behaviors proposed in \autoref{plus:sec:categorization}. The effectiveness of the key behaviors will be verified with controlled experiments proposed in \autoref{plus:sec:controlled-exp}. 
+As for Proposed Work II (\autoref{part:generalizability}), we will start with discovering the key agent behaviors by comparing the training trajectories generated by a frontier model, Claude-Sonnet-3.7, and a weaker model, Qwen2.5Coder-32B, with our categorization of agent behaviors proposed in \autoref{catradar:sec:distinct-behaviors}. The effectiveness of the key behaviors will be verified with controlled experiments proposed in \autoref{catradar:sec:controlled-exp}. 
 We aim to finish this stage by the end of July 2026. We will iteratively discover the key agent behaviors and verify their effectiveness. The discovery process is automated with an LLM agent, and the verification process is conducted with manually designed controlled experiments. We approximately need 3-4 days to complete the controlled experiment design, conduct the experiment, run training, and run evaluation for each candidate behavior.
-Then we will extend the analysis to multiple training and evaluation tasks and multiple teacher model pairs as proposed in \autoref{plus:sec:extend-exp}. We aim to finish this stage by the end of August 2026. We will then wrap up the experiment results and write a research paper. We aim to submit the paper to ICLR 2027, where the deadline is September 24, 2026.
+Then we will extend the analysis to multiple training and evaluation tasks and multiple teacher model pairs as proposed in \autoref{catradar:sec:analysis-results}. We aim to finish this stage by the end of August 2026. We will then wrap up the experiment results and write a research paper. We aim to submit the paper to ICLR 2027, where the deadline is September 24, 2026.
 
 After submitting the two papers, I will spend the remaining time on thesis writing and job search. I aim to defend the thesis in May 2027.
 
-%\appendix
-%\include{appendix}
+\input{part_appendices}
 
 \backmatter
 
