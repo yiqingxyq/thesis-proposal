@@ -41,107 +41,107 @@
 \contentsline {subsection}{\numberline {4.5.1}Experimental Setup}{41}{subsection.4.5.1}%
 \contentsline {subsection}{\numberline {4.5.2}Experimental Results}{42}{subsection.4.5.2}%
 \contentsline {section}{\numberline {4.6}Chapter Summary}{43}{section.4.6}%
-\contentsline {part}{II\hspace {1em}Analyses and Insights: What Makes Coding Agent Training Effective?}{44}{part.2}%
-\contentsline {chapter}{\numberline {5}Constructing Effective Synthetic Tasks for Training Coding Agents}{46}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introduction}{46}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Methodology}{48}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Analysis of Coding Agent Task Transferability}{49}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Principles for Training Task Design}{51}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}\textsc {Hybrid-Gym}\xspace Tasks}{51}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Verification of \textsc {Hybrid-Gym}\xspace Tasks}{53}{subsection.5.2.4}%
-\contentsline {section}{\numberline {5.3}Results}{54}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Experimental Setup}{54}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Main Results}{55}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}Detailed Results}{57}{subsection.5.3.3}%
-\contentsline {section}{\numberline {5.4}Analysis of Task Transferability}{58}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Output Format Must Match Downstream Tasks}{58}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Script-level Agentic Tasks Do NOT Generalize to Repo-level Tasks}{59}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Task and Trajectory Complexity Matters}{59}{subsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.4.4}Even Successful Trajectories of the Same Task Instances may have Different Impact}{60}{subsection.5.4.4}%
-\contentsline {subsection}{\numberline {5.4.5}Sampling Strategies Affects Effectiveness}{61}{subsection.5.4.5}%
-\contentsline {section}{\numberline {5.5}Chapter Summary}{61}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Discovering Effective Demonstration Behaviors for Training Coding Agents}{63}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Introduction}{63}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Analysis Method: Discovering Influential Behaviors of Demonstrations}{66}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}\textbf {\textsc {CATRadar}}\xspace : Automatic Candidate Behavior Discovery}{66}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Data Intervention Methods}{67}{subsection.6.2.2}%
-\contentsline {section}{\numberline {6.3}Analysis Results: What Behaviors Affect Coding Agent Training?}{69}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}\textbf {\textsc {CATRadar}}\xspace Discovers Diverse Candidates}{69}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Trajectory-Level Features are Not Good Indicators of Training Effectiveness}{70}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}\textbf {\textsc {CATRadar}}\xspace Discovers Effective Problem-Solving Strategies}{71}{subsection.6.3.3}%
-\contentsline {subsection}{\numberline {6.3.4}Planning Steps have Different Effects on Different Models}{72}{subsection.6.3.4}%
-\contentsline {subsection}{\numberline {6.3.5}Verification Abilities Transfer from Simple Tasks to Complex Tasks}{73}{subsection.6.3.5}%
-\contentsline {subsection}{\numberline {6.3.6}Training on Reasoning Text Increases Trajectory Length}{73}{subsection.6.3.6}%
-\contentsline {section}{\numberline {6.4}Practical Utility of Our Discoveries}{74}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Method 1: Behavior-Aware Data Selection}{74}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Method 2: Adding Synthesized Agent Steps to Training Trajectories}{75}{subsection.6.4.2}%
-\contentsline {subsection}{\numberline {6.4.3}Method 3: Behavior-Conditioned Demonstration Generation}{76}{subsection.6.4.3}%
-\contentsline {section}{\numberline {6.5}Conclusions}{76}{section.6.5}%
-\contentsline {part}{III\hspace {1em}Training Auxiliary Models to Assist Coding Agents}{78}{part.3}%
-\contentsline {chapter}{\numberline {7}Improving Generator Factuality by Training a Critic Model}{80}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Introduction}{80}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Methodology}{82}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}\textsc {FenCE}\xspace : Factuality Evaluator Training}{82}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Improving Generator Factuality with \textsc {FenCE}\xspace }{84}{subsection.7.2.2}%
-\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{86}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{86}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Main Results}{86}{subsection.7.3.2}%
-\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{87}{subsection.7.3.3}%
-\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{88}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{88}{subsection.7.4.1}%
-\contentsline {subsection}{\numberline {7.4.2}Main Results}{90}{subsection.7.4.2}%
-\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{92}{subsection.7.4.3}%
-\contentsline {section}{\numberline {7.5}Chapter Summary}{93}{section.7.5}%
-\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critic Model}{97}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Introduction}{97}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Methodology}{99}{section.8.2}%
-\contentsline {subsection}{\numberline {8.2.1}Formal Definitions}{99}{subsection.8.2.1}%
-\contentsline {subsection}{\numberline {8.2.2}Designing the Critique Structure}{100}{subsection.8.2.2}%
-\contentsline {subsection}{\numberline {8.2.3}Distilling Critic Models with SFT}{101}{subsection.8.2.3}%
-\contentsline {subsection}{\numberline {8.2.4}Improving Critic Models with DPO}{102}{subsection.8.2.4}%
-\contentsline {section}{\numberline {8.3}Experiments}{104}{section.8.3}%
-\contentsline {subsection}{\numberline {8.3.1}Experimental Setup}{104}{subsection.8.3.1}%
-\contentsline {subsection}{\numberline {8.3.2}Implementation Details}{106}{subsection.8.3.2}%
-\contentsline {subsection}{\numberline {8.3.3}Main Results}{106}{subsection.8.3.3}%
-\contentsline {subsection}{\numberline {8.3.4}Detailed Ablations and Analyses}{106}{subsection.8.3.4}%
-\contentsline {subsection}{\numberline {8.3.5}Qualitative Analysis and Case Studies}{108}{subsection.8.3.5}%
-\contentsline {section}{\numberline {8.4}Conclusion and Future Works}{110}{section.8.4}%
-\contentsline {chapter}{\numberline {9}Conclusion}{112}{chapter.9}%
-\contentsline {part}{IV\hspace {1em}Appendices}{114}{part.4}%
-\contentsline {chapter}{\numberline {A}Appendix for Chapter \ref {chap:effective-analysis}}{115}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Additional Related Work}{115}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Experimental Setup}{115}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Computation of Significance}{120}{section.A.3}%
-\contentsline {section}{\numberline {A.4}List of Candidate Behaviors}{120}{section.A.4}%
-\contentsline {section}{\numberline {A.5}Detailed Analysis Results}{120}{section.A.5}%
-\contentsline {subsection}{\numberline {A.5.1}Exploration Length is Not a Good Indicator of Trajectory Effectiveness}{120}{subsection.A.5.1}%
-\contentsline {subsection}{\numberline {A.5.2}Strong Teacher Does Not Always Translate to Strong Student}{120}{subsection.A.5.2}%
-\contentsline {subsection}{\numberline {A.5.3}Non-Tool-Call Text Increases Trajectory Length}{121}{subsection.A.5.3}%
-\contentsline {section}{\numberline {A.6}Concrete Data Intervention Implementation for each Candidate Behavior}{121}{section.A.6}%
-\contentsline {subsection}{\numberline {A.6.1}Label Demonstrations with the Presence of Repo-Exploration Strategies}{122}{subsection.A.6.1}%
-\contentsline {subsection}{\numberline {A.6.2}Prompt the Models to Adopt our Repo-Exploration Strategies}{123}{subsection.A.6.2}%
-\contentsline {subsection}{\numberline {A.6.3}Add Task-Tracker Steps to Training Demonstrations}{124}{subsection.A.6.3}%
-\contentsline {subsection}{\numberline {A.6.4}Add Verification Steps to Training Demonstrations}{124}{subsection.A.6.4}%
-\contentsline {subsection}{\numberline {A.6.5}Verbosity Experiments}{126}{subsection.A.6.5}%
-\contentsline {chapter}{\numberline {B}Appendix for Chapter \ref {chap:critique-training}}{128}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Analyses on the Gap between Teacher and Student Critic Models}{128}{section.B.1}%
-\contentsline {section}{\numberline {B.2}Training and Inference Details}{128}{section.B.2}%
-\contentsline {subsection}{\numberline {B.2.1}Inference Details}{128}{subsection.B.2.1}%
-\contentsline {subsection}{\numberline {B.2.2}Training Details}{129}{subsection.B.2.2}%
-\contentsline {section}{\numberline {B.3}Method Preliminaries}{130}{section.B.3}%
-\contentsline {paragraph}{Division of labor.}{130}{section*.85}%
-\contentsline {paragraph}{Why high-level feedback.}{130}{section*.86}%
-\contentsline {paragraph}{Scaffold details.}{131}{section*.87}%
-\contentsline {section}{\numberline {B.4}Critic Prompts}{131}{section.B.4}%
-\contentsline {subsection}{\numberline {B.4.1}High-Level Prompt}{131}{subsection.B.4.1}%
-\contentsline {subsection}{\numberline {B.4.2}Detailed Prompt}{133}{subsection.B.4.2}%
-\contentsline {subsection}{\numberline {B.4.3}Budget-Aware Instructions}{136}{subsection.B.4.3}%
-\contentsline {section}{\numberline {B.5}Opus Teacher Prompt Ablation}{136}{section.B.5}%
-\contentsline {section}{\numberline {B.6}Inference Pricing}{136}{section.B.6}%
-\contentsline {section}{\numberline {B.7}Statistical Significance}{137}{section.B.7}%
-\contentsline {section}{\numberline {B.8}Qualitative Case Studies}{137}{section.B.8}%
-\contentsline {subsection}{\numberline {B.8.1}Untrained vs.\ trained critic on the same loop}{137}{subsection.B.8.1}%
-\contentsline {subsection}{\numberline {B.8.2}Routing around a dependency failure}{139}{subsection.B.8.2}%
-\contentsline {subsection}{\numberline {B.8.3}Backseat driving in the detailed teacher prompt}{139}{subsection.B.8.3}%
-\contentsline {subsection}{\numberline {B.8.4}Repeated demand on \texttt {django\_\_django-13012}}{140}{subsection.B.8.4}%
-\contentsline {chapter}{Bibliography}{142}{appendix*.91}%
+\contentsline {part}{II\hspace {1em}Analyses and Principles: What Makes Coding Agent Training Effective?}{44}{part.2}%
+\contentsline {chapter}{\numberline {5}Constructing Effective Synthetic Tasks for Training Coding Agents}{47}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introduction}{47}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Methodology}{49}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Analysis of Coding Agent Task Transferability}{50}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Principles for Training Task Design}{52}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}\textsc {Hybrid-Gym}\xspace Tasks}{52}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Verification of \textsc {Hybrid-Gym}\xspace Tasks}{54}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}Results}{55}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Experimental Setup}{55}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Main Results}{56}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Detailed Results}{58}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Analysis of Task Transferability}{59}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Output Format Must Match Downstream Tasks}{59}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Script-level Agentic Tasks Do NOT Generalize to Repo-level Tasks}{60}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Task and Trajectory Complexity Matters}{60}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Even Successful Trajectories of the Same Task Instances may have Different Impact}{61}{subsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.4.5}Sampling Strategies Affects Effectiveness}{62}{subsection.5.4.5}%
+\contentsline {section}{\numberline {5.5}Chapter Summary}{62}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Discovering Effective Demonstration Behaviors for Training Coding Agents}{64}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduction}{64}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Analysis Method: Discovering Influential Behaviors of Demonstrations}{67}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}\textbf {\textsc {CATRadar}}\xspace : Automatic Candidate Behavior Discovery}{67}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Data Intervention Methods}{68}{subsection.6.2.2}%
+\contentsline {section}{\numberline {6.3}Analysis Results: What Behaviors Affect Coding Agent Training?}{70}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}\textbf {\textsc {CATRadar}}\xspace Discovers Diverse Candidates}{70}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Trajectory-Level Features are Not Good Indicators of Training Effectiveness}{71}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}\textbf {\textsc {CATRadar}}\xspace Discovers Effective Problem-Solving Strategies}{72}{subsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.3.4}Planning Steps have Different Effects on Different Models}{73}{subsection.6.3.4}%
+\contentsline {subsection}{\numberline {6.3.5}Verification Abilities Transfer from Simple Tasks to Complex Tasks}{74}{subsection.6.3.5}%
+\contentsline {subsection}{\numberline {6.3.6}Training on Reasoning Text Increases Trajectory Length}{74}{subsection.6.3.6}%
+\contentsline {section}{\numberline {6.4}Practical Utility of Our Discoveries}{75}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Method 1: Behavior-Aware Data Selection}{75}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Method 2: Adding Synthesized Agent Steps to Training Trajectories}{76}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}Method 3: Behavior-Conditioned Demonstration Generation}{77}{subsection.6.4.3}%
+\contentsline {section}{\numberline {6.5}Conclusions}{77}{section.6.5}%
+\contentsline {part}{III\hspace {1em}Training Auxiliary Models to Assist Coding Agents}{79}{part.3}%
+\contentsline {chapter}{\numberline {7}Improving Generator Factuality by Training a Critic Model}{81}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Introduction}{81}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Methodology}{83}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}\textsc {FenCE}\xspace : Factuality Evaluator Training}{83}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Improving Generator Factuality with \textsc {FenCE}\xspace }{85}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{87}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{87}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Main Results}{87}{subsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{88}{subsection.7.3.3}%
+\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{89}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{89}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Main Results}{91}{subsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{93}{subsection.7.4.3}%
+\contentsline {section}{\numberline {7.5}Chapter Summary}{94}{section.7.5}%
+\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critic Model}{98}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Introduction}{98}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Methodology}{100}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Formal Definitions}{100}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Designing the Critique Structure}{101}{subsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.2.3}Distilling Critic Models with SFT}{102}{subsection.8.2.3}%
+\contentsline {subsection}{\numberline {8.2.4}Improving Critic Models with DPO}{103}{subsection.8.2.4}%
+\contentsline {section}{\numberline {8.3}Experiments}{105}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Experimental Setup}{105}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Implementation Details}{107}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Main Results}{107}{subsection.8.3.3}%
+\contentsline {subsection}{\numberline {8.3.4}Detailed Ablations and Analyses}{107}{subsection.8.3.4}%
+\contentsline {subsection}{\numberline {8.3.5}Qualitative Analysis and Case Studies}{109}{subsection.8.3.5}%
+\contentsline {section}{\numberline {8.4}Conclusion and Future Works}{111}{section.8.4}%
+\contentsline {chapter}{\numberline {9}Conclusion}{113}{chapter.9}%
+\contentsline {part}{IV\hspace {1em}Appendices}{115}{part.4}%
+\contentsline {chapter}{\numberline {A}Appendix for Chapter \ref {chap:effective-analysis}}{116}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Additional Related Work}{116}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Experimental Setup}{116}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Computation of Significance}{121}{section.A.3}%
+\contentsline {section}{\numberline {A.4}List of Candidate Behaviors}{121}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Detailed Analysis Results}{121}{section.A.5}%
+\contentsline {subsection}{\numberline {A.5.1}Exploration Length is Not a Good Indicator of Trajectory Effectiveness}{121}{subsection.A.5.1}%
+\contentsline {subsection}{\numberline {A.5.2}Strong Teacher Does Not Always Translate to Strong Student}{121}{subsection.A.5.2}%
+\contentsline {subsection}{\numberline {A.5.3}Non-Tool-Call Text Increases Trajectory Length}{122}{subsection.A.5.3}%
+\contentsline {section}{\numberline {A.6}Concrete Data Intervention Implementation for each Candidate Behavior}{122}{section.A.6}%
+\contentsline {subsection}{\numberline {A.6.1}Label Demonstrations with the Presence of Repo-Exploration Strategies}{123}{subsection.A.6.1}%
+\contentsline {subsection}{\numberline {A.6.2}Prompt the Models to Adopt our Repo-Exploration Strategies}{124}{subsection.A.6.2}%
+\contentsline {subsection}{\numberline {A.6.3}Add Task-Tracker Steps to Training Demonstrations}{125}{subsection.A.6.3}%
+\contentsline {subsection}{\numberline {A.6.4}Add Verification Steps to Training Demonstrations}{125}{subsection.A.6.4}%
+\contentsline {subsection}{\numberline {A.6.5}Verbosity Experiments}{127}{subsection.A.6.5}%
+\contentsline {chapter}{\numberline {B}Appendix for Chapter \ref {chap:critique-training}}{129}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Analyses on the Gap between Teacher and Student Critic Models}{129}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Training and Inference Details}{129}{section.B.2}%
+\contentsline {subsection}{\numberline {B.2.1}Inference Details}{129}{subsection.B.2.1}%
+\contentsline {subsection}{\numberline {B.2.2}Training Details}{130}{subsection.B.2.2}%
+\contentsline {section}{\numberline {B.3}Method Preliminaries}{131}{section.B.3}%
+\contentsline {paragraph}{Division of labor.}{131}{section*.85}%
+\contentsline {paragraph}{Why high-level feedback.}{131}{section*.86}%
+\contentsline {paragraph}{Scaffold details.}{132}{section*.87}%
+\contentsline {section}{\numberline {B.4}Critic Prompts}{132}{section.B.4}%
+\contentsline {subsection}{\numberline {B.4.1}High-Level Prompt}{132}{subsection.B.4.1}%
+\contentsline {subsection}{\numberline {B.4.2}Detailed Prompt}{134}{subsection.B.4.2}%
+\contentsline {subsection}{\numberline {B.4.3}Budget-Aware Instructions}{137}{subsection.B.4.3}%
+\contentsline {section}{\numberline {B.5}Opus Teacher Prompt Ablation}{137}{section.B.5}%
+\contentsline {section}{\numberline {B.6}Inference Pricing}{137}{section.B.6}%
+\contentsline {section}{\numberline {B.7}Statistical Significance}{138}{section.B.7}%
+\contentsline {section}{\numberline {B.8}Qualitative Case Studies}{138}{section.B.8}%
+\contentsline {subsection}{\numberline {B.8.1}Untrained vs.\ trained critic on the same loop}{138}{subsection.B.8.1}%
+\contentsline {subsection}{\numberline {B.8.2}Routing around a dependency failure}{140}{subsection.B.8.2}%
+\contentsline {subsection}{\numberline {B.8.3}Backseat driving in the detailed teacher prompt}{140}{subsection.B.8.3}%
+\contentsline {subsection}{\numberline {B.8.4}Repeated demand on \texttt {django\_\_django-13012}}{141}{subsection.B.8.4}%
+\contentsline {chapter}{Bibliography}{143}{appendix*.91}%

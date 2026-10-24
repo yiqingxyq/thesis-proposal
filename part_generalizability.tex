@@ -1,27 +1,34 @@
 
 
-\part{Analyses and Insights: What Makes Coding Agent Training Effective?}
+\part{Analyses and Principles: What Makes Coding Agent Training Effective?}
 \label{part:generalizability}
 
 \start{Overview of Part~\ref{part:generalizability}}
-\autoref{part:scalability} focused on constructing scalable environments for training coding agents while preserving effectiveness. 
-The studies limit to (1) training on a single task, and (2) using task success as the only metric for selecting training demonstrations.
-However, our further analyses show that (1) training on a single task is NOT sufficient for generalizing to diverse downstream tasks, and (2) even successful demonstrations may have substantially different impacts in training.
+% In Part I, we assume that training on the same tasks for evaluation, and we assume that using successful trajectories always work! 
+\autoref{part:scalability} focuses on constructing training environments for coding agents that are both scalable and effective.
+In \autoref{part:scalability}, we make two assumptions on the effectiveness of training: (1) we can rely on one single training task, and (2) it is sufficient to use task success as the only metric for selecting training demonstrations.
+However, both assumptions do not always hold.
+Our further analyses show that (1) training on a single task is NOT sufficient for generalizing to diverse downstream tasks, and (2) even successful demonstrations may have substantially different impacts in training.
 
-In this part, we take a step back and study the factors that make coding agent training effective.
-Both chapters follow the same structure: we first investigate the abilities that the coding agent need to learn, and then derive training data design principles based on the investigation results.
+In this part, we take a step back and \textbf{study the factors that make coding agent training effective}.
+Both chapters follow the same structure: we first investigate the abilities that the coding agents need to learn, and then derive training data design principles based on these abilities.
 
-In \autoref{chap:hybrid-gym}, we investigate the transferable skills shared across diverse tasks by decomposing trajectories into fine-grained components (e.g., repository exploration) and derive a set of principles for training task design, such as matching the output format of downstream tasks and requiring non-trivial repository exploration.
-Guided by these principles, we build our dataset on a set of scalable synthetic tasks, for instance, function localization and dependency search.
+\start{Chapter \ref{chap:hybrid-gym}}
+In \autoref{chap:hybrid-gym}, we decompose general coding agent tasks into multiple problem-solving stages (e.g., repository exploration and solution implementation) and we aim to improve coding agents' abilities to perfom each stage correctly by designing synthetic training tasks.
+We derive a set of principles for designing effective synthetic training tasks. For instance, the tasks must require non-trivial planning and repository exploration to resolve, and must require generating a code patch as the outcome for the solution implementation stage.
+Guided by these principles, we build our dataset, \textbf{\hybridmethodname}, on a set of scalable synthetic tasks, for instance, function localization and dependency search.
 Experiments show that agents trained on our synthetic tasks effectively generalize to diverse real-world tasks (e.g., issue-solving, test generation, and library construction) that are not presented in the training data.
 
-While \autoref{chap:hybrid-gym} presents principles for training task design, we observe that the concrete approach to accomplish the task is also crucial for training.
-Particularly, experiments show that even successful trajectories generated from the same set of instances may have substantially different impacts in training.
-In a \proposedWork (\autoref{chap:effective-analysis}), we propose a new work that aims to present principles for training trajectories.
-We first conduct an analysis to investigate the characteristics that make a training trajectory beneficial or harmful in training from two aspects: the high-level problem-solving strategies and the concrete actions taken by the agent.
-Then, we propose two trajectory augmentation methods to inject beneficial characteristics into the trajectories and remove harmful ones.
+\start{Chapter \ref{chap:effective-analysis}}
+While the task design principles derived in \autoref{chap:hybrid-gym} only require the presense of problem-solving stages (e.g., repository exploration and solution implementation) in the training demonstrations, we further observe that the effectiveness of training also substantially depends on \textbf{how} the stages are accomplished.
+For instance, we observe that for two sets of training demonstrations that both successfully locate target files in a codebase, the specific strategies to locate the file also substantially affect the final performance.
 
+\autoref{chap:effective-analysis} thus investigates teaching the coding agents what kind of fine-grained behaviors can lead to better performance, where ``behavior'' is defined as the pattern of accomplishing each problem-solving stage and may include the strategies, the selection of tools, the patterns of tool call command and reasoning text.
+Specifically, to find such influential behaviors in an efficient way, we present a \toolName, an analysis method to automatically discover candidate behaviors by defining, extracting, and comparing the behaviors of different trained agents. 
+\toolName enables us to find behaviors that are influential to at least one model, including specific repo-exploration strategies, the planning and verification patterns, and the verbosity of the reasoning text. 
 
+The insights obtained by \toolName can improve the effectiveness of training data generated under the \hybridmethodname synthetic tasks by various methods, including data selection, agent step synthesis, and behavior-conditioned rollout. 
+For instance, results show that when training on the \hybridmethodname function localization task, by inserting explicit planning steps into the training demonstrations that are synthesized by LLMs, we improve Qwen3-8B's resolved rate on SWE-Bench Verified from 11.6\% to 17.6\%.
 
 
 
@@ -37,7 +44,7 @@ Then, we propose two trajectory augmentation methods to inject beneficial charac
   \includegraphics{HybridGym_figs/intro.pdf}%
 }
 \caption{(\textit{\textbf{Left}}) We decompose general coding agent tasks into a set of intermediate components and compute the percentage of agent actions spent on each component. Our training tasks partially cover verification and fully cover reasoning, repository exploration, and implementation, which consist of around 68\% of the actions.
-\textit{(\textbf{Right})} Example actions for each component. Compared to a baseline training method, SWE-Gym~\cite{swegym}, training with our \repostmethodname significantly reduces failures due to insufficient reasoning, insufficient exploration, and failed file editing, improving the final resolved rate on SWE-Bench Verified from 10.6\% to 15.0\%. 
+\textit{(\textbf{Right})} Example actions for each component. Compared to a baseline training method, SWE-Gym~\cite{swegym}, training with our \hybridmethodname significantly reduces failures due to insufficient reasoning, insufficient exploration, and failed file editing, improving the final resolved rate on SWE-Bench Verified from 10.6\% to 15.0\%. 
 }
 \label{fig:intro}
 \end{figure*}
@@ -67,7 +74,7 @@ Based on the observation from our analysis, we ask: \textbf{can we design a set 
 
 
 % [parap-5: in this paper]
-In this paper, we present \repostmethodname, a large-scale coding agent training dataset containing a suite of coding agent training tasks that only require simple environment setup.
+In this paper, we present \hybridmethodname, a large-scale coding agent training dataset containing a suite of coding agent training tasks that only require simple environment setup.
 Based on our analysis summarized in \autoref{fig:intro}, we present a list of principles for training task design: the task needs to 
 (1) match the output format of downstream tasks;
 (2) include a repository exploration process; and 
@@ -75,13 +82,13 @@ Based on our analysis summarized in \autoref{fig:intro}, we present a list of pr
 For scalability concerns, we further require that the task (4) must \emph{not} require a complicated environment setup.
 Example tasks include function localization, issue localization, dependency search, and function generation.
 As shown in \autoref{fig:intro}, even without setting up executable repositories, all our tasks cover the major intermediate components of multiple downstream tasks, and such components are achieved with a similar set of actions across tasks. 
-After training on \repostmethodname, the agent has significantly lower failure rates in reasoning, exploration, and file-editing compared to the baseline training method~\cite{swegym}.
+After training on \hybridmethodname, the agent has significantly lower failure rates in reasoning, exploration, and file-editing compared to the baseline training method~\cite{swegym}.
 
 
 % [para-6: experimental results]
 We conduct experiments on three real-world coding agent tasks: SWE-Bench issue-solving~\citep{swebench}, SWT-Bench test generation~\citep{swt-bench}, and Commit-0 library generation~\citep{commit0}.
-Without training on any of the downstream tasks, \repostmethodname demonstrates strong task transferability on all three tasks, improving Qwen2.5Coder-32B by 25.4\% / 7.9\% / 5.1\% on SWE-Bench Verified / SWT-Bench Verified / Commit-0 Lite, which achieves comparable performance to in-domain datasets (i.e., data built for the downstream tasks). 
-Additionally, we also improve the performance of training on existing in-domain datasets by combining with \repostmethodname (e.g., we improve SWE-Play~\citep{swe-play} by 2.4\% / 4.9\% on SWE-Bench Verified / SWT-Bench Verified).
+Without training on any of the downstream tasks, \hybridmethodname demonstrates strong task transferability on all three tasks, improving Qwen2.5Coder-32B by 25.4\% / 7.9\% / 5.1\% on SWE-Bench Verified / SWT-Bench Verified / Commit-0 Lite, which achieves comparable performance to in-domain datasets (i.e., data built for the downstream tasks). 
+Additionally, we also improve the performance of training on existing in-domain datasets by combining with \hybridmethodname (e.g., we improve SWE-Play~\citep{swe-play} by 2.4\% / 4.9\% on SWE-Bench Verified / SWT-Bench Verified).
 
 
 % [para-7: controlled experiment results]
@@ -155,7 +162,7 @@ Solution verification         & 3.0\%  & 0.3\%  & 2.8\%  & 9.0\%  & 27.6\% & 25.
 \section{Methodology}
 \label{sec:methodology}
 In this section, we first guide training task design by analyzing the commonalities shared among coding tasks and agent capabilities (\S\ref{sec:analysis-methodology}).
-Based on the analysis results, we introduce a list of task design principles (\S\ref{sec:principle}) and present the four \repostmethodname tasks that satisfy all the principles (\S\ref{sec:tasks}).
+Based on the analysis results, we introduce a list of task design principles (\S\ref{sec:principle}) and present the four \hybridmethodname tasks that satisfy all the principles (\S\ref{sec:tasks}).
 Finally, we conduct a comparison between our training tasks and real-world coding tasks (\S\ref{sec:task-verification}).
 
 \subsection{Analysis of Coding Agent Task Transferability}
@@ -229,7 +236,7 @@ With the observation that all the major components: reasoning, exploration, and 
 
 \quad [\textbf{Principle 4}] The task setup should not require substantial effort. For instance, the task should avoid installing packages for the entire repository or generating executable test files, which are challenging for both humans and agents.
 
-In \S\ref{sec:exp}, we will show that all \repostmethodname tasks satisfy all four principles and generalize well to multiple downstream tasks.
+In \S\ref{sec:exp}, we will show that all \hybridmethodname tasks satisfy all four principles and generalize well to multiple downstream tasks.
 In contrast, \S\ref{sec:controlled-exp} will show that all three counterexample tasks mentioned above do not yield effective task transfer.
 
 
@@ -280,10 +287,10 @@ Claude-4.5        & 70.0\% & 100.0\% & 63.3\% & 100.0\% & 80.0\% & 100.0\% & 50.
 \end{table}
 
 
-\subsection{\repostmethodname Tasks}
+\subsection{\hybridmethodname Tasks}
 \label{sec:tasks}
 
-In this section, we introduce four \repostmethodname tasks that satisfy all the principles above.
+In this section, we introduce four \hybridmethodname tasks that satisfy all the principles above.
 % We provide the prompt for each task in Appendix \ref{app:data-construction}.
 
 \start{Function Localization}
@@ -318,7 +325,7 @@ Here we highlight that generating \emph{executable test scripts} is substantiall
 To execute the test script, we only need to install the packages needed by the extracted function and its dependencies (2.1 packages on average), while installing the entire repository requires 26.5 packages on average.
 Furthermore, compared to \emph{generating a new test file} that requires understanding the repository structure and resolving relative imports, it is substantially easier to \emph{produce tests for a separate script}, which only requires seq-to-seq generation, without any agentic frameworks, making the setup process cost-efficient.
 
-We emphasize that \repostmethodname is not limited to the specific tasks introduced here: other task designs may also satisfy our principles.
+We emphasize that \hybridmethodname is not limited to the specific tasks introduced here: other task designs may also satisfy our principles.
 It is also possible to construct variants of our tasks, such as localizing multiple functions, or finding the empty function before generating the function body. We leave the exploration to future works. 
 
 \begin{table}[t]
@@ -333,7 +340,7 @@ It is also possible to construct variants of our tasks, such as localizing multi
       SWE-Smith & 5,016 & 128 & 26.7 & 128  & 2.32\textcent \\
       SWE-Play  & 704   & 28  & 72.9 & 28   & unknown \\
       \midrule
-      \repostmethodname & 4,470 & 762 & 39.1 & 2 & 0.07\textcent \\
+      \hybridmethodname & 4,470 & 762 & 39.1 & 2 & 0.07\textcent \\
       \hdashline
       \quad Func-Localize  & 1,438 & 226 & 29.0 & 1 & 0.02\textcent \\
       \quad Issue-Localize & 1,978 & 263 & 52.4 & 1 & 0.00\textcent \\
@@ -342,9 +349,9 @@ It is also possible to construct variants of our tasks, such as localizing multi
       \bottomrule
     \end{tabular}%
   }
-  \caption{Statistics of \repostmethodname and its subsets.
+  \caption{Statistics of \hybridmethodname and its subsets.
   Following SWE-Smith, we report the average per-instance cost of setting up the training environment for rollout.
-  Compared to existing datasets, \repostmethodname covers more repositories and requires only 2 docker images to build all training instances.}
+  Compared to existing datasets, \hybridmethodname covers more repositories and requires only 2 docker images to build all training instances.}
   \label{tab:stat}
 \end{table}
 
@@ -357,21 +364,21 @@ It is also possible to construct variants of our tasks, such as localizing multi
 
 
 
-\subsection{Verification of \repostmethodname Tasks}
+\subsection{Verification of \hybridmethodname Tasks}
 \label{sec:task-verification}
 In this section, we verify that our training tasks share commonalities with real-world tasks and remain challenging for the student models we use: Qwen2.5Coder 7B and 32B.
 
-\start{\repostmethodname tasks cover the majority of intermediate components in multiple real-world tasks}
+\start{\hybridmethodname tasks cover the majority of intermediate components in multiple real-world tasks}
 As shown in \autoref{tab:action-category}, all the training tasks cover reasoning, repo-exploration, and implementation, and the function-generation task additionally includes solution verification.
 We note that although our training tasks do not explicitly include executing existing code, it typically accounts for only a small fraction of an agent's trajectory.
 
-\start{\repostmethodname trajectories contain similar actions with real-world tasks}
+\start{\hybridmethodname trajectories contain similar actions with real-world tasks}
 As shown in \autoref{tab:cmd-category}, the training tasks use a similar set of bash commands for repo-exploration as the real-world coding tasks.
 Similarly, \autoref{tab:openhands-tool-distribution} shows that the training tasks cover the full set of OpenHands tools used in downstream tasks.
-Together, these results suggest that both the high-level problem-solving components and the concrete actions that achieve them can transfer across \repostmethodname tasks and downstream tasks.
+Together, these results suggest that both the high-level problem-solving components and the concrete actions that achieve them can transfer across \hybridmethodname tasks and downstream tasks.
 
 
-\start{\repostmethodname tasks are still challenging for models without finetuning}
+\start{\hybridmethodname tasks are still challenging for models without finetuning}
 Under the setting of distillation learning, a training task is useful only if there is a performance gap between the student and teacher models
 As a sanity check, before generating training data, we sample 20-30 instances from each task and evaluate the teacher model (claude-4.5-Sonnet) and student models (Qwen2.5Coder, 7B and 32B).
 
@@ -387,8 +394,8 @@ As a sanity check, before generating training data, we sample 20-30 instances fr
 \label{sec:exp}
 
 \subsection{Experimental Setup}
-\start{Statistics of \repostmethodname}
-\autoref{tab:stat} presents the statistics of \repostmethodname and existing datasets. 
+\start{Statistics of \hybridmethodname}
+\autoref{tab:stat} presents the statistics of \hybridmethodname and existing datasets. 
 Based on the scalable training tasks, we collect 4.4k trajectories from 762 repositories using only two Docker images.
 The environment construction cost is only 0.07\textcent per example, which is 16× lower than SWE-Smith~\cite{swe-smith}.
 Trajectory lengths vary by task, ranging from 26.9 to 52.4 agent steps, which are comparable to the issue-solving trajectories in prior datasets, suggesting that our tasks retain a meaningful level of complexity.
@@ -440,10 +447,10 @@ swe & swt & cmt & syn
 \midrule
 
 & & & \cmark
-& \textbf{\repostmethodname}      & 15.0~{\textcolor{treegreen}{+13.2}} & \bf 62.4~{\textcolor{treegreen}{+58.0}} & \bf 97.6~{\textcolor{treegreen}{+37.2}} & 2.90~{\textcolor{treegreen}{+2.18}} & 2.54~{\textcolor{treegreen}{+2.31}} & 10.54~{\textcolor{treegreen}{+5.74}} \\
+& \textbf{\hybridmethodname}      & 15.0~{\textcolor{treegreen}{+13.2}} & \bf 62.4~{\textcolor{treegreen}{+58.0}} & \bf 97.6~{\textcolor{treegreen}{+37.2}} & 2.90~{\textcolor{treegreen}{+2.18}} & 2.54~{\textcolor{treegreen}{+2.31}} & 10.54~{\textcolor{treegreen}{+5.74}} \\
 
 \cmark & \cmark & \cmark & \cmark
-& \textbf{\repostmethodname} + SWE-Play
+& \textbf{\hybridmethodname} + SWE-Play
 & \dlcell 17.6~{\textcolor{treegreen}{+15.8}} & \dlcell 58.6~{\textcolor{treegreen}{+54.2}} & \dlcell 97.2~{\textcolor{treegreen}{+36.8}} & \dlcell \bf 5.07~{\textcolor{treegreen}{+4.35}} & \dlcell \bf 4.39~{\textcolor{treegreen}{+4.16}} & \dlcell \bf 11.02~{\textcolor{treegreen}{+6.22}} \\
 \midrule
 
@@ -466,10 +473,10 @@ swe & swt & cmt & syn
 \midrule
 
 & & & \cmark
-& \textbf{\repostmethodname}      & 32.4~{\textcolor{treegreen}{+25.4}} & \bf 75.4~{\textcolor{treegreen}{+29.8}} & 98.2~{\textcolor{treegreen}{+27.6}} & 17.03~{\textcolor{treegreen}{+7.61}} & 16.86~{\textcolor{treegreen}{+7.85}} & 13.45~{\textcolor{treegreen}{+5.11}} \\
+& \textbf{\hybridmethodname}      & 32.4~{\textcolor{treegreen}{+25.4}} & \bf 75.4~{\textcolor{treegreen}{+29.8}} & 98.2~{\textcolor{treegreen}{+27.6}} & 17.03~{\textcolor{treegreen}{+7.61}} & 16.86~{\textcolor{treegreen}{+7.85}} & 13.45~{\textcolor{treegreen}{+5.11}} \\
 
 \cmark & \cmark & \cmark & \cmark
-& \textbf{\repostmethodname} + SWE-Play
+& \textbf{\hybridmethodname} + SWE-Play
 & \dlcell 33.6~{\textcolor{treegreen}{+26.6}} 
 & \dlcell 75.2~{\textcolor{treegreen}{+29.6}} 
 & \dlcell \bf 99.2~{\textcolor{treegreen}{+28.6}} 
@@ -487,7 +494,7 @@ We show whether the datasets contain swe, swt, cmt, or synthetic tasks (syn) in 
 Results with a white background are \textbf{task transfer} results.
 Results with a light grey background are trained with in-domain tasks.
 We highlight the best result for each dataset and show the relative \textcolor{treegreen}{gain} and \textcolor{red}{loss} compared to the base model, Qwen2.5Coder.
-\repostmethodname achieves strong task transfer performances across all three benchmarks and further improves in-domain datasets (e.g., SWE-Play).
+\hybridmethodname achieves strong task transfer performances across all three benchmarks and further improves in-domain datasets (e.g., SWE-Play).
 }
 \label{tab:main}
 \end{table*}
@@ -508,16 +515,16 @@ On SWE-Bench, we additionally report the localized rate: the percentage of code 
 
 
 \subsection{Main Results}
-\start{\repostmethodname Shows Strong Task Transfer Performance}
-Results in \autoref{tab:main} show that \repostmethodname delivers strong task generalization performance across all three benchmarks. Relative to the base 32B model, it improves performance by 25.40 \% / 7.85 \% / 5.11 \% on the three tasks, outperforming all existing task transfer training datasets.
-Notably, without training on the downstream tasks, \repostmethodname matches or even exceeds in-domain training. For example, SWE-Play-32B reaches 31.2 \% / 16.17 \% on SWE-Bench Verified / SWT-Bench Verified, whereas \repostmethodname-32B achieves 32.4 \% / 16.86 \%. 
+\start{\hybridmethodname Shows Strong Task Transfer Performance}
+Results in \autoref{tab:main} show that \hybridmethodname delivers strong task generalization performance across all three benchmarks. Relative to the base 32B model, it improves performance by 25.40 \% / 7.85 \% / 5.11 \% on the three tasks, outperforming all existing task transfer training datasets.
+Notably, without training on the downstream tasks, \hybridmethodname matches or even exceeds in-domain training. For example, SWE-Play-32B reaches 31.2 \% / 16.17 \% on SWE-Bench Verified / SWT-Bench Verified, whereas \hybridmethodname-32B achieves 32.4 \% / 16.86 \%. 
 This suggest that our tasks capture the commonality shared among general coding agent tasks and transfer effectively across all three downstream tasks.
-These results are especially compelling because \repostmethodname requires substantially less effort to build new training instances than prior datasets (e.g., as shown in \autoref{tab:stat}, SWE-Smith requires 128 docker images and costs 2.32\textcent per example, while \repostmethodname is only built with 2 images and an average cost of 0.07\textcent).
+These results are especially compelling because \hybridmethodname requires substantially less effort to build new training instances than prior datasets (e.g., as shown in \autoref{tab:stat}, SWE-Smith requires 128 docker images and costs 2.32\textcent per example, while \hybridmethodname is only built with 2 images and an average cost of 0.07\textcent).
 
 
-\start{\repostmethodname Improves In-Domain Training Datasets}
-\autoref{tab:main} further shows that we can further improve in-domain datasets by combining with \repostmethodname. For instance, we improve SWE-Play by 2.40\% / 4.85\% / 1.57\% on SWE-Bench Verified / SWT-Bench Verified / Commit-0 Lite.
-The gains from mixing \repostmethodname with in-domain data suggest that the two sources are complementary. \repostmethodname primarily teaches general agent skills (e.g., reasoning, repo-exploration, and reliable tool use), while in-domain data contributes task-specific behaviors (e.g., generating tests and building libraries from scratch). Combining them both leads to additive improvements.
+\start{\hybridmethodname Improves In-Domain Training Datasets}
+\autoref{tab:main} further shows that we can further improve in-domain datasets by combining with \hybridmethodname. For instance, we improve SWE-Play by 2.40\% / 4.85\% / 1.57\% on SWE-Bench Verified / SWT-Bench Verified / Commit-0 Lite.
+The gains from mixing \hybridmethodname with in-domain data suggest that the two sources are complementary. \hybridmethodname primarily teaches general agent skills (e.g., reasoning, repo-exploration, and reliable tool use), while in-domain data contributes task-specific behaviors (e.g., generating tests and building libraries from scratch). Combining them both leads to additive improvements.
 
 \begin{table}[t]
 \centering
@@ -538,12 +545,12 @@ Qwen2.5Coder-7B & 1.8 & 0.23 & 4.80 \\
 % \midrule
 \hdashline
 \addlinespace[0.5ex]
-+ \textbf{\repostmethodname}-full & \bf 15.0~{\scriptsize\textcolor{treegreen}{+13.2}} & 2.54~{\scriptsize\textcolor{treegreen}{+2.31}} & \bf 10.54~{\scriptsize\textcolor{treegreen}{+5.74}} \\
++ \textbf{\hybridmethodname}-full & \bf 15.0~{\scriptsize\textcolor{treegreen}{+13.2}} & 2.54~{\scriptsize\textcolor{treegreen}{+2.31}} & \bf 10.54~{\scriptsize\textcolor{treegreen}{+5.74}} \\
 
 \bottomrule
 \end{tabular}%
 }
-\caption{Performance of training Qwen2.5Coder-7B on each of the \repostmethodname tasks and the issue-solving task. We sample 500 instances from each of our tasks.
+\caption{Performance of training Qwen2.5Coder-7B on each of the \hybridmethodname tasks and the issue-solving task. We sample 500 instances from each of our tasks.
 Even without finetuning on issue-solving, function localization achieves a larger performance gain than SWE-Gym, which has 491 issue-solving instances.
 We report the resolved rates on SWE-Bench Verified, SWT-Bench Verified, and Commit-0 Lite. 
 }
@@ -555,14 +562,14 @@ We report the resolved rates on SWE-Bench Verified, SWT-Bench Verified, and Comm
 \subsection{Detailed Results}
 
 \start{Training on Individual Tasks}
-To assess the contribution of each task, we sample 500 instances per task and train the model on each subset separately. This training size is comparable to the SWE-Gym issue-solving dataset, which contains 491 examples. As shown in \autoref{tab:single-task}, each task yields a substantial improvement over the base model, with gains ranging from 4.6\% to 11.0\%. The tasks emphasize different capabilities (e.g., function localization performs best on SWE-Bench but worst on Commit-0), while the full \repostmethodname dataset—combining all four tasks—achieves the strongest overall performance.
+To assess the contribution of each task, we sample 500 instances per task and train the model on each subset separately. This training size is comparable to the SWE-Gym issue-solving dataset, which contains 491 examples. As shown in \autoref{tab:single-task}, each task yields a substantial improvement over the base model, with gains ranging from 4.6\% to 11.0\%. The tasks emphasize different capabilities (e.g., function localization performs best on SWE-Bench but worst on Commit-0), while the full \hybridmethodname dataset—combining all four tasks—achieves the strongest overall performance.
 
 Notably, at similar training scales, the function-localization and issue-localization tasks provide gains that are comparable to, or even exceed, in-domain training. For example, SWE-Gym achieves a 10.6\% resolved rate and a 48.2\% localized rate, whereas Func-Localize (500) reaches 12.8\% and 53.6\%. A possible explanation is that localization trajectories devote more steps to repo-exploration than issue-solving, which is one of the agent’s primary bottlenecks.
 
 
 
 \start{Scaling Law Analysis}
-As shown in \autoref{fig:scaling}, we train the 32B model on progressively larger subsets of \repostmethodname, where we proportionally sample training instances from each task. 
+As shown in \autoref{fig:scaling}, we train the 32B model on progressively larger subsets of \hybridmethodname, where we proportionally sample training instances from each task. 
 The performance continues to improve as the dataset grows and still shows improvements when we have 4.4k training trajectories.
 The results suggest the advantage of constructing highly scalable training datasets.
 
@@ -591,7 +598,7 @@ The results suggest the advantage of constructing highly scalable training datas
 \section{Analysis of Task Transferability}
 \label{sec:controlled-exp}
 
-We have established in \S\ref{sec:exp} that the particular tasks included in \repostmethodname are effective for task generalization across diverse real-world coding benchmarks. 
+We have established in \S\ref{sec:exp} that the particular tasks included in \hybridmethodname are effective for task generalization across diverse real-world coding benchmarks. 
 In this section, we investigate: \textbf{what properties of these trajectories enable task transfer?}
 To answer this, we run controlled ablations that systematically modify trajectory structure and measure the resulting changes in performance.
 
@@ -612,7 +619,7 @@ As shown in \autoref{fig:ablation}, performance on SWE-bench collapses when we r
 We then validate [\textbf{Principle 2}], which requires the training tasks to have a repo-exploration stage. 
 To test this, we implement a script-level task, LiveCodeBench (LCB) \cite{livecodebench}, which primarily evaluates function generation in a single file. 
 We contrast it with two repo-level tasks: 
-(1) the repo-level function generation task we use in \repostmethodname (introduced in \S\ref{sec:methodology}), and 
+(1) the repo-level function generation task we use in \hybridmethodname (introduced in \S\ref{sec:methodology}), and 
 (2) documentation generation, which requires the agent to generate the docstring for a given function.
 For fair comparison, we wrap the coding template and test script in LCB in a dummy repository so that the model interacts with the same harness and tool API. 
 
@@ -705,8 +712,8 @@ We conduct in-depth analyses of the transferability across coding agent tasks.
 We find that there are similar components shared by diverse real-world coding tasks (e.g., repo-exploration) that can be achieved by the agent with similar commands.
 Based on the discovery, we derive a set of principles for task design, including output format matching, requiring repo-exploration, non-trivial reasoning, and simple setup.
 We present four scalable and cost-efficient tasks that do not require setting up executable repositories.
-With the resulting dataset, \repostmethodname, we achieve strong task generalization results on three real-world benchmarks. For instance, even without issue-solving or test-generation data in training, we improve Qwen2.5Coder-32B by 25.4\% on SWE-Bench Verified and 7.9\% on SWT-Bench Verified.
-We also improve existing in-domain datasets by combining them with \repostmethodname (e.g., improving SWE-Play by 4.9\% on SWT-Bench Verified).
+With the resulting dataset, \hybridmethodname, we achieve strong task generalization results on three real-world benchmarks. For instance, even without issue-solving or test-generation data in training, we improve Qwen2.5Coder-32B by 25.4\% on SWE-Bench Verified and 7.9\% on SWT-Bench Verified.
+We also improve existing in-domain datasets by combining them with \hybridmethodname (e.g., improving SWE-Play by 4.9\% on SWT-Bench Verified).
 
 The principles introduced in this chapter focus on training task design. However, as studied in \S\ref{sec:controlled-exp}, there are other aspects that are also crucial for agent training, such as training instance selection and the concrete actions in successful training trajectories.
 We thus propose \autoref{chap:effective-analysis} to investigate more training data construction principles, focusing on the effectiveness of training trajectories.
@@ -956,7 +963,7 @@ We adopt the distillation setting and apply \toolName to 8 teacher models and 3 
 We use the OpenHands agent harness~\citep{openhands} for all the experiments.
 Since the impact of one behavior may depend on other factors such as other teacher behaviors or the student's capabilities, when we conduct data intervention experiments and compare the performance with the original data (\S\ref{catradar:sec:controlled-exp}), we experiment on multiple training tasks, teacher models, and student models (if applicable).
 
-\subsection{\smalltoolName Discovers Diverse Candidates}
+\subsection{\toolName Discovers Diverse Candidates}
 \label{catradar:sec:distinct-behaviors}
 \autoref{catradar:tab:distinct-behaviors} summarizes the candidate behaviors discovered by \toolName and examined in our experiments, along with their definitions. Compared with the behaviors that are manually hypothesized and examined in prior work, \toolName discovers a broader range of behaviors of diverse granularity, spanning trajectory-level features, problem-solving strategies, and tool-use patterns.
 Our experiments show that 7 of the 10 behaviors affect student performance in at least one combination of student model, teacher model, and training dataset. Some of these findings are also consistent with prior work. For instance, Terminal-LEGO~\citep{terminal-lego} shows that verification steps in training improve performance. \toolName also discovers ``verify after edit'' as a potentially important behavior.

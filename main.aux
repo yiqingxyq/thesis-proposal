@@ -367,8 +367,8 @@
 \newlabel{tab:repost-r2e-comparison}{{4.7}{43}{Performance of the Qwen2.5Coder-7B agent on SWE-Bench Verified after training with R2E and \reposttrainsetName . For fair comparison, for both methods, we build function generation training data from the same set of repositories on GitHub. \relax }{table.caption.31}{}}
 \newlabel{tab:repost-r2e-comparison@cref}{{[table][7][4]4.7}{[1][42][]43}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.6}Chapter Summary}{43}{section.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {part}{II\hspace  {1em}Analyses and Insights: What Makes Coding Agent Training Effective?}{44}{part.2}\protected@file@percent }
-\newlabel{part:generalizability}{{II}{45}{Analyses and Insights: What Makes Coding Agent Training Effective?}{part.2}{}}
+\@writefile{toc}{\contentsline {part}{II\hspace  {1em}Analyses and Principles: What Makes Coding Agent Training Effective?}{44}{part.2}\protected@file@percent }
+\newlabel{part:generalizability}{{II}{45}{Analyses and Principles: What Makes Coding Agent Training Effective?}{part.2}{}}
 \newlabel{part:generalizability@cref}{{[part][2][]II}{[1][45][]45}}
 \citation{swegym}
 \citation{swegym}
@@ -380,226 +380,226 @@
 \citation{swegym}
 \citation{swe-play}
 \citation{swegym,swe-smith,R2EGym}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Constructing Effective Synthetic Tasks for Training Coding Agents}{46}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Constructing Effective Synthetic Tasks for Training Coding Agents}{47}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{chap:hybrid-gym}{{5}{46}{Constructing Effective Synthetic Tasks for Training Coding Agents}{chapter.5}{}}
-\newlabel{chap:hybrid-gym@cref}{{[chapter][5][]5}{[1][46][]46}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Introduction}{46}{section.5.1}\protected@file@percent }
+\newlabel{chap:hybrid-gym}{{5}{47}{Constructing Effective Synthetic Tasks for Training Coding Agents}{chapter.5}{}}
+\newlabel{chap:hybrid-gym@cref}{{[chapter][5][]5}{[1][47][]47}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Introduction}{47}{section.5.1}\protected@file@percent }
 \citation{swegym}
 \citation{swebench}
 \citation{swt-bench}
 \citation{commit0}
 \citation{swe-play}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces (\textit  {\textbf  {Left}}) We decompose general coding agent tasks into a set of intermediate components and compute the percentage of agent actions spent on each component. Our training tasks partially cover verification and fully cover reasoning, repository exploration, and implementation, which consist of around 68\% of the actions. \textit  {(\textbf  {Right})} Example actions for each component. Compared to a baseline training method, SWE-Gym\nobreakspace  {}\cite  {swegym}, training with our \textsc  {Hybrid-Gym}\xspace  significantly reduces failures due to insufficient reasoning, insufficient exploration, and failed file editing, improving the final resolved rate on SWE-Bench Verified from 10.6\% to 15.0\%. \relax }}{47}{figure.caption.32}\protected@file@percent }
-\newlabel{fig:intro}{{5.1}{47}{(\textit {\textbf {Left}}) We decompose general coding agent tasks into a set of intermediate components and compute the percentage of agent actions spent on each component. Our training tasks partially cover verification and fully cover reasoning, repository exploration, and implementation, which consist of around 68\% of the actions. \textit {(\textbf {Right})} Example actions for each component. Compared to a baseline training method, SWE-Gym~\cite {swegym}, training with our \repostmethodname significantly reduces failures due to insufficient reasoning, insufficient exploration, and failed file editing, improving the final resolved rate on SWE-Bench Verified from 10.6\% to 15.0\%. \relax }{figure.caption.32}{}}
-\newlabel{fig:intro@cref}{{[figure][1][5]5.1}{[1][46][]47}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces The use of Linux commands for repository exploration in our proposed training tasks (left) and downstream tasks (right). We show the percentage of each command used in the agent steps targeting repository exploration. \relax }}{48}{table.caption.33}\protected@file@percent }
-\newlabel{tab:cmd-category}{{5.1}{48}{The use of Linux commands for repository exploration in our proposed training tasks (left) and downstream tasks (right). We show the percentage of each command used in the agent steps targeting repository exploration. \relax }{table.caption.33}{}}
-\newlabel{tab:cmd-category@cref}{{[table][1][5]5.1}{[1][48][]48}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces We categorize the agent's actions based on the intermediate components of the task, where the categories are pre-defined. \relax }}{48}{table.caption.34}\protected@file@percent }
-\newlabel{tab:action-category}{{5.2}{48}{We categorize the agent's actions based on the intermediate components of the task, where the categories are pre-defined. \relax }{table.caption.34}{}}
-\newlabel{tab:action-category@cref}{{[table][2][5]5.2}{[1][48][]48}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Methodology}{48}{section.5.2}\protected@file@percent }
-\newlabel{sec:methodology}{{5.2}{48}{Methodology}{section.5.2}{}}
-\newlabel{sec:methodology@cref}{{[section][2][5]5.2}{[1][48][]48}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces (\textit  {\textbf  {Left}}) We decompose general coding agent tasks into a set of intermediate components and compute the percentage of agent actions spent on each component. Our training tasks partially cover verification and fully cover reasoning, repository exploration, and implementation, which consist of around 68\% of the actions. \textit  {(\textbf  {Right})} Example actions for each component. Compared to a baseline training method, SWE-Gym\nobreakspace  {}\cite  {swegym}, training with our \textsc  {Hybrid-Gym}\xspace  significantly reduces failures due to insufficient reasoning, insufficient exploration, and failed file editing, improving the final resolved rate on SWE-Bench Verified from 10.6\% to 15.0\%. \relax }}{48}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:intro}{{5.1}{48}{(\textit {\textbf {Left}}) We decompose general coding agent tasks into a set of intermediate components and compute the percentage of agent actions spent on each component. Our training tasks partially cover verification and fully cover reasoning, repository exploration, and implementation, which consist of around 68\% of the actions. \textit {(\textbf {Right})} Example actions for each component. Compared to a baseline training method, SWE-Gym~\cite {swegym}, training with our \hybridmethodname significantly reduces failures due to insufficient reasoning, insufficient exploration, and failed file editing, improving the final resolved rate on SWE-Bench Verified from 10.6\% to 15.0\%. \relax }{figure.caption.32}{}}
+\newlabel{fig:intro@cref}{{[figure][1][5]5.1}{[1][47][]48}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces The use of Linux commands for repository exploration in our proposed training tasks (left) and downstream tasks (right). We show the percentage of each command used in the agent steps targeting repository exploration. \relax }}{49}{table.caption.33}\protected@file@percent }
+\newlabel{tab:cmd-category}{{5.1}{49}{The use of Linux commands for repository exploration in our proposed training tasks (left) and downstream tasks (right). We show the percentage of each command used in the agent steps targeting repository exploration. \relax }{table.caption.33}{}}
+\newlabel{tab:cmd-category@cref}{{[table][1][5]5.1}{[1][49][]49}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces We categorize the agent's actions based on the intermediate components of the task, where the categories are pre-defined. \relax }}{49}{table.caption.34}\protected@file@percent }
+\newlabel{tab:action-category}{{5.2}{49}{We categorize the agent's actions based on the intermediate components of the task, where the categories are pre-defined. \relax }{table.caption.34}{}}
+\newlabel{tab:action-category@cref}{{[table][2][5]5.2}{[1][49][]49}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Methodology}{49}{section.5.2}\protected@file@percent }
+\newlabel{sec:methodology}{{5.2}{49}{Methodology}{section.5.2}{}}
+\newlabel{sec:methodology@cref}{{[section][2][5]5.2}{[1][49][]49}}
 \citation{swegym,R2EGym,swe-play}
 \citation{claude45}
 \citation{openhands}
 \citation{o3_mini}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces The error analysis of different methods on 50 instances sampled from SWE-Bench Verified.\relax }}{49}{figure.caption.35}\protected@file@percent }
-\newlabel{fig:error-analysis}{{5.2}{49}{The error analysis of different methods on 50 instances sampled from SWE-Bench Verified.\relax }{figure.caption.35}{}}
-\newlabel{fig:error-analysis@cref}{{[figure][2][5]5.2}{[1][48][]49}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Analysis of Coding Agent Task Transferability}{49}{subsection.5.2.1}\protected@file@percent }
-\newlabel{sec:analysis-methodology}{{5.2.1}{49}{Analysis of Coding Agent Task Transferability}{subsection.5.2.1}{}}
-\newlabel{sec:analysis-methodology@cref}{{[subsection][1][5,2]5.2.1}{[1][49][]49}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces The error analysis of different methods on 50 instances sampled from SWE-Bench Verified.\relax }}{50}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:error-analysis}{{5.2}{50}{The error analysis of different methods on 50 instances sampled from SWE-Bench Verified.\relax }{figure.caption.35}{}}
+\newlabel{fig:error-analysis@cref}{{[figure][2][5]5.2}{[1][49][]50}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Analysis of Coding Agent Task Transferability}{50}{subsection.5.2.1}\protected@file@percent }
+\newlabel{sec:analysis-methodology}{{5.2.1}{50}{Analysis of Coding Agent Task Transferability}{subsection.5.2.1}{}}
+\newlabel{sec:analysis-methodology@cref}{{[subsection][1][5,2]5.2.1}{[1][50][]50}}
 \citation{swe-smith,swe-play}
 \citation{openhands}
 \citation{qwen25coder}
 \citation{swegym}
 \citation{claude45}
 \citation{codex}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Principles for Training Task Design}{51}{subsection.5.2.2}\protected@file@percent }
-\newlabel{sec:principle}{{5.2.2}{51}{Principles for Training Task Design}{subsection.5.2.2}{}}
-\newlabel{sec:principle@cref}{{[subsection][2][5,2]5.2.2}{[1][50][]51}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}\textsc  {Hybrid-Gym}\xspace  Tasks}{51}{subsection.5.2.3}\protected@file@percent }
-\newlabel{sec:tasks}{{5.2.3}{51}{\repostmethodname Tasks}{subsection.5.2.3}{}}
-\newlabel{sec:tasks@cref}{{[subsection][3][5,2]5.2.3}{[1][51][]51}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces The average number of OpenHands tools called in each trajectory.\relax }}{52}{table.caption.36}\protected@file@percent }
-\newlabel{tab:openhands-tool-distribution}{{5.3}{52}{The average number of OpenHands tools called in each trajectory.\relax }{table.caption.36}{}}
-\newlabel{tab:openhands-tool-distribution@cref}{{[table][3][5]5.3}{[1][51][]52}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Performance of the student and teacher models on a subset of instances sampled from each training task.\relax }}{52}{table.caption.37}\protected@file@percent }
-\newlabel{tab:distillation-sanity-check}{{5.4}{52}{Performance of the student and teacher models on a subset of instances sampled from each training task.\relax }{table.caption.37}{}}
-\newlabel{tab:distillation-sanity-check@cref}{{[table][4][5]5.4}{[1][51][]52}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Principles for Training Task Design}{52}{subsection.5.2.2}\protected@file@percent }
+\newlabel{sec:principle}{{5.2.2}{52}{Principles for Training Task Design}{subsection.5.2.2}{}}
+\newlabel{sec:principle@cref}{{[subsection][2][5,2]5.2.2}{[1][51][]52}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}\textsc  {Hybrid-Gym}\xspace  Tasks}{52}{subsection.5.2.3}\protected@file@percent }
+\newlabel{sec:tasks}{{5.2.3}{52}{\hybridmethodname Tasks}{subsection.5.2.3}{}}
+\newlabel{sec:tasks@cref}{{[subsection][3][5,2]5.2.3}{[1][52][]52}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces The average number of OpenHands tools called in each trajectory.\relax }}{53}{table.caption.36}\protected@file@percent }
+\newlabel{tab:openhands-tool-distribution}{{5.3}{53}{The average number of OpenHands tools called in each trajectory.\relax }{table.caption.36}{}}
+\newlabel{tab:openhands-tool-distribution@cref}{{[table][3][5]5.3}{[1][52][]53}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Performance of the student and teacher models on a subset of instances sampled from each training task.\relax }}{53}{table.caption.37}\protected@file@percent }
+\newlabel{tab:distillation-sanity-check}{{5.4}{53}{Performance of the student and teacher models on a subset of instances sampled from each training task.\relax }{table.caption.37}{}}
+\newlabel{tab:distillation-sanity-check@cref}{{[table][4][5]5.4}{[1][52][]53}}
 \citation{repost}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}Verification of \textsc  {Hybrid-Gym}\xspace  Tasks}{53}{subsection.5.2.4}\protected@file@percent }
-\newlabel{sec:task-verification}{{5.2.4}{53}{Verification of \repostmethodname Tasks}{subsection.5.2.4}{}}
-\newlabel{sec:task-verification@cref}{{[subsection][4][5,2]5.2.4}{[1][53][]53}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}Verification of \textsc  {Hybrid-Gym}\xspace  Tasks}{54}{subsection.5.2.4}\protected@file@percent }
+\newlabel{sec:task-verification}{{5.2.4}{54}{Verification of \hybridmethodname Tasks}{subsection.5.2.4}{}}
+\newlabel{sec:task-verification@cref}{{[subsection][4][5,2]5.2.4}{[1][54][]54}}
 \citation{swe-smith}
 \citation{claude45}
 \citation{claude37}
 \citation{qwen3}
-\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces Statistics of \textsc  {Hybrid-Gym}\xspace  and its subsets. Following SWE-Smith, we report the average per-instance cost of setting up the training environment for rollout. Compared to existing datasets, \textsc  {Hybrid-Gym}\xspace  covers more repositories and requires only 2 docker images to build all training instances.\relax }}{54}{table.caption.38}\protected@file@percent }
-\newlabel{tab:stat}{{5.5}{54}{Statistics of \repostmethodname and its subsets. Following SWE-Smith, we report the average per-instance cost of setting up the training environment for rollout. Compared to existing datasets, \repostmethodname covers more repositories and requires only 2 docker images to build all training instances.\relax }{table.caption.38}{}}
-\newlabel{tab:stat@cref}{{[table][5][5]5.5}{[1][53][]54}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Results}{54}{section.5.3}\protected@file@percent }
-\newlabel{sec:exp}{{5.3}{54}{Results}{section.5.3}{}}
-\newlabel{sec:exp@cref}{{[section][3][5]5.3}{[1][54][]54}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Experimental Setup}{54}{subsection.5.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces Statistics of \textsc  {Hybrid-Gym}\xspace  and its subsets. Following SWE-Smith, we report the average per-instance cost of setting up the training environment for rollout. Compared to existing datasets, \textsc  {Hybrid-Gym}\xspace  covers more repositories and requires only 2 docker images to build all training instances.\relax }}{55}{table.caption.38}\protected@file@percent }
+\newlabel{tab:stat}{{5.5}{55}{Statistics of \hybridmethodname and its subsets. Following SWE-Smith, we report the average per-instance cost of setting up the training environment for rollout. Compared to existing datasets, \hybridmethodname covers more repositories and requires only 2 docker images to build all training instances.\relax }{table.caption.38}{}}
+\newlabel{tab:stat@cref}{{[table][5][5]5.5}{[1][54][]55}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Results}{55}{section.5.3}\protected@file@percent }
+\newlabel{sec:exp}{{5.3}{55}{Results}{section.5.3}{}}
+\newlabel{sec:exp@cref}{{[section][3][5]5.3}{[1][55][]55}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Experimental Setup}{55}{subsection.5.3.1}\protected@file@percent }
 \citation{swe-play}
 \citation{swebench}
 \citation{swt-bench}
 \citation{commit0}
 \citation{swegym}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Scaling law analysis. Performance on SWE-bench Verified improves consistently as training data size increases from around 5\% (250 trajectories) to 100\% (4.4k trajectories).\relax }}{55}{figure.caption.39}\protected@file@percent }
-\newlabel{fig:scaling}{{5.3}{55}{Scaling law analysis. Performance on SWE-bench Verified improves consistently as training data size increases from around 5\% (250 trajectories) to 100\% (4.4k trajectories).\relax }{figure.caption.39}{}}
-\newlabel{fig:scaling@cref}{{[figure][3][5]5.3}{[1][53][]55}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Main Results}{55}{subsection.5.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces Results on three real-world coding tasks. We show whether the datasets contain swe, swt, cmt, or synthetic tasks (syn) in training. Results with a white background are \textbf  {task transfer} results. Results with a light grey background are trained with in-domain tasks. We highlight the best result for each dataset and show the relative \textcolor {treegreen}{gain} and \textcolor {red}{loss} compared to the base model, Qwen2.5Coder. \textsc  {Hybrid-Gym}\xspace  achieves strong task transfer performances across all three benchmarks and further improves in-domain datasets (e.g., SWE-Play). \relax }}{56}{table.caption.40}\protected@file@percent }
-\newlabel{tab:main}{{5.6}{56}{Results on three real-world coding tasks. We show whether the datasets contain swe, swt, cmt, or synthetic tasks (syn) in training. Results with a white background are \textbf {task transfer} results. Results with a light grey background are trained with in-domain tasks. We highlight the best result for each dataset and show the relative \textcolor {treegreen}{gain} and \textcolor {red}{loss} compared to the base model, Qwen2.5Coder. \repostmethodname achieves strong task transfer performances across all three benchmarks and further improves in-domain datasets (e.g., SWE-Play). \relax }{table.caption.40}{}}
-\newlabel{tab:main@cref}{{[table][6][5]5.6}{[1][55][]56}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Performance of training Qwen2.5Coder-7B on each of the \textsc  {Hybrid-Gym}\xspace  tasks and the issue-solving task. We sample 500 instances from each of our tasks. Even without finetuning on issue-solving, function localization achieves a larger performance gain than SWE-Gym, which has 491 issue-solving instances. We report the resolved rates on SWE-Bench Verified, SWT-Bench Verified, and Commit-0 Lite. \relax }}{57}{table.caption.41}\protected@file@percent }
-\newlabel{tab:single-task}{{5.7}{57}{Performance of training Qwen2.5Coder-7B on each of the \repostmethodname tasks and the issue-solving task. We sample 500 instances from each of our tasks. Even without finetuning on issue-solving, function localization achieves a larger performance gain than SWE-Gym, which has 491 issue-solving instances. We report the resolved rates on SWE-Bench Verified, SWT-Bench Verified, and Commit-0 Lite. \relax }{table.caption.41}{}}
-\newlabel{tab:single-task@cref}{{[table][7][5]5.7}{[1][56][]57}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Detailed Results}{57}{subsection.5.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Scaling law analysis. Performance on SWE-bench Verified improves consistently as training data size increases from around 5\% (250 trajectories) to 100\% (4.4k trajectories).\relax }}{56}{figure.caption.39}\protected@file@percent }
+\newlabel{fig:scaling}{{5.3}{56}{Scaling law analysis. Performance on SWE-bench Verified improves consistently as training data size increases from around 5\% (250 trajectories) to 100\% (4.4k trajectories).\relax }{figure.caption.39}{}}
+\newlabel{fig:scaling@cref}{{[figure][3][5]5.3}{[1][54][]56}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Main Results}{56}{subsection.5.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces Results on three real-world coding tasks. We show whether the datasets contain swe, swt, cmt, or synthetic tasks (syn) in training. Results with a white background are \textbf  {task transfer} results. Results with a light grey background are trained with in-domain tasks. We highlight the best result for each dataset and show the relative \textcolor {treegreen}{gain} and \textcolor {red}{loss} compared to the base model, Qwen2.5Coder. \textsc  {Hybrid-Gym}\xspace  achieves strong task transfer performances across all three benchmarks and further improves in-domain datasets (e.g., SWE-Play). \relax }}{57}{table.caption.40}\protected@file@percent }
+\newlabel{tab:main}{{5.6}{57}{Results on three real-world coding tasks. We show whether the datasets contain swe, swt, cmt, or synthetic tasks (syn) in training. Results with a white background are \textbf {task transfer} results. Results with a light grey background are trained with in-domain tasks. We highlight the best result for each dataset and show the relative \textcolor {treegreen}{gain} and \textcolor {red}{loss} compared to the base model, Qwen2.5Coder. \hybridmethodname achieves strong task transfer performances across all three benchmarks and further improves in-domain datasets (e.g., SWE-Play). \relax }{table.caption.40}{}}
+\newlabel{tab:main@cref}{{[table][6][5]5.6}{[1][56][]57}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Performance of training Qwen2.5Coder-7B on each of the \textsc  {Hybrid-Gym}\xspace  tasks and the issue-solving task. We sample 500 instances from each of our tasks. Even without finetuning on issue-solving, function localization achieves a larger performance gain than SWE-Gym, which has 491 issue-solving instances. We report the resolved rates on SWE-Bench Verified, SWT-Bench Verified, and Commit-0 Lite. \relax }}{58}{table.caption.41}\protected@file@percent }
+\newlabel{tab:single-task}{{5.7}{58}{Performance of training Qwen2.5Coder-7B on each of the \hybridmethodname tasks and the issue-solving task. We sample 500 instances from each of our tasks. Even without finetuning on issue-solving, function localization achieves a larger performance gain than SWE-Gym, which has 491 issue-solving instances. We report the resolved rates on SWE-Bench Verified, SWT-Bench Verified, and Commit-0 Lite. \relax }{table.caption.41}{}}
+\newlabel{tab:single-task@cref}{{[table][7][5]5.7}{[1][57][]58}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Detailed Results}{58}{subsection.5.3.3}\protected@file@percent }
 \citation{deepseekv3}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Controlled experiments on training data characteristics. (a)\nobreakspace  {}\textbf  {Output Format:} Removing the file editing actions (\texttt  {str\_replace}) from function localization trajectories causes a large drop in SWE-bench resolution rate. (b)\nobreakspace  {}\textbf  {Repo-Exploration:} script-level code generation (LCB) does not effectively transfer to repo-level issue-solving and even underperforms documentation generation, a simple repo-level task. (c)\nobreakspace  {}\textbf  {Task Complexity:} Transfer improves as training tasks become more complex. (d)\nobreakspace  {}\textbf  {Trajectory Complexity:} With a fixed data size, training on longer (more agent steps) trajectories substantially improves downstream performance.\relax }}{58}{figure.caption.42}\protected@file@percent }
-\newlabel{fig:ablation}{{5.4}{58}{Controlled experiments on training data characteristics. (a)~\textbf {Output Format:} Removing the file editing actions (\texttt {str\_replace}) from function localization trajectories causes a large drop in SWE-bench resolution rate. (b)~\textbf {Repo-Exploration:} script-level code generation (LCB) does not effectively transfer to repo-level issue-solving and even underperforms documentation generation, a simple repo-level task. (c)~\textbf {Task Complexity:} Transfer improves as training tasks become more complex. (d)~\textbf {Trajectory Complexity:} With a fixed data size, training on longer (more agent steps) trajectories substantially improves downstream performance.\relax }{figure.caption.42}{}}
-\newlabel{fig:ablation@cref}{{[figure][4][5]5.4}{[1][57][]58}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Analysis of Task Transferability}{58}{section.5.4}\protected@file@percent }
-\newlabel{sec:controlled-exp}{{5.4}{58}{Analysis of Task Transferability}{section.5.4}{}}
-\newlabel{sec:controlled-exp@cref}{{[section][4][5]5.4}{[1][57][]58}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Output Format Must Match Downstream Tasks}{58}{subsection.5.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Controlled experiments on training data characteristics. (a)\nobreakspace  {}\textbf  {Output Format:} Removing the file editing actions (\texttt  {str\_replace}) from function localization trajectories causes a large drop in SWE-bench resolution rate. (b)\nobreakspace  {}\textbf  {Repo-Exploration:} script-level code generation (LCB) does not effectively transfer to repo-level issue-solving and even underperforms documentation generation, a simple repo-level task. (c)\nobreakspace  {}\textbf  {Task Complexity:} Transfer improves as training tasks become more complex. (d)\nobreakspace  {}\textbf  {Trajectory Complexity:} With a fixed data size, training on longer (more agent steps) trajectories substantially improves downstream performance.\relax }}{59}{figure.caption.42}\protected@file@percent }
+\newlabel{fig:ablation}{{5.4}{59}{Controlled experiments on training data characteristics. (a)~\textbf {Output Format:} Removing the file editing actions (\texttt {str\_replace}) from function localization trajectories causes a large drop in SWE-bench resolution rate. (b)~\textbf {Repo-Exploration:} script-level code generation (LCB) does not effectively transfer to repo-level issue-solving and even underperforms documentation generation, a simple repo-level task. (c)~\textbf {Task Complexity:} Transfer improves as training tasks become more complex. (d)~\textbf {Trajectory Complexity:} With a fixed data size, training on longer (more agent steps) trajectories substantially improves downstream performance.\relax }{figure.caption.42}{}}
+\newlabel{fig:ablation@cref}{{[figure][4][5]5.4}{[1][58][]59}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Analysis of Task Transferability}{59}{section.5.4}\protected@file@percent }
+\newlabel{sec:controlled-exp}{{5.4}{59}{Analysis of Task Transferability}{section.5.4}{}}
+\newlabel{sec:controlled-exp@cref}{{[section][4][5]5.4}{[1][58][]59}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Output Format Must Match Downstream Tasks}{59}{subsection.5.4.1}\protected@file@percent }
 \citation{livecodebench}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Script-level Agentic Tasks Do NOT Generalize to Repo-level Tasks}{59}{subsection.5.4.2}\protected@file@percent }
-\newlabel{sec:ablation_lcb}{{5.4.2}{59}{Script-level Agentic Tasks Do NOT Generalize to Repo-level Tasks}{subsection.5.4.2}{}}
-\newlabel{sec:ablation_lcb@cref}{{[subsection][2][5,4]5.4.2}{[1][59][]59}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}Task and Trajectory Complexity Matters}{59}{subsection.5.4.3}\protected@file@percent }
-\newlabel{sec:ablation_complexity}{{5.4.3}{59}{Task and Trajectory Complexity Matters}{subsection.5.4.3}{}}
-\newlabel{sec:ablation_complexity@cref}{{[subsection][3][5,4]5.4.3}{[1][59][]59}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Effect of teacher model and data selection. (a) Effect of \textbf  {sampling strategy} at fixed training budget. Repository diversity improves training but using the same repositories as in evaluation does not. (b) training on issue localization trajectories with different \textbf  {teacher models}. o3-mini (edited) indicates the same set of trajectories as o3-mini, but with text and action steps combined. \relax }}{60}{figure.caption.43}\protected@file@percent }
-\newlabel{fig:sampling_teacher}{{5.5}{60}{Effect of teacher model and data selection. (a) Effect of \textbf {sampling strategy} at fixed training budget. Repository diversity improves training but using the same repositories as in evaluation does not. (b) training on issue localization trajectories with different \textbf {teacher models}. o3-mini (edited) indicates the same set of trajectories as o3-mini, but with text and action steps combined. \relax }{figure.caption.43}{}}
-\newlabel{fig:sampling_teacher@cref}{{[figure][5][5]5.5}{[1][59][]60}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.4}Even Successful Trajectories of the Same Task Instances may have Different Impact}{60}{subsection.5.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Script-level Agentic Tasks Do NOT Generalize to Repo-level Tasks}{60}{subsection.5.4.2}\protected@file@percent }
+\newlabel{sec:ablation_lcb}{{5.4.2}{60}{Script-level Agentic Tasks Do NOT Generalize to Repo-level Tasks}{subsection.5.4.2}{}}
+\newlabel{sec:ablation_lcb@cref}{{[subsection][2][5,4]5.4.2}{[1][60][]60}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}Task and Trajectory Complexity Matters}{60}{subsection.5.4.3}\protected@file@percent }
+\newlabel{sec:ablation_complexity}{{5.4.3}{60}{Task and Trajectory Complexity Matters}{subsection.5.4.3}{}}
+\newlabel{sec:ablation_complexity@cref}{{[subsection][3][5,4]5.4.3}{[1][60][]60}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Effect of teacher model and data selection. (a) Effect of \textbf  {sampling strategy} at fixed training budget. Repository diversity improves training but using the same repositories as in evaluation does not. (b) training on issue localization trajectories with different \textbf  {teacher models}. o3-mini (edited) indicates the same set of trajectories as o3-mini, but with text and action steps combined. \relax }}{61}{figure.caption.43}\protected@file@percent }
+\newlabel{fig:sampling_teacher}{{5.5}{61}{Effect of teacher model and data selection. (a) Effect of \textbf {sampling strategy} at fixed training budget. Repository diversity improves training but using the same repositories as in evaluation does not. (b) training on issue localization trajectories with different \textbf {teacher models}. o3-mini (edited) indicates the same set of trajectories as o3-mini, but with text and action steps combined. \relax }{figure.caption.43}{}}
+\newlabel{fig:sampling_teacher@cref}{{[figure][5][5]5.5}{[1][60][]61}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.4}Even Successful Trajectories of the Same Task Instances may have Different Impact}{61}{subsection.5.4.4}\protected@file@percent }
 \citation{repost,swe-smith}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.5}Sampling Strategies Affects Effectiveness}{61}{subsection.5.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}Chapter Summary}{61}{section.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.5}Sampling Strategies Affects Effectiveness}{62}{subsection.5.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Chapter Summary}{62}{section.5.5}\protected@file@percent }
 \citation{swt-bench,commit0}
 \citation{swegym,swe-smith}
 \citation{swerl,swemaster}
 \citation{openhands-rubric-critique,sweworld}
 \citation{openhands-rubric-critique}
 \citation{sweworld}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Discovering Effective Demonstration Behaviors for Training Coding Agents}{63}{chapter.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Discovering Effective Demonstration Behaviors for Training Coding Agents}{64}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{chap:effective-analysis}{{6}{63}{Discovering Effective Demonstration Behaviors for Training Coding Agents}{chapter.6}{}}
-\newlabel{chap:effective-analysis@cref}{{[chapter][6][]6}{[1][63][]63}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Introduction}{63}{section.6.1}\protected@file@percent }
+\newlabel{chap:effective-analysis}{{6}{64}{Discovering Effective Demonstration Behaviors for Training Coding Agents}{chapter.6}{}}
+\newlabel{chap:effective-analysis@cref}{{[chapter][6][]6}{[1][64][]64}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Introduction}{64}{section.6.1}\protected@file@percent }
 \citation{terminal-lego,openhands-rubric-critique,hybrid-gym}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces  To find demonstration behaviors that affect the effectiveness of training, (\textit  {left}) prior works rely on human experts to manually make hypotheses, while (\textit  {right}) \textbf  {\textsc  {CATRadar}}\xspace  narrows down the search space by automatically discovering candidate behaviors by extracting and comparing the behaviors of different trained agents. \relax }}{64}{figure.caption.44}\protected@file@percent }
-\newlabel{catradar:fig:behavior-discovery-overview}{{6.1}{64}{To find demonstration behaviors that affect the effectiveness of training, (\textit {left}) prior works rely on human experts to manually make hypotheses, while (\textit {right}) \toolName narrows down the search space by automatically discovering candidate behaviors by extracting and comparing the behaviors of different trained agents. \relax }{figure.caption.44}{}}
-\newlabel{catradar:fig:behavior-discovery-overview@cref}{{[figure][1][6]6.1}{[1][64][]64}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces  To find demonstration behaviors that affect the effectiveness of training, (\textit  {left}) prior works rely on human experts to manually make hypotheses, while (\textit  {right}) \textbf  {\textsc  {CATRadar}}\xspace  narrows down the search space by automatically discovering candidate behaviors by extracting and comparing the behaviors of different trained agents. \relax }}{65}{figure.caption.44}\protected@file@percent }
+\newlabel{catradar:fig:behavior-discovery-overview}{{6.1}{65}{To find demonstration behaviors that affect the effectiveness of training, (\textit {left}) prior works rely on human experts to manually make hypotheses, while (\textit {right}) \toolName narrows down the search space by automatically discovering candidate behaviors by extracting and comparing the behaviors of different trained agents. \relax }{figure.caption.44}{}}
+\newlabel{catradar:fig:behavior-discovery-overview@cref}{{[figure][1][6]6.1}{[1][65][]65}}
 \citation{R2EGym}
 \citation{hybrid-gym}
 \citation{swebench}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces  Across different training sets, on the same sets of task instances, successful demonstrations generated by different teacher models lead to substantially different performance, and higher teacher performance does not necessarily transfer to better student performance. \relax }}{65}{figure.caption.45}\protected@file@percent }
-\newlabel{catradar:fig:different-teacher}{{6.2}{65}{Across different training sets, on the same sets of task instances, successful demonstrations generated by different teacher models lead to substantially different performance, and higher teacher performance does not necessarily transfer to better student performance. \relax }{figure.caption.45}{}}
-\newlabel{catradar:fig:different-teacher@cref}{{[figure][2][6]6.2}{[1][64][]65}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces  Overview of the \textbf  {\textsc  {CATRadar}}\xspace  automatic behavior discovery framework (\S  \ref {catradar:sec:rubric-discovery}). We run two trained coding agents on the same task instances, use a discovery agent to propose behavioral differences with a well-defined judge metric, and verify the distinguishability of each behavior by fitting a logistic regression. \relax }}{66}{figure.caption.46}\protected@file@percent }
-\newlabel{catradar:fig:method-overview}{{6.3}{66}{Overview of the \toolName automatic behavior discovery framework (\S \ref {catradar:sec:rubric-discovery}). We run two trained coding agents on the same task instances, use a discovery agent to propose behavioral differences with a well-defined judge metric, and verify the distinguishability of each behavior by fitting a logistic regression. \relax }{figure.caption.46}{}}
-\newlabel{catradar:fig:method-overview@cref}{{[figure][3][6]6.3}{[1][66][]66}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Analysis Method: Discovering Influential Behaviors of Demonstrations}{66}{section.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}\textbf  {\textsc  {CATRadar}}\xspace  : Automatic Candidate Behavior Discovery}{66}{subsection.6.2.1}\protected@file@percent }
-\newlabel{catradar:sec:rubric-discovery}{{6.2.1}{66}{\toolName : Automatic Candidate Behavior Discovery}{subsection.6.2.1}{}}
-\newlabel{catradar:sec:rubric-discovery@cref}{{[subsection][1][6,2]6.2.1}{[1][66][]66}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces  Across different training sets, on the same sets of task instances, successful demonstrations generated by different teacher models lead to substantially different performance, and higher teacher performance does not necessarily transfer to better student performance. \relax }}{66}{figure.caption.45}\protected@file@percent }
+\newlabel{catradar:fig:different-teacher}{{6.2}{66}{Across different training sets, on the same sets of task instances, successful demonstrations generated by different teacher models lead to substantially different performance, and higher teacher performance does not necessarily transfer to better student performance. \relax }{figure.caption.45}{}}
+\newlabel{catradar:fig:different-teacher@cref}{{[figure][2][6]6.2}{[1][65][]66}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces  Overview of the \textbf  {\textsc  {CATRadar}}\xspace  automatic behavior discovery framework (\S  \ref {catradar:sec:rubric-discovery}). We run two trained coding agents on the same task instances, use a discovery agent to propose behavioral differences with a well-defined judge metric, and verify the distinguishability of each behavior by fitting a logistic regression. \relax }}{67}{figure.caption.46}\protected@file@percent }
+\newlabel{catradar:fig:method-overview}{{6.3}{67}{Overview of the \toolName automatic behavior discovery framework (\S \ref {catradar:sec:rubric-discovery}). We run two trained coding agents on the same task instances, use a discovery agent to propose behavioral differences with a well-defined judge metric, and verify the distinguishability of each behavior by fitting a logistic regression. \relax }{figure.caption.46}{}}
+\newlabel{catradar:fig:method-overview@cref}{{[figure][3][6]6.3}{[1][67][]67}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Analysis Method: Discovering Influential Behaviors of Demonstrations}{67}{section.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}\textbf  {\textsc  {CATRadar}}\xspace  : Automatic Candidate Behavior Discovery}{67}{subsection.6.2.1}\protected@file@percent }
+\newlabel{catradar:sec:rubric-discovery}{{6.2.1}{67}{\toolName : Automatic Candidate Behavior Discovery}{subsection.6.2.1}{}}
+\newlabel{catradar:sec:rubric-discovery@cref}{{[subsection][1][6,2]6.2.1}{[1][67][]67}}
 \citation{terminal-lego}
 \citation{hybrid-gym}
 \citation{terminal-lego}
 \citation{hybrid-gym}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Data Intervention Methods}{67}{subsection.6.2.2}\protected@file@percent }
-\newlabel{catradar:sec:controlled-exp}{{6.2.2}{67}{Data Intervention Methods}{subsection.6.2.2}{}}
-\newlabel{catradar:sec:controlled-exp@cref}{{[subsection][2][6,2]6.2.2}{[1][67][]67}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Some of the behaviors discovered and examined by our framework. We present the full list of candidate behaviors in \S  \ref {catradar:sec:full-candidate-behaviors}. We use ``{\fontfamily  {pzd}\fontencoding  {U}\fontseries  {m}\fontshape  {n}\selectfont  \char 51}'' to indicate that the behavior is shown to be relevant to the final performance for some student models in related works and use ``U'' to indicate that the behavior is tested but not shown to be relevant. ``LEGO'' \citep  {terminal-lego}, ``Hybrid'' \citep  {hybrid-gym}, and ``Others'' refer to existing works.\relax }}{68}{table.caption.47}\protected@file@percent }
-\newlabel{catradar:tab:distinct-behaviors}{{6.1}{68}{Some of the behaviors discovered and examined by our framework. We present the full list of candidate behaviors in \S \ref {catradar:sec:full-candidate-behaviors}. We use ``\cmark '' to indicate that the behavior is shown to be relevant to the final performance for some student models in related works and use ``U'' to indicate that the behavior is tested but not shown to be relevant. ``LEGO'' \citep {terminal-lego}, ``Hybrid'' \citep {hybrid-gym}, and ``Others'' refer to existing works.\relax }{table.caption.47}{}}
-\newlabel{catradar:tab:distinct-behaviors@cref}{{[table][1][6]6.1}{[1][67][]68}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Data Intervention Methods}{68}{subsection.6.2.2}\protected@file@percent }
+\newlabel{catradar:sec:controlled-exp}{{6.2.2}{68}{Data Intervention Methods}{subsection.6.2.2}{}}
+\newlabel{catradar:sec:controlled-exp@cref}{{[subsection][2][6,2]6.2.2}{[1][68][]68}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Some of the behaviors discovered and examined by our framework. We present the full list of candidate behaviors in \S  \ref {catradar:sec:full-candidate-behaviors}. We use ``{\fontfamily  {pzd}\fontencoding  {U}\fontseries  {m}\fontshape  {n}\selectfont  \char 51}'' to indicate that the behavior is shown to be relevant to the final performance for some student models in related works and use ``U'' to indicate that the behavior is tested but not shown to be relevant. ``LEGO'' \citep  {terminal-lego}, ``Hybrid'' \citep  {hybrid-gym}, and ``Others'' refer to existing works.\relax }}{69}{table.caption.47}\protected@file@percent }
+\newlabel{catradar:tab:distinct-behaviors}{{6.1}{69}{Some of the behaviors discovered and examined by our framework. We present the full list of candidate behaviors in \S \ref {catradar:sec:full-candidate-behaviors}. We use ``\cmark '' to indicate that the behavior is shown to be relevant to the final performance for some student models in related works and use ``U'' to indicate that the behavior is tested but not shown to be relevant. ``LEGO'' \citep {terminal-lego}, ``Hybrid'' \citep {hybrid-gym}, and ``Others'' refer to existing works.\relax }{table.caption.47}{}}
+\newlabel{catradar:tab:distinct-behaviors@cref}{{[table][1][6]6.1}{[1][68][]69}}
 \citation{R2EGym}
 \citation{hybrid-gym}
 \citation{swebench}
 \citation{openhands}
 \citation{terminal-lego}
-\newlabel{catradar:fig:teacher-acc-student-acc}{{6.4a}{69}{Teacher performance\relax }{figure.caption.48}{}}
-\newlabel{catradar:fig:teacher-acc-student-acc@cref}{{[subfigure][1][6,4]6.4a}{[1][68][]69}}
-\newlabel{sub@catradar:fig:teacher-acc-student-acc}{{a}{69}{Teacher performance\relax }{figure.caption.48}{}}
-\newlabel{sub@catradar:fig:teacher-acc-student-acc@cref}{{[subfigure][1][6,4]6.4a}{[1][68][]69}}
-\newlabel{catradar:fig:teacher-len-student-acc}{{6.4b}{69}{Trajectory length\relax }{figure.caption.48}{}}
-\newlabel{catradar:fig:teacher-len-student-acc@cref}{{[subfigure][2][6,4]6.4b}{[1][68][]69}}
-\newlabel{sub@catradar:fig:teacher-len-student-acc}{{b}{69}{Trajectory length\relax }{figure.caption.48}{}}
-\newlabel{sub@catradar:fig:teacher-len-student-acc@cref}{{[subfigure][2][6,4]6.4b}{[1][68][]69}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Student performance (Qwen2.5Coder-7B) is not significantly correlated with trajectory-level features such as teacher success rate or trajectory length.\relax }}{69}{figure.caption.48}\protected@file@percent }
-\newlabel{catradar:fig:metric-student-correlations}{{6.4}{69}{Student performance (Qwen2.5Coder-7B) is not significantly correlated with trajectory-level features such as teacher success rate or trajectory length.\relax }{figure.caption.48}{}}
-\newlabel{catradar:fig:metric-student-correlations@cref}{{[figure][4][6]6.4}{[1][68][]69}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Analysis Results: What Behaviors Affect Coding Agent Training?}{69}{section.6.3}\protected@file@percent }
-\newlabel{catradar:sec:analysis-results}{{6.3}{69}{Analysis Results: What Behaviors Affect Coding Agent Training?}{section.6.3}{}}
-\newlabel{catradar:sec:analysis-results@cref}{{[section][3][6]6.3}{[1][68][]69}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}\textbf  {\textsc  {CATRadar}}\xspace  Discovers Diverse Candidates}{69}{subsection.6.3.1}\protected@file@percent }
-\newlabel{catradar:sec:distinct-behaviors}{{6.3.1}{69}{\smalltoolName Discovers Diverse Candidates}{subsection.6.3.1}{}}
-\newlabel{catradar:sec:distinct-behaviors@cref}{{[subsection][1][6,3]6.3.1}{[1][69][]69}}
+\newlabel{catradar:fig:teacher-acc-student-acc}{{6.4a}{70}{Teacher performance\relax }{figure.caption.48}{}}
+\newlabel{catradar:fig:teacher-acc-student-acc@cref}{{[subfigure][1][6,4]6.4a}{[1][69][]70}}
+\newlabel{sub@catradar:fig:teacher-acc-student-acc}{{a}{70}{Teacher performance\relax }{figure.caption.48}{}}
+\newlabel{sub@catradar:fig:teacher-acc-student-acc@cref}{{[subfigure][1][6,4]6.4a}{[1][69][]70}}
+\newlabel{catradar:fig:teacher-len-student-acc}{{6.4b}{70}{Trajectory length\relax }{figure.caption.48}{}}
+\newlabel{catradar:fig:teacher-len-student-acc@cref}{{[subfigure][2][6,4]6.4b}{[1][69][]70}}
+\newlabel{sub@catradar:fig:teacher-len-student-acc}{{b}{70}{Trajectory length\relax }{figure.caption.48}{}}
+\newlabel{sub@catradar:fig:teacher-len-student-acc@cref}{{[subfigure][2][6,4]6.4b}{[1][69][]70}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Student performance (Qwen2.5Coder-7B) is not significantly correlated with trajectory-level features such as teacher success rate or trajectory length.\relax }}{70}{figure.caption.48}\protected@file@percent }
+\newlabel{catradar:fig:metric-student-correlations}{{6.4}{70}{Student performance (Qwen2.5Coder-7B) is not significantly correlated with trajectory-level features such as teacher success rate or trajectory length.\relax }{figure.caption.48}{}}
+\newlabel{catradar:fig:metric-student-correlations@cref}{{[figure][4][6]6.4}{[1][69][]70}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Analysis Results: What Behaviors Affect Coding Agent Training?}{70}{section.6.3}\protected@file@percent }
+\newlabel{catradar:sec:analysis-results}{{6.3}{70}{Analysis Results: What Behaviors Affect Coding Agent Training?}{section.6.3}{}}
+\newlabel{catradar:sec:analysis-results@cref}{{[section][3][6]6.3}{[1][69][]70}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}\textbf  {\textsc  {CATRadar}}\xspace  Discovers Diverse Candidates}{70}{subsection.6.3.1}\protected@file@percent }
+\newlabel{catradar:sec:distinct-behaviors}{{6.3.1}{70}{\toolName Discovers Diverse Candidates}{subsection.6.3.1}{}}
+\newlabel{catradar:sec:distinct-behaviors@cref}{{[subsection][1][6,3]6.3.1}{[1][70][]70}}
 \citation{swe-play}
 \citation{swegym}
 \citation{hybrid-gym}
-\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces A case study showing that demonstrations with different repo-exploration strategies can all be labeled as ``sufficient exploration'' by the LLM judge. \relax }}{70}{table.caption.49}\protected@file@percent }
-\newlabel{catradar:tab:localize-case}{{6.2}{70}{A case study showing that demonstrations with different repo-exploration strategies can all be labeled as ``sufficient exploration'' by the LLM judge. \relax }{table.caption.49}{}}
-\newlabel{catradar:tab:localize-case@cref}{{[table][2][6]6.2}{[1][70][]70}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Trajectory-Level Features are Not Good Indicators of Training Effectiveness}{70}{subsection.6.3.2}\protected@file@percent }
-\newlabel{catradar:sec:traj-features}{{6.3.2}{70}{Trajectory-Level Features are Not Good Indicators of Training Effectiveness}{subsection.6.3.2}{}}
-\newlabel{catradar:sec:traj-features@cref}{{[subsection][2][6,3]6.3.2}{[1][70][]70}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces A case study showing that demonstrations with different repo-exploration strategies can all be labeled as ``sufficient exploration'' by the LLM judge. \relax }}{71}{table.caption.49}\protected@file@percent }
+\newlabel{catradar:tab:localize-case}{{6.2}{71}{A case study showing that demonstrations with different repo-exploration strategies can all be labeled as ``sufficient exploration'' by the LLM judge. \relax }{table.caption.49}{}}
+\newlabel{catradar:tab:localize-case@cref}{{[table][2][6]6.2}{[1][71][]71}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Trajectory-Level Features are Not Good Indicators of Training Effectiveness}{71}{subsection.6.3.2}\protected@file@percent }
+\newlabel{catradar:sec:traj-features}{{6.3.2}{71}{Trajectory-Level Features are Not Good Indicators of Training Effectiveness}{subsection.6.3.2}{}}
+\newlabel{catradar:sec:traj-features@cref}{{[subsection][2][6,3]6.3.2}{[1][71][]71}}
 \citation{CoT}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Planning steps in demonstrations have different effects on different models. We \textbf  {highlight} significant performance changes after removing all task-tracker actions from demonstrations (with p-value $< 0.05$). \relax }}{71}{figure.caption.50}\protected@file@percent }
-\newlabel{catradar:fig:tracker-ablation}{{6.5}{71}{Planning steps in demonstrations have different effects on different models. We \textbf {highlight} significant performance changes after removing all task-tracker actions from demonstrations (with p-value $< 0.05$). \relax }{figure.caption.50}{}}
-\newlabel{catradar:fig:tracker-ablation@cref}{{[figure][5][6]6.5}{[1][70][]71}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Verification procedure in a simple training task (e.g., function localization) transfers to more complex tasks (e.g., issue-solving). However, the effect of verification steps depends on the student and teacher model. We highlight significant \begingroup \def \textcolor {yellow}{\textcolor {applegreen!25}}\texthl  { increases }\endgroup  and \begingroup \def \textcolor {yellow}{\textcolor {red!16}}\texthl  { decreases }\endgroup  in resolved rates (with p-value $< 0.05$).\relax }}{71}{table.caption.51}\protected@file@percent }
-\newlabel{catradar:tab:verification-ablation}{{6.3}{71}{Verification procedure in a simple training task (e.g., function localization) transfers to more complex tasks (e.g., issue-solving). However, the effect of verification steps depends on the student and teacher model. We highlight significant \ctext {applegreen!25}{increases} and \ctext {red!16}{decreases} in resolved rates (with p-value $< 0.05$).\relax }{table.caption.51}{}}
-\newlabel{catradar:tab:verification-ablation@cref}{{[table][3][6]6.3}{[1][71][]71}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}\textbf  {\textsc  {CATRadar}}\xspace  Discovers Effective Problem-Solving Strategies}{71}{subsection.6.3.3}\protected@file@percent }
-\newlabel{catradar:sec:repo-exploration}{{6.3.3}{71}{\toolName Discovers Effective Problem-Solving Strategies}{subsection.6.3.3}{}}
-\newlabel{catradar:sec:repo-exploration@cref}{{[subsection][3][6,3]6.3.3}{[1][70][]71}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces When the verbosity of reasoning text increases (including non-tool-call text and content of the ``think'' actions), the trajectory length in general increases, and the performance first increases and then decreases.\relax }}{72}{figure.caption.52}\protected@file@percent }
-\newlabel{catradar:fig:verbosity}{{6.6}{72}{When the verbosity of reasoning text increases (including non-tool-call text and content of the ``think'' actions), the trajectory length in general increases, and the performance first increases and then decreases.\relax }{figure.caption.52}{}}
-\newlabel{catradar:fig:verbosity@cref}{{[figure][6][6]6.6}{[1][72][]72}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.4}Planning Steps have Different Effects on Different Models}{72}{subsection.6.3.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Planning steps in demonstrations have different effects on different models. We \textbf  {highlight} significant performance changes after removing all task-tracker actions from demonstrations (with p-value $< 0.05$). \relax }}{72}{figure.caption.50}\protected@file@percent }
+\newlabel{catradar:fig:tracker-ablation}{{6.5}{72}{Planning steps in demonstrations have different effects on different models. We \textbf {highlight} significant performance changes after removing all task-tracker actions from demonstrations (with p-value $< 0.05$). \relax }{figure.caption.50}{}}
+\newlabel{catradar:fig:tracker-ablation@cref}{{[figure][5][6]6.5}{[1][71][]72}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Verification procedure in a simple training task (e.g., function localization) transfers to more complex tasks (e.g., issue-solving). However, the effect of verification steps depends on the student and teacher model. We highlight significant \begingroup \def \textcolor {yellow}{\textcolor {applegreen!25}}\texthl  { increases }\endgroup  and \begingroup \def \textcolor {yellow}{\textcolor {red!16}}\texthl  { decreases }\endgroup  in resolved rates (with p-value $< 0.05$).\relax }}{72}{table.caption.51}\protected@file@percent }
+\newlabel{catradar:tab:verification-ablation}{{6.3}{72}{Verification procedure in a simple training task (e.g., function localization) transfers to more complex tasks (e.g., issue-solving). However, the effect of verification steps depends on the student and teacher model. We highlight significant \ctext {applegreen!25}{increases} and \ctext {red!16}{decreases} in resolved rates (with p-value $< 0.05$).\relax }{table.caption.51}{}}
+\newlabel{catradar:tab:verification-ablation@cref}{{[table][3][6]6.3}{[1][72][]72}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}\textbf  {\textsc  {CATRadar}}\xspace  Discovers Effective Problem-Solving Strategies}{72}{subsection.6.3.3}\protected@file@percent }
+\newlabel{catradar:sec:repo-exploration}{{6.3.3}{72}{\toolName Discovers Effective Problem-Solving Strategies}{subsection.6.3.3}{}}
+\newlabel{catradar:sec:repo-exploration@cref}{{[subsection][3][6,3]6.3.3}{[1][71][]72}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces When the verbosity of reasoning text increases (including non-tool-call text and content of the ``think'' actions), the trajectory length in general increases, and the performance first increases and then decreases.\relax }}{73}{figure.caption.52}\protected@file@percent }
+\newlabel{catradar:fig:verbosity}{{6.6}{73}{When the verbosity of reasoning text increases (including non-tool-call text and content of the ``think'' actions), the trajectory length in general increases, and the performance first increases and then decreases.\relax }{figure.caption.52}{}}
+\newlabel{catradar:fig:verbosity@cref}{{[figure][6][6]6.6}{[1][73][]73}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.4}Planning Steps have Different Effects on Different Models}{73}{subsection.6.3.4}\protected@file@percent }
 \citation{terminal-lego}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.5}Verification Abilities Transfer from Simple Tasks to Complex Tasks}{73}{subsection.6.3.5}\protected@file@percent }
-\newlabel{catradar:sec:verification}{{6.3.5}{73}{Verification Abilities Transfer from Simple Tasks to Complex Tasks}{subsection.6.3.5}{}}
-\newlabel{catradar:sec:verification@cref}{{[subsection][5][6,3]6.3.5}{[1][72][]73}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.6}Training on Reasoning Text Increases Trajectory Length}{73}{subsection.6.3.6}\protected@file@percent }
-\newlabel{catradar:sec:verbosity}{{6.3.6}{73}{Training on Reasoning Text Increases Trajectory Length}{subsection.6.3.6}{}}
-\newlabel{catradar:sec:verbosity@cref}{{[subsection][6][6,3]6.3.6}{[1][73][]73}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.4}{\ignorespaces Data selection results with the repo-exploration strategies we discovered. Parenthesized results are absolute gains compared to the lower resolved rate of the two ablations. We highlight gains for resolved rates that are significantly better than \begingroup \def \textcolor {yellow}{\textcolor {applegreen!25}}\texthl  { both ablations }\endgroup  and \begingroup \def \textcolor {yellow}{\textcolor {applegreen!10}}\texthl  { one of the ablations }\endgroup  (with p-value $< 0.05$). \relax }}{74}{table.caption.53}\protected@file@percent }
-\newlabel{catradar:tab:data-selection-strategies}{{6.4}{74}{Data selection results with the repo-exploration strategies we discovered. Parenthesized results are absolute gains compared to the lower resolved rate of the two ablations. We highlight gains for resolved rates that are significantly better than \ctext {applegreen!25}{both ablations} and \ctext {applegreen!10}{one of the ablations} (with p-value $< 0.05$). \relax }{table.caption.53}{}}
-\newlabel{catradar:tab:data-selection-strategies@cref}{{[table][4][6]6.4}{[1][73][]74}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}Practical Utility of Our Discoveries}{74}{section.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Method 1: Behavior-Aware Data Selection}{74}{subsection.6.4.1}\protected@file@percent }
-\newlabel{catradar:sec:data-selection}{{6.4.1}{74}{Method 1: Behavior-Aware Data Selection}{subsection.6.4.1}{}}
-\newlabel{catradar:sec:data-selection@cref}{{[subsection][1][6,4]6.4.1}{[1][74][]74}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.5}{\ignorespaces Student performance (Qwen2.5Coder-7B) on SWE-Bench Verified under different teacher models and prompting strategies. We highlight \begingroup \def \textcolor {yellow}{\textcolor {applegreen!25}}\texthl  { significant changes in resolved rates }\endgroup .\relax }}{75}{table.caption.54}\protected@file@percent }
-\newlabel{catradar:tab:prompt-tuning}{{6.5}{75}{Student performance (Qwen2.5Coder-7B) on SWE-Bench Verified under different teacher models and prompting strategies. We highlight \ctext {applegreen!25}{significant changes in resolved rates}.\relax }{table.caption.54}{}}
-\newlabel{catradar:tab:prompt-tuning@cref}{{[table][5][6]6.5}{[1][75][]75}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.6}{\ignorespaces We can improve performance by adding synthetic task-planning steps in training trajectories. We highlight \begingroup \def \textcolor {yellow}{\textcolor {applegreen!25}}\texthl  { significant improvements in resolved rates }\endgroup .\relax }}{75}{table.caption.55}\protected@file@percent }
-\newlabel{catradar:tab:task-tracker-improvement}{{6.6}{75}{We can improve performance by adding synthetic task-planning steps in training trajectories. We highlight \ctext {applegreen!25}{significant improvements in resolved rates}.\relax }{table.caption.55}{}}
-\newlabel{catradar:tab:task-tracker-improvement@cref}{{[table][6][6]6.6}{[1][75][]75}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Method 2: Adding Synthesized Agent Steps to Training Trajectories}{75}{subsection.6.4.2}\protected@file@percent }
-\newlabel{catradar:sec:synthetic-steps}{{6.4.2}{75}{Method 2: Adding Synthesized Agent Steps to Training Trajectories}{subsection.6.4.2}{}}
-\newlabel{catradar:sec:synthetic-steps@cref}{{[subsection][2][6,4]6.4.2}{[1][75][]75}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Method 3: Behavior-Conditioned Demonstration Generation}{76}{subsection.6.4.3}\protected@file@percent }
-\newlabel{catradar:sec:prompt-tuning}{{6.4.3}{76}{Method 3: Behavior-Conditioned Demonstration Generation}{subsection.6.4.3}{}}
-\newlabel{catradar:sec:prompt-tuning@cref}{{[subsection][3][6,4]6.4.3}{[1][76][]76}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.5}Conclusions}{76}{section.6.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Training Auxiliary Models to Assist Coding Agents}{78}{part.3}\protected@file@percent }
-\newlabel{part:usage}{{III}{79}{Training Auxiliary Models to Assist Coding Agents}{part.3}{}}
-\newlabel{part:usage@cref}{{[part][3][]III}{[1][79][]79}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.5}Verification Abilities Transfer from Simple Tasks to Complex Tasks}{74}{subsection.6.3.5}\protected@file@percent }
+\newlabel{catradar:sec:verification}{{6.3.5}{74}{Verification Abilities Transfer from Simple Tasks to Complex Tasks}{subsection.6.3.5}{}}
+\newlabel{catradar:sec:verification@cref}{{[subsection][5][6,3]6.3.5}{[1][73][]74}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.6}Training on Reasoning Text Increases Trajectory Length}{74}{subsection.6.3.6}\protected@file@percent }
+\newlabel{catradar:sec:verbosity}{{6.3.6}{74}{Training on Reasoning Text Increases Trajectory Length}{subsection.6.3.6}{}}
+\newlabel{catradar:sec:verbosity@cref}{{[subsection][6][6,3]6.3.6}{[1][74][]74}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.4}{\ignorespaces Data selection results with the repo-exploration strategies we discovered. Parenthesized results are absolute gains compared to the lower resolved rate of the two ablations. We highlight gains for resolved rates that are significantly better than \begingroup \def \textcolor {yellow}{\textcolor {applegreen!25}}\texthl  { both ablations }\endgroup  and \begingroup \def \textcolor {yellow}{\textcolor {applegreen!10}}\texthl  { one of the ablations }\endgroup  (with p-value $< 0.05$). \relax }}{75}{table.caption.53}\protected@file@percent }
+\newlabel{catradar:tab:data-selection-strategies}{{6.4}{75}{Data selection results with the repo-exploration strategies we discovered. Parenthesized results are absolute gains compared to the lower resolved rate of the two ablations. We highlight gains for resolved rates that are significantly better than \ctext {applegreen!25}{both ablations} and \ctext {applegreen!10}{one of the ablations} (with p-value $< 0.05$). \relax }{table.caption.53}{}}
+\newlabel{catradar:tab:data-selection-strategies@cref}{{[table][4][6]6.4}{[1][74][]75}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Practical Utility of Our Discoveries}{75}{section.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Method 1: Behavior-Aware Data Selection}{75}{subsection.6.4.1}\protected@file@percent }
+\newlabel{catradar:sec:data-selection}{{6.4.1}{75}{Method 1: Behavior-Aware Data Selection}{subsection.6.4.1}{}}
+\newlabel{catradar:sec:data-selection@cref}{{[subsection][1][6,4]6.4.1}{[1][75][]75}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.5}{\ignorespaces Student performance (Qwen2.5Coder-7B) on SWE-Bench Verified under different teacher models and prompting strategies. We highlight \begingroup \def \textcolor {yellow}{\textcolor {applegreen!25}}\texthl  { significant changes in resolved rates }\endgroup .\relax }}{76}{table.caption.54}\protected@file@percent }
+\newlabel{catradar:tab:prompt-tuning}{{6.5}{76}{Student performance (Qwen2.5Coder-7B) on SWE-Bench Verified under different teacher models and prompting strategies. We highlight \ctext {applegreen!25}{significant changes in resolved rates}.\relax }{table.caption.54}{}}
+\newlabel{catradar:tab:prompt-tuning@cref}{{[table][5][6]6.5}{[1][76][]76}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.6}{\ignorespaces We can improve performance by adding synthetic task-planning steps in training trajectories. We highlight \begingroup \def \textcolor {yellow}{\textcolor {applegreen!25}}\texthl  { significant improvements in resolved rates }\endgroup .\relax }}{76}{table.caption.55}\protected@file@percent }
+\newlabel{catradar:tab:task-tracker-improvement}{{6.6}{76}{We can improve performance by adding synthetic task-planning steps in training trajectories. We highlight \ctext {applegreen!25}{significant improvements in resolved rates}.\relax }{table.caption.55}{}}
+\newlabel{catradar:tab:task-tracker-improvement@cref}{{[table][6][6]6.6}{[1][76][]76}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Method 2: Adding Synthesized Agent Steps to Training Trajectories}{76}{subsection.6.4.2}\protected@file@percent }
+\newlabel{catradar:sec:synthetic-steps}{{6.4.2}{76}{Method 2: Adding Synthesized Agent Steps to Training Trajectories}{subsection.6.4.2}{}}
+\newlabel{catradar:sec:synthetic-steps@cref}{{[subsection][2][6,4]6.4.2}{[1][76][]76}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Method 3: Behavior-Conditioned Demonstration Generation}{77}{subsection.6.4.3}\protected@file@percent }
+\newlabel{catradar:sec:prompt-tuning}{{6.4.3}{77}{Method 3: Behavior-Conditioned Demonstration Generation}{subsection.6.4.3}{}}
+\newlabel{catradar:sec:prompt-tuning@cref}{{[subsection][3][6,4]6.4.3}{[1][77][]77}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}Conclusions}{77}{section.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Training Auxiliary Models to Assist Coding Agents}{79}{part.3}\protected@file@percent }
+\newlabel{part:usage}{{III}{80}{Training Auxiliary Models to Assist Coding Agents}{part.3}{}}
+\newlabel{part:usage@cref}{{[part][3][]III}{[1][80][]80}}
 \citation{hallucination-survey,empirical-factuality}
 \citation{finetuning-on-new,understand-finetuning,unfamiliar-finetuning}
 \citation{ITI,DoLA}
@@ -611,35 +611,35 @@
 \citation{prometheus,AutoJ}
 \citation{FLAMe}
 \citation{longform}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Improving Generator Factuality by Training a Critic Model}{80}{chapter.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Improving Generator Factuality by Training a Critic Model}{81}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{chap:fence}{{7}{80}{Improving Generator Factuality by Training a Critic Model}{chapter.7}{}}
-\newlabel{chap:fence@cref}{{[chapter][7][]7}{[1][80][]80}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Introduction}{80}{section.7.1}\protected@file@percent }
+\newlabel{chap:fence}{{7}{81}{Improving Generator Factuality by Training a Critic Model}{chapter.7}{}}
+\newlabel{chap:fence@cref}{{[chapter][7][]7}{[1][81][]81}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Introduction}{81}{section.7.1}\protected@file@percent }
 \citation{factscore}
 \citation{truthfulqa}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces \textit  {(Left)} The framework to train an evaluator, \textsc  {FenCE}\xspace  , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit  {(Right)} The framework to improve model factuality with \textsc  {FenCE}\xspace  . We construct training data by leveraging \textsc  {FenCE}\xspace  to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }}{81}{figure.caption.56}\protected@file@percent }
-\newlabel{fig:overview}{{7.1}{81}{\textit {(Left)} The framework to train an evaluator, \fencemodelname , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit {(Right)} The framework to improve model factuality with \fencemodelname . We construct training data by leveraging \fencemodelname to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }{figure.caption.56}{}}
-\newlabel{fig:overview@cref}{{[figure][1][7]7.1}{[1][80][]81}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces \textit  {(Left)} The framework to train an evaluator, \textsc  {FenCE}\xspace  , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit  {(Right)} The framework to improve model factuality with \textsc  {FenCE}\xspace  . We construct training data by leveraging \textsc  {FenCE}\xspace  to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }}{82}{figure.caption.56}\protected@file@percent }
+\newlabel{fig:overview}{{7.1}{82}{\textit {(Left)} The framework to train an evaluator, \fencemodelname , by augmenting public datasets with textual critiques and more diverse knowledge sources. We show the details in \autoref {fig:evaluator_train}. \textit {(Right)} The framework to improve model factuality with \fencemodelname . We construct training data by leveraging \fencemodelname to revise and score the generator's responses. Details of response revision are shown in \autoref {fig:revise}.\relax }{figure.caption.56}{}}
+\newlabel{fig:overview@cref}{{[figure][1][7]7.1}{[1][81][]82}}
 \citation{FLAMe}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Framework of evaluator training. (\textit  {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit  {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }}{82}{figure.caption.57}\protected@file@percent }
-\newlabel{fig:evaluator_train}{{7.2}{82}{Framework of evaluator training. (\textit {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }{figure.caption.57}{}}
-\newlabel{fig:evaluator_train@cref}{{[figure][2][7]7.2}{[1][82][]82}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.2}Methodology}{82}{section.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}\textsc  {FenCE}\xspace  : Factuality Evaluator Training}{82}{subsection.7.2.1}\protected@file@percent }
-\newlabel{sec:evaluator_training}{{7.2.1}{82}{\fencemodelname : Factuality Evaluator Training}{subsection.7.2.1}{}}
-\newlabel{sec:evaluator_training@cref}{{[subsection][1][7,2]7.2.1}{[1][82][]82}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Framework of evaluator training. (\textit  {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit  {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }}{83}{figure.caption.57}\protected@file@percent }
+\newlabel{fig:evaluator_train}{{7.2}{83}{Framework of evaluator training. (\textit {left}) Existing public datasets for evaluator training. Each example contains a claim, a source document, and the ground truth (GT) label of whether the claim is supported by the document. (\textit {Right}) We augment the datasets with textual critiques and more diverse source documents obtained by tools. We use zero-shot Llama-3-70B-chat as the instruction-tuned model in our experiments.\relax }{figure.caption.57}{}}
+\newlabel{fig:evaluator_train@cref}{{[figure][2][7]7.2}{[1][83][]83}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Methodology}{83}{section.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}\textsc  {FenCE}\xspace  : Factuality Evaluator Training}{83}{subsection.7.2.1}\protected@file@percent }
+\newlabel{sec:evaluator_training}{{7.2.1}{83}{\fencemodelname : Factuality Evaluator Training}{subsection.7.2.1}{}}
+\newlabel{sec:evaluator_training@cref}{{[subsection][1][7,2]7.2.1}{[1][83][]83}}
 \citation{understand-finetuning,finetuning-on-new}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces  The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \textsc  {FenCE}\xspace  to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit  {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit  {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }}{84}{figure.caption.58}\protected@file@percent }
-\newlabel{fig:revise}{{7.3}{84}{The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \fencemodelname to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }{figure.caption.58}{}}
-\newlabel{fig:revise@cref}{{[figure][3][7]7.3}{[1][84][]84}}
-\newlabel{eq:evaluator_sft}{{7.1}{84}{\fencemodelname : Factuality Evaluator Training}{equation.7.2.1}{}}
-\newlabel{eq:evaluator_sft@cref}{{[equation][1][7]7.1}{[1][84][]84}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}Improving Generator Factuality with \textsc  {FenCE}\xspace  }{84}{subsection.7.2.2}\protected@file@percent }
-\newlabel{sec:improve_factuality}{{7.2.2}{84}{Improving Generator Factuality with \fencemodelname }{subsection.7.2.2}{}}
-\newlabel{sec:improve_factuality@cref}{{[subsection][2][7,2]7.2.2}{[1][84][]84}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces  The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \textsc  {FenCE}\xspace  to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit  {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit  {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }}{85}{figure.caption.58}\protected@file@percent }
+\newlabel{fig:revise}{{7.3}{85}{The framework to revise model responses without introducing lesser-known facts. We iteratively (1) use \fencemodelname to evaluate the factuality of each claim, (2) replace false information (if any) with the correct fact or remove it from the response, depending on whether it corresponds to a lesser-known fact, and (3) continue generating the next passage. For every claim, we prompt the generator ``\textit {Is this claim factual?}'' without providing any source documents. If the generator outputs \textit {``unknown''}, we assume that the claim corresponds to a lesser-known fact. \relax }{figure.caption.58}{}}
+\newlabel{fig:revise@cref}{{[figure][3][7]7.3}{[1][85][]85}}
+\newlabel{eq:evaluator_sft}{{7.1}{85}{\fencemodelname : Factuality Evaluator Training}{equation.7.2.1}{}}
+\newlabel{eq:evaluator_sft@cref}{{[equation][1][7]7.1}{[1][85][]85}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}Improving Generator Factuality with \textsc  {FenCE}\xspace  }{85}{subsection.7.2.2}\protected@file@percent }
+\newlabel{sec:improve_factuality}{{7.2.2}{85}{Improving Generator Factuality with \fencemodelname }{subsection.7.2.2}{}}
+\newlabel{sec:improve_factuality@cref}{{[subsection][2][7,2]7.2.2}{[1][85][]85}}
 \citation{DPO}
 \citation{DPO}
 \citation{FLAMe}
@@ -657,74 +657,74 @@
 \citation{FLAMe}
 \citation{llm-aggrefact}
 \citation{llm-aggrefact}
-\@writefile{toc}{\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{86}{section.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{86}{subsection.7.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Main Results}{86}{subsection.7.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet  {llm-aggrefact}. \relax }}{87}{table.caption.59}\protected@file@percent }
-\newlabel{tab:res-llm-aggrefact}{{7.1}{87}{Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet {llm-aggrefact}. \relax }{table.caption.59}{}}
-\newlabel{tab:res-llm-aggrefact@cref}{{[table][1][7]7.1}{[1][86][]87}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{87}{subsection.7.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}Experiments on Evaluator Training}{87}{section.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Experimental Setup}{87}{subsection.7.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Main Results}{87}{subsection.7.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet  {llm-aggrefact}. \relax }}{88}{table.caption.59}\protected@file@percent }
+\newlabel{tab:res-llm-aggrefact}{{7.1}{88}{Performance (BAcc) of evaluator models on the test split of LLM-AggreFact. We separate Llama3-8B-chat based models, larger open-source models, and proprietary models into different blocks. We highlight the best-performing open-source model for each dataset. Results with $\dagger $ are reported in \citet {llm-aggrefact}. \relax }{table.caption.59}{}}
+\newlabel{tab:res-llm-aggrefact@cref}{{[table][1][7]7.1}{[1][87][]88}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.3}Result Analyses}{88}{subsection.7.3.3}\protected@file@percent }
 \citation{EVER,self-eval-skt}
 \citation{factscore}
 \citation{truthfulqa}
-\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces  The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }}{88}{table.caption.60}\protected@file@percent }
-\newlabel{tab:aug-acc}{{7.2}{88}{The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }{table.caption.60}{}}
-\newlabel{tab:aug-acc@cref}{{[table][2][7]7.2}{[1][88][]88}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{88}{section.7.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{88}{subsection.7.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces  The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }}{89}{table.caption.60}\protected@file@percent }
+\newlabel{tab:aug-acc}{{7.2}{89}{The accuracy of the critiques and the tool-extracted source documents we obtained. We randomly sampled 15 examples for each predicted label and manually check the accuracy of each example. \relax }{table.caption.60}{}}
+\newlabel{tab:aug-acc@cref}{{[table][2][7]7.2}{[1][89][]89}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}Experiments on Generator Factuality}{89}{section.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.1}Experimental Setup}{89}{subsection.7.4.1}\protected@file@percent }
 \citation{FactTune}
 \citation{self-eval-skt}
 \citation{EVER}
-\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces  Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \textsc  {FenCE}\xspace  . \relax }}{89}{table.caption.61}\protected@file@percent }
-\newlabel{tab:res-factscore}{{7.3}{89}{Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \fencemodelname . \relax }{table.caption.61}{}}
-\newlabel{tab:res-factscore@cref}{{[table][3][7]7.3}{[1][89][]89}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces  Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \textsc  {FenCE}\xspace  . \relax }}{90}{table.caption.61}\protected@file@percent }
+\newlabel{tab:res-factscore}{{7.3}{90}{Comparison between our method and baselines on FActScore and TruthfulQA. ``E/R'' stands for ``Edit/Remove''. All baselines use the zero-shot models as the evaluator in training and our method uses \fencemodelname . \relax }{table.caption.61}{}}
+\newlabel{tab:res-factscore@cref}{{[table][3][7]7.3}{[1][90][]90}}
 \citation{RAG}
 \citation{ITI,DoLA}
-\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces  Ablation study that compares different training recipes when equipped with \textsc  {FenCE}\xspace  as the evaluator. ``SFT + \textsc  {FenCE}\xspace  '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \textsc  {FenCE}\xspace  evaluator. \relax }}{90}{table.caption.62}\protected@file@percent }
-\newlabel{tab:res-ablation}{{7.4}{90}{Ablation study that compares different training recipes when equipped with \fencemodelname as the evaluator. ``SFT + \fencemodelname '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \fencemodelname evaluator. \relax }{table.caption.62}{}}
-\newlabel{tab:res-ablation@cref}{{[table][4][7]7.4}{[1][89][]90}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.2}Main Results}{90}{subsection.7.4.2}\protected@file@percent }
-\newlabel{fig:response_shift_distribution_claims}{{7.4a}{91}{Distribution of claims\relax }{figure.caption.63}{}}
-\newlabel{fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][89][]91}}
-\newlabel{sub@fig:response_shift_distribution_claims}{{a}{91}{Distribution of claims\relax }{figure.caption.63}{}}
-\newlabel{sub@fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][89][]91}}
-\newlabel{fig:response_shift_refused_responses}{{7.4b}{91}{\% Refused responses\relax }{figure.caption.63}{}}
-\newlabel{fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][89][]91}}
-\newlabel{sub@fig:response_shift_refused_responses}{{b}{91}{\% Refused responses\relax }{figure.caption.63}{}}
-\newlabel{sub@fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][89][]91}}
-\newlabel{fig:response_shift_num_facts}{{7.4c}{91}{\% Facts\relax }{figure.caption.63}{}}
-\newlabel{fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][89][]91}}
-\newlabel{sub@fig:response_shift_num_facts}{{c}{91}{\% Facts\relax }{figure.caption.63}{}}
-\newlabel{sub@fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][89][]91}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit  {``Base Model''}), SFT + \textsc  {FenCE}\xspace  (\textit  {``SFT''}), and our method, Edit/Remove + Coarse (\textit  {``DPO''}).\relax }}{91}{figure.caption.63}\protected@file@percent }
-\newlabel{fig:response_shift}{{7.4}{91}{Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit {``Base Model''}), SFT + \fencemodelname (\textit {``SFT''}), and our method, Edit/Remove + Coarse (\textit {``DPO''}).\relax }{figure.caption.63}{}}
-\newlabel{fig:response_shift@cref}{{[figure][4][7]7.4}{[1][89][]91}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }}{91}{figure.caption.64}\protected@file@percent }
-\newlabel{fig:claim_acc_by_cat}{{7.5}{91}{The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }{figure.caption.64}{}}
-\newlabel{fig:claim_acc_by_cat@cref}{{[figure][5][7]7.5}{[1][89][]91}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces  Ablation study that compares different training recipes when equipped with \textsc  {FenCE}\xspace  as the evaluator. ``SFT + \textsc  {FenCE}\xspace  '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \textsc  {FenCE}\xspace  evaluator. \relax }}{91}{table.caption.62}\protected@file@percent }
+\newlabel{tab:res-ablation}{{7.4}{91}{Ablation study that compares different training recipes when equipped with \fencemodelname as the evaluator. ``SFT + \fencemodelname '', ``Edit'', and ``Coarse'' denote equipping ``SFT'', ``EVER-Pref'', and ``FactTune-FS'' in \autoref {tab:res-factscore} with the \fencemodelname evaluator. \relax }{table.caption.62}{}}
+\newlabel{tab:res-ablation@cref}{{[table][4][7]7.4}{[1][90][]91}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.2}Main Results}{91}{subsection.7.4.2}\protected@file@percent }
+\newlabel{fig:response_shift_distribution_claims}{{7.4a}{92}{Distribution of claims\relax }{figure.caption.63}{}}
+\newlabel{fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][90][]92}}
+\newlabel{sub@fig:response_shift_distribution_claims}{{a}{92}{Distribution of claims\relax }{figure.caption.63}{}}
+\newlabel{sub@fig:response_shift_distribution_claims@cref}{{[subfigure][1][7,4]7.4a}{[1][90][]92}}
+\newlabel{fig:response_shift_refused_responses}{{7.4b}{92}{\% Refused responses\relax }{figure.caption.63}{}}
+\newlabel{fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][90][]92}}
+\newlabel{sub@fig:response_shift_refused_responses}{{b}{92}{\% Refused responses\relax }{figure.caption.63}{}}
+\newlabel{sub@fig:response_shift_refused_responses@cref}{{[subfigure][2][7,4]7.4b}{[1][90][]92}}
+\newlabel{fig:response_shift_num_facts}{{7.4c}{92}{\% Facts\relax }{figure.caption.63}{}}
+\newlabel{fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][90][]92}}
+\newlabel{sub@fig:response_shift_num_facts}{{c}{92}{\% Facts\relax }{figure.caption.63}{}}
+\newlabel{sub@fig:response_shift_num_facts@cref}{{[subfigure][3][7,4]7.4c}{[1][90][]92}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit  {``Base Model''}), SFT + \textsc  {FenCE}\xspace  (\textit  {``SFT''}), and our method, Edit/Remove + Coarse (\textit  {``DPO''}).\relax }}{92}{figure.caption.63}\protected@file@percent }
+\newlabel{fig:response_shift}{{7.4}{92}{Statistics of generated responses, where we group the prompts by the popularity of the person to write biography for, as labeled in the FActScore dataset. We compare zero-shot Llama3-8B-chat (denoted as \textit {``Base Model''}), SFT + \fencemodelname (\textit {``SFT''}), and our method, Edit/Remove + Coarse (\textit {``DPO''}).\relax }{figure.caption.63}{}}
+\newlabel{fig:response_shift@cref}{{[figure][4][7]7.4}{[1][90][]92}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }}{92}{figure.caption.64}\protected@file@percent }
+\newlabel{fig:claim_acc_by_cat}{{7.5}{92}{The factuality of claims with different topics, where we pre-define the topics and use Llama3-70B-chat to predict whether each claim covers any topic(s).\relax }{figure.caption.64}{}}
+\newlabel{fig:claim_acc_by_cat@cref}{{[figure][5][7]7.5}{[1][90][]92}}
 \citation{unfamiliar-finetuning}
-\newlabel{fig:hyper_param_iter}{{7.6a}{92}{Iterations of Revision\relax }{figure.caption.65}{}}
-\newlabel{fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][90][]92}}
-\newlabel{sub@fig:hyper_param_iter}{{a}{92}{Iterations of Revision\relax }{figure.caption.65}{}}
-\newlabel{sub@fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][90][]92}}
-\newlabel{fig:hyper_param_k}{{7.6b}{92}{top-$k$\relax }{figure.caption.65}{}}
-\newlabel{fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][90][]92}}
-\newlabel{sub@fig:hyper_param_k}{{b}{92}{top-$k$\relax }{figure.caption.65}{}}
-\newlabel{sub@fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][90][]92}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }}{92}{figure.caption.65}\protected@file@percent }
-\newlabel{fig:hyper-param}{{7.6}{92}{Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }{figure.caption.65}{}}
-\newlabel{fig:hyper-param@cref}{{[figure][6][7]7.6}{[1][90][]92}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{92}{subsection.7.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7.5}Chapter Summary}{93}{section.7.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }}{94}{table.caption.66}\protected@file@percent }
-\newlabel{tab:case_1}{{7.5}{94}{An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }{table.caption.66}{}}
-\newlabel{tab:case_1@cref}{{[table][5][7]7.5}{[1][93][]94}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }}{95}{table.caption.67}\protected@file@percent }
-\newlabel{tab:case_2}{{7.6}{95}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }{table.caption.67}{}}
-\newlabel{tab:case_2@cref}{{[table][6][7]7.6}{[1][93][]95}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.7}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }}{96}{table.caption.68}\protected@file@percent }
-\newlabel{tab:case_3}{{7.7}{96}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }{table.caption.68}{}}
-\newlabel{tab:case_3@cref}{{[table][7][7]7.7}{[1][93][]96}}
+\newlabel{fig:hyper_param_iter}{{7.6a}{93}{Iterations of Revision\relax }{figure.caption.65}{}}
+\newlabel{fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][91][]93}}
+\newlabel{sub@fig:hyper_param_iter}{{a}{93}{Iterations of Revision\relax }{figure.caption.65}{}}
+\newlabel{sub@fig:hyper_param_iter@cref}{{[subfigure][1][7,6]7.6a}{[1][91][]93}}
+\newlabel{fig:hyper_param_k}{{7.6b}{93}{top-$k$\relax }{figure.caption.65}{}}
+\newlabel{fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][91][]93}}
+\newlabel{sub@fig:hyper_param_k}{{b}{93}{top-$k$\relax }{figure.caption.65}{}}
+\newlabel{sub@fig:hyper_param_k@cref}{{[subfigure][2][7,6]7.6b}{[1][91][]93}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }}{93}{figure.caption.65}\protected@file@percent }
+\newlabel{fig:hyper-param}{{7.6}{93}{Hyper-parameter analysis. We investigate how percentage of facts changes (a) as number of iterations to revise candidate responses increases, and (b) with different numbers of preferred responses for each prompt. \relax }{figure.caption.65}{}}
+\newlabel{fig:hyper-param@cref}{{[figure][6][7]7.6}{[1][91][]93}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Result Analyses}{93}{subsection.7.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.5}Chapter Summary}{94}{section.7.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }}{95}{table.caption.66}\protected@file@percent }
+\newlabel{tab:case_1}{{7.5}{95}{An example of the textual critique we generate. We highlight the most relevant sentence in the document. In this case, our generated critique aligns with the judgment label. \relax }{table.caption.66}{}}
+\newlabel{tab:case_1@cref}{{[table][5][7]7.5}{[1][94][]95}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }}{96}{table.caption.67}\protected@file@percent }
+\newlabel{tab:case_2}{{7.6}{96}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. \relax }{table.caption.67}{}}
+\newlabel{tab:case_2@cref}{{[table][6][7]7.6}{[1][94][]96}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.7}{\ignorespaces An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }}{97}{table.caption.68}\protected@file@percent }
+\newlabel{tab:case_3}{{7.7}{97}{An example where we obtain multiple relevant source documents by calling a multiplicity of tools. The tool-extracted documents all contain the information about Chadwick's birthday, but have diverse formats. \relax }{table.caption.68}{}}
+\newlabel{tab:case_3@cref}{{[table][7][7]7.7}{[1][94][]97}}
 \citation{ICLR2024_edac78c3,swe-agent}
 \citation{pmlr-v267-pan25g,yang2025swesmith,xie2026hybridgymtrainingcodingagents}
 \citation{xie2026hybridgymtrainingcodingagents,wang2026rubric}
@@ -732,48 +732,48 @@
 \citation{gou2023critic}
 \citation{xie-etal-2025-factuality}
 \citation{ICLR2024_aca97732}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critic Model}{97}{chapter.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Improving Coding Agent Effectiveness by Training a Critic Model}{98}{chapter.8}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{chap:critique-training}{{8}{97}{Improving Coding Agent Effectiveness by Training a Critic Model}{chapter.8}{}}
-\newlabel{chap:critique-training@cref}{{[chapter][8][]8}{[1][97][]97}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.1}Introduction}{97}{section.8.1}\protected@file@percent }
-\newlabel{critic:sec:introduction}{{8.1}{97}{Introduction}{section.8.1}{}}
-\newlabel{critic:sec:introduction@cref}{{[section][1][8]8.1}{[1][97][]97}}
+\newlabel{chap:critique-training}{{8}{98}{Improving Coding Agent Effectiveness by Training a Critic Model}{chapter.8}{}}
+\newlabel{chap:critique-training@cref}{{[chapter][8][]8}{[1][98][]98}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}Introduction}{98}{section.8.1}\protected@file@percent }
+\newlabel{critic:sec:introduction}{{8.1}{98}{Introduction}{section.8.1}{}}
+\newlabel{critic:sec:introduction@cref}{{[section][1][8]8.1}{[1][98][]98}}
 \citation{ICLR2024_edac78c3}
 \citation{zan2025multiswebench}
-\@writefile{lof}{\contentsline {figure}{\numberline {8.1}{\ignorespaces Inference setup. A trained critic model $C$ provides guidance to a frozen coding agent $\pi _A$ for every $k$ steps. The agent is responsible for all concrete actions and the critic model inspects the current trajectory and generates high-level feedback for its next steps.\relax }}{98}{figure.caption.69}\protected@file@percent }
-\newlabel{critic:fig:inference}{{8.1}{98}{Inference setup. A trained critic model $C$ provides guidance to a frozen coding agent $\pi _A$ for every $k$ steps. The agent is responsible for all concrete actions and the critic model inspects the current trajectory and generates high-level feedback for its next steps.\relax }{figure.caption.69}{}}
-\newlabel{critic:fig:inference@cref}{{[figure][1][8]8.1}{[1][97][]98}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.1}{\ignorespaces Inference setup. A trained critic model $C$ provides guidance to a frozen coding agent $\pi _A$ for every $k$ steps. The agent is responsible for all concrete actions and the critic model inspects the current trajectory and generates high-level feedback for its next steps.\relax }}{99}{figure.caption.69}\protected@file@percent }
+\newlabel{critic:fig:inference}{{8.1}{99}{Inference setup. A trained critic model $C$ provides guidance to a frozen coding agent $\pi _A$ for every $k$ steps. The agent is responsible for all concrete actions and the critic model inspects the current trajectory and generates high-level feedback for its next steps.\relax }{figure.caption.69}{}}
+\newlabel{critic:fig:inference@cref}{{[figure][1][8]8.1}{[1][98][]99}}
 \citation{gandhi2025sweprm,wang2026rubric}
 \citation{claude46}
-\@writefile{toc}{\contentsline {section}{\numberline {8.2}Methodology}{99}{section.8.2}\protected@file@percent }
-\newlabel{critic:sec:method}{{8.2}{99}{Methodology}{section.8.2}{}}
-\newlabel{critic:sec:method@cref}{{[section][2][8]8.2}{[1][99][]99}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.1}Formal Definitions}{99}{subsection.8.2.1}\protected@file@percent }
-\newlabel{critic:sec:critic_models}{{8.2.1}{99}{Formal Definitions}{subsection.8.2.1}{}}
-\newlabel{critic:sec:critic_models@cref}{{[subsection][1][8,2]8.2.1}{[1][99][]99}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Methodology}{100}{section.8.2}\protected@file@percent }
+\newlabel{critic:sec:method}{{8.2}{100}{Methodology}{section.8.2}{}}
+\newlabel{critic:sec:method@cref}{{[section][2][8]8.2}{[1][100][]100}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.1}Formal Definitions}{100}{subsection.8.2.1}\protected@file@percent }
+\newlabel{critic:sec:critic_models}{{8.2.1}{100}{Formal Definitions}{subsection.8.2.1}{}}
+\newlabel{critic:sec:critic_models@cref}{{[subsection][1][8,2]8.2.1}{[1][100][]100}}
 \citation{wang2026rubric,gandhi2025sweprm}
 \citation{gandhi2025sweprm}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.2}Designing the Critique Structure}{100}{subsection.8.2.2}\protected@file@percent }
-\newlabel{critic:sec:critique_design}{{8.2.2}{100}{Designing the Critique Structure}{subsection.8.2.2}{}}
-\newlabel{critic:sec:critique_design@cref}{{[subsection][2][8,2]8.2.2}{[1][100][]100}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8.2}{\ignorespaces SFT training pipeline for critic models. Based on our analysis (\S  \ref {critic:sec:critique_design}), the critic contains error detection, budget planning, and only provides high-level feedback instead of concrete actions. We run the frozen coding agent $\pi _A$ on disjoint training tasks and query the teacher critic $C_T$ every $k$ steps. We collect (trajectory prefix, feedback) pairs $(z_t, f_t^*)$ to train a critic $C_\theta $ by supervised fine-tuning (SFT).\relax }}{101}{figure.caption.70}\protected@file@percent }
-\newlabel{critic:fig:training}{{8.2}{101}{SFT training pipeline for critic models. Based on our analysis (\S \ref {critic:sec:critique_design}), the critic contains error detection, budget planning, and only provides high-level feedback instead of concrete actions. We run the frozen coding agent $\pi _A$ on disjoint training tasks and query the teacher critic $C_T$ every $k$ steps. We collect (trajectory prefix, feedback) pairs $(z_t, f_t^*)$ to train a critic $C_\theta $ by supervised fine-tuning (SFT).\relax }{figure.caption.70}{}}
-\newlabel{critic:fig:training@cref}{{[figure][2][8]8.2}{[1][100][]101}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.3}Distilling Critic Models with SFT}{101}{subsection.8.2.3}\protected@file@percent }
-\newlabel{critic:sec:sft}{{8.2.3}{101}{Distilling Critic Models with SFT}{subsection.8.2.3}{}}
-\newlabel{critic:sec:sft@cref}{{[subsection][3][8,2]8.2.3}{[1][101][]101}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.2}Designing the Critique Structure}{101}{subsection.8.2.2}\protected@file@percent }
+\newlabel{critic:sec:critique_design}{{8.2.2}{101}{Designing the Critique Structure}{subsection.8.2.2}{}}
+\newlabel{critic:sec:critique_design@cref}{{[subsection][2][8,2]8.2.2}{[1][101][]101}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.2}{\ignorespaces SFT training pipeline for critic models. Based on our analysis (\S  \ref {critic:sec:critique_design}), the critic contains error detection, budget planning, and only provides high-level feedback instead of concrete actions. We run the frozen coding agent $\pi _A$ on disjoint training tasks and query the teacher critic $C_T$ every $k$ steps. We collect (trajectory prefix, feedback) pairs $(z_t, f_t^*)$ to train a critic $C_\theta $ by supervised fine-tuning (SFT).\relax }}{102}{figure.caption.70}\protected@file@percent }
+\newlabel{critic:fig:training}{{8.2}{102}{SFT training pipeline for critic models. Based on our analysis (\S \ref {critic:sec:critique_design}), the critic contains error detection, budget planning, and only provides high-level feedback instead of concrete actions. We run the frozen coding agent $\pi _A$ on disjoint training tasks and query the teacher critic $C_T$ every $k$ steps. We collect (trajectory prefix, feedback) pairs $(z_t, f_t^*)$ to train a critic $C_\theta $ by supervised fine-tuning (SFT).\relax }{figure.caption.70}{}}
+\newlabel{critic:fig:training@cref}{{[figure][2][8]8.2}{[1][101][]102}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.3}Distilling Critic Models with SFT}{102}{subsection.8.2.3}\protected@file@percent }
+\newlabel{critic:sec:sft}{{8.2.3}{102}{Distilling Critic Models with SFT}{subsection.8.2.3}{}}
+\newlabel{critic:sec:sft@cref}{{[subsection][3][8,2]8.2.3}{[1][102][]102}}
 \citation{llmjudge}
-\newlabel{critic:eq:sft_loss}{{8.1}{102}{Distilling Critic Models with SFT}{equation.8.2.1}{}}
-\newlabel{critic:eq:sft_loss@cref}{{[equation][1][8]8.1}{[1][102][]102}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.4}Improving Critic Models with DPO}{102}{subsection.8.2.4}\protected@file@percent }
-\newlabel{critic:sec:dpo}{{8.2.4}{102}{Improving Critic Models with DPO}{subsection.8.2.4}{}}
-\newlabel{critic:sec:dpo@cref}{{[subsection][4][8,2]8.2.4}{[1][102][]102}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces DPO training pipeline for critic models. Given a critic model checkpoint $C_{SFT,\theta }$, for every $k$ steps produced by the coding agent $\pi _A$, we use $C_{SFT,\theta }$ to generate $N=10$ critiques, and prompt an LLM judge model $R$ to select the best and worse critique, which forms (chosen, rejected) pairs $(f_c, f_r)$ to train $C_{SFT,\theta }$ by direct preference optimization (DPO). We only keep a $(f_c, f_r)$ pair if the chosen critique is both correct and provides clear instruction and the rejected critique misses any of the criteria. \relax }}{103}{figure.caption.71}\protected@file@percent }
-\newlabel{critic:fig:training_dpo}{{8.3}{103}{DPO training pipeline for critic models. Given a critic model checkpoint $C_{SFT,\theta }$, for every $k$ steps produced by the coding agent $\pi _A$, we use $C_{SFT,\theta }$ to generate $N=10$ critiques, and prompt an LLM judge model $R$ to select the best and worse critique, which forms (chosen, rejected) pairs $(f_c, f_r)$ to train $C_{SFT,\theta }$ by direct preference optimization (DPO). We only keep a $(f_c, f_r)$ pair if the chosen critique is both correct and provides clear instruction and the rejected critique misses any of the criteria. \relax }{figure.caption.71}{}}
-\newlabel{critic:fig:training_dpo@cref}{{[figure][3][8]8.3}{[1][103][]103}}
+\newlabel{critic:eq:sft_loss}{{8.1}{103}{Distilling Critic Models with SFT}{equation.8.2.1}{}}
+\newlabel{critic:eq:sft_loss@cref}{{[equation][1][8]8.1}{[1][103][]103}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.4}Improving Critic Models with DPO}{103}{subsection.8.2.4}\protected@file@percent }
+\newlabel{critic:sec:dpo}{{8.2.4}{103}{Improving Critic Models with DPO}{subsection.8.2.4}{}}
+\newlabel{critic:sec:dpo@cref}{{[subsection][4][8,2]8.2.4}{[1][103][]103}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces DPO training pipeline for critic models. Given a critic model checkpoint $C_{SFT,\theta }$, for every $k$ steps produced by the coding agent $\pi _A$, we use $C_{SFT,\theta }$ to generate $N=10$ critiques, and prompt an LLM judge model $R$ to select the best and worse critique, which forms (chosen, rejected) pairs $(f_c, f_r)$ to train $C_{SFT,\theta }$ by direct preference optimization (DPO). We only keep a $(f_c, f_r)$ pair if the chosen critique is both correct and provides clear instruction and the rejected critique misses any of the criteria. \relax }}{104}{figure.caption.71}\protected@file@percent }
+\newlabel{critic:fig:training_dpo}{{8.3}{104}{DPO training pipeline for critic models. Given a critic model checkpoint $C_{SFT,\theta }$, for every $k$ steps produced by the coding agent $\pi _A$, we use $C_{SFT,\theta }$ to generate $N=10$ critiques, and prompt an LLM judge model $R$ to select the best and worse critique, which forms (chosen, rejected) pairs $(f_c, f_r)$ to train $C_{SFT,\theta }$ by direct preference optimization (DPO). We only keep a $(f_c, f_r)$ pair if the chosen critique is both correct and provides clear instruction and the rejected critique misses any of the criteria. \relax }{figure.caption.71}{}}
+\newlabel{critic:fig:training_dpo@cref}{{[figure][3][8]8.3}{[1][104][]104}}
 \citation{ICLR2024_edac78c3}
 \citation{zan2025multiswebench}
 \citation{xia2025agentless}
@@ -783,51 +783,51 @@
 \citation{openai2025o3mini}
 \citation{claude46}
 \citation{qwen3}
-\@writefile{toc}{\contentsline {section}{\numberline {8.3}Experiments}{104}{section.8.3}\protected@file@percent }
-\newlabel{critic:sec:experiments}{{8.3}{104}{Experiments}{section.8.3}{}}
-\newlabel{critic:sec:experiments@cref}{{[section][3][8]8.3}{[1][103][]104}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.1}Experimental Setup}{104}{subsection.8.3.1}\protected@file@percent }
-\newlabel{critic:sec:setup}{{8.3.1}{104}{Experimental Setup}{subsection.8.3.1}{}}
-\newlabel{critic:sec:setup@cref}{{[subsection][1][8,3]8.3.1}{[1][104][]104}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.3}Experiments}{105}{section.8.3}\protected@file@percent }
+\newlabel{critic:sec:experiments}{{8.3}{105}{Experiments}{section.8.3}{}}
+\newlabel{critic:sec:experiments@cref}{{[section][3][8]8.3}{[1][104][]105}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.1}Experimental Setup}{105}{subsection.8.3.1}\protected@file@percent }
+\newlabel{critic:sec:setup}{{8.3.1}{105}{Experimental Setup}{subsection.8.3.1}{}}
+\newlabel{critic:sec:setup@cref}{{[subsection][1][8,3]8.3.1}{[1][105][]105}}
 \citation{swe-agent}
-\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Results on SWE-Bench Verified. We report the better result from $k\in \{5,10\}$ for every configuration. \emph  {Non-Loop \%} is the fraction of trajectories that do \emph  {not} repeat a Bash command in three consecutive steps. ``+ SFT'' is a critic trained on teacher critiques generated with the high-level prompt (a \texttt  {CWM-32B}{} + \texttt  {Qwen3-Next-80B-A3B}{} mix). ``+ SFT + DPO'' further optimizes the 4B SFT critic with DPO on critique preference pairs. All arrows compare to ``No Critic" setting. \textbf  {Bold} highlights the best non-Opus value in each column.\relax }}{105}{table.caption.72}\protected@file@percent }
-\newlabel{critic:tab:main}{{8.1}{105}{Results on SWE-Bench Verified. We report the better result from $k\in \{5,10\}$ for every configuration. \emph {Non-Loop \%} is the fraction of trajectories that do \emph {not} repeat a Bash command in three consecutive steps. ``+ SFT'' is a critic trained on teacher critiques generated with the high-level prompt (a \criticcwm {} + \criticqwenNext {} mix). ``+ SFT + DPO'' further optimizes the 4B SFT critic with DPO on critique preference pairs. All arrows compare to ``No Critic" setting. \textbf {Bold} highlights the best non-Opus value in each column.\relax }{table.caption.72}{}}
-\newlabel{critic:tab:main@cref}{{[table][1][8]8.1}{[1][104][]105}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.2}Implementation Details}{106}{subsection.8.3.2}\protected@file@percent }
-\newlabel{critic:sec:details}{{8.3.2}{106}{Implementation Details}{subsection.8.3.2}{}}
-\newlabel{critic:sec:details@cref}{{[subsection][2][8,3]8.3.2}{[1][105][]106}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.3}Main Results}{106}{subsection.8.3.3}\protected@file@percent }
-\newlabel{critic:sec:main_results}{{8.3.3}{106}{Main Results}{subsection.8.3.3}{}}
-\newlabel{critic:sec:main_results@cref}{{[subsection][3][8,3]8.3.3}{[1][106][]106}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.4}Detailed Ablations and Analyses}{106}{subsection.8.3.4}\protected@file@percent }
-\newlabel{critic:sec:detailed_analyses}{{8.3.4}{106}{Detailed Ablations and Analyses}{subsection.8.3.4}{}}
-\newlabel{critic:sec:detailed_analyses@cref}{{[subsection][4][8,3]8.3.4}{[1][106][]106}}
-\@writefile{lot}{\contentsline {table}{\numberline {8.2}{\ignorespaces Resolve rate (\%) on 300 Multi-SWE-Bench instances. The 8B CWM+Qwen critic uses $k{=}5$ and is trained only on Python trajectories. Arrows show gains over the ``No Critic'' baseline.\relax }}{107}{table.caption.73}\protected@file@percent }
-\newlabel{critic:tab:multilingual}{{8.2}{107}{Resolve rate (\%) on 300 Multi-SWE-Bench instances. The 8B CWM+Qwen critic uses $k{=}5$ and is trained only on Python trajectories. Arrows show gains over the ``No Critic'' baseline.\relax }{table.caption.73}{}}
-\newlabel{critic:tab:multilingual@cref}{{[table][2][8]8.2}{[1][106][]107}}
-\@writefile{lot}{\contentsline {table}{\numberline {8.3}{\ignorespaces Resolved rate (\%) of critic models trained with different SFT corpus on SWE-Bench Verified. All critic models use $k{=}5$; arrows show gains over no critic.\relax }}{107}{table.caption.74}\protected@file@percent }
-\newlabel{critic:tab:critic_ablation}{{8.3}{107}{Resolved rate (\%) of critic models trained with different SFT corpus on SWE-Bench Verified. All critic models use $k{=}5$; arrows show gains over no critic.\relax }{table.caption.74}{}}
-\newlabel{critic:tab:critic_ablation@cref}{{[table][3][8]8.3}{[1][107][]107}}
-\@writefile{lot}{\contentsline {table}{\numberline {8.4}{\ignorespaces Resolve rate (\%) on SWE-Bench Verified for 8B critic models trained on SFT data with the detailed critiques vs.\ the high-level teacher critiques (our data).\relax }}{108}{table.caption.75}\protected@file@percent }
-\newlabel{critic:tab:prompt_ablation}{{8.4}{108}{Resolve rate (\%) on SWE-Bench Verified for 8B critic models trained on SFT data with the detailed critiques vs.\ the high-level teacher critiques (our data).\relax }{table.caption.75}{}}
-\newlabel{critic:tab:prompt_ablation@cref}{{[table][4][8]8.4}{[1][108][]108}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.5}Qualitative Analysis and Case Studies}{108}{subsection.8.3.5}\protected@file@percent }
-\newlabel{critic:sec:qualitative}{{8.3.5}{108}{Qualitative Analysis and Case Studies}{subsection.8.3.5}{}}
-\newlabel{critic:sec:qualitative@cref}{{[subsection][5][8,3]8.3.5}{[1][108][]108}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8.4}{\ignorespaces Cost versus performance on SWE-Bench Verified across six coding agents. Each agent shows its base ({\fontfamily  {pzd}\fontencoding  {U}\fontseries  {m}\fontshape  {n}\selectfont  \char 108}) and the 8B SFT critic ($\bigstar $); the two Qwen agents additionally show the \texttt  {Claude-Opus-4.6}{} teacher critic ($\circ $). The cost is for the agent \textbf  {plus} the critic model.\relax }}{109}{figure.caption.76}\protected@file@percent }
-\newlabel{critic:fig:pareto_full500}{{8.4}{109}{Cost versus performance on SWE-Bench Verified across six coding agents. Each agent shows its base (\ding {108}) and the 8B SFT critic ($\bigstar $); the two Qwen agents additionally show the \criticopus {} teacher critic ($\circ $). The cost is for the agent \textbf {plus} the critic model.\relax }{figure.caption.76}{}}
-\newlabel{critic:fig:pareto_full500@cref}{{[figure][4][8]8.4}{[1][108][]109}}
-\@writefile{lot}{\contentsline {table}{\numberline {8.5}{\ignorespaces \texttt  {Claude-Opus-4.6}{} critic model backseat driving on the 50 SWE-Bench Verified mini examples. \underline  {Avg. Critique Lines} denotes the average number of lines in the critiques. \underline  {Copy\%} denotes the fraction of lines in the submitted code patch that are directly copied from the critic model. \underline  {$\geq 0.30$\%} counts the instances where more than 30\% of the coding agent’s final submission lines are directly copied from the critic model. We test critique frequencies of $k=5$ and $10$. \relax }}{110}{table.caption.77}\protected@file@percent }
-\newlabel{critic:tab:critic_share}{{8.5}{110}{\criticopus {} critic model backseat driving on the 50 SWE-Bench Verified mini examples. \underline {Avg. Critique Lines} denotes the average number of lines in the critiques. \underline {Copy\%} denotes the fraction of lines in the submitted code patch that are directly copied from the critic model. \underline {$\geq 0.30$\%} counts the instances where more than 30\% of the coding agent’s final submission lines are directly copied from the critic model. We test critique frequencies of $k=5$ and $10$. \relax }{table.caption.77}{}}
-\newlabel{critic:tab:critic_share@cref}{{[table][5][8]8.5}{[1][110][]110}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.4}Conclusion and Future Works}{110}{section.8.4}\protected@file@percent }
-\newlabel{critic:sec:conclusion}{{8.4}{110}{Conclusion and Future Works}{section.8.4}{}}
-\newlabel{critic:sec:conclusion@cref}{{[section][4][8]8.4}{[1][110][]110}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {9}Conclusion}{112}{chapter.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Results on SWE-Bench Verified. We report the better result from $k\in \{5,10\}$ for every configuration. \emph  {Non-Loop \%} is the fraction of trajectories that do \emph  {not} repeat a Bash command in three consecutive steps. ``+ SFT'' is a critic trained on teacher critiques generated with the high-level prompt (a \texttt  {CWM-32B}{} + \texttt  {Qwen3-Next-80B-A3B}{} mix). ``+ SFT + DPO'' further optimizes the 4B SFT critic with DPO on critique preference pairs. All arrows compare to ``No Critic" setting. \textbf  {Bold} highlights the best non-Opus value in each column.\relax }}{106}{table.caption.72}\protected@file@percent }
+\newlabel{critic:tab:main}{{8.1}{106}{Results on SWE-Bench Verified. We report the better result from $k\in \{5,10\}$ for every configuration. \emph {Non-Loop \%} is the fraction of trajectories that do \emph {not} repeat a Bash command in three consecutive steps. ``+ SFT'' is a critic trained on teacher critiques generated with the high-level prompt (a \criticcwm {} + \criticqwenNext {} mix). ``+ SFT + DPO'' further optimizes the 4B SFT critic with DPO on critique preference pairs. All arrows compare to ``No Critic" setting. \textbf {Bold} highlights the best non-Opus value in each column.\relax }{table.caption.72}{}}
+\newlabel{critic:tab:main@cref}{{[table][1][8]8.1}{[1][105][]106}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.2}Implementation Details}{107}{subsection.8.3.2}\protected@file@percent }
+\newlabel{critic:sec:details}{{8.3.2}{107}{Implementation Details}{subsection.8.3.2}{}}
+\newlabel{critic:sec:details@cref}{{[subsection][2][8,3]8.3.2}{[1][106][]107}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.3}Main Results}{107}{subsection.8.3.3}\protected@file@percent }
+\newlabel{critic:sec:main_results}{{8.3.3}{107}{Main Results}{subsection.8.3.3}{}}
+\newlabel{critic:sec:main_results@cref}{{[subsection][3][8,3]8.3.3}{[1][107][]107}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.4}Detailed Ablations and Analyses}{107}{subsection.8.3.4}\protected@file@percent }
+\newlabel{critic:sec:detailed_analyses}{{8.3.4}{107}{Detailed Ablations and Analyses}{subsection.8.3.4}{}}
+\newlabel{critic:sec:detailed_analyses@cref}{{[subsection][4][8,3]8.3.4}{[1][107][]107}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.2}{\ignorespaces Resolve rate (\%) on 300 Multi-SWE-Bench instances. The 8B CWM+Qwen critic uses $k{=}5$ and is trained only on Python trajectories. Arrows show gains over the ``No Critic'' baseline.\relax }}{108}{table.caption.73}\protected@file@percent }
+\newlabel{critic:tab:multilingual}{{8.2}{108}{Resolve rate (\%) on 300 Multi-SWE-Bench instances. The 8B CWM+Qwen critic uses $k{=}5$ and is trained only on Python trajectories. Arrows show gains over the ``No Critic'' baseline.\relax }{table.caption.73}{}}
+\newlabel{critic:tab:multilingual@cref}{{[table][2][8]8.2}{[1][107][]108}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.3}{\ignorespaces Resolved rate (\%) of critic models trained with different SFT corpus on SWE-Bench Verified. All critic models use $k{=}5$; arrows show gains over no critic.\relax }}{108}{table.caption.74}\protected@file@percent }
+\newlabel{critic:tab:critic_ablation}{{8.3}{108}{Resolved rate (\%) of critic models trained with different SFT corpus on SWE-Bench Verified. All critic models use $k{=}5$; arrows show gains over no critic.\relax }{table.caption.74}{}}
+\newlabel{critic:tab:critic_ablation@cref}{{[table][3][8]8.3}{[1][108][]108}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.4}{\ignorespaces Resolve rate (\%) on SWE-Bench Verified for 8B critic models trained on SFT data with the detailed critiques vs.\ the high-level teacher critiques (our data).\relax }}{109}{table.caption.75}\protected@file@percent }
+\newlabel{critic:tab:prompt_ablation}{{8.4}{109}{Resolve rate (\%) on SWE-Bench Verified for 8B critic models trained on SFT data with the detailed critiques vs.\ the high-level teacher critiques (our data).\relax }{table.caption.75}{}}
+\newlabel{critic:tab:prompt_ablation@cref}{{[table][4][8]8.4}{[1][109][]109}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.5}Qualitative Analysis and Case Studies}{109}{subsection.8.3.5}\protected@file@percent }
+\newlabel{critic:sec:qualitative}{{8.3.5}{109}{Qualitative Analysis and Case Studies}{subsection.8.3.5}{}}
+\newlabel{critic:sec:qualitative@cref}{{[subsection][5][8,3]8.3.5}{[1][109][]109}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.4}{\ignorespaces Cost versus performance on SWE-Bench Verified across six coding agents. Each agent shows its base ({\fontfamily  {pzd}\fontencoding  {U}\fontseries  {m}\fontshape  {n}\selectfont  \char 108}) and the 8B SFT critic ($\bigstar $); the two Qwen agents additionally show the \texttt  {Claude-Opus-4.6}{} teacher critic ($\circ $). The cost is for the agent \textbf  {plus} the critic model.\relax }}{110}{figure.caption.76}\protected@file@percent }
+\newlabel{critic:fig:pareto_full500}{{8.4}{110}{Cost versus performance on SWE-Bench Verified across six coding agents. Each agent shows its base (\ding {108}) and the 8B SFT critic ($\bigstar $); the two Qwen agents additionally show the \criticopus {} teacher critic ($\circ $). The cost is for the agent \textbf {plus} the critic model.\relax }{figure.caption.76}{}}
+\newlabel{critic:fig:pareto_full500@cref}{{[figure][4][8]8.4}{[1][109][]110}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.5}{\ignorespaces \texttt  {Claude-Opus-4.6}{} critic model backseat driving on the 50 SWE-Bench Verified mini examples. \underline  {Avg. Critique Lines} denotes the average number of lines in the critiques. \underline  {Copy\%} denotes the fraction of lines in the submitted code patch that are directly copied from the critic model. \underline  {$\geq 0.30$\%} counts the instances where more than 30\% of the coding agent’s final submission lines are directly copied from the critic model. We test critique frequencies of $k=5$ and $10$. \relax }}{111}{table.caption.77}\protected@file@percent }
+\newlabel{critic:tab:critic_share}{{8.5}{111}{\criticopus {} critic model backseat driving on the 50 SWE-Bench Verified mini examples. \underline {Avg. Critique Lines} denotes the average number of lines in the critiques. \underline {Copy\%} denotes the fraction of lines in the submitted code patch that are directly copied from the critic model. \underline {$\geq 0.30$\%} counts the instances where more than 30\% of the coding agent’s final submission lines are directly copied from the critic model. We test critique frequencies of $k=5$ and $10$. \relax }{table.caption.77}{}}
+\newlabel{critic:tab:critic_share@cref}{{[table][5][8]8.5}{[1][111][]111}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.4}Conclusion and Future Works}{111}{section.8.4}\protected@file@percent }
+\newlabel{critic:sec:conclusion}{{8.4}{111}{Conclusion and Future Works}{section.8.4}{}}
+\newlabel{critic:sec:conclusion@cref}{{[section][4][8]8.4}{[1][111][]111}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {9}Conclusion}{113}{chapter.9}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {part}{IV\hspace  {1em}Appendices}{114}{part.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {part}{IV\hspace  {1em}Appendices}{115}{part.4}\protected@file@percent }
 \citation{chen2024agentflan}
 \citation{gandhi2025cognitive}
 \citation{li2025structure}
@@ -847,159 +847,159 @@
 \citation{qwen35}
 \citation{swebench}
 \citation{R2EGym}
-\newlabel{part:appendices}{{IV}{115}{Appendices}{part.4}{}}
-\newlabel{part:appendices@cref}{{[part][4][2147483647]IV}{[1][115][]115}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Appendix for Chapter \ref {chap:effective-analysis}}{115}{appendix.A}\protected@file@percent }
+\newlabel{part:appendices}{{IV}{116}{Appendices}{part.4}{}}
+\newlabel{part:appendices@cref}{{[part][4][2147483647]IV}{[1][116][]116}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Appendix for Chapter \ref {chap:effective-analysis}}{116}{appendix.A}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{chap:appendix-effective-analysis}{{A}{115}{Appendix for Chapter \ref {chap:effective-analysis}}{appendix.A}{}}
-\newlabel{chap:appendix-effective-analysis@cref}{{[appendix][1][2147483647]A}{[1][115][]115}}
-\@writefile{toc}{\contentsline {section}{\numberline {A.1}Additional Related Work}{115}{section.A.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A.2}Experimental Setup}{115}{section.A.2}\protected@file@percent }
-\newlabel{catradar:sec:analysis-setup}{{A.2}{115}{Experimental Setup}{section.A.2}{}}
-\newlabel{catradar:sec:analysis-setup@cref}{{[subappendix][2][2147483647,1]A.2}{[1][115][]115}}
-\@writefile{lof}{\contentsline {figure}{\numberline {A.1}{\ignorespaces The Hybrid-Gym function localization prompt. \texttt  {module\_type} is \texttt  {function} or \texttt  {class}.\relax }}{116}{figure.A.1}\protected@file@percent }
-\newlabel{catradar:fig:prompt-funcloc}{{A.1}{116}{The Hybrid-Gym function localization prompt. \texttt {module\_type} is \texttt {function} or \texttt {class}.\relax }{figure.A.1}{}}
-\newlabel{catradar:fig:prompt-funcloc@cref}{{[figure][1][2147483647,1]A.1}{[1][116][]116}}
+\newlabel{chap:appendix-effective-analysis}{{A}{116}{Appendix for Chapter \ref {chap:effective-analysis}}{appendix.A}{}}
+\newlabel{chap:appendix-effective-analysis@cref}{{[appendix][1][2147483647]A}{[1][116][]116}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.1}Additional Related Work}{116}{section.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A.2}Experimental Setup}{116}{section.A.2}\protected@file@percent }
+\newlabel{catradar:sec:analysis-setup}{{A.2}{116}{Experimental Setup}{section.A.2}{}}
+\newlabel{catradar:sec:analysis-setup@cref}{{[subappendix][2][2147483647,1]A.2}{[1][116][]116}}
+\@writefile{lof}{\contentsline {figure}{\numberline {A.1}{\ignorespaces The Hybrid-Gym function localization prompt. \texttt  {module\_type} is \texttt  {function} or \texttt  {class}.\relax }}{117}{figure.A.1}\protected@file@percent }
+\newlabel{catradar:fig:prompt-funcloc}{{A.1}{117}{The Hybrid-Gym function localization prompt. \texttt {module\_type} is \texttt {function} or \texttt {class}.\relax }{figure.A.1}{}}
+\newlabel{catradar:fig:prompt-funcloc@cref}{{[figure][1][2147483647,1]A.1}{[1][117][]117}}
 \citation{R2EGym}
 \citation{R2EGym}
-\@writefile{lof}{\contentsline {figure}{\numberline {A.2}{\ignorespaces The R2E-Gym prompt\nobreakspace  {}\citep  {R2EGym}, used by some of the R2E-Gym rollouts.\relax }}{117}{figure.A.2}\protected@file@percent }
-\newlabel{catradar:fig:prompt-r2egym}{{A.2}{117}{The R2E-Gym prompt~\citep {R2EGym}, used by some of the R2E-Gym rollouts.\relax }{figure.A.2}{}}
-\newlabel{catradar:fig:prompt-r2egym@cref}{{[figure][2][2147483647,1]A.2}{[1][117][]117}}
-\@writefile{lof}{\contentsline {figure}{\numberline {A.3}{\ignorespaces The issue-solving prompt used to evaluate the students on SWE-Bench Verified and used in some of the R2E-Gym rollouts.\relax }}{119}{figure.A.3}\protected@file@percent }
-\newlabel{catradar:fig:prompt-issue}{{A.3}{119}{The issue-solving prompt used to evaluate the students on SWE-Bench Verified and used in some of the R2E-Gym rollouts.\relax }{figure.A.3}{}}
-\newlabel{catradar:fig:prompt-issue@cref}{{[figure][3][2147483647,1]A.3}{[1][119][]119}}
+\@writefile{lof}{\contentsline {figure}{\numberline {A.2}{\ignorespaces The R2E-Gym prompt\nobreakspace  {}\citep  {R2EGym}, used by some of the R2E-Gym rollouts.\relax }}{118}{figure.A.2}\protected@file@percent }
+\newlabel{catradar:fig:prompt-r2egym}{{A.2}{118}{The R2E-Gym prompt~\citep {R2EGym}, used by some of the R2E-Gym rollouts.\relax }{figure.A.2}{}}
+\newlabel{catradar:fig:prompt-r2egym@cref}{{[figure][2][2147483647,1]A.2}{[1][118][]118}}
+\@writefile{lof}{\contentsline {figure}{\numberline {A.3}{\ignorespaces The issue-solving prompt used to evaluate the students on SWE-Bench Verified and used in some of the R2E-Gym rollouts.\relax }}{120}{figure.A.3}\protected@file@percent }
+\newlabel{catradar:fig:prompt-issue}{{A.3}{120}{The issue-solving prompt used to evaluate the students on SWE-Bench Verified and used in some of the R2E-Gym rollouts.\relax }{figure.A.3}{}}
+\newlabel{catradar:fig:prompt-issue@cref}{{[figure][3][2147483647,1]A.3}{[1][120][]120}}
 \citation{berg-kirkpatrick-etal-2012-empirical}
-\@writefile{toc}{\contentsline {section}{\numberline {A.3}Computation of Significance}{120}{section.A.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A.4}List of Candidate Behaviors}{120}{section.A.4}\protected@file@percent }
-\newlabel{catradar:sec:full-candidate-behaviors}{{A.4}{120}{List of Candidate Behaviors}{section.A.4}{}}
-\newlabel{catradar:sec:full-candidate-behaviors@cref}{{[subappendix][4][2147483647,1]A.4}{[1][120][]120}}
-\@writefile{toc}{\contentsline {section}{\numberline {A.5}Detailed Analysis Results}{120}{section.A.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.5.1}Exploration Length is Not a Good Indicator of Trajectory Effectiveness}{120}{subsection.A.5.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {A.4}{\ignorespaces The exploration length of demonstrations is also not a good indicator of demonstration effectiveness.\relax }}{120}{figure.caption.78}\protected@file@percent }
-\newlabel{catradar:fig:exp-len-correlation}{{A.4}{120}{The exploration length of demonstrations is also not a good indicator of demonstration effectiveness.\relax }{figure.caption.78}{}}
-\newlabel{catradar:fig:exp-len-correlation@cref}{{[figure][4][2147483647,1]A.4}{[1][120][]120}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.5.2}Strong Teacher Does Not Always Translate to Strong Student}{120}{subsection.A.5.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {A.1}{\ignorespaces The candidate behaviors discovered by \textbf  {\textsc  {CATRadar}}\xspace  that we do not conduct further experiments on.\relax }}{121}{table.caption.79}\protected@file@percent }
-\newlabel{catradar:tab:distinct-behaviors-full-list}{{A.1}{121}{The candidate behaviors discovered by \toolName that we do not conduct further experiments on.\relax }{table.caption.79}{}}
-\newlabel{catradar:tab:distinct-behaviors-full-list@cref}{{[table][1][2147483647,1]A.1}{[1][121][]121}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.5.3}Non-Tool-Call Text Increases Trajectory Length}{121}{subsection.A.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A.6}Concrete Data Intervention Implementation for each Candidate Behavior}{121}{section.A.6}\protected@file@percent }
-\newlabel{catradar:sec:exp-implementation}{{A.6}{121}{Concrete Data Intervention Implementation for each Candidate Behavior}{section.A.6}{}}
-\newlabel{catradar:sec:exp-implementation@cref}{{[subappendix][6][2147483647,1]A.6}{[1][121][]121}}
-\@writefile{lot}{\contentsline {table}{\numberline {A.2}{\ignorespaces Demonstrations of Claude-Opus-4.7 and Claude-Opus-4.5 on the Hybrid-Gym instance \texttt  {sopel-irc\_\_sopel-1344\_101} (both successful). \texttt  {<repo>} abbreviates the repository path, and file paths are shown relative to it. Claude-Opus-4.7 opens the target file directly from a listing cut at 50 files, while Claude-Opus-4.5 takes a more comprehensive strategy: picking several candidate files with detailed reasoning, and then reading them one-by-one (action 3).\relax }}{122}{table.caption.80}\protected@file@percent }
-\newlabel{catradar:tab:skip-case}{{A.2}{122}{Demonstrations of Claude-Opus-4.7 and Claude-Opus-4.5 on the Hybrid-Gym instance \texttt {sopel-irc\_\_sopel-1344\_101} (both successful). \texttt {<repo>} abbreviates the repository path, and file paths are shown relative to it. Claude-Opus-4.7 opens the target file directly from a listing cut at 50 files, while Claude-Opus-4.5 takes a more comprehensive strategy: picking several candidate files with detailed reasoning, and then reading them one-by-one (action 3).\relax }{table.caption.80}{}}
-\newlabel{catradar:tab:skip-case@cref}{{[table][2][2147483647,1]A.2}{[1][121][]122}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.6.1}Label Demonstrations with the Presence of Repo-Exploration Strategies}{122}{subsection.A.6.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {A.5}{\ignorespaces When we increase the verbosity of non-tool call text, the trajectory length in general increases. However, the performance does not change much.\relax }}{123}{figure.caption.81}\protected@file@percent }
-\newlabel{catradar:fig:verbosity_text_only}{{A.5}{123}{When we increase the verbosity of non-tool call text, the trajectory length in general increases. However, the performance does not change much.\relax }{figure.caption.81}{}}
-\newlabel{catradar:fig:verbosity_text_only@cref}{{[figure][5][2147483647,1]A.5}{[1][121][]123}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.6.2}Prompt the Models to Adopt our Repo-Exploration Strategies}{123}{subsection.A.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A.3}Computation of Significance}{121}{section.A.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A.4}List of Candidate Behaviors}{121}{section.A.4}\protected@file@percent }
+\newlabel{catradar:sec:full-candidate-behaviors}{{A.4}{121}{List of Candidate Behaviors}{section.A.4}{}}
+\newlabel{catradar:sec:full-candidate-behaviors@cref}{{[subappendix][4][2147483647,1]A.4}{[1][121][]121}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.5}Detailed Analysis Results}{121}{section.A.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5.1}Exploration Length is Not a Good Indicator of Trajectory Effectiveness}{121}{subsection.A.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {A.4}{\ignorespaces The exploration length of demonstrations is also not a good indicator of demonstration effectiveness.\relax }}{121}{figure.caption.78}\protected@file@percent }
+\newlabel{catradar:fig:exp-len-correlation}{{A.4}{121}{The exploration length of demonstrations is also not a good indicator of demonstration effectiveness.\relax }{figure.caption.78}{}}
+\newlabel{catradar:fig:exp-len-correlation@cref}{{[figure][4][2147483647,1]A.4}{[1][121][]121}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5.2}Strong Teacher Does Not Always Translate to Strong Student}{121}{subsection.A.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {A.1}{\ignorespaces The candidate behaviors discovered by \textbf  {\textsc  {CATRadar}}\xspace  that we do not conduct further experiments on.\relax }}{122}{table.caption.79}\protected@file@percent }
+\newlabel{catradar:tab:distinct-behaviors-full-list}{{A.1}{122}{The candidate behaviors discovered by \toolName that we do not conduct further experiments on.\relax }{table.caption.79}{}}
+\newlabel{catradar:tab:distinct-behaviors-full-list@cref}{{[table][1][2147483647,1]A.1}{[1][122][]122}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5.3}Non-Tool-Call Text Increases Trajectory Length}{122}{subsection.A.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A.6}Concrete Data Intervention Implementation for each Candidate Behavior}{122}{section.A.6}\protected@file@percent }
+\newlabel{catradar:sec:exp-implementation}{{A.6}{122}{Concrete Data Intervention Implementation for each Candidate Behavior}{section.A.6}{}}
+\newlabel{catradar:sec:exp-implementation@cref}{{[subappendix][6][2147483647,1]A.6}{[1][122][]122}}
+\@writefile{lot}{\contentsline {table}{\numberline {A.2}{\ignorespaces Demonstrations of Claude-Opus-4.7 and Claude-Opus-4.5 on the Hybrid-Gym instance \texttt  {sopel-irc\_\_sopel-1344\_101} (both successful). \texttt  {<repo>} abbreviates the repository path, and file paths are shown relative to it. Claude-Opus-4.7 opens the target file directly from a listing cut at 50 files, while Claude-Opus-4.5 takes a more comprehensive strategy: picking several candidate files with detailed reasoning, and then reading them one-by-one (action 3).\relax }}{123}{table.caption.80}\protected@file@percent }
+\newlabel{catradar:tab:skip-case}{{A.2}{123}{Demonstrations of Claude-Opus-4.7 and Claude-Opus-4.5 on the Hybrid-Gym instance \texttt {sopel-irc\_\_sopel-1344\_101} (both successful). \texttt {<repo>} abbreviates the repository path, and file paths are shown relative to it. Claude-Opus-4.7 opens the target file directly from a listing cut at 50 files, while Claude-Opus-4.5 takes a more comprehensive strategy: picking several candidate files with detailed reasoning, and then reading them one-by-one (action 3).\relax }{table.caption.80}{}}
+\newlabel{catradar:tab:skip-case@cref}{{[table][2][2147483647,1]A.2}{[1][122][]123}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6.1}Label Demonstrations with the Presence of Repo-Exploration Strategies}{123}{subsection.A.6.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {A.5}{\ignorespaces When we increase the verbosity of non-tool call text, the trajectory length in general increases. However, the performance does not change much.\relax }}{124}{figure.caption.81}\protected@file@percent }
+\newlabel{catradar:fig:verbosity_text_only}{{A.5}{124}{When we increase the verbosity of non-tool call text, the trajectory length in general increases. However, the performance does not change much.\relax }{figure.caption.81}{}}
+\newlabel{catradar:fig:verbosity_text_only@cref}{{[figure][5][2147483647,1]A.5}{[1][122][]124}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6.2}Prompt the Models to Adopt our Repo-Exploration Strategies}{124}{subsection.A.6.2}\protected@file@percent }
 \citation{deepseekv4}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.6.3}Add Task-Tracker Steps to Training Demonstrations}{124}{subsection.A.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.6.4}Add Verification Steps to Training Demonstrations}{124}{subsection.A.6.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {A.6}{\ignorespaces The strategy blocks added to the teacher's function localization prompt (first box; \texttt  {module\_type} is \texttt  {function} or \texttt  {class}) and to the student's issue-solving prompt (second box).\relax }}{125}{figure.caption.82}\protected@file@percent }
-\newlabel{catradar:fig:prompt-strategy}{{A.6}{125}{The strategy blocks added to the teacher's function localization prompt (first box; \texttt {module\_type} is \texttt {function} or \texttt {class}) and to the student's issue-solving prompt (second box).\relax }{figure.caption.82}{}}
-\newlabel{catradar:fig:prompt-strategy@cref}{{[figure][6][2147483647,1]A.6}{[1][124][]125}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6.3}Add Task-Tracker Steps to Training Demonstrations}{125}{subsection.A.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6.4}Add Verification Steps to Training Demonstrations}{125}{subsection.A.6.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {A.6}{\ignorespaces The strategy blocks added to the teacher's function localization prompt (first box; \texttt  {module\_type} is \texttt  {function} or \texttt  {class}) and to the student's issue-solving prompt (second box).\relax }}{126}{figure.caption.82}\protected@file@percent }
+\newlabel{catradar:fig:prompt-strategy}{{A.6}{126}{The strategy blocks added to the teacher's function localization prompt (first box; \texttt {module\_type} is \texttt {function} or \texttt {class}) and to the student's issue-solving prompt (second box).\relax }{figure.caption.82}{}}
+\newlabel{catradar:fig:prompt-strategy@cref}{{[figure][6][2147483647,1]A.6}{[1][125][]126}}
 \citation{deepseekv4}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.6.5}Verbosity Experiments}{126}{subsection.A.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6.5}Verbosity Experiments}{127}{subsection.A.6.5}\protected@file@percent }
 \citation{swe-agent}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}Appendix for Chapter \ref {chap:critique-training}}{128}{appendix.B}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}Appendix for Chapter \ref {chap:critique-training}}{129}{appendix.B}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{chap:appendix-critique-training}{{B}{128}{Appendix for Chapter \ref {chap:critique-training}}{appendix.B}{}}
-\newlabel{chap:appendix-critique-training@cref}{{[appendix][2][2147483647]B}{[1][128][]128}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.1}Analyses on the Gap between Teacher and Student Critic Models}{128}{section.B.1}\protected@file@percent }
-\newlabel{critic:app:analyses}{{B.1}{128}{Analyses on the Gap between Teacher and Student Critic Models}{section.B.1}{}}
-\newlabel{critic:app:analyses@cref}{{[subappendix][1][2147483647,2]B.1}{[1][128][]128}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.2}Training and Inference Details}{128}{section.B.2}\protected@file@percent }
-\newlabel{critic:app:details}{{B.2}{128}{Training and Inference Details}{section.B.2}{}}
-\newlabel{critic:app:details@cref}{{[subappendix][2][2147483647,2]B.2}{[1][128][]128}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.1}Inference Details}{128}{subsection.B.2.1}\protected@file@percent }
-\newlabel{critic:sec:setup_impl}{{B.2.1}{128}{Inference Details}{subsection.B.2.1}{}}
-\newlabel{critic:sec:setup_impl@cref}{{[subsubappendix][1][2147483647,2,2]B.2.1}{[1][128][]128}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.1}{\ignorespaces Error categorization results.\relax }}{129}{figure.caption.83}\protected@file@percent }
-\newlabel{critic:fig:analysis_error_cat}{{B.1}{129}{Error categorization results.\relax }{figure.caption.83}{}}
-\newlabel{critic:fig:analysis_error_cat@cref}{{[figure][1][2147483647,2]B.1}{[1][128][]129}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.2}Training Details}{129}{subsection.B.2.2}\protected@file@percent }
-\newlabel{critic:sec:setup_training}{{B.2.2}{129}{Training Details}{subsection.B.2.2}{}}
-\newlabel{critic:sec:setup_training@cref}{{[subsubappendix][2][2147483647,2,2]B.2.2}{[1][129][]129}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.2}{\ignorespaces Guidance quality analysis.\relax }}{130}{figure.caption.84}\protected@file@percent }
-\newlabel{critic:fig:analysis_guidance}{{B.2}{130}{Guidance quality analysis.\relax }{figure.caption.84}{}}
-\newlabel{critic:fig:analysis_guidance@cref}{{[figure][2][2147483647,2]B.2}{[1][128][]130}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.3}Method Preliminaries}{130}{section.B.3}\protected@file@percent }
-\newlabel{critic:app:method_prelim}{{B.3}{130}{Method Preliminaries}{section.B.3}{}}
-\newlabel{critic:app:method_prelim@cref}{{[subappendix][3][2147483647,2]B.3}{[1][130][]130}}
-\@writefile{toc}{\contentsline {paragraph}{Division of labor.}{130}{section*.85}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Why high-level feedback.}{130}{section*.86}\protected@file@percent }
+\newlabel{chap:appendix-critique-training}{{B}{129}{Appendix for Chapter \ref {chap:critique-training}}{appendix.B}{}}
+\newlabel{chap:appendix-critique-training@cref}{{[appendix][2][2147483647]B}{[1][129][]129}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.1}Analyses on the Gap between Teacher and Student Critic Models}{129}{section.B.1}\protected@file@percent }
+\newlabel{critic:app:analyses}{{B.1}{129}{Analyses on the Gap between Teacher and Student Critic Models}{section.B.1}{}}
+\newlabel{critic:app:analyses@cref}{{[subappendix][1][2147483647,2]B.1}{[1][129][]129}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.2}Training and Inference Details}{129}{section.B.2}\protected@file@percent }
+\newlabel{critic:app:details}{{B.2}{129}{Training and Inference Details}{section.B.2}{}}
+\newlabel{critic:app:details@cref}{{[subappendix][2][2147483647,2]B.2}{[1][129][]129}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.1}Inference Details}{129}{subsection.B.2.1}\protected@file@percent }
+\newlabel{critic:sec:setup_impl}{{B.2.1}{129}{Inference Details}{subsection.B.2.1}{}}
+\newlabel{critic:sec:setup_impl@cref}{{[subsubappendix][1][2147483647,2,2]B.2.1}{[1][129][]129}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.1}{\ignorespaces Error categorization results.\relax }}{130}{figure.caption.83}\protected@file@percent }
+\newlabel{critic:fig:analysis_error_cat}{{B.1}{130}{Error categorization results.\relax }{figure.caption.83}{}}
+\newlabel{critic:fig:analysis_error_cat@cref}{{[figure][1][2147483647,2]B.1}{[1][129][]130}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.2}Training Details}{130}{subsection.B.2.2}\protected@file@percent }
+\newlabel{critic:sec:setup_training}{{B.2.2}{130}{Training Details}{subsection.B.2.2}{}}
+\newlabel{critic:sec:setup_training@cref}{{[subsubappendix][2][2147483647,2,2]B.2.2}{[1][130][]130}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.2}{\ignorespaces Guidance quality analysis.\relax }}{131}{figure.caption.84}\protected@file@percent }
+\newlabel{critic:fig:analysis_guidance}{{B.2}{131}{Guidance quality analysis.\relax }{figure.caption.84}{}}
+\newlabel{critic:fig:analysis_guidance@cref}{{[figure][2][2147483647,2]B.2}{[1][129][]131}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.3}Method Preliminaries}{131}{section.B.3}\protected@file@percent }
+\newlabel{critic:app:method_prelim}{{B.3}{131}{Method Preliminaries}{section.B.3}{}}
+\newlabel{critic:app:method_prelim@cref}{{[subappendix][3][2147483647,2]B.3}{[1][131][]131}}
+\@writefile{toc}{\contentsline {paragraph}{Division of labor.}{131}{section*.85}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why high-level feedback.}{131}{section*.86}\protected@file@percent }
 \citation{gandhi2025sweprm}
-\@writefile{toc}{\contentsline {paragraph}{Scaffold details.}{131}{section*.87}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {B.4}Critic Prompts}{131}{section.B.4}\protected@file@percent }
-\newlabel{critic:app:critic_prompts}{{B.4}{131}{Critic Prompts}{section.B.4}{}}
-\newlabel{critic:app:critic_prompts@cref}{{[subappendix][4][2147483647,2]B.4}{[1][131][]131}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.4.1}High-Level Prompt}{131}{subsection.B.4.1}\protected@file@percent }
-\newlabel{critic:app:high_level_prompt}{{B.4.1}{131}{High-Level Prompt}{subsection.B.4.1}{}}
-\newlabel{critic:app:high_level_prompt@cref}{{[subsubappendix][1][2147483647,2,4]B.4.1}{[1][131][]131}}
+\@writefile{toc}{\contentsline {paragraph}{Scaffold details.}{132}{section*.87}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B.4}Critic Prompts}{132}{section.B.4}\protected@file@percent }
+\newlabel{critic:app:critic_prompts}{{B.4}{132}{Critic Prompts}{section.B.4}{}}
+\newlabel{critic:app:critic_prompts@cref}{{[subappendix][4][2147483647,2]B.4}{[1][132][]132}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.4.1}High-Level Prompt}{132}{subsection.B.4.1}\protected@file@percent }
+\newlabel{critic:app:high_level_prompt}{{B.4.1}{132}{High-Level Prompt}{subsection.B.4.1}{}}
+\newlabel{critic:app:high_level_prompt@cref}{{[subsubappendix][1][2147483647,2,4]B.4.1}{[1][132][]132}}
 \citation{gandhi2025sweprm}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.4.2}Detailed Prompt}{133}{subsection.B.4.2}\protected@file@percent }
-\newlabel{critic:app:detailed_prompt}{{B.4.2}{133}{Detailed Prompt}{subsection.B.4.2}{}}
-\newlabel{critic:app:detailed_prompt@cref}{{[subsubappendix][2][2147483647,2,4]B.4.2}{[1][133][]133}}
-\@writefile{lot}{\contentsline {table}{\numberline {B.1}{\ignorespaces \texttt  {Claude-Opus-4.6}{} teacher prompt comparison on SWE-Bench Verified (500 instances). \emph  {Non-Loop} is the percentage of trajectories without three consecutive repetitions of the same Bash command. Total cost is per-instance agent-plus-critic cost. Bold marks the better percentage metric within each agent; ties are unbolded.\relax }}{136}{table.caption.88}\protected@file@percent }
-\newlabel{critic:tab:opus_prompt_ablation}{{B.1}{136}{\criticopus {} teacher prompt comparison on SWE-Bench Verified (500 instances). \emph {Non-Loop} is the percentage of trajectories without three consecutive repetitions of the same Bash command. Total cost is per-instance agent-plus-critic cost. Bold marks the better percentage metric within each agent; ties are unbolded.\relax }{table.caption.88}{}}
-\newlabel{critic:tab:opus_prompt_ablation@cref}{{[table][1][2147483647,2]B.1}{[1][136][]136}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.4.3}Budget-Aware Instructions}{136}{subsection.B.4.3}\protected@file@percent }
-\newlabel{critic:app:step_aware}{{B.4.3}{136}{Budget-Aware Instructions}{subsection.B.4.3}{}}
-\newlabel{critic:app:step_aware@cref}{{[subsubappendix][3][2147483647,2,4]B.4.3}{[1][136][]136}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.5}Opus Teacher Prompt Ablation}{136}{section.B.5}\protected@file@percent }
-\newlabel{critic:app:opus_prompt_ablation}{{B.5}{136}{Opus Teacher Prompt Ablation}{section.B.5}{}}
-\newlabel{critic:app:opus_prompt_ablation@cref}{{[subappendix][5][2147483647,2]B.5}{[1][136][]136}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.6}Inference Pricing}{136}{section.B.6}\protected@file@percent }
-\newlabel{critic:app:pricing}{{B.6}{136}{Inference Pricing}{section.B.6}{}}
-\newlabel{critic:app:pricing@cref}{{[subappendix][6][2147483647,2]B.6}{[1][136][]136}}
-\@writefile{lot}{\contentsline {table}{\numberline {B.2}{\ignorespaces Hosted-inference rates used to convert token counts to the dollar costs in this paper. Opus critic costs include prompt-caching: cache-write tokens billed at $1.25\times $ input (\$6.875/Mtok) and cache-read at $0.10\times $ input (\$0.55/Mtok); the reported Opus cost combines these.\relax }}{137}{table.caption.89}\protected@file@percent }
-\newlabel{critic:tab:pricing}{{B.2}{137}{Hosted-inference rates used to convert token counts to the dollar costs in this paper. Opus critic costs include prompt-caching: cache-write tokens billed at $1.25\times $ input (\$6.875/Mtok) and cache-read at $0.10\times $ input (\$0.55/Mtok); the reported Opus cost combines these.\relax }{table.caption.89}{}}
-\newlabel{critic:tab:pricing@cref}{{[table][2][2147483647,2]B.2}{[1][136][]137}}
-\@writefile{lot}{\contentsline {table}{\numberline {B.3}{\ignorespaces Statistical significance of the headline resolve-rate gains in Table\nobreakspace  {}\ref {critic:tab:main} on SWE-Bench Verified. Parentheses show percentage-point gains over no critic; 95\% CIs are paired McNemar--Wald intervals on these gains. All critic runs use $k=5$. Significance markers: \textsuperscript  {***}$p<.001$, \textsuperscript  {**}$p<.01$, and \textsuperscript  {*}$p<.05$.\relax }}{137}{table.caption.90}\protected@file@percent }
-\newlabel{critic:tab:significance}{{B.3}{137}{Statistical significance of the headline resolve-rate gains in Table~\ref {critic:tab:main} on SWE-Bench Verified. Parentheses show percentage-point gains over no critic; 95\% CIs are paired McNemar--Wald intervals on these gains. All critic runs use $k=5$. Significance markers: \textsuperscript {***}$p<.001$, \textsuperscript {**}$p<.01$, and \textsuperscript {*}$p<.05$.\relax }{table.caption.90}{}}
-\newlabel{critic:tab:significance@cref}{{[table][3][2147483647,2]B.3}{[1][137][]137}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.7}Statistical Significance}{137}{section.B.7}\protected@file@percent }
-\newlabel{critic:app:significance}{{B.7}{137}{Statistical Significance}{section.B.7}{}}
-\newlabel{critic:app:significance@cref}{{[subappendix][7][2147483647,2]B.7}{[1][136][]137}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.8}Qualitative Case Studies}{137}{section.B.8}\protected@file@percent }
-\newlabel{critic:app:qualitative}{{B.8}{137}{Qualitative Case Studies}{section.B.8}{}}
-\newlabel{critic:app:qualitative@cref}{{[subappendix][8][2147483647,2]B.8}{[1][137][]137}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.8.1}Untrained vs.\ trained critic on the same loop}{137}{subsection.B.8.1}\protected@file@percent }
-\newlabel{critic:app:untrained_vs_trained}{{B.8.1}{137}{Untrained vs.\ trained critic on the same loop}{subsection.B.8.1}{}}
-\newlabel{critic:app:untrained_vs_trained@cref}{{[subsubappendix][1][2147483647,2,8]B.8.1}{[1][137][]137}}
-\newlabel{critic:lst:untrained_critic_excerpt}{{B.1}{138}{Untrained critic at agent step 10 on \texttt {django\_\_django-16595}. Only Verification Failures is flagged, with a recovery prescribing a test the agent has not set up}{lstlisting.B.1}{}}
-\newlabel{critic:lst:untrained_critic_excerpt@cref}{{[lstlisting][1][2147483647,2]B.1}{[1][138][]138}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.1}{\ignorespaces Untrained critic at agent step 10 on \texttt  {django\_\_django-16595}. Only Verification Failures is flagged, with a recovery prescribing a test the agent has not set up.}}{138}{lstlisting.B.1}\protected@file@percent }
-\newlabel{critic:lst:trained_critic_excerpt}{{B.2}{138}{Trained critic at agent step 10 on \texttt {django\_\_django-9296}. Flags Step Repetition and Tool Selection Errors jointly and tells the agent to switch off \texttt {sed} append}{lstlisting.B.2}{}}
-\newlabel{critic:lst:trained_critic_excerpt@cref}{{[lstlisting][2][2147483647,2]B.2}{[1][138][]138}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.2}{\ignorespaces Trained critic at agent step 10 on \texttt  {django\_\_django-9296}. Flags Step Repetition and Tool Selection Errors jointly and tells the agent to switch off \texttt  {sed} append.}}{138}{lstlisting.B.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.8.2}Routing around a dependency failure}{139}{subsection.B.8.2}\protected@file@percent }
-\newlabel{critic:app:sandbox_adaptation}{{B.8.2}{139}{Routing around a dependency failure}{subsection.B.8.2}{}}
-\newlabel{critic:app:sandbox_adaptation@cref}{{[subsubappendix][2][2147483647,2,8]B.8.2}{[1][138][]139}}
-\newlabel{critic:lst:sympy_excerpt}{{B.3}{139}{Trained critic at agent step 20 on \texttt {sympy\_\_sympy-22714}}{lstlisting.B.3}{}}
-\newlabel{critic:lst:sympy_excerpt@cref}{{[lstlisting][3][2147483647,2]B.3}{[1][139][]139}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.3}{\ignorespaces Trained critic at agent step 20 on \texttt  {sympy\_\_sympy-22714}.}}{139}{lstlisting.B.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.8.3}Backseat driving in the detailed teacher prompt}{139}{subsection.B.8.3}\protected@file@percent }
-\newlabel{critic:app:backseat_driving}{{B.8.3}{139}{Backseat driving in the detailed teacher prompt}{subsection.B.8.3}{}}
-\newlabel{critic:app:backseat_driving@cref}{{[subsubappendix][3][2147483647,2,8]B.8.3}{[1][139][]139}}
-\newlabel{critic:lst:django12193_excerpt}{{B.4}{139}{\criticopus {} teacher (detailed prompt) at agent step $6$ on \texttt {django\_\_django-12193}. The agent's submitted patch reproduces both blocks verbatim}{lstlisting.B.4}{}}
-\newlabel{critic:lst:django12193_excerpt@cref}{{[lstlisting][4][2147483647,2]B.4}{[1][139][]139}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.4}{\ignorespaces \texttt  {Claude-Opus-4.6}{} teacher (detailed prompt) at agent step $6$ on \texttt  {django\_\_django-12193}. The agent's submitted patch reproduces both blocks verbatim.}}{139}{lstlisting.B.4}\protected@file@percent }
-\newlabel{critic:lst:sphinx7590_excerpt}{{B.5}{140}{\criticopus {} teacher (detailed prompt) at agent step $6$ on \texttt {sphinx-doc\_\_sphinx-7590}. Bullet $4$'s ``or if a new \dots \ class is needed'' is the wrong fork; the agent takes it}{lstlisting.B.5}{}}
-\newlabel{critic:lst:sphinx7590_excerpt@cref}{{[lstlisting][5][2147483647,2]B.5}{[1][140][]140}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.5}{\ignorespaces \texttt  {Claude-Opus-4.6}{} teacher (detailed prompt) at agent step $6$ on \texttt  {sphinx-doc\_\_sphinx-7590}. Bullet $4$'s ``or if a new \dots  \ class is needed'' is the wrong fork; the agent takes it.}}{140}{lstlisting.B.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.8.4}Repeated demand on \texttt  {django\_\_django-13012}}{140}{subsection.B.8.4}\protected@file@percent }
-\newlabel{critic:app:repeated_demand}{{B.8.4}{140}{Repeated demand on \texttt {django\_\_django-13012}}{subsection.B.8.4}{}}
-\newlabel{critic:app:repeated_demand@cref}{{[subsubappendix][4][2147483647,2,8]B.8.4}{[1][140][]140}}
-\newlabel{critic:lst:repeated_demand}{{B.6}{140}{Trained critic firings $6$ (msg 127) and $10$ (msg 211) on \texttt {django\_\_django-13012}; both prescribe the same fix path}{lstlisting.B.6}{}}
-\newlabel{critic:lst:repeated_demand@cref}{{[lstlisting][6][2147483647,2]B.6}{[1][140][]140}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.6}{\ignorespaces Trained critic firings $6$ (msg 127) and $10$ (msg 211) on \texttt  {django\_\_django-13012}; both prescribe the same fix path.}}{140}{lstlisting.B.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.4.2}Detailed Prompt}{134}{subsection.B.4.2}\protected@file@percent }
+\newlabel{critic:app:detailed_prompt}{{B.4.2}{134}{Detailed Prompt}{subsection.B.4.2}{}}
+\newlabel{critic:app:detailed_prompt@cref}{{[subsubappendix][2][2147483647,2,4]B.4.2}{[1][134][]134}}
+\@writefile{lot}{\contentsline {table}{\numberline {B.1}{\ignorespaces \texttt  {Claude-Opus-4.6}{} teacher prompt comparison on SWE-Bench Verified (500 instances). \emph  {Non-Loop} is the percentage of trajectories without three consecutive repetitions of the same Bash command. Total cost is per-instance agent-plus-critic cost. Bold marks the better percentage metric within each agent; ties are unbolded.\relax }}{137}{table.caption.88}\protected@file@percent }
+\newlabel{critic:tab:opus_prompt_ablation}{{B.1}{137}{\criticopus {} teacher prompt comparison on SWE-Bench Verified (500 instances). \emph {Non-Loop} is the percentage of trajectories without three consecutive repetitions of the same Bash command. Total cost is per-instance agent-plus-critic cost. Bold marks the better percentage metric within each agent; ties are unbolded.\relax }{table.caption.88}{}}
+\newlabel{critic:tab:opus_prompt_ablation@cref}{{[table][1][2147483647,2]B.1}{[1][137][]137}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.4.3}Budget-Aware Instructions}{137}{subsection.B.4.3}\protected@file@percent }
+\newlabel{critic:app:step_aware}{{B.4.3}{137}{Budget-Aware Instructions}{subsection.B.4.3}{}}
+\newlabel{critic:app:step_aware@cref}{{[subsubappendix][3][2147483647,2,4]B.4.3}{[1][137][]137}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.5}Opus Teacher Prompt Ablation}{137}{section.B.5}\protected@file@percent }
+\newlabel{critic:app:opus_prompt_ablation}{{B.5}{137}{Opus Teacher Prompt Ablation}{section.B.5}{}}
+\newlabel{critic:app:opus_prompt_ablation@cref}{{[subappendix][5][2147483647,2]B.5}{[1][137][]137}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.6}Inference Pricing}{137}{section.B.6}\protected@file@percent }
+\newlabel{critic:app:pricing}{{B.6}{137}{Inference Pricing}{section.B.6}{}}
+\newlabel{critic:app:pricing@cref}{{[subappendix][6][2147483647,2]B.6}{[1][137][]137}}
+\@writefile{lot}{\contentsline {table}{\numberline {B.2}{\ignorespaces Hosted-inference rates used to convert token counts to the dollar costs in this paper. Opus critic costs include prompt-caching: cache-write tokens billed at $1.25\times $ input (\$6.875/Mtok) and cache-read at $0.10\times $ input (\$0.55/Mtok); the reported Opus cost combines these.\relax }}{138}{table.caption.89}\protected@file@percent }
+\newlabel{critic:tab:pricing}{{B.2}{138}{Hosted-inference rates used to convert token counts to the dollar costs in this paper. Opus critic costs include prompt-caching: cache-write tokens billed at $1.25\times $ input (\$6.875/Mtok) and cache-read at $0.10\times $ input (\$0.55/Mtok); the reported Opus cost combines these.\relax }{table.caption.89}{}}
+\newlabel{critic:tab:pricing@cref}{{[table][2][2147483647,2]B.2}{[1][137][]138}}
+\@writefile{lot}{\contentsline {table}{\numberline {B.3}{\ignorespaces Statistical significance of the headline resolve-rate gains in Table\nobreakspace  {}\ref {critic:tab:main} on SWE-Bench Verified. Parentheses show percentage-point gains over no critic; 95\% CIs are paired McNemar--Wald intervals on these gains. All critic runs use $k=5$. Significance markers: \textsuperscript  {***}$p<.001$, \textsuperscript  {**}$p<.01$, and \textsuperscript  {*}$p<.05$.\relax }}{138}{table.caption.90}\protected@file@percent }
+\newlabel{critic:tab:significance}{{B.3}{138}{Statistical significance of the headline resolve-rate gains in Table~\ref {critic:tab:main} on SWE-Bench Verified. Parentheses show percentage-point gains over no critic; 95\% CIs are paired McNemar--Wald intervals on these gains. All critic runs use $k=5$. Significance markers: \textsuperscript {***}$p<.001$, \textsuperscript {**}$p<.01$, and \textsuperscript {*}$p<.05$.\relax }{table.caption.90}{}}
+\newlabel{critic:tab:significance@cref}{{[table][3][2147483647,2]B.3}{[1][138][]138}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.7}Statistical Significance}{138}{section.B.7}\protected@file@percent }
+\newlabel{critic:app:significance}{{B.7}{138}{Statistical Significance}{section.B.7}{}}
+\newlabel{critic:app:significance@cref}{{[subappendix][7][2147483647,2]B.7}{[1][137][]138}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.8}Qualitative Case Studies}{138}{section.B.8}\protected@file@percent }
+\newlabel{critic:app:qualitative}{{B.8}{138}{Qualitative Case Studies}{section.B.8}{}}
+\newlabel{critic:app:qualitative@cref}{{[subappendix][8][2147483647,2]B.8}{[1][138][]138}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.8.1}Untrained vs.\ trained critic on the same loop}{138}{subsection.B.8.1}\protected@file@percent }
+\newlabel{critic:app:untrained_vs_trained}{{B.8.1}{138}{Untrained vs.\ trained critic on the same loop}{subsection.B.8.1}{}}
+\newlabel{critic:app:untrained_vs_trained@cref}{{[subsubappendix][1][2147483647,2,8]B.8.1}{[1][138][]138}}
+\newlabel{critic:lst:untrained_critic_excerpt}{{B.1}{139}{Untrained critic at agent step 10 on \texttt {django\_\_django-16595}. Only Verification Failures is flagged, with a recovery prescribing a test the agent has not set up}{lstlisting.B.1}{}}
+\newlabel{critic:lst:untrained_critic_excerpt@cref}{{[lstlisting][1][2147483647,2]B.1}{[1][139][]139}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.1}{\ignorespaces Untrained critic at agent step 10 on \texttt  {django\_\_django-16595}. Only Verification Failures is flagged, with a recovery prescribing a test the agent has not set up.}}{139}{lstlisting.B.1}\protected@file@percent }
+\newlabel{critic:lst:trained_critic_excerpt}{{B.2}{139}{Trained critic at agent step 10 on \texttt {django\_\_django-9296}. Flags Step Repetition and Tool Selection Errors jointly and tells the agent to switch off \texttt {sed} append}{lstlisting.B.2}{}}
+\newlabel{critic:lst:trained_critic_excerpt@cref}{{[lstlisting][2][2147483647,2]B.2}{[1][139][]139}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.2}{\ignorespaces Trained critic at agent step 10 on \texttt  {django\_\_django-9296}. Flags Step Repetition and Tool Selection Errors jointly and tells the agent to switch off \texttt  {sed} append.}}{139}{lstlisting.B.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.8.2}Routing around a dependency failure}{140}{subsection.B.8.2}\protected@file@percent }
+\newlabel{critic:app:sandbox_adaptation}{{B.8.2}{140}{Routing around a dependency failure}{subsection.B.8.2}{}}
+\newlabel{critic:app:sandbox_adaptation@cref}{{[subsubappendix][2][2147483647,2,8]B.8.2}{[1][139][]140}}
+\newlabel{critic:lst:sympy_excerpt}{{B.3}{140}{Trained critic at agent step 20 on \texttt {sympy\_\_sympy-22714}}{lstlisting.B.3}{}}
+\newlabel{critic:lst:sympy_excerpt@cref}{{[lstlisting][3][2147483647,2]B.3}{[1][140][]140}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.3}{\ignorespaces Trained critic at agent step 20 on \texttt  {sympy\_\_sympy-22714}.}}{140}{lstlisting.B.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.8.3}Backseat driving in the detailed teacher prompt}{140}{subsection.B.8.3}\protected@file@percent }
+\newlabel{critic:app:backseat_driving}{{B.8.3}{140}{Backseat driving in the detailed teacher prompt}{subsection.B.8.3}{}}
+\newlabel{critic:app:backseat_driving@cref}{{[subsubappendix][3][2147483647,2,8]B.8.3}{[1][140][]140}}
+\newlabel{critic:lst:django12193_excerpt}{{B.4}{140}{\criticopus {} teacher (detailed prompt) at agent step $6$ on \texttt {django\_\_django-12193}. The agent's submitted patch reproduces both blocks verbatim}{lstlisting.B.4}{}}
+\newlabel{critic:lst:django12193_excerpt@cref}{{[lstlisting][4][2147483647,2]B.4}{[1][140][]140}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.4}{\ignorespaces \texttt  {Claude-Opus-4.6}{} teacher (detailed prompt) at agent step $6$ on \texttt  {django\_\_django-12193}. The agent's submitted patch reproduces both blocks verbatim.}}{140}{lstlisting.B.4}\protected@file@percent }
+\newlabel{critic:lst:sphinx7590_excerpt}{{B.5}{141}{\criticopus {} teacher (detailed prompt) at agent step $6$ on \texttt {sphinx-doc\_\_sphinx-7590}. Bullet $4$'s ``or if a new \dots \ class is needed'' is the wrong fork; the agent takes it}{lstlisting.B.5}{}}
+\newlabel{critic:lst:sphinx7590_excerpt@cref}{{[lstlisting][5][2147483647,2]B.5}{[1][141][]141}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.5}{\ignorespaces \texttt  {Claude-Opus-4.6}{} teacher (detailed prompt) at agent step $6$ on \texttt  {sphinx-doc\_\_sphinx-7590}. Bullet $4$'s ``or if a new \dots  \ class is needed'' is the wrong fork; the agent takes it.}}{141}{lstlisting.B.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.8.4}Repeated demand on \texttt  {django\_\_django-13012}}{141}{subsection.B.8.4}\protected@file@percent }
+\newlabel{critic:app:repeated_demand}{{B.8.4}{141}{Repeated demand on \texttt {django\_\_django-13012}}{subsection.B.8.4}{}}
+\newlabel{critic:app:repeated_demand@cref}{{[subsubappendix][4][2147483647,2,8]B.8.4}{[1][141][]141}}
+\newlabel{critic:lst:repeated_demand}{{B.6}{141}{Trained critic firings $6$ (msg 127) and $10$ (msg 211) on \texttt {django\_\_django-13012}; both prescribe the same fix path}{lstlisting.B.6}{}}
+\newlabel{critic:lst:repeated_demand@cref}{{[lstlisting][6][2147483647,2]B.6}{[1][141][]141}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {B.6}{\ignorespaces Trained critic firings $6$ (msg 127) and $10$ (msg 211) on \texttt  {django\_\_django-13012}; both prescribe the same fix path.}}{141}{lstlisting.B.6}\protected@file@percent }
 \bibstyle{plainnat}
 \bibdata{register}
 \bibcite{plbart}{{1}{2021{}}{{Ahmad et~al.}}{{Ahmad, Chakraborty, Ray, and Chang}}}
@@ -1011,7 +1011,7 @@
 \bibcite{claude47}{{7}{2026{}}{{Anthropic}}{{}}}
 \bibcite{swe-search}{{8}{2025}{{Antoniades et~al.}}{{Antoniades, {\"{O}}rwall, Zhang, Xie, Goyal, and Wang}}}
 \bibcite{berg-kirkpatrick-etal-2012-empirical}{{9}{2012}{{Berg-Kirkpatrick et~al.}}{{Berg-Kirkpatrick, Burkett, and Klein}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{142}{appendix*.91}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{143}{appendix*.91}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
@@ -1151,4 +1151,4 @@
 \bibcite{commit0}{{143}{2025}{{Zhao et~al.}}{{Zhao, Jiang, Lee, Chiu, Cardie, Gall{\'e}, and Rush}}}
 \bibcite{llmjudge}{{144}{2023}{{Zheng et~al.}}{{Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li, Li, Xing, Zhang, Gonzalez, and Stoica}}}
 \bibcite{swe-play}{{145}{2025}{{Zhu et~al.}}{{Zhu, Gandhi, and Neubig}}}
-\gdef \@abspage@last{180}
+\gdef \@abspage@last{181}
