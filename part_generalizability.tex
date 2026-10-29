@@ -4,33 +4,37 @@
 \label{part:generalizability}
 
 \start{Overview of Part~\ref{part:generalizability}}
-% In Part I, we assume that training on the same tasks for evaluation, and we assume that using successful trajectories always work! 
-\autoref{part:scalability} focuses on constructing training environments for coding agents that are both scalable and effective.
-It makes two assumptions about training effectiveness: (1) a single training task is sufficient, and (2) task success alone is sufficient for selecting training demonstrations.
-However, these assumptions do not always hold.
-Our further analyses show that (1) training on a single task is insufficient for generalization to diverse downstream tasks, and (2) even successful demonstrations can differ substantially in their training effectiveness.
+% Connect to Part I: Part I studies how to construct training data scalably under a given training specification: the training task is prescribed, and successful trajectories qualify as demonstrations.
+\autoref{part:scalability} investigates how to construct scalable training data under a given \textbf{training specification}: the training task is pre-defined, the policy model to generate rollouts is fixed, and the metric to score training demonstrations is given (e.g., whether the demonstration successfully completes the task).
+Within this setting, we simplify the construction process of training environments while preserving training effectiveness.
 
-In this part, to make more accurate assumptions on coding agent training, we take a step back and \textbf{study the factors that make coding agent training effective}.
-Both chapters follow the same structure: we first investigate the abilities that coding agents need to learn, then derive principles for designing training data that develops these abilities.
 
-\start{Chapter \ref{chap:hybrid-gym}}
-In \autoref{chap:hybrid-gym}, after analyzing and comparing multiple real-world coding agent tasks, we find that there are several common problem-solving stages that are shared across tasks, such as repository exploration and solution implementation.
-As a result, we aim to improve coding agents' ability to perform each stage correctly and derive a set of principles for designing effective synthetic training tasks towards this goal. 
-For instance, tasks must require non-trivial planning and repository exploration, as well as a code patch as the output of the solution implementation stage.
-Guided by these principles, we build our dataset, \textbf{\hybridmethodname}, using a set of scalable synthetic tasks, such as function localization and dependency search.
-Experiments show that agents trained on our synthetic tasks generalize effectively to diverse real-world tasks (e.g., issue-solving, test generation, and library construction) that are absent from the training data.
+% Motivate Part II: Scalability makes it possible to produce more data, but its value for learning depends on the specification itself. Part II asks what requirements training tasks and demonstrations should satisfy to improve downstream performance.
+% Introduce the broader picture: Context-rich engineering tasks require component skills alongside planning and strategic knowledge that contextualize and combine those skills. Elementary coding tasks can provide focused practice in these capabilities.
+In this part, we revisit this specification by studying: what requirements the training specifications should satisfy to make the resulting data effective and hence improve downstream performance?
+In general, designing such specifications for context-rich engineering tasks requires studying the intended use and target outcome of the agent we want to train, analyzing the capabilities that the agent needs to learn but has not yet mastered, and proposing and examining principles for training specification that could potentially allow the agent to learn these capabilities.
+For coding agents, the required capabilities could have a broad scope and could span various granularity levels. They range from broader abilities such as program understanding, navigating unfamiliar repositories, tool usage, and instruction following, to more fine-grained abilities such as developing efficient strategies for locating a file inside a codebase using bash commands.
 
-\start{Chapter \ref{chap:effective-analysis}}
-The task design principles derived in \autoref{chap:hybrid-gym} require training demonstrations to include problem-solving stages such as repository exploration and solution implementation. We further observe that it is not sufficient to design reasonable training tasks. The training effectiveness also depends substantially on \textbf{how} these stages are carried out.
-For instance, two sets of training demonstrations may both successfully locate target files in a codebase, yet the strategies they use can lead to substantially different performance after training.
 
-\autoref{chap:effective-analysis} thus investigates which fine-grained behaviors agents should learn to improve their performance. 
-Here we define a ``behavior'' as a pattern in how an agent carries out a problem-solving stage, including its strategies, tool choices, tool-call commands, and patterns ofreasoning text.
-To efficiently identify behaviors that could potentially affect training effectiveness, we present \toolName, an analysis method that automatically discovers candidate behaviors by defining, extracting, and comparing the behaviors of different trained agents.
-\toolName identifies behaviors that influence training effectiveness for at least one model, including specific repository exploration strategies, planning and verification patterns, and the verbosity of reasoning text.
+% Introduce Chapter 5—what to practice: Identify capabilities shared across engineering tasks and derive principles for designing elementary synthetic tasks that support transfer to diverse downstream tasks.
+In \textbf{\autoref{chap:hybrid-gym}}, we analyze the problem-solving phases of multiple real-world coding agent tasks and we aim to improve coding agents' ability to perform each stage correctly by designing synthetic training tasks.
+The problem-solving phases include planning, repository exploration, result reproduction, solution implementation, and solution verification and the phases may recur and interleave, rather than follow a fixed sequence.
+With a list of principles for designing effective synthetic training tasks, we build our dataset, \textbf{\hybridmethodname}, based on a set of scalable synthetic tasks including function localization and dependency search. 
+Experiments show that agents trained on these tasks generalize to context-rich engineering tasks absent from training, including issue solving, test generation, and library construction.
 
-The insights from \toolName can improve the effectiveness of training data generated for the \hybridmethodname synthetic tasks through various practical methods, including data selection, agent step synthesis, and behavior-conditioned rollout.
+
+% Introduce Chapter 6—what makes practice effective: Successful demonstrations of the same task can teach different problem-solving behaviors. Identify which properties of demonstrations lead to greater performance gains, then use those findings to improve training data.
+Building on \autoref{chap:hybrid-gym}, in \textbf{\autoref{chap:effective-analysis}}, we observe that having training tasks that cover the major problem-solving phases is not sufficient for effective training.
+Even when two demonstrations successfully complete the same task, \textbf{how} they resolve the task may differ (e.g., in terms of exploration strategies, planning patterns, or tool choices), and training on these demonstrations can lead to substantially different performance gains in downstream tasks.
+We thus introduce an automatic analysis method, \textbf{\toolName}, to identify and analyze the properties of training demonstrations that could potentially affect training effectiveness.
+\toolName identifies demonstrations properties that influence training effectiveness for at least one model, including specific repository exploration strategies, planning and verification patterns, and the verbosity of reasoning text.
+
+The insights from \toolName improve the quality of training data for the \hybridmethodname tasks through various practical methods, including data selection, agent step synthesis, and behavior-conditioned rollout.
 For instance, when training on the \hybridmethodname function localization task, inserting LLM-synthesized explicit planning steps into the training demonstrations improves Qwen3-8B's resolved rate on SWE-Bench Verified from 11.6\% to 17.6\%.
+
+% State the scope: Together, the chapters refine the training specification at the task and demonstration levels, addressing selected capabilities within the broader picture of engineering competence.
+
+
 
 
 

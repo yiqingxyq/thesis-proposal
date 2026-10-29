@@ -63,12 +63,12 @@
 \contentsline {chapter}{\numberline {6}Discovering Effective Demonstration Behaviors for Training Coding Agents}{64}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Introduction}{64}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Analysis Method: Discovering Influential Behaviors of Demonstrations}{67}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}\textbf {\textsc {CATRadar}}\xspace : Automatic Candidate Behavior Discovery}{67}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.1}\textsc {CATRadar}\xspace : Automatic Candidate Behavior Discovery}{67}{subsection.6.2.1}%
 \contentsline {subsection}{\numberline {6.2.2}Data Intervention Methods}{68}{subsection.6.2.2}%
 \contentsline {section}{\numberline {6.3}Analysis Results: What Behaviors Affect Coding Agent Training?}{70}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}\textbf {\textsc {CATRadar}}\xspace Discovers Diverse Candidates}{70}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.1}\textsc {CATRadar}\xspace Discovers Diverse Candidates}{70}{subsection.6.3.1}%
 \contentsline {subsection}{\numberline {6.3.2}Trajectory-Level Features are Not Good Indicators of Training Effectiveness}{71}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}\textbf {\textsc {CATRadar}}\xspace Discovers Effective Problem-Solving Strategies}{72}{subsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.3.3}\textsc {CATRadar}\xspace Discovers Effective Problem-Solving Strategies}{72}{subsection.6.3.3}%
 \contentsline {subsection}{\numberline {6.3.4}Planning Steps have Different Effects on Different Models}{73}{subsection.6.3.4}%
 \contentsline {subsection}{\numberline {6.3.5}Verification Abilities Transfer from Simple Tasks to Complex Tasks}{74}{subsection.6.3.5}%
 \contentsline {subsection}{\numberline {6.3.6}Training on Reasoning Text Increases Trajectory Length}{74}{subsection.6.3.6}%

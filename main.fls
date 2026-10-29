@@ -1488,7 +1488,6 @@ INPUT ./main.toc
 INPUT main.toc
 INPUT main.toc
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec-sc.enc
-INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ec-qplb-sc.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/base/t1cmtt.fd
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/base/t1cmtt.fd
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/base/t1cmtt.fd
@@ -1595,6 +1594,7 @@ INPUT ./RepoST_figs/sandboxing.pdf
 INPUT RepoST_figs/sandboxing.pdf
 INPUT ./RepoST_figs/sandboxing.pdf
 INPUT ./RepoST_figs/sandboxing.pdf
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ec-qplb-sc.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ec-qplb-sc.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
