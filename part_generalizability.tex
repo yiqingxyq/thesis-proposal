@@ -6,29 +6,31 @@
 \start{Overview of Part~\ref{part:generalizability}}
 % In Part I, we assume that training on the same tasks for evaluation, and we assume that using successful trajectories always work! 
 \autoref{part:scalability} focuses on constructing training environments for coding agents that are both scalable and effective.
-In \autoref{part:scalability}, we make two assumptions on the effectiveness of training: (1) we can rely on one single training task, and (2) it is sufficient to use task success as the only metric for selecting training demonstrations.
-However, both assumptions do not always hold.
-Our further analyses show that (1) training on a single task is NOT sufficient for generalizing to diverse downstream tasks, and (2) even successful demonstrations may have substantially different impacts in training.
+It makes two assumptions about training effectiveness: (1) a single training task is sufficient, and (2) task success alone is sufficient for selecting training demonstrations.
+However, these assumptions do not always hold.
+Our further analyses show that (1) training on a single task is insufficient for generalization to diverse downstream tasks, and (2) even successful demonstrations can differ substantially in their training effectiveness.
 
-In this part, we take a step back and \textbf{study the factors that make coding agent training effective}.
-Both chapters follow the same structure: we first investigate the abilities that the coding agents need to learn, and then derive training data design principles based on these abilities.
+In this part, to make more accurate assumptions on coding agent training, we take a step back and \textbf{study the factors that make coding agent training effective}.
+Both chapters follow the same structure: we first investigate the abilities that coding agents need to learn, then derive principles for designing training data that develops these abilities.
 
 \start{Chapter \ref{chap:hybrid-gym}}
-In \autoref{chap:hybrid-gym}, we decompose general coding agent tasks into multiple problem-solving stages (e.g., repository exploration and solution implementation) and we aim to improve coding agents' abilities to perfom each stage correctly by designing synthetic training tasks.
-We derive a set of principles for designing effective synthetic training tasks. For instance, the tasks must require non-trivial planning and repository exploration to resolve, and must require generating a code patch as the outcome for the solution implementation stage.
-Guided by these principles, we build our dataset, \textbf{\hybridmethodname}, on a set of scalable synthetic tasks, for instance, function localization and dependency search.
-Experiments show that agents trained on our synthetic tasks effectively generalize to diverse real-world tasks (e.g., issue-solving, test generation, and library construction) that are not presented in the training data.
+In \autoref{chap:hybrid-gym}, after analyzing and comparing multiple real-world coding agent tasks, we find that there are several common problem-solving stages that are shared across tasks, such as repository exploration and solution implementation.
+As a result, we aim to improve coding agents' ability to perform each stage correctly and derive a set of principles for designing effective synthetic training tasks towards this goal. 
+For instance, tasks must require non-trivial planning and repository exploration, as well as a code patch as the output of the solution implementation stage.
+Guided by these principles, we build our dataset, \textbf{\hybridmethodname}, using a set of scalable synthetic tasks, such as function localization and dependency search.
+Experiments show that agents trained on our synthetic tasks generalize effectively to diverse real-world tasks (e.g., issue-solving, test generation, and library construction) that are absent from the training data.
 
 \start{Chapter \ref{chap:effective-analysis}}
-While the task design principles derived in \autoref{chap:hybrid-gym} only require the presense of problem-solving stages (e.g., repository exploration and solution implementation) in the training demonstrations, we further observe that the effectiveness of training also substantially depends on \textbf{how} the stages are accomplished.
-For instance, we observe that for two sets of training demonstrations that both successfully locate target files in a codebase, the specific strategies to locate the file also substantially affect the final performance.
+The task design principles derived in \autoref{chap:hybrid-gym} require training demonstrations to include problem-solving stages such as repository exploration and solution implementation. We further observe that it is not sufficient to design reasonable training tasks. The training effectiveness also depends substantially on \textbf{how} these stages are carried out.
+For instance, two sets of training demonstrations may both successfully locate target files in a codebase, yet the strategies they use can lead to substantially different performance after training.
 
-\autoref{chap:effective-analysis} thus investigates teaching the coding agents what kind of fine-grained behaviors can lead to better performance, where ``behavior'' is defined as the pattern of accomplishing each problem-solving stage and may include the strategies, the selection of tools, the patterns of tool call command and reasoning text.
-Specifically, to find such influential behaviors in an efficient way, we present a \toolName, an analysis method to automatically discover candidate behaviors by defining, extracting, and comparing the behaviors of different trained agents. 
-\toolName enables us to find behaviors that are influential to at least one model, including specific repo-exploration strategies, the planning and verification patterns, and the verbosity of the reasoning text. 
+\autoref{chap:effective-analysis} thus investigates which fine-grained behaviors agents should learn to improve their performance. 
+Here we define a ``behavior'' as a pattern in how an agent carries out a problem-solving stage, including its strategies, tool choices, tool-call commands, and patterns ofreasoning text.
+To efficiently identify behaviors that could potentially affect training effectiveness, we present \toolName, an analysis method that automatically discovers candidate behaviors by defining, extracting, and comparing the behaviors of different trained agents.
+\toolName identifies behaviors that influence training effectiveness for at least one model, including specific repository exploration strategies, planning and verification patterns, and the verbosity of reasoning text.
 
-The insights obtained by \toolName can improve the effectiveness of training data generated under the \hybridmethodname synthetic tasks by various methods, including data selection, agent step synthesis, and behavior-conditioned rollout. 
-For instance, results show that when training on the \hybridmethodname function localization task, by inserting explicit planning steps into the training demonstrations that are synthesized by LLMs, we improve Qwen3-8B's resolved rate on SWE-Bench Verified from 11.6\% to 17.6\%.
+The insights from \toolName can improve the effectiveness of training data generated for the \hybridmethodname synthetic tasks through various practical methods, including data selection, agent step synthesis, and behavior-conditioned rollout.
+For instance, when training on the \hybridmethodname function localization task, inserting LLM-synthesized explicit planning steps into the training demonstrations improves Qwen3-8B's resolved rate on SWE-Bench Verified from 11.6\% to 17.6\%.
 
 
 
@@ -1292,4 +1294,3 @@ We present \toolName, an efficient analysis method, to discover potentially infl
 Guided by \toolName, we conduct data intervention experiments and find influential behaviors including specific repo-exploration strategies, the planning and verification patterns, and the verbosity of reasoning text.
 Our insights further lead to practical improvements through data selection, agent step synthesis, and behavior-conditioned rollout, with step synthesis improving Qwen3-8B’s resolved rate from 11.6\% to 17.6\% on SWE-Bench Verified. 
 Beyond the supervised finetuning setting studied here, we envision \toolName supporting behavior discovery in other training settings including self-training and reinforcement learning, providing insights for why coding agent training fails or succeeds and guiding the design of the training process.
-
