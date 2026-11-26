@@ -23,7 +23,7 @@ We conduct evaluation on the SWE-bench Verified dataset~\citep{swebench} and ana
 We experiment on 3 student models: Qwen2.5Coder-7B~\citep{qwen25coder}, Qwen3-4B, and Qwen3-8B~\citep{qwen3} and 8 teacher models: Claude-Opus-4.5~\citep{claude45}, Claude-Opus-4.7~\citep{claude47}, Claude-Sonnet-3.5~\citep{claude35}, GPT-5-mini~\citep{gpt5}, GPT-5.5~\citep{gpt55}, DeepSeek4-flash~\citep{deepseekv4}, Qwen3-80B~\citep{qwen3}, and Qwen3.5-397B~\citep{qwen35}.
 
 \start{Training Details}
-We fine-tune each student on the teacher demonstrations with supervised fine-tuning: we use 8 A6000 GPUs and search hyper-parameters in the range of learning-rate=\{5e-5, 1e-4\}, num-epochs=\{3, 5\}, and batch-size=\{8, 16\}.
+We fine-tune each student on successful teacher-generated trajectories with supervised fine-tuning: we use 8 A6000 GPUs and search hyper-parameters in the range of learning-rate=\{5e-5, 1e-4\}, num-epochs=\{3, 5\}, and batch-size=\{8, 16\}.
 
 
 \start{Training and Evaluation Prompts}
@@ -169,20 +169,20 @@ In \autoref{catradar:tab:distinct-behaviors-full-list}, we provide a list of can
 
 
 \section{Detailed Analysis Results}
-\subsection{Exploration Length is Not a Good Indicator of Trajectory Effectiveness}
-Following \S\ref{catradar:sec:traj-features}, we show that the exploration length of demonstrations is, however, not a good indicator of trajectory effectiveness.
+\subsection{Exploration Length is Not a Good Indicator of Training Effectiveness}
+Following \S\ref{catradar:sec:traj-features}, we show that the exploration length of training trajectories is not a good indicator of the resulting student performance.
 
 \begin{figure}[h]
     \centering
         \includegraphics[width=\linewidth,height=3.6cm,keepaspectratio]{CATRadar_figs/agent_behaviors/teacher_expo_len_student_acc.pdf}
-    \caption{The exploration length of demonstrations is also not a good indicator of demonstration effectiveness.}
+    \caption{The exploration length of training trajectories is also not a good indicator of the resulting student performance.}
     \label{catradar:fig:exp-len-correlation}
 \end{figure}
 
 
 
 \subsection{Strong Teacher Does Not Always Translate to Strong Student}
-Some Claude-Opus-4.7 demonstrations open the target file without saying why they chose it, as is shown in \autoref{catradar:tab:skip-case}.
+Some Claude-Opus-4.7 trajectories open the target file without saying why they chose it, as is shown in \autoref{catradar:tab:skip-case}.
 On an instance that asks for a class with ``attributes [...] such as their nickname, username, and hostname'', Claude-Opus-4.7 lists the repository's Python files, cut at 50 by \texttt{head}, and then opens the 9th entry, the target file, saying only ``The file \texttt{sopel/tools/target.py} looks promising.''; it runs no content search such as \texttt{grep} and does not narrow the listing in any form.
 In other words, the trajectory itself does not show any reason why it picks the target file out of the 50 searched results.
 In comparison, Claude-Opus-4.5 has a clearer strategy for file localization.
@@ -232,7 +232,7 @@ Similarly, for function localization, on \texttt{open-mmlab\_\_mmengine-304\_415
          & & 11--16 & view the edited file, import check, run the test suite (3 commands), \texttt{finish} \\
         \bottomrule
     \end{tabular}
-    \caption{Demonstrations of Claude-Opus-4.7 and Claude-Opus-4.5 on the Hybrid-Gym instance \texttt{sopel-irc\_\_sopel-1344\_101} (both successful). \texttt{<repo>} abbreviates the repository path, and file paths are shown relative to it. Claude-Opus-4.7 opens the target file directly from a listing cut at 50 files, while Claude-Opus-4.5 takes a more comprehensive strategy: picking several candidate files with detailed reasoning, and then reading them one-by-one (action 3).}
+    \caption{Trajectories of Claude-Opus-4.7 and Claude-Opus-4.5 on the Hybrid-Gym instance \texttt{sopel-irc\_\_sopel-1344\_101} (both successful). \texttt{<repo>} abbreviates the repository path, and file paths are shown relative to it. Claude-Opus-4.7 opens the target file directly from a listing cut at 50 files, while Claude-Opus-4.5 takes a more comprehensive strategy: picking several candidate files with detailed reasoning, and then reading them one-by-one (action 3).}
     \label{catradar:tab:skip-case}
 \end{table*}
 
@@ -250,10 +250,10 @@ Similar to \S\ref{catradar:sec:verbosity}, we observe that when we only increase
 
 \section{Concrete Data Intervention Implementation for each Candidate Behavior}
 \label{catradar:sec:exp-implementation}
-In this section, we introduce how we design experiments to control the presence or absence of each candidate behavior in training demonstrations. 
+In this section, we introduce how we design experiments to control the presence or absence of each candidate behavior in training trajectories.
 We manually design different experiments for different behaviors.
 
-\subsection{Label Demonstrations with the Presence of Repo-Exploration Strategies}
+\subsection{Label Trajectories with the Presence of Repo-Exploration Strategies}
 We label the two strategies with rule-based judges.
 
 \start{Multi-Search}
@@ -273,12 +273,12 @@ This section introduces the experimental settings for the ``prompt teacher'' and
 
 \start{Prompt Teacher}
 To instruct the teacher to follow the strategies for the Hybrid-Gym function localization task, we add the \texttt{<localization\_strategy>} block in \autoref{catradar:fig:prompt-strategy} after the steps of the function localization prompt (\autoref{catradar:fig:prompt-funcloc}) and end step~1 with ``Use the localization strategy below.''
-GPT-5-mini produces 1,289 successful demonstrations with this prompt, which keep the strategy block in their task prompt. 
-It produces 1,346 successful demonstrations with the original prompt (i.e., without the strategy block).
-We train the student on all 1,289 demonstrations and evaluate it with the unchanged issue-solving prompt (\autoref{catradar:fig:prompt-issue}).
+GPT-5-mini produces 1,289 successful trajectories with this prompt, which keep the strategy block in their task prompt.
+It produces 1,346 successful trajectories with the original prompt (i.e., without the strategy block).
+We train the student on all 1,289 trajectories and evaluate it with the unchanged issue-solving prompt (\autoref{catradar:fig:prompt-issue}).
 
 \start{Prompt Student}
-As for the ``prompt student'' ablation, we train the student model on the original 1,346 GPT-5-mini demonstrations.
+As for the ``prompt student'' ablation, we train the student model on the original 1,346 GPT-5-mini trajectories.
 In inference, we insert the \texttt{<repo\_exploration\_strategy>} block in \autoref{catradar:fig:prompt-strategy} in the prompt for the SWE-Bench Verified issue-solving task, which states the same principles for issue solving, after Phase~3 (EXPLORATION) of the issue-solving prompt at evaluation time.
 
 \begin{figure*}[!t]
@@ -326,10 +326,10 @@ follow these two principles (summarized from successful trajectories):\\
 
 
 
-\subsection{Add Task-Tracker Steps to Training Demonstrations}
-Neither Claude-Opus-4.7 nor GPT-5-mini uses any task-tracker tool calls in its original Hybrid-Gym demonstrations.
+\subsection{Add Task-Tracker Steps to Training Trajectories}
+Neither Claude-Opus-4.7 nor GPT-5-mini uses any task-tracker tool calls in its original Hybrid-Gym trajectories.
 To implement the ``Add Task-Tracker'' ablation,
-we insert LLM-synthesized task-tracker plans at four points of each demonstration:
+we insert LLM-synthesized task-tracker plans at four points of each trajectory:
 (1) before the first action;
 (2) once the target file is found, i.e., before the last action prior to the first edit that mentions the target file (the file of the last successful edit);
 (3) before the first file-editing action; and
@@ -337,21 +337,21 @@ we insert LLM-synthesized task-tracker plans at four points of each demonstratio
 If two points coincide, only the earlier point's plan is inserted.
 Each plan is a task-tracker action with \texttt{command=plan}, followed by the tool's usual output, ``Task list has been updated with $N$ item(s).''
 
-We use an LLM (DeepSeek4-flash, \citet{deepseekv4}) to write the plans at temperature 0.3 without seeing the demonstration: the first plan from the task description, asked to list 4--6 tasks with the first one in progress, and each later plan from the task description and the first plan, asked to keep the task titles and update their status.
-For GPT-5-mini, 1,325 demonstrations receive four plan turns and 21 receive three, and every planning step is consistent with the remaining part of the trajectory.
-For Claude-Opus-4.7, 1,466 demonstrations receive four plan turns and one receives three.
+We use an LLM (DeepSeek4-flash, \citet{deepseekv4}) to write the plans at temperature 0.3 without seeing the trajectory: the first plan from the task description, asked to list 4--6 tasks with the first one in progress, and each later plan from the task description and the first plan, asked to keep the task titles and update their status.
+For GPT-5-mini, 1,325 trajectories receive four plan turns and 21 receive three, and every planning step is consistent with the remaining part of the trajectory.
+For Claude-Opus-4.7, 1,466 trajectories receive four plan turns and one receives three.
 However, we cut off 354 of these turns because they change task titles in a later plan item, or generate too few or too many plans in the first task-planner tool call.
 
 
-\subsection{Add Verification Steps to Training Demonstrations}
-As introduced in \S\ref{catradar:sec:verification}, we take the verification steps from Claude-Opus-4.5, whose demonstrations contain more of them (\autoref{catradar:tab:verification-ablation}).
-For each Claude-Opus-4.7 demonstration whose instance also has a successful Claude-Opus-4.5 demonstration that first edits the same file (the same path relative to the repository root), we keep the Claude-Opus-4.7 trajectory before its first file-editing action and append the Claude-Opus-4.5 trajectory from its first file-editing action on, with the workspace directory renamed.
+\subsection{Add Verification Steps to Training Trajectories}
+As introduced in \S\ref{catradar:sec:verification}, we take the verification steps from Claude-Opus-4.5, whose trajectories contain more of them (\autoref{catradar:tab:verification-ablation}).
+For each Claude-Opus-4.7 trajectory whose instance also has a successful Claude-Opus-4.5 trajectory that first edits the same file (the same path relative to the repository root), we keep the Claude-Opus-4.7 trajectory before its first file-editing action and append the Claude-Opus-4.5 trajectory from its first file-editing action on, with the workspace directory renamed.
 That is to say, we copy both the file-editing steps and verification steps from Claude-Opus-4.5's trajectories for the consistency of trajectories.
-This applies to 1,389 of the 1,467 demonstrations. We keep the remaining 78 unchanged.
+This applies to 1,389 of the 1,467 trajectories. We keep the remaining 78 unchanged.
 
 
 \subsection{Verbosity Experiments}
-We use DeepSeek4-flash (with thinking disabled)~\cite{deepseekv4} to rewrite the Claude-Opus-4.5 demonstrations of Hybrid-Gym, which have 30,615 assistant turns, including 3,738 \texttt{think} and 683 task-tracker actions.
+We use DeepSeek4-flash (with thinking disabled)~\cite{deepseekv4} to rewrite the Claude-Opus-4.5 trajectories of Hybrid-Gym, which have 30,615 assistant turns, including 3,738 \texttt{think} and 683 task-tracker actions.
 
 For every multiple $k>0$, only the reasoning text changes: every tool call apart from the \texttt{thought} parameter of \texttt{think} calls, and every tool output, stays byte-identical, which we verify on the released datasets.
 

@@ -621,15 +621,15 @@ As a result, combining collected and generated comparable examples provides dive
     \label{fig:cmtrans_case}
 \end{figure}
 
-\section{Chapter Summary}
-In this chapter, we present two data augmentation techniques for code translation: comparable corpora and multiple references.
-We study multiple ways of building comparable corpora, such as feeding natural language code documentation to code generation models.
-Additionally, we generate multiple reference translations using \cmtransours and filter references using automatically generated unit tests.
-Experiments on translation between 6 language pairs show that our two techniques improve CodeT5 substantially, by an average of 7.5\% CA@1.
-The analyses further show that after training on comparable corpora, the model learns to generate more fluent code with the same types of constructs. With multiple references, the model learns to generate a larger number of unique correct translations.
+% \section{Chapter Summary}
+% In this chapter, we present two data augmentation techniques for code translation: comparable corpora and multiple references.
+% We study multiple ways of building comparable corpora, such as feeding natural language code documentation to code generation models.
+% Additionally, we generate multiple reference translations using \cmtransours and filter references using automatically generated unit tests.
+% Experiments on translation between 6 language pairs show that our two techniques improve CodeT5 substantially, by an average of 7.5\% CA@1.
+% The analyses further show that after training on comparable corpora, the model learns to generate more fluent code with the same types of constructs. With multiple references, the model learns to generate a larger number of unique correct translations.
 
-While this chapter constructs scalable and effective training data for code translation, it focuses on \textbf{script-level} and \textbf{static} generation. Namely, the input and output are both code scripts, and the model generates code using one pass, without interacting with the environment.
-The next chapter introduces the construction of scalable and effective training data for \textbf{repo-level} coding problems under the \textbf{coding agent} setting, which aims to generate code with real-world repositories as context. During inference, the model can interact with the environment by viewing files, editing files, executing bash commands, etc.. 
+% While this chapter constructs scalable and effective training data for code translation, it focuses on \textbf{script-level} and \textbf{static} generation. Namely, the input and output are both code scripts, and the model generates code using one pass, without interacting with the environment.
+% The next chapter introduces the construction of scalable and effective training data for \textbf{repo-level} coding problems under the \textbf{coding agent} setting, which aims to generate code with real-world repositories as context. During inference, the model can interact with the environment by viewing files, editing files, executing bash commands, etc.. 
 
 
 
@@ -1262,14 +1262,12 @@ Qwen2.5Coder-7B & 1.8 & 0.23 & 4.80 \\
 
 
 
-\section{Chapter Summary}
-In this chapter, we present \repostmethodName, a scalable method to construct environments for code generation in real-world repositories that support sandbox testing.
-\repostmethodName is fully automatic and enables the construction of scalable execution-based training environments and live benchmarks.
-Experiments demonstrate that training with the resulting train set, \reposttrainsetName, leads to performance gain on other public benchmarks. For instance, we improve Qwen2.5Coder by 5.49\%/3.49\% Pass@1 on HumanEval/RepoEval.
+% \section{Chapter Summary}
+% In this chapter, we present \repostmethodName, a scalable method to construct environments for code generation in real-world repositories that support sandbox testing.
+% \repostmethodName is fully automatic and enables the construction of scalable execution-based training environments and live benchmarks.
+% Experiments demonstrate that training with the resulting train set, \reposttrainsetName, leads to performance gain on other public benchmarks. For instance, we improve Qwen2.5Coder by 5.49\%/3.49\% Pass@1 on HumanEval/RepoEval.
 
-While both \autoref{chap:cmtrans} and \autoref{chap:repost} focus on training and evaluation for one single task, we would like to note that the application of coding agents can be diverse in real-world usage. We will explore the generalizability to a wide range of coding agent tasks in \autoref{part:generalizability}.
-
-% While both \autoref{chap:cmtrans} and \autoref{chap:repost} focus on reducing the difficulty of obtaining training data and thereby improving scalability, they do not study the other factor of training outcome: the effectiveness of each training instance. We will explore this direction in \autoref{chap:effective-analysis}.
+% While both \autoref{chap:cmtrans} and \autoref{chap:repost} focus on training and evaluation for one single task, we would like to note that the application of coding agents can be diverse in real-world usage. We will explore the generalizability to a wide range of coding agent tasks in \autoref{part:generalizability}.
 
 
 

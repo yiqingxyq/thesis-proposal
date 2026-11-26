@@ -575,15 +575,15 @@ In our experiments, we only choose the top-$k$ candidates (ranked by the percent
 
 
 
-\section{Chapter Summary}
-In this chapter, we improve LM generators' factuality by training an open-source evaluator model, \fencemodelname.
-To train \fencemodelname to leverage diverse knowledge sources and to generate more informative feedback, 
-we equip a combination of public datasets with textual critique along with judgment scores and obtain additional source documents by calling a multiplicity of tools.
-We then present a training recipe that leverages \fencemodelname to finetune LM generators for better factuality, where we construct preference data by prompting \fencemodelname to revise and score the generator's responses, without introducing lesser-known facts in training.
-Experiments show that \fencemodelname outperforms strong proprietary models such as Claude-3 on LLM-AggreFact.
-Our factuality training method improves Llama3-8B-chat's factuality performance by 14.45\% on FActScore and 8.25\% on TruthfulQA.
+% \section{Chapter Summary}
+% In this chapter, we improve LM generators' factuality by training an open-source evaluator model, \fencemodelname.
+% To train \fencemodelname to leverage diverse knowledge sources and to generate more informative feedback, 
+% we equip a combination of public datasets with textual critique along with judgment scores and obtain additional source documents by calling a multiplicity of tools.
+% We then present a training recipe that leverages \fencemodelname to finetune LM generators for better factuality, where we construct preference data by prompting \fencemodelname to revise and score the generator's responses, without introducing lesser-known facts in training.
+% Experiments show that \fencemodelname outperforms strong proprietary models such as Claude-3 on LLM-AggreFact.
+% Our factuality training method improves Llama3-8B-chat's factuality performance by 14.45\% on FActScore and 8.25\% on TruthfulQA.
 
-\autoref{chap:critique-training} adapts the high-level idea of auxiliary model training to coding agent, where we first show that the coding agent performs better in inference if it receives critique from an auxiliary model every $k$ steps. Then, we propose a data construction method to train an open-source critic model. 
+% \autoref{chap:critique-training} adapts the high-level idea of auxiliary model training to coding agent, where we first show that the coding agent performs better in inference if it receives critique from an auxiliary model every $k$ steps. Then, we propose a data construction method to train an open-source critic model. 
 
 
 

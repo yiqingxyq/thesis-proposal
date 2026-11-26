@@ -1,38 +1,46 @@
 
 
-\part{Analyses and Principles: What Makes Coding Agent Training Effective?}
+\part{Understanding What Makes Coding Agent Training Data Effective}
 \label{part:generalizability}
 
-\start{Overview of Part~\ref{part:generalizability}}
-% Connect to Part I: Part I studies how to construct training data scalably under a given training specification: the training task is prescribed, and successful trajectories qualify as demonstrations.
-\autoref{part:scalability} investigates how to construct scalable training data under a given \textbf{training specification}: the training task is pre-defined, the policy model to generate rollouts is fixed, and the metric to score training demonstrations is given (e.g., whether the demonstration successfully completes the task).
-Within this setting, we simplify the construction process of training environments while preserving training effectiveness.
-
-
-% Motivate Part II: Scalability makes it possible to produce more data, but its value for learning depends on the specification itself. Part II asks what requirements training tasks and demonstrations should satisfy to improve downstream performance.
+% Connect to Part I: Part I studies how to construct training data scalably under a given training data specification: the training task is prescribed, and successful trajectories qualify as training examples.
+% Motivate Part II: Scalability makes it possible to produce more data, but its value for learning depends on the specification itself. Part II asks what requirements training tasks and trajectories should satisfy to improve downstream performance.
 % Introduce the broader picture: Context-rich engineering tasks require component skills alongside planning and strategic knowledge that contextualize and combine those skills. Elementary coding tasks can provide focused practice in these capabilities.
-In this part, we revisit this specification by studying: what requirements the training specifications should satisfy to make the resulting data effective and hence improve downstream performance?
-In general, designing such specifications for context-rich engineering tasks requires studying the intended use and target outcome of the agent we want to train, analyzing the capabilities that the agent needs to learn but has not yet mastered, and proposing and examining principles for training specification that could potentially allow the agent to learn these capabilities.
-For coding agents, the required capabilities could have a broad scope and could span various granularity levels. They range from broader abilities such as program understanding, navigating unfamiliar repositories, tool usage, and instruction following, to more fine-grained abilities such as developing efficient strategies for locating a file inside a codebase using bash commands.
-
-
 % Introduce Chapter 5—what to practice: Identify capabilities shared across engineering tasks and derive principles for designing elementary synthetic tasks that support transfer to diverse downstream tasks.
-In \textbf{\autoref{chap:hybrid-gym}}, we analyze the problem-solving phases of multiple real-world coding agent tasks and we aim to improve coding agents' ability to perform each stage correctly by designing synthetic training tasks.
-The problem-solving phases include planning, repository exploration, result reproduction, solution implementation, and solution verification and the phases may recur and interleave, rather than follow a fixed sequence.
-With a list of principles for designing effective synthetic training tasks, we build our dataset, \textbf{\hybridmethodname}, based on a set of scalable synthetic tasks including function localization and dependency search. 
+% Introduce Chapter 6—what makes practice effective: Successful trajectories of the same task can teach different problem-solving behaviors. Identify which properties of trajectories lead to greater performance gains, then use those findings to improve training data.
+
+\start{Overview of Part~\ref{part:generalizability}}
+\autoref{part:scalability} investigates how to construct scalable training data under a given set of requirements, which we call a \textbf{data specification}.
+A data specification may define the format of the training data, the tasks for which the data is generated, and the criteria for selecting examples based on their suitability for training.
+% Here, a \emph{trajectory} is a sequence of agent actions, observations, and any intermediate reasoning generated while attempting a task; a \emph{training trajectory} is one selected or constructed for use in training.
+For example, the data specification in \autoref{chap:repost} is to produce a dataset of agent trajectories, where each trajectory contains a sequence of actions that eventually lead to the correct implementation of an incomplete function in a codebase. 
+% Each trajectory must produce a code patch that completes the function and passes a set of test cases.
+% Within this setting, we simplify the construction of training data while preserving training effectiveness.
+In this part, we aim to answer a higher-level question: how should we design the data specification to make the resulting data effective and thereby improve downstream performance?
+% In general, designing such specifications for coding agent tasks requires studying the intended use and target outcome of the agent we want to train, analyzing the capabilities that the agent needs to learn but has not yet mastered, and proposing and examining principles for designing data specifications that could potentially allow the agent to learn these capabilities.
+% For coding agents, the required capabilities span a broad scope and multiple levels of granularity. They range from broad abilities such as understanding programs, navigating unfamiliar repositories, using tools, and following instructions to more fine-grained abilities such as developing efficient strategies for locating a file inside a codebase using bash commands.
+
+
+
+In \textbf{\autoref{chap:hybrid-gym}}, we study the design of training tasks.
+To develop a set of training task design principles, we conduct analyses to answer two questions: (1) what are the commonalities shared across downstream tasks, and (2) what are the abilities that the agent still needs to learn.
+% To answer the first question, we analyze multiple real-world coding agent applications and summarize a list of problem-solving phases that are shared across these applications.
+% The problem-solving phases include planning, repository exploration, result reproduction, solution implementation, and solution verification. These phases may recur and interleave rather than follow a fixed sequence.
+% To answer the second question, we train a coding agent on existing datasets and analyze its abilities to complete these problem-solving phases.
+We develop a set of principles for effective traning task design based on the analysis results.
+Guided by these principles, we build our dataset, \textbf{\hybridmethodname}, based on a set of scalable synthetic tasks including function localization and dependency search.
 Experiments show that agents trained on these tasks generalize to context-rich engineering tasks absent from training, including issue solving, test generation, and library construction.
 
 
-% Introduce Chapter 6—what makes practice effective: Successful demonstrations of the same task can teach different problem-solving behaviors. Identify which properties of demonstrations lead to greater performance gains, then use those findings to improve training data.
-Building on \autoref{chap:hybrid-gym}, in \textbf{\autoref{chap:effective-analysis}}, we observe that having training tasks that cover the major problem-solving phases is not sufficient for effective training.
-Even when two demonstrations successfully complete the same task, \textbf{how} they resolve the task may differ (e.g., in terms of exploration strategies, planning patterns, or tool choices), and training on these demonstrations can lead to substantially different performance gains in downstream tasks.
-We thus introduce an automatic analysis method, \textbf{\toolName}, to identify and analyze the properties of training demonstrations that could potentially affect training effectiveness.
-\toolName identifies demonstrations properties that influence training effectiveness for at least one model, including specific repository exploration strategies, planning and verification patterns, and the verbosity of reasoning text.
 
-The insights from \toolName improve the quality of training data for the \hybridmethodname tasks through various practical methods, including data selection, agent step synthesis, and behavior-conditioned rollout.
-For instance, when training on the \hybridmethodname function localization task, inserting LLM-synthesized explicit planning steps into the training demonstrations improves Qwen3-8B's resolved rate on SWE-Bench Verified from 11.6\% to 17.6\%.
+We analyze the \hybridmethodname training data and observe that designing training tasks that cover the major problem-solving phases is not sufficient for effective training.
+There may be multiple approaches to complete the same task (e.g., by using different exploration strategies, planning patterns, or tools), and experimental results show that training on trajectories that use different approaches can lead to substantially different levels of downstream performance.
 
-% State the scope: Together, the chapters refine the training specification at the task and demonstration levels, addressing selected capabilities within the broader picture of engineering competence.
+As a result, in \textbf{\autoref{chap:effective-analysis}}, we introduce an automatic analysis method, \textbf{\toolName}, to identify and analyze the properties of training trajectories that could potentially affect training effectiveness.
+\toolName discovers properties of trajectories that influence training effectiveness for at least one model, including specific repository exploration strategies, planning and verification patterns, and the verbosity of reasoning text.
+We further demonstrate that these discoveries can lead to improvements in downstream performance.
+For instance, when training on the \hybridmethodname function localization task, inserting LLM-synthesized explicit planning steps into the training trajectories improves Qwen3-8B's resolved rate on SWE-Bench Verified from 11.6\% to 17.6\%.
+
 
 
 
@@ -712,19 +720,17 @@ Surprisingly, \textbf{training on the same repositories in evaluation does not i
 
 
 
-\section{Chapter Summary}
-In this chapter, we improve the task transferability of coding agents. 
-We conduct in-depth analyses of the transferability across coding agent tasks.
-We find that there are similar components shared by diverse real-world coding tasks (e.g., repo-exploration) that can be achieved by the agent with similar commands.
-Based on the discovery, we derive a set of principles for task design, including output format matching, requiring repo-exploration, non-trivial reasoning, and simple setup.
-We present four scalable and cost-efficient tasks that do not require setting up executable repositories.
-With the resulting dataset, \hybridmethodname, we achieve strong task generalization results on three real-world benchmarks. For instance, even without issue-solving or test-generation data in training, we improve Qwen2.5Coder-32B by 25.4\% on SWE-Bench Verified and 7.9\% on SWT-Bench Verified.
-We also improve existing in-domain datasets by combining them with \hybridmethodname (e.g., improving SWE-Play by 4.9\% on SWT-Bench Verified).
+% \section{Chapter Summary}
+% In this chapter, we improve the task transferability of coding agents. 
+% We conduct in-depth analyses of the transferability across coding agent tasks.
+% We find that there are similar components shared by diverse real-world coding tasks (e.g., repo-exploration) that can be achieved by the agent with similar commands.
+% Based on the discovery, we derive a set of principles for task design, including output format matching, requiring repo-exploration, non-trivial reasoning, and simple setup.
+% We present four scalable and cost-efficient tasks that do not require setting up executable repositories.
+% With the resulting dataset, \hybridmethodname, we achieve strong task generalization results on three real-world benchmarks. For instance, even without issue-solving or test-generation data in training, we improve Qwen2.5Coder-32B by 25.4\% on SWE-Bench Verified and 7.9\% on SWT-Bench Verified.
+% We also improve existing in-domain datasets by combining them with \hybridmethodname (e.g., improving SWE-Play by 4.9\% on SWT-Bench Verified).
 
-The principles introduced in this chapter focus on training task design. However, as studied in \S\ref{sec:controlled-exp}, there are other aspects that are also crucial for agent training, such as training instance selection and the concrete actions in successful training trajectories.
-We thus propose \autoref{chap:effective-analysis} to investigate more training data construction principles, focusing on the effectiveness of training trajectories.
-
-
+% The principles introduced in this chapter focus on training task design. However, as studied in \S\ref{sec:controlled-exp}, there are other aspects that are also crucial for agent training, such as training instance selection and the concrete actions in successful training trajectories.
+% We thus propose \autoref{chap:effective-analysis} to investigate more training data construction principles, focusing on the effectiveness of training trajectories.
 
 
 
@@ -761,16 +767,18 @@ We thus propose \autoref{chap:effective-analysis} to investigate more training d
 
 
 
-\chapter{Discovering Effective Demonstration Behaviors for Training Coding Agents}
+
+
+\chapter{Discovering Effective Trajectory Behaviors for Training Coding Agents}
 \label{chap:effective-analysis}
 
 % Paper-specific macros are local to the CATRadar chapter.
 % \begingroup
 
 \start{Chapter Overview}
-Most coding agent training methods judge the quality of demonstrations based on their final outcome, such as execution results or rubric scores.
-However, we observe that the effectiveness of training also substantially depends on \emph{how} the demonstrations achieve the results.
-Previous work has manually made hypotheses about which demonstration behaviors influence the performance.
+Most coding agent training methods judge the quality of trajectories based on their final outcome, such as execution results or rubric scores.
+However, we observe that the effectiveness of training also substantially depends on \emph{how} agents achieve these outcomes within the trajectories.
+Previous work has manually made hypotheses about which trajectory behaviors influence performance.
 To find such influential behaviors for \textbf{C}oding \textbf{A}gent \textbf{T}raining more efficiently, we present \toolName, an analysis method to automatically discover candidate behaviors by defining, extracting, and comparing the behaviors of different trained agents.
 \toolName enables us to find behaviors that are influential to at least one model, including specific repo-exploration strategies, the planning and verification patterns, and the verbosity of the reasoning text.
 Our insights also translate to performance gains by various methods, including data selection, agent step synthesis, and behavior-conditioned rollout.
@@ -780,9 +788,9 @@ Results show that our agent step synthesis method improves Qwen3-8B's resolved r
 
 Agents have been trained to be effective in diverse real-world coding applications~\citep{swt-bench,commit0}.
 Existing research improves coding agent post-training by constructing scalable environments~\citep{swegym,swe-smith}, designing training methods~\citep{swerl,swemaster}, and synthesizing training signals~\citep{openhands-rubric-critique,sweworld}.
-Most of them still derive training signals based on the final outcome of the demonstrations, which is either obtained by execution in sandbox environments or simulated with manually-designed rubrics~\citep{openhands-rubric-critique} or LLM judges~\citep{sweworld}.
+Most of them still derive training signals based on the final outcome of the trajectories, which is either obtained by execution in sandbox environments or simulated with manually-designed rubrics~\citep{openhands-rubric-critique} or LLM judges~\citep{sweworld}.
 
-However, we observe that even when we only use successful rollouts as demonstrations in training, the exact \textbf{behaviors} reflected in the demonstrations also substantially affect the performance of the trained model. 
+However, we observe that even when training uses only successful trajectories, the exact \textbf{behaviors} exhibited in those trajectories also substantially affect the performance of the trained model.
 We conduct a preliminary study under the setting of distilling a student model from the teacher's successful rollouts.
 As shown in \autoref{catradar:fig:different-teacher}, on the same set of training instances and for a fixed student model, distilling from different teachers leads to substantially different performance.
 Although they all successfully solve the task, the teacher models may apply different problem-solving strategies, use different tools, and generate concrete actions with different patterns.
@@ -791,7 +799,7 @@ Although they all successfully solve the task, the teacher models may apply diff
     \centering
     \includegraphics[width=0.6\linewidth]{CATRadar_figs/agent_behaviors/intro_half.pdf}
     \caption{
-        To find demonstration behaviors that affect the effectiveness of training, (\textit{left}) prior works rely on human experts to manually make hypotheses, while (\textit{right}) \toolName narrows down the search space by
+        To find trajectory behaviors that affect training effectiveness, (\textit{left}) prior works rely on human experts to manually make hypotheses, while (\textit{right}) \toolName narrows down the search space by
         automatically 
         discovering candidate behaviors by extracting and comparing the behaviors of different trained agents.
     }
@@ -804,33 +812,33 @@ Although they all successfully solve the task, the teacher models may apply diff
     \caption{
     Across different training sets,
     on the same sets of task instances, 
-    successful demonstrations generated by different teacher models lead to substantially different performance,
+    successful trajectories generated by different teacher models lead to substantially different performance,
     and higher teacher performance does not necessarily transfer to better student performance.
     }
     \label{catradar:fig:different-teacher}
 \end{figure}
 
 
-We thus would like to answer the question: \emph{what are the demonstration behaviors that affect coding agent training performance?}
+We thus would like to answer the question: \emph{what trajectory behaviors affect coding agent training performance?}
 Existing research presents manually defined rubrics on agent behaviors and empirically examines their impact on training~\citep{terminal-lego,openhands-rubric-critique,hybrid-gym}.
 However, the space of coding agent behaviors is vast and open-ended, ranging from high-level problem-solving strategies to low-level tool-use patterns.
 The influence of a behavior could also vary across training configurations and base models.
 Manually enumerating behavioral hypotheses lacks scalability and human expertise may be limited to specific experimental settings.
 
-In this paper, we present \toolName, an automatic analysis method to efficiently discover candidate behaviors in training demonstrations that could potentially affect \textbf{C}oding \textbf{A}gent \textbf{T}raining performance.
+In this paper, we present \toolName, an automatic analysis method to efficiently discover candidate trajectory behaviors that could potentially affect \textbf{C}oding \textbf{A}gent \textbf{T}raining performance.
 We leverage an LLM agent to automatically define, extract, and compare the behaviors of coding agents trained on different data sources that have different performances.
 We only keep candidate behaviors that are well-defined and can distinguish the two agents we compare.
 After \toolName narrows down the search space of behaviors, we examine the impact of those candidate behaviors through controlled interventions on the presence of each behavior in the training data.
 
 
 We apply \toolName to 8 teacher models and 3 student models for two training tasks: R2EGym \citep{R2EGym} and Hybrid-Gym \citep{hybrid-gym}.
-Guided by \toolName, we examine the impact of 10 behaviors of coding agent demonstrations and 7 of them are shown to positively affect at least one model's performance.
+Guided by \toolName, we examine the impact of 10 coding agent trajectory behaviors and 7 of them are shown to positively affect at least one model's performance.
 As shown in \autoref{catradar:fig:behavior-discovery-overview}, such influential behaviors include specific repo-exploration strategies, planning and verification patterns, and the verbosity of reasoning text.
 
 
 Furthermore, we demonstrate that finding such influential behaviors can lead to actual performance gains by various methods, including data selection, agent step synthesis, and behavior-conditioned rollout.
 For instance, we demonstrate that data selection based on the repo-exploration strategies we discover improves all three student models on SWE-Bench Verified~\citep{swebench} (e.g., improving the resolved rate of Qwen3-8B from 4.8\% to 11.6\%).
-We also discover that simply adding 4 LLM-synthesized planning steps to each demonstration improves the resolved rates of all three student models (e.g., improving Qwen3-8B's resolved rate from 11.6\% to 17.6\%).
+We also discover that simply adding 4 LLM-synthesized planning steps to each trajectory improves the resolved rates of all three student models (e.g., improving Qwen3-8B's resolved rate from 11.6\% to 17.6\%).
 
 
 
@@ -847,8 +855,8 @@ We also discover that simply adding 4 LLM-synthesized planning steps to each dem
 
 
 
-\section{Analysis Method: Discovering Influential Behaviors of Demonstrations}
-\autoref{catradar:fig:different-teacher} shows that coding agents trained on demonstrations produced by different models can achieve different performances, but the success rates of the demonstrations cannot explain the performance gap.
+\section{Analysis Method: Discovering Influential Trajectory Behaviors}
+\autoref{catradar:fig:different-teacher} shows that coding agents trained on successful trajectories produced by different teacher models can achieve different performances, but differences in teacher success rates cannot explain the performance gap.
 We hence hypothesize that there exist a set of properties of \textbf{how} the final results are achieved that account for the performance gap, which we denote as \textbf{influential behaviors}.
 Identifying such behaviors is challenging because the space of coding agent behaviors is vast, spanning from high-level problem-solving strategies to low-level implementation details.
 In this section, we first present \toolName (\S\ref{catradar:sec:rubric-discovery}) to automatically narrow down the space of candidate behaviors by discovering the different behaviors of coding agents with different performances.
@@ -915,7 +923,7 @@ We manually review and prioritize the retained behaviors for the data interventi
 \subsection{Data Intervention Methods}
 \label{catradar:sec:controlled-exp}
 This section aims to isolate and measure the impact of each candidate behavior discovered in \S\ref{catradar:sec:rubric-discovery} on the training performance.
-We introduce two complementary intervention methods that control the presence of a target behavior while minimizing changes to other properties of the demonstrations.
+We introduce two complementary intervention methods that control the presence of a target behavior while minimizing changes to other properties of the trajectories.
 For both methods, we consider a behavior to be \textbf{influential} if the presence or absence of the behavior leads to a substantial performance change.
 
 
@@ -931,7 +939,7 @@ Here we provide a non-exhaustive list of classes of edits that preserve consiste
 
 
 \start{Behavior-Conditioned Trajectory Generation}
-For behaviors that are difficult to manipulate through local edits, we generate new demonstrations for the same task instances by prompting the agent to exhibit the target behavior.
+For behaviors that are difficult to manipulate through local edits, we generate new trajectories for the same task instances by prompting the agent to exhibit the target behavior.
 To limit differences unrelated to the target behavior, we retain an original-generated trajectory pair only if both trajectories successfully solve the task and reach the same set of essential intermediate results, which are pre-defined based on the task.
 For example, in the issue-solving task, we require the original and newly generated trajectories to identify the exact same set of target files and pass all the unit tests.
 
@@ -1017,7 +1025,7 @@ Similarly, a stronger teacher model's strategies may rely on its sophisticated c
         \bottomrule
     \end{tabular}
     }
-    \caption{A case study showing that demonstrations with different repo-exploration strategies can all be labeled as ``sufficient exploration'' by the LLM judge.
+    \caption{A case study showing that trajectories with different repo-exploration strategies can all be labeled as ``sufficient exploration'' by the LLM judge.
     }
     \label{catradar:tab:localize-case}
 \end{table}
@@ -1025,8 +1033,8 @@ Similarly, a stronger teacher model's strategies may rely on its sophisticated c
 \begin{figure}[!t]
     \centering
     \includegraphics[width=0.6\linewidth]{CATRadar_figs/agent_behaviors/task_tracker_ablation.pdf}
-    \caption{Planning steps in demonstrations have different effects on different models. 
-    We \textbf{highlight} significant performance changes after removing all task-tracker actions from demonstrations (with p-value $< 0.05$).
+    \caption{Planning steps in trajectories have different effects on different models.
+    We \textbf{highlight} significant performance changes after removing all task-tracker actions from trajectories (with p-value $< 0.05$).
     }
     \label{catradar:fig:tracker-ablation}
 \end{figure}
@@ -1035,7 +1043,7 @@ Similarly, a stronger teacher model's strategies may rely on its sophisticated c
 
 \subsection{\toolName Discovers Effective Problem-Solving Strategies}
 \label{catradar:sec:repo-exploration}
-Prior work shows that demonstrations should include a non-trivial repository-exploration stage and leverage an LLM judge to check whether it conducts sufficient exploration \citep{hybrid-gym}.
+Prior work shows that trajectories should include a non-trivial repository-exploration stage and leverage an LLM judge to check whether it conducts sufficient exploration \citep{hybrid-gym}.
 However, it does not specify \emph{how} the exploration is conducted.
 Instead, \toolName goes a step further by identifying two concrete exploration strategies: 
 \textbf{Multi-Search}, which searches for multiple keywords iteratively, and
@@ -1044,9 +1052,9 @@ As shown in \autoref{catradar:tab:localize-case}, the two strategies we discover
 
 
 We think these two strategies are potentially useful for training for the following reasons:
-by having multiple search actions in the demonstrations, the agent is trained to try different keywords if the previous ones are too broad or fail to match any files.
+by having multiple search actions in the trajectories, the agent is trained to try different keywords if the previous ones are too broad or fail to match any files.
 ``Target-Read'' teaches the model not to blindly read files with low relevance, which improves the efficiency of localizing the target file.
-We will show in \S\ref{catradar:sec:data-selection} and \S\ref{catradar:sec:prompt-tuning} that demonstrations containing these specific strategies improve training performance.
+We will show in \S\ref{catradar:sec:data-selection} and \S\ref{catradar:sec:prompt-tuning} that trajectories containing these specific strategies improve training performance.
 
 
 
@@ -1083,16 +1091,16 @@ We will show in \S\ref{catradar:sec:data-selection} and \S\ref{catradar:sec:prom
 
 
 \subsection{Planning Steps have Different Effects on Different Models}
-\toolName discovers that the planning pattern also vary across different demonstrations.
+\toolName discovers that the planning pattern also vary across different trajectories.
 For instance, OpenHands has a ``task-tracker'' tool that creates and keeps a to-do list for the task, which is frequently used by some agents but not others.
 Intuitively, the task-tracker tool assists high-level planning and plays a similar role as chain-of-thought reasoning~\citep{CoT}, which conducts explicit reasoning to guide the agent's decision-making process.
 
-To examine whether the usage of task-tracker affects the performance, we directly remove all the task-tracker actions from the demonstrations and train the model. 
+To examine whether the usage of task-tracker affects the performance, we directly remove all the task-tracker actions from the trajectories and train the model.
 We additionally query an LLM to rewrite the text that explicitly refer to the removed steps to maintain the consistency of the trajectory.
 
 However, results in \autoref{catradar:fig:tracker-ablation} show that having more planning steps in training does not always improve performance.
-On the demonstrations generated by Claude-Opus-4.5, the presence of task-tracker steps improves the performance of Qwen2.5Coder-7B and Qwen3-8B, while degrading the performance of Qwen3-4B.
-One possible explanation is that the 4B model has lower capacity and could benefit more from simpler and more straightforward demonstrations, while the larger models can better exploit complex reasoning patterns.
+On the trajectories generated by Claude-Opus-4.5, the presence of task-tracker steps improves the performance of Qwen2.5Coder-7B and Qwen3-8B, while degrading the performance of Qwen3-4B.
+One possible explanation is that the 4B model has lower capacity and could benefit more from simpler and more straightforward trajectories, while the larger models can better exploit complex reasoning patterns.
 We will further show in \S\ref{catradar:sec:synthetic-steps} that inserting LLM-synthesized task-tracker steps improves both the 7B and 8B models.
 
 
@@ -1112,15 +1120,15 @@ Verification is an important stage for coding agent tasks, where the agent exami
 It can be complex for some tasks (e.g., issue-solving, where the agent needs to execute unit tests) but simple for others (e.g., function localization, where the agent only needs to read files and conduct reasoning).
 \toolName discovers that the average number of verification steps varies across different teacher models.
 
-To examine the effect of verification steps in training, we design the following data intervention experiments to control the presence of verification steps in training demonstrations:
+To examine the effect of verification steps in training, we design the following data intervention experiments to control the presence of verification steps in training trajectories:
 (1) ``Remove Verify'', where we remove all the steps after the last file-editing action, and 
-(2) ``Add Verify'': for demonstrations without any verification steps, we copy the verification steps from the demonstration of the same task instance generated by another agent (e.g., Claude-Opus-4.5). Other demonstrations are kept unchanged.
+(2) ``Add Verify'': for trajectories without any verification steps, we copy the verification steps from the trajectory of the same task instance generated by another agent (e.g., Claude-Opus-4.5). Other trajectories are kept unchanged.
 
 Surprisingly, as shown in \autoref{catradar:tab:verification-ablation}, we observe that the verification behavior transfers across different tasks.
-When training the agent on function localization demonstrations with more verification steps, it also learns to perform more verification steps on the issue-solving task.
+When training the agent on function localization trajectories with more verification steps, it also learns to perform more verification steps on the issue-solving task.
 
 However, similar to the planning behavior, we observe that verification improves the performance of the 7B and 8B models, but does not consistently improve Qwen3-4B.
-This can also be explained by the hypothesis that models with lower capacity could benefit more from simpler demonstrations.
+This can also be explained by the hypothesis that models with lower capacity could benefit more from simpler trajectories.
 
 Our results make a further step beyond the finding in Terminal-LEGO~\citep{terminal-lego}, which shows that the inspect-act-verify pattern in training trajectories improves coding agents' performance on terminal tasks.
 We further show that the impact of verification also depends on other factors such as properties of the student model.
@@ -1185,19 +1193,19 @@ Similarly, we observe in \autoref{catradar:fig:verbosity_text_only} that when we
 
 
 \section{Practical Utility of Our Discoveries}
-We apply the discoveries in \S\ref{catradar:sec:analysis-results} through three methods, ordered by increasing data-construction cost: selecting demonstrations with beneficial behaviors (\S\ref{catradar:sec:data-selection}), augmenting existing demonstrations with synthesized steps (\S\ref{catradar:sec:synthetic-steps}), and generating new demonstrations with influential behaviors (\S\ref{catradar:sec:prompt-tuning}).
+We apply the discoveries in \S\ref{catradar:sec:analysis-results} through three methods, ordered by increasing data-construction cost: selecting trajectories with beneficial behaviors (\S\ref{catradar:sec:data-selection}), augmenting existing trajectories with synthesized steps (\S\ref{catradar:sec:synthetic-steps}), and generating new trajectories with influential behaviors (\S\ref{catradar:sec:prompt-tuning}).
 
 \subsection{Method 1: Behavior-Aware Data Selection}
 \label{catradar:sec:data-selection}
 
 \start{Data Selection}
-Given a fixed training-data budget, we select demonstrations that exhibit beneficial behaviors identified by \toolName.
-Following \S\ref{catradar:sec:repo-exploration}, we retain demonstrations that exhibit both the \textbf{Multi-Search} strategy (at least three keyword searches) and \textbf{Target-Read} (narrow down to $\leq 50$ candidate files before reading).
+Given a fixed training-data budget, we select trajectories that exhibit beneficial behaviors identified by \toolName.
+Following \S\ref{catradar:sec:repo-exploration}, we retain trajectories that exhibit both the \textbf{Multi-Search} strategy (at least three keyword searches) and \textbf{Target-Read} (narrow down to $\leq 50$ candidate files before reading).
 We compare against equally sized subsets lacking either strategy: ``w/o Multi-Search'' and ``w/o Target-Read''.
 
 \start{Results}
-\autoref{catradar:tab:data-selection-strategies} shows that selecting demonstrations with both strategies consistently yields higher resolved rates than either ablation across the evaluated settings.
-For example, training Qwen3-8B on 250 Claude-Opus-4.5 function-localization demonstrations with both strategies achieves 11.6\% on SWE-Bench Verified, compared with 4.8\% without Multi-Search and 5.8\% without Target-Read.
+\autoref{catradar:tab:data-selection-strategies} shows that selecting trajectories with both strategies consistently yields higher resolved rates than either ablation across the evaluated settings.
+For example, training Qwen3-8B on 250 Claude-Opus-4.5 function-localization trajectories with both strategies achieves 11.6\% on SWE-Bench Verified, compared with 4.8\% without Multi-Search and 5.8\% without Target-Read.
 A possible explanation is that agents trained on the ``w/o Multi-Search'' ablation do not learn to recover from unsuccessful searches, and the ``w/o Target-Read'' ablation does not teach the strategy to progressively narrow down the candidate files.
 One common failure case for agents trained on ``w/o Target-Read'' is to repeatedly read irrelevant files until exhausting their action budget, without a more efficient strategy to locate relevant files.
 
@@ -1252,30 +1260,30 @@ One common failure case for agents trained on ``w/o Target-Read'' is to repeated
 \label{catradar:sec:synthetic-steps}
 
 \start{Agent Step Synthesis}
-Another method is to augment existing demonstrations by inserting LLM-synthesized steps that instantiate a beneficial behavior (e.g., has high-level planning).
-Particularly, we prompt an LLM to generate a task-tracker call for each function localization demonstration that specifies a to-do list: identify the target file, locate the function, generate its docstring, and verify correctness.
+Another method is to augment existing trajectories by inserting LLM-synthesized steps that instantiate a beneficial behavior (e.g., has high-level planning).
+Particularly, we prompt an LLM to generate a task-tracker call for each function localization trajectory that specifies a to-do list: identify the target file, locate the function, generate its docstring, and verify correctness.
 We insert subsequent task-tracker calls at completion points to update the corresponding items.
 Implementation details are provided in \S\ref{catradar:sec:exp-implementation}.
 
 \start{Results}
-As shown in \autoref{catradar:tab:task-tracker-improvement}, adding four synthesized task-tracker actions per demonstration improves the resolved rates of Qwen2.5Coder-7B and Qwen3-8B in all evaluated settings.
-For Qwen3-8B trained on Claude-Opus-4.7 demonstrations, the resolved rate increases from 11.6\% to 17.6\%.
+As shown in \autoref{catradar:tab:task-tracker-improvement}, adding four synthesized task-tracker actions per trajectory improves the resolved rates of Qwen2.5Coder-7B and Qwen3-8B in all evaluated settings.
+For Qwen3-8B trained on Claude-Opus-4.7 trajectories, the resolved rate increases from 11.6\% to 17.6\%.
 These steps may provide explicit planning structure that helps the student organize subsequent actions.
 Note that we train on the function localization task and improve issue-solving performances, suggesting that the planning behaviors transfer across tasks.
 
 
-\subsection{Method 3: Behavior-Conditioned Demonstration Generation}
+\subsection{Method 3: Behavior-Conditioned Trajectory Generation}
 \label{catradar:sec:prompt-tuning}
 
 \start{Prompt Generation}
-For behaviors that are difficult to incorporate through local edits, we generate new demonstrations using a behavior-conditioned teacher prompt (\S\ref{catradar:sec:controlled-exp}).
-We iteratively (1) ask an agent to write a prompt to elicit the target behaviors, (2) generate a small set of demonstrations, and (3) use an LLM judge to label their presence.
-We repeat this procedure until the generated prompt significantly increases the proportion of demonstrations exhibiting the target behaviors ($p<0.05$), then use it to generate the training set.
+For behaviors that are difficult to incorporate through local edits, we generate new trajectories using a behavior-conditioned teacher prompt (\S\ref{catradar:sec:controlled-exp}).
+We iteratively (1) ask an agent to write a prompt to elicit the target behaviors, (2) generate a small set of trajectories, and (3) use an LLM judge to label their presence.
+We repeat this procedure until the generated prompt significantly increases the proportion of trajectories exhibiting the target behaviors ($p<0.05$), then use it to generate the training set.
 
 \start{Results}
 We apply this method to the two repo-exploration strategies we discovered in \S\ref{catradar:sec:repo-exploration}: Multi-Search and Target-Read.
-\autoref{catradar:tab:prompt-tuning} shows that by generating demonstrations with the LLM-generated prompt, we increase the prevalence of the strategies for both the teacher and the student models.
-Furthermore, training Qwen2.5Coder-7B on the resulting demonstrations significantly improves its resolved rate on SWE-Bench Verified from 6.0\% to 9.2\%.
+\autoref{catradar:tab:prompt-tuning} shows that by generating trajectories with the LLM-generated prompt, we increase the prevalence of the strategies for both the teacher and the student models.
+Furthermore, training Qwen2.5Coder-7B on the resulting trajectories significantly improves its resolved rate on SWE-Bench Verified from 6.0\% to 9.2\%.
 We also observe that directly prompting the student to follow the same strategies (``prompt student'') yields a smaller gain, from 6.0\% to 7.2\%, suggesting that the student model has limited instruction-following capabilities to incorporate the strategies as prompted, and prompting the teacher model is more effective in this setting.
 
 
@@ -1283,11 +1291,11 @@ We also observe that directly prompting the student to follow the same strategie
 % \start{Coding Agent Training}
 % For both supervised finetuning (SFT) and reinforcement learning (RL), the quality of the final patch is typically used as the training signal, which can be defined based on the test execution results~\citep{swe-smith,sweswiss,yuan2026sweminisandbox}, similarity to the reference solution~\citep{shen2026sera,swerl}, or scores produced by a judge model~\citep{shum2025swerm}.
 % Another line of work also incorporate pre-defined metrics for the entire trajectories, including the structure of actions~\citep{tao2026swelego}, trajectory-level, segment-level or step-level qualities~\citep{han2026swetrace,zhang2026chasing,openhands-rubric-critique}, recovery attempts on failures~\citep{liufu2026fcswe}, and data distribution~\citep{repost,zheng2026sweprime}.
-% In comparison to manually-defined rubrics, our \toolName automatically discovers the demonstration behaviors that could potentially affect training effectiveness.
+% In comparison to manually-defined rubrics, our \toolName automatically discovers trajectory behaviors that could potentially affect training effectiveness.
 
 
 % \start{Analyses on Coding Agent Training}
-% Prior work identifies demonstration properties that affect training effectiveness, including retaining failed terminal-agent trajectories~\citep{pi2026terminal}, the pattern of inspect, act, and verify~\citep{terminal-lego}, combining explanary text and actions into the same step~\citep{hybrid-gym}, and combining thinking and non-thinking traces~\citep{ahmad2026openswe}.
+% Prior work identifies trajectory properties that affect training effectiveness, including retaining failed terminal-agent trajectories~\citep{pi2026terminal}, the pattern of inspect, act, and verify~\citep{terminal-lego}, combining explanary text and actions into the same step~\citep{hybrid-gym}, and combining thinking and non-thinking traces~\citep{ahmad2026openswe}.
 % Particularly, \citet{openhands-rubric-critique} manually define 24 rubrics to assess trajectory quality.
 % Other analyses find that some factors are less predictive of training value, including task difficulty~\citep{swe-smith}, and trajectory length~\citep{terminal-lego}.
 % However, most prior analyses start by manually making hypotheses on influential factors, which is limited by human expertise and potentially confined to particular training settings.
