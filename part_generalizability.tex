@@ -3,43 +3,31 @@
 \part{Understanding What Makes Coding Agent Training Data Effective}
 \label{part:generalizability}
 
-% Connect to Part I: Part I studies how to construct training data scalably under a given training data specification: the training task is prescribed, and successful trajectories qualify as training examples.
-% Motivate Part II: Scalability makes it possible to produce more data, but its value for learning depends on the specification itself. Part II asks what requirements training tasks and trajectories should satisfy to improve downstream performance.
-% Introduce the broader picture: Context-rich engineering tasks require component skills alongside planning and strategic knowledge that contextualize and combine those skills. Elementary coding tasks can provide focused practice in these capabilities.
-% Introduce Chapter 5—what to practice: Identify capabilities shared across engineering tasks and derive principles for designing elementary synthetic tasks that support transfer to diverse downstream tasks.
-% Introduce Chapter 6—what makes practice effective: Successful trajectories of the same task can teach different problem-solving behaviors. Identify which properties of trajectories lead to greater performance gains, then use those findings to improve training data.
-
 \start{Overview of Part~\ref{part:generalizability}}
-\autoref{part:scalability} investigates how to construct scalable training data under a given set of requirements, which we call a \textbf{data specification}.
-A data specification may define the format of the training data, the tasks for which the data is generated, and the criteria for selecting examples based on their suitability for training.
-% Here, a \emph{trajectory} is a sequence of agent actions, observations, and any intermediate reasoning generated while attempting a task; a \emph{training trajectory} is one selected or constructed for use in training.
-For example, the data specification in \autoref{chap:repost} is to produce a dataset of agent trajectories, where each trajectory contains a sequence of actions that eventually lead to the correct implementation of an incomplete function in a codebase. 
-% Each trajectory must produce a code patch that completes the function and passes a set of test cases.
-% Within this setting, we simplify the construction of training data while preserving training effectiveness.
-In this part, we aim to answer a higher-level question: how should we design the data specification to make the resulting data effective and thereby improve downstream performance?
-% In general, designing such specifications for coding agent tasks requires studying the intended use and target outcome of the agent we want to train, analyzing the capabilities that the agent needs to learn but has not yet mastered, and proposing and examining principles for designing data specifications that could potentially allow the agent to learn these capabilities.
-% For coding agents, the required capabilities span a broad scope and multiple levels of granularity. They range from broad abilities such as understanding programs, navigating unfamiliar repositories, using tools, and following instructions to more fine-grained abilities such as developing efficient strategies for locating a file inside a codebase using bash commands.
+\autoref{part:scalability} investigates how to construct scalable training data under a given set of requirements, which we call a \textbf{data specification}. A data specification may cover a wide range of aspects, such as the format of the training data, the choice of training tasks, and the criteria for selecting examples. For example, the data specification in \autoref{chap:repost} is to construct a dataset of agent trajectories, where each trajectory is a sequence of agent actions that leads to the correct implementation of an incomplete function in a codebase. 
+In this part, we ask a higher-level question: how should we design data specifications to improve downstream performance?
+
+
+% \autoref{part:scalability} investigates how to construct scalable training data under a given set of requirements, which we call a \textbf{data specification}.
+% A data specification may define the format of the training data, the tasks for which the data is generated, and the criteria for selecting examples based on their suitability for training.
+% % Here, a \emph{trajectory} is a sequence of agent actions, observations, and any intermediate reasoning generated while attempting a task; a \emph{training trajectory} is one selected or constructed for use in training.
+% For example, the data specification in \autoref{chap:repost} is to produce a dataset of agent trajectories, where each trajectory contains a sequence of actions that eventually lead to the correct implementation of an incomplete function in a codebase. 
+% % Each trajectory must produce a code patch that completes the function and passes a set of test cases.
+% % Within this setting, we simplify the construction of training data while preserving training effectiveness.
+% In this part, we aim to answer a higher-level question: how should we design the data specification to make the resulting data effective and thereby improve downstream performance?
+% % In general, designing such specifications for coding agent tasks requires studying the intended use and target outcome of the agent we want to train, analyzing the capabilities that the agent needs to learn but has not yet mastered, and proposing and examining principles for designing data specifications that could potentially allow the agent to learn these capabilities.
+% % For coding agents, the required capabilities span a broad scope and multiple levels of granularity. They range from broad abilities such as understanding programs, navigating unfamiliar repositories, using tools, and following instructions to more fine-grained abilities such as developing efficient strategies for locating a file inside a codebase using bash commands.
 
 
 
 In \textbf{\autoref{chap:hybrid-gym}}, we study the design of training tasks.
-To develop a set of training task design principles, we conduct analyses to answer two questions: (1) what are the commonalities shared across downstream tasks, and (2) what are the abilities that the agent still needs to learn.
-% To answer the first question, we analyze multiple real-world coding agent applications and summarize a list of problem-solving phases that are shared across these applications.
-% The problem-solving phases include planning, repository exploration, result reproduction, solution implementation, and solution verification. These phases may recur and interleave rather than follow a fixed sequence.
-% To answer the second question, we train a coding agent on existing datasets and analyze its abilities to complete these problem-solving phases.
-We develop a set of principles for effective traning task design based on the analysis results.
-Guided by these principles, we build our dataset, \textbf{\hybridmethodname}, based on a set of scalable synthetic tasks including function localization and dependency search.
-Experiments show that agents trained on these tasks generalize to context-rich engineering tasks absent from training, including issue solving, test generation, and library construction.
+We develop principles for effective training task design based on (1) commonalities shared across downstream coding tasks, and (2) the abilities that the agent still needs to learn.
+Guided by these principles, we construct \hybridmethodname, a dataset of scalable synthetic tasks, including function localization and dependency search. Experiments show that agents trained on these tasks generalize to context-rich software engineering tasks absent from training, including issue solving, test generation, and library construction.
 
+Further analysis of \hybridmethodname shows that training effectiveness depends not only on task design but also on \emph{how agents solve the tasks}. Agents may successfully complete the same task using different exploration strategies, planning patterns, or tools, yet training on the resulting trajectories can lead to substantially different downstream performance.
 
+Motivated by this observation, in \textbf{\autoref{chap:effective-analysis}}, we introduce \toolName, an automated method for identifying and analyzing trajectory properties that may affect training effectiveness. \toolName discovers properties that influence training effectiveness for at least one model, including repository exploration strategies, planning and verification patterns, and reasoning verbosity. We further show that these discoveries can guide improvements to training data and lead to better downstream performance.
 
-We analyze the \hybridmethodname training data and observe that designing training tasks that cover the major problem-solving phases is not sufficient for effective training.
-There may be multiple approaches to complete the same task (e.g., by using different exploration strategies, planning patterns, or tools), and experimental results show that training on trajectories that use different approaches can lead to substantially different levels of downstream performance.
-
-As a result, in \textbf{\autoref{chap:effective-analysis}}, we introduce an automatic analysis method, \textbf{\toolName}, to identify and analyze the properties of training trajectories that could potentially affect training effectiveness.
-\toolName discovers properties of trajectories that influence training effectiveness for at least one model, including specific repository exploration strategies, planning and verification patterns, and the verbosity of reasoning text.
-We further demonstrate that these discoveries can lead to improvements in downstream performance.
-For instance, when training on the \hybridmethodname function localization task, inserting LLM-synthesized explicit planning steps into the training trajectories improves Qwen3-8B's resolved rate on SWE-Bench Verified from 11.6\% to 17.6\%.
 
 
 
@@ -775,14 +763,14 @@ Surprisingly, \textbf{training on the same repositories in evaluation does not i
 % Paper-specific macros are local to the CATRadar chapter.
 % \begingroup
 
-\start{Chapter Overview}
-Most coding agent training methods judge the quality of trajectories based on their final outcome, such as execution results or rubric scores.
-However, we observe that the effectiveness of training also substantially depends on \emph{how} agents achieve these outcomes within the trajectories.
-Previous work has manually made hypotheses about which trajectory behaviors influence performance.
-To find such influential behaviors for \textbf{C}oding \textbf{A}gent \textbf{T}raining more efficiently, we present \toolName, an analysis method to automatically discover candidate behaviors by defining, extracting, and comparing the behaviors of different trained agents.
-\toolName enables us to find behaviors that are influential to at least one model, including specific repo-exploration strategies, the planning and verification patterns, and the verbosity of the reasoning text.
-Our insights also translate to performance gains by various methods, including data selection, agent step synthesis, and behavior-conditioned rollout.
-Results show that our agent step synthesis method improves Qwen3-8B's resolved rate from 11.6\% to 17.6\% on SWE-Bench Verified.
+% \start{Chapter Overview}
+% Most coding agent training methods judge the quality of trajectories based on their final outcome, such as execution results or rubric scores.
+% However, we observe that the effectiveness of training also substantially depends on \emph{how} agents achieve these outcomes within the trajectories.
+% Previous work has manually made hypotheses about which trajectory behaviors influence performance.
+% To find such influential behaviors for \textbf{C}oding \textbf{A}gent \textbf{T}raining more efficiently, we present \toolName, an analysis method to automatically discover candidate behaviors by defining, extracting, and comparing the behaviors of different trained agents.
+% \toolName enables us to find behaviors that are influential to at least one model, including specific repo-exploration strategies, the planning and verification patterns, and the verbosity of the reasoning text.
+% Our insights also translate to performance gains by various methods, including data selection, agent step synthesis, and behavior-conditioned rollout.
+% Results show that our agent step synthesis method improves Qwen3-8B's resolved rate from 11.6\% to 17.6\% on SWE-Bench Verified.
 
 \section{Introduction}
 

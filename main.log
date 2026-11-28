@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.26)  25 NOV 2026 19:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.26)  27 NOV 2026 19:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1165,7 +1165,7 @@ Chapter 1.
 <figs/proposal_intro.pdf, id=1233, 968.61874pt x 588.1975pt>
 File: figs/proposal_intro.pdf Graphic file (type pdf)
 <use figs/proposal_intro.pdf>
-Package pdftex.def Info: figs/proposal_intro.pdf  used on input line 144.
+Package pdftex.def Info: figs/proposal_intro.pdf  used on input line 142.
 (pdftex.def)             Requested size: 393.15178pt x 238.74821pt.
 
 Underfull \vbox (badness 1817) has occurred while \output is active []
@@ -1181,7 +1181,7 @@ Chapter 2.
 [6
 
 ]
-Overfull \hbox (15.29459pt too wide) in paragraph at lines 258--264
+Overfull \hbox (15.29459pt too wide) in paragraph at lines 256--262
 []\T1/qpl/m/n/12 Agent in-fras-truc-ture such as SWE-Agent [[]] and Open-Hands [[]] pro-vide agent-computer
  []
 
@@ -1189,12 +1189,12 @@ Overfull \hbox (15.29459pt too wide) in paragraph at lines 258--264
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7] [8]
-Overfull \hbox (1.56662pt too wide) in paragraph at lines 307--311
+Overfull \hbox (1.56662pt too wide) in paragraph at lines 305--309
 []\T1/qpl/m/n/12 What is miss-ing in both single-task post-training ([]sec-tion 2.2[][]) and cod-ing agent pre-training
  []
 
 [9]
-Overfull \hbox (19.70421pt too wide) in paragraph at lines 313--313
+Overfull \hbox (19.70421pt too wide) in paragraph at lines 311--311
 []\T1/qpl/b/n/17.28 Improving the High-level Plan-ning Abil-ity of Cod-ing Agents 
  []
 
@@ -1352,17 +1352,27 @@ Overfull \hbox (29.14485pt too wide) in paragraph at lines 1180--1186
 
 ) (./part_generalizability.tex [42] [43] [44
 
-] [45]
+]
+Overfull \hbox (2.95612pt too wide) in paragraph at lines 29--30
+[]\T1/qpl/m/n/12 Motivated by this ob-ser-va-tion, in []\T1/qpl/b/n/12 chap-ter 6[][]\T1/qpl/m/n/12 , we in-tro-duce \T1/qpl/m/sc/12 CATRadar\T1/qpl/m/n/12 , an au-to-mated method
+ []
+
+
+Overfull \hbox (24.82964pt too wide) in paragraph at lines 29--30
+\T1/qpl/m/n/12 for iden-ti-fy-ing and an-a-lyz-ing tra-jec-tory prop-er-ties that may af-fect train-ing ef-fec-tive-ness. \T1/qpl/m/sc/12 CATRadar
+ []
+
+[45]
 Chapter 5.
 <HybridGym_figs/intro.pdf, id=2824, 2364.835pt x 573.14125pt>
 File: HybridGym_figs/intro.pdf Graphic file (type pdf)
 <use HybridGym_figs/intro.pdf>
-Package pdftex.def Info: HybridGym_figs/intro.pdf  used on input line 59.
+Package pdftex.def Info: HybridGym_figs/intro.pdf  used on input line 47.
 (pdftex.def)             Requested size: 2364.82927pt x 573.13985pt.
 [46
 
 ]
-Overfull \hbox (22.6206pt too wide) in paragraph at lines 103--106
+Overfull \hbox (22.6206pt too wide) in paragraph at lines 91--94
 []\T1/qpl/m/n/12 We con-duct ex-per-i-ments on three real-world cod-ing agent tasks: SWE-Bench issue-solving [[]],
  []
 
@@ -1373,13 +1383,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <HybridGym_figs/error_analysis.pdf, id=2920, 1004.69794pt x 571.06372pt>
 File: HybridGym_figs/error_analysis.pdf Graphic file (type pdf)
 <use HybridGym_figs/error_analysis.pdf>
-Package pdftex.def Info: HybridGym_figs/error_analysis.pdf  used on input line 164.
+Package pdftex.def Info: HybridGym_figs/error_analysis.pdf  used on input line 152.
 (pdftex.def)             Requested size: 1004.6955pt x 571.06232pt.
  [48] [49 <./HybridGym_figs/error_analysis.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [50]
-Overfull \hbox (9.41856pt too wide) in paragraph at lines 245--247
+Overfull \hbox (9.41856pt too wide) in paragraph at lines 233--235
 [] \T1/qpl/m/n/12 [\T1/qpl/b/n/12 Principle 3\T1/qpl/m/n/12 ] The tasks should re-quire a non-trivial level of rea-son-ing to com-plete. Namely,
  []
 
@@ -1392,20 +1402,20 @@ pdfTeX warning: pdflatex (file ./HybridGym_figs/fig_scaling_law_v2.pdf): PDF inc
 <HybridGym_figs/fig_scaling_law_v2.pdf, id=3021, 416.88448pt x 308.47656pt>
 File: HybridGym_figs/fig_scaling_law_v2.pdf Graphic file (type pdf)
 <use HybridGym_figs/fig_scaling_law_v2.pdf>
-Package pdftex.def Info: HybridGym_figs/fig_scaling_law_v2.pdf  used on input line 374.
+Package pdftex.def Info: HybridGym_figs/fig_scaling_law_v2.pdf  used on input line 362.
 (pdftex.def)             Requested size: 294.8657pt x 218.19145pt.
 [53]
-Overfull \hbox (16.18262pt too wide) in paragraph at lines 399--400
+Overfull \hbox (16.18262pt too wide) in paragraph at lines 387--388
 [][]\T1/qpl/m/n/12 Table 5.4[][] show that Claude-4.5 achieves sub-stan-tially higher suc-cess rates than Qwen2.5Coder-
  []
 
 
-Overfull \hbox (0.32582pt too wide) in paragraph at lines 411--418
+Overfull \hbox (0.32582pt too wide) in paragraph at lines 399--406
 \T1/qpl/b/n/12 Statistics of \T1/qpl/b/sc/12 Hybrid-Gym\T1/qpl/m/n/12 . []Ta-ble 5.5[][] presents the statis-tics of \T1/qpl/m/sc/12 Hybrid-Gym \T1/qpl/m/n/12 and ex-ist-ing datasets.
  []
 
 [54]
-Overfull \hbox (3.5299pt too wide) in paragraph at lines 532--537
+Overfull \hbox (3.5299pt too wide) in paragraph at lines 520--525
 \T1/qpl/b/sc/12 Hybrid-Gym \T1/qpl/b/n/12 Shows Strong Task Trans-fer Per-for-mance\T1/qpl/m/n/12 . Re-sults in []Ta-ble 5.6[][] show that \T1/qpl/m/sc/12 Hybrid-
  []
 
@@ -1416,307 +1426,312 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <HybridGym_figs/fig_combined_bcde.pdf, id=3165, 1417.73352pt x 333.28265pt>
 File: HybridGym_figs/fig_combined_bcde.pdf Graphic file (type pdf)
 <use HybridGym_figs/fig_combined_bcde.pdf>
-Package pdftex.def Info: HybridGym_figs/fig_combined_bcde.pdf  used on input line 597.
+Package pdftex.def Info: HybridGym_figs/fig_combined_bcde.pdf  used on input line 585.
 (pdftex.def)             Requested size: 491.43787pt x 115.52678pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [57] [58 <./HybridGym_figs/fig_combined_bcde.pdf>]
-Overfull \hbox (7.97586pt too wide) in paragraph at lines 641--644
+Overfull \hbox (7.97586pt too wide) in paragraph at lines 629--632
 \T1/qpl/m/n/12 task, LCB is not ef-fec-tive for trans-fer to SWE-bench. This neg-a-tive re-sult sug-gests that repository-
  []
 
 <HybridGym_figs/fig_sampling_teacher_combined.pdf, id=3241, 983.79483pt x 514.11899pt>
 File: HybridGym_figs/fig_sampling_teacher_combined.pdf Graphic file (type pdf)
 <use HybridGym_figs/fig_sampling_teacher_combined.pdf>
-Package pdftex.def Info: HybridGym_figs/fig_sampling_teacher_combined.pdf  used on input line 649.
+Package pdftex.def Info: HybridGym_figs/fig_sampling_teacher_combined.pdf  used on input line 637.
 (pdftex.def)             Requested size: 344.005pt x 179.77174pt.
 [59] [60 <./HybridGym_figs/fig_sampling_teacher_combined.pdf>] [61]
 Chapter 6.
+<CATRadar_figs/agent_behaviors/intro_half.pdf, id=3327, 767.86874pt x 553.06625pt>
+File: CATRadar_figs/agent_behaviors/intro_half.pdf Graphic file (type pdf)
+<use CATRadar_figs/agent_behaviors/intro_half.pdf>
+Package pdftex.def Info: CATRadar_figs/agent_behaviors/intro_half.pdf  used on input line 788.
+(pdftex.def)             Requested size: 294.8657pt x 212.3784pt.
+<CATRadar_figs/agent_behaviors/figure1.pdf, id=3328, 644.27002pt x 572.77176pt>
+File: CATRadar_figs/agent_behaviors/figure1.pdf Graphic file (type pdf)
+<use CATRadar_figs/agent_behaviors/figure1.pdf>
+Package pdftex.def Info: CATRadar_figs/agent_behaviors/figure1.pdf  used on input line 799.
+(pdftex.def)             Requested size: 294.8657pt x 262.14975pt.
 [62
 
 ]
-<CATRadar_figs/agent_behaviors/intro_half.pdf, id=3334, 767.86874pt x 553.06625pt>
-File: CATRadar_figs/agent_behaviors/intro_half.pdf Graphic file (type pdf)
-<use CATRadar_figs/agent_behaviors/intro_half.pdf>
-Package pdftex.def Info: CATRadar_figs/agent_behaviors/intro_half.pdf  used on input line 800.
-(pdftex.def)             Requested size: 294.8657pt x 212.3784pt.
-<CATRadar_figs/agent_behaviors/figure1.pdf, id=3335, 644.27002pt x 572.77176pt>
-File: CATRadar_figs/agent_behaviors/figure1.pdf Graphic file (type pdf)
-<use CATRadar_figs/agent_behaviors/figure1.pdf>
-Package pdftex.def Info: CATRadar_figs/agent_behaviors/figure1.pdf  used on input line 811.
-(pdftex.def)             Requested size: 294.8657pt x 262.14975pt.
 
-Underfull \vbox (badness 4429) has occurred while \output is active []
+LaTeX Warning: Text page 63 contains only floats.
 
- [63 <./CATRadar_figs/agent_behaviors/intro_half.pdf>] [64 <./CATRadar_figs/agent_behaviors/figure1.pdf>]
-<CATRadar_figs/agent_behaviors/framework.pdf, id=3426, 1154.3125pt x 288.07625pt>
+[63 <./CATRadar_figs/agent_behaviors/intro_half.pdf> <./CATRadar_figs/agent_behaviors/figure1.pdf>]
+<CATRadar_figs/agent_behaviors/framework.pdf, id=3422, 1154.3125pt x 288.07625pt>
 File: CATRadar_figs/agent_behaviors/framework.pdf Graphic file (type pdf)
 <use CATRadar_figs/agent_behaviors/framework.pdf>
-Package pdftex.def Info: CATRadar_figs/agent_behaviors/framework.pdf  used on input line 848.
+Package pdftex.def Info: CATRadar_figs/agent_behaviors/framework.pdf  used on input line 836.
 (pdftex.def)             Requested size: 491.43787pt x 122.64836pt.
- [65 <./CATRadar_figs/agent_behaviors/framework.pdf>]
-Overfull \hbox (13.33516pt too wide) in paragraph at lines 913--913
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [64 <./CATRadar_figs/agent_behaviors/framework.pdf>] [65]
+Overfull \hbox (13.33516pt too wide) in paragraph at lines 901--901
  []|\T1/qpl/m/n/12 LEGO| 
  []
 
 
-Overfull \hbox (18.89113pt too wide) in paragraph at lines 913--913
+Overfull \hbox (18.89113pt too wide) in paragraph at lines 901--901
  []|\T1/qpl/m/n/12 Hybrid| 
  []
 
 
-Overfull \hbox (16.16711pt too wide) in paragraph at lines 913--913
+Overfull \hbox (16.16711pt too wide) in paragraph at lines 901--901
  []|\T1/qpl/m/n/12 Others| 
  []
 
 
-Overfull \hbox (7.58716pt too wide) in paragraph at lines 913--913
+Overfull \hbox (7.58716pt too wide) in paragraph at lines 901--901
  []|\T1/qpl/b/n/12 Ours| 
  []
 
-
-Overfull \hbox (0.88963pt too wide) in paragraph at lines 934--939
+[66]
+Overfull \hbox (0.88963pt too wide) in paragraph at lines 922--927
 \T1/qpl/m/n/12 tained step must re-main sup-ported by its pre-ced-ing con-text. Here we pro-vide a non-exhaustive
  []
 
-[66]
 <CATRadar_figs/agent_behaviors/teacher_acc_student_acc.pdf, id=3533, 715.25151pt x 642.69989pt>
 File: CATRadar_figs/agent_behaviors/teacher_acc_student_acc.pdf Graphic file (type pdf)
 <use CATRadar_figs/agent_behaviors/teacher_acc_student_acc.pdf>
-Package pdftex.def Info: CATRadar_figs/agent_behaviors/teacher_acc_student_acc.pdf  used on input line 951.
+Package pdftex.def Info: CATRadar_figs/agent_behaviors/teacher_acc_student_acc.pdf  used on input line 939.
 (pdftex.def)             Requested size: 147.43285pt x 132.48003pt.
 <CATRadar_figs/agent_behaviors/teacher_len_student_acc.pdf, id=3534, 715.2892pt x 642.55806pt>
 File: CATRadar_figs/agent_behaviors/teacher_len_student_acc.pdf Graphic file (type pdf)
 <use CATRadar_figs/agent_behaviors/teacher_len_student_acc.pdf>
-Package pdftex.def Info: CATRadar_figs/agent_behaviors/teacher_len_student_acc.pdf  used on input line 958.
+Package pdftex.def Info: CATRadar_figs/agent_behaviors/teacher_len_student_acc.pdf  used on input line 946.
 (pdftex.def)             Requested size: 147.43285pt x 132.441pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [67]
-Overfull \hbox (3.69502pt too wide) in paragraph at lines 974--979
+ [67 <./CATRadar_figs/agent_behaviors/teacher_acc_student_acc.pdf> <./CATRadar_figs/agent_behaviors/teacher_len_student_acc.pdf>]
+Overfull \hbox (3.69502pt too wide) in paragraph at lines 962--967
 \T1/qpl/m/n/12 solving dataset [[]], and trans-fer learn-ing: the Hybrid-Gym func-tion lo-cal-iza-tion dataset [[]],
  []
 
-[68 <./CATRadar_figs/agent_behaviors/teacher_acc_student_acc.pdf> <./CATRadar_figs/agent_behaviors/teacher_len_student_acc.pdf>]
-Overfull \hbox (31.05351pt too wide) in paragraph at lines 1027--1027
+[68]
+Overfull \hbox (31.05351pt too wide) in paragraph at lines 1015--1015
 []|\T1/qpl/m/n/12 Read \T1/cmtt/m/n/12 core/optimizers/function_marker.py| 
  []
 
 
-Overfull \hbox (13.14659pt too wide) in paragraph at lines 1027--1027
+Overfull \hbox (13.14659pt too wide) in paragraph at lines 1015--1015
 []|[]|  
  []
 
 
-Overfull \hbox (31.05351pt too wide) in paragraph at lines 1027--1027
+Overfull \hbox (31.05351pt too wide) in paragraph at lines 1015--1015
 []|\T1/qpl/m/n/12 Read \T1/cmtt/m/n/12 core/optimizers/function_marker.py| 
  []
 
 
-Overfull \hbox (31.05351pt too wide) in paragraph at lines 1027--1027
+Overfull \hbox (31.05351pt too wide) in paragraph at lines 1015--1015
 []|\T1/qpl/m/n/12 Read \T1/cmtt/m/n/12 core/optimizers/function_marker.py| 
  []
 
 
-Overfull \hbox (7.14659pt too wide) in paragraph at lines 1027--1027
+Overfull \hbox (7.14659pt too wide) in paragraph at lines 1015--1015
 []|[]|  
  []
 
 <CATRadar_figs/agent_behaviors/task_tracker_ablation.pdf, id=3709, 575.11487pt x 307.33696pt>
 File: CATRadar_figs/agent_behaviors/task_tracker_ablation.pdf Graphic file (type pdf)
 <use CATRadar_figs/agent_behaviors/task_tracker_ablation.pdf>
-Package pdftex.def Info: CATRadar_figs/agent_behaviors/task_tracker_ablation.pdf  used on input line 1035.
+Package pdftex.def Info: CATRadar_figs/agent_behaviors/task_tracker_ablation.pdf  used on input line 1023.
 (pdftex.def)             Requested size: 294.8657pt x 157.5792pt.
-
-Underfull \vbox (badness 3138) has occurred while \output is active []
-
- [69] [70 <./CATRadar_figs/agent_behaviors/task_tracker_ablation.pdf>]
-<CATRadar_figs/agent_behaviors/verbosity.pdf, id=3741, 724.62909pt x 478.13852pt>
-File: CATRadar_figs/agent_behaviors/verbosity.pdf Graphic file (type pdf)
-<use CATRadar_figs/agent_behaviors/verbosity.pdf>
-Package pdftex.def Info: CATRadar_figs/agent_behaviors/verbosity.pdf  used on input line 1109.
-(pdftex.def)             Requested size: 294.8657pt x 194.56432pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+ [69 <./CATRadar_figs/agent_behaviors/task_tracker_ablation.pdf>] [70]
+<CATRadar_figs/agent_behaviors/verbosity.pdf, id=3742, 724.62909pt x 478.13852pt>
+File: CATRadar_figs/agent_behaviors/verbosity.pdf Graphic file (type pdf)
+<use CATRadar_figs/agent_behaviors/verbosity.pdf>
+Package pdftex.def Info: CATRadar_figs/agent_behaviors/verbosity.pdf  used on input line 1097.
+(pdftex.def)             Requested size: 294.8657pt x 194.56432pt.
  [71 <./CATRadar_figs/agent_behaviors/verbosity.pdf>] [72]
-Overfull \hbox (9.42491pt too wide) in paragraph at lines 1196--1197
+Overfull \hbox (9.42491pt too wide) in paragraph at lines 1184--1185
 \T1/qpl/m/n/12 We ap-ply the dis-cov-er-ies in Ÿ[]6.3[] through three meth-ods, or-dered by in-creas-ing data-construction
  []
 
-[73] [74]) (./part_usage.tex [75] [76] [77
 
-] [78]
+Underfull \vbox (badness 3039) has occurred while \output is active []
+
+ [73]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [74]) (./part_usage.tex [75] [76
+
+] [77]
 Chapter 7.
-<FenCE_figures/overall.pdf, id=3884, 2066.72125pt x 429.605pt>
+<FenCE_figures/overall.pdf, id=3880, 2066.72125pt x 429.605pt>
 File: FenCE_figures/overall.pdf Graphic file (type pdf)
 <use FenCE_figures/overall.pdf>
-Package pdftex.def Info: FenCE_figures/overall.pdf  used on input line 27.
+Package pdftex.def Info: FenCE_figures/overall.pdf  used on input line 23.
 (pdftex.def)             Requested size: 491.43787pt x 102.15024pt.
-[79
+[78
 
-] [80 <./FenCE_figures/overall.pdf>]
-<FenCE_figures/evaluator_train.pdf, id=4004, 2096.83376pt x 433.62pt>
+] [79 <./FenCE_figures/overall.pdf>]
+<FenCE_figures/evaluator_train.pdf, id=4000, 2096.83376pt x 433.62pt>
 File: FenCE_figures/evaluator_train.pdf Graphic file (type pdf)
 <use FenCE_figures/evaluator_train.pdf>
-Package pdftex.def Info: FenCE_figures/evaluator_train.pdf  used on input line 84.
+Package pdftex.def Info: FenCE_figures/evaluator_train.pdf  used on input line 80.
 (pdftex.def)             Requested size: 491.43787pt x 101.62282pt.
- [81 <./FenCE_figures/evaluator_train.pdf>]
+ [80 <./FenCE_figures/evaluator_train.pdf>]
 Underfull \vbox (badness 8075) has occurred while \output is active []
 
- [82]
-<FenCE_figures/improve_factuality_v2.pdf, id=4086, 2516.40125pt x 656.4525pt>
+ [81]
+<FenCE_figures/improve_factuality_v2.pdf, id=4082, 2516.40125pt x 656.4525pt>
 File: FenCE_figures/improve_factuality_v2.pdf Graphic file (type pdf)
 <use FenCE_figures/improve_factuality_v2.pdf>
-Package pdftex.def Info: FenCE_figures/improve_factuality_v2.pdf  used on input line 139.
+Package pdftex.def Info: FenCE_figures/improve_factuality_v2.pdf  used on input line 135.
 (pdftex.def)             Requested size: 491.43787pt x 128.19302pt.
- [83 <./FenCE_figures/improve_factuality_v2.pdf>] [84] [85]
-Overfull \hbox (0.926pt too wide) in paragraph at lines 301--305
+ [82 <./FenCE_figures/improve_factuality_v2.pdf>] [83] [84]
+Overfull \hbox (0.926pt too wide) in paragraph at lines 297--301
 \T1/qpl/b/n/12 Accuracy of Aug-mented Cri-tique and Source Doc-u-ments\T1/qpl/m/n/12 . With our data aug-men-ta-tion meth-
  []
 
-[86] [87]
-<FenCE_figures/distribution_claims_by_group.pdf, id=4233, 627.95541pt x 399.26038pt>
+[85] [86]
+<FenCE_figures/distribution_claims_by_group.pdf, id=4229, 627.95541pt x 399.26038pt>
 File: FenCE_figures/distribution_claims_by_group.pdf Graphic file (type pdf)
 <use FenCE_figures/distribution_claims_by_group.pdf>
-Package pdftex.def Info: FenCE_figures/distribution_claims_by_group.pdf  used on input line 440.
+Package pdftex.def Info: FenCE_figures/distribution_claims_by_group.pdf  used on input line 436.
 (pdftex.def)             Requested size: 162.17538pt x 103.11073pt.
-<FenCE_figures/percent_refused_responses_by_group.pdf, id=4234, 611.7621pt x 399.26038pt>
+<FenCE_figures/percent_refused_responses_by_group.pdf, id=4230, 611.7621pt x 399.26038pt>
 File: FenCE_figures/percent_refused_responses_by_group.pdf Graphic file (type pdf)
 <use FenCE_figures/percent_refused_responses_by_group.pdf>
-Package pdftex.def Info: FenCE_figures/percent_refused_responses_by_group.pdf  used on input line 445.
+Package pdftex.def Info: FenCE_figures/percent_refused_responses_by_group.pdf  used on input line 441.
 (pdftex.def)             Requested size: 157.2637pt x 102.63554pt.
-<FenCE_figures/percent_facts_by_group.pdf, id=4235, 596.34354pt x 399.26038pt>
+<FenCE_figures/percent_facts_by_group.pdf, id=4231, 596.34354pt x 399.26038pt>
 File: FenCE_figures/percent_facts_by_group.pdf Graphic file (type pdf)
 <use FenCE_figures/percent_facts_by_group.pdf>
-Package pdftex.def Info: FenCE_figures/percent_facts_by_group.pdf  used on input line 450.
+Package pdftex.def Info: FenCE_figures/percent_facts_by_group.pdf  used on input line 446.
 (pdftex.def)             Requested size: 157.2637pt x 105.29175pt.
-<FenCE_figures/facts_by_cat.pdf, id=4236, 759.2271pt x 385.24937pt>
+<FenCE_figures/facts_by_cat.pdf, id=4232, 759.2271pt x 385.24937pt>
 File: FenCE_figures/facts_by_cat.pdf Graphic file (type pdf)
 <use FenCE_figures/facts_by_cat.pdf>
-Package pdftex.def Info: FenCE_figures/facts_by_cat.pdf  used on input line 461.
+Package pdftex.def Info: FenCE_figures/facts_by_cat.pdf  used on input line 457.
 (pdftex.def)             Requested size: 344.005pt x 174.55392pt.
 
 Underfull \vbox (badness 4859) has occurred while \output is active []
 
- [88]
-<FenCE_figures/hyper_param.pdf, id=4248, 354.9605pt x 314.20888pt>
+ [87]
+<FenCE_figures/hyper_param.pdf, id=4244, 354.9605pt x 314.20888pt>
 File: FenCE_figures/hyper_param.pdf Graphic file (type pdf)
 <use FenCE_figures/hyper_param.pdf>
-Package pdftex.def Info: FenCE_figures/hyper_param.pdf  used on input line 493.
+Package pdftex.def Info: FenCE_figures/hyper_param.pdf  used on input line 489.
 (pdftex.def)             Requested size: 196.57214pt x 174.00443pt.
-<FenCE_figures/hyper_param_topk.pdf, id=4249, 331.81978pt x 313.44038pt>
+<FenCE_figures/hyper_param_topk.pdf, id=4245, 331.81978pt x 313.44038pt>
 File: FenCE_figures/hyper_param_topk.pdf Graphic file (type pdf)
 <use FenCE_figures/hyper_param_topk.pdf>
-Package pdftex.def Info: FenCE_figures/hyper_param_topk.pdf  used on input line 500.
+Package pdftex.def Info: FenCE_figures/hyper_param_topk.pdf  used on input line 496.
 (pdftex.def)             Requested size: 184.2892pt x 174.08104pt.
 
-Overfull \hbox (36.7298pt too wide) in paragraph at lines 513--515
+Overfull \hbox (36.7298pt too wide) in paragraph at lines 509--511
 \T1/qpl/m/n/12 Results in []Ta-ble 7.3[][] an-swer (\T1/qpl/b/n/12 RQ2\T1/qpl/m/n/12 ) and show that our method sig-nif-i-cantly im-proves Llama2/Llama3's
  []
 
-[89]
+[88]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [90 <./FenCE_figures/distribution_claims_by_group.pdf> <./FenCE_figures/percent_refused_responses_by_group.pdf> <./FenCE_figures/percent_facts_by_group.pdf> <./FenCE_figures/facts_by_cat.pdf>]
+ [89 <./FenCE_figures/distribution_claims_by_group.pdf> <./FenCE_figures/percent_refused_responses_by_group.pdf> <./FenCE_figures/percent_facts_by_group.pdf> <./FenCE_figures/facts_by_cat.pdf>]
 Underfull \vbox (badness 1215) has occurred while \output is active []
 
- [91 <./FenCE_figures/hyper_param.pdf> <./FenCE_figures/hyper_param_topk.pdf>]
+ [90 <./FenCE_figures/hyper_param.pdf> <./FenCE_figures/hyper_param_topk.pdf>]
 
-LaTeX Warning: Float too large for page by 45.22076pt on input line 709.
+LaTeX Warning: Float too large for page by 45.22076pt on input line 705.
 
 
-LaTeX Warning: Float too large for page by 44.573pt on input line 779.
+LaTeX Warning: Float too large for page by 44.573pt on input line 775.
 
-[92] [93] [94] [95]
+[91] [92] [93] [94]
 Chapter 8.
-<Critic_figs/intro.pdf, id=4641, 367.3725pt x 238.8925pt>
+<Critic_figs/intro.pdf, id=4637, 367.3725pt x 238.8925pt>
 File: Critic_figs/intro.pdf Graphic file (type pdf)
 <use Critic_figs/intro.pdf>
-Package pdftex.def Info: Critic_figs/intro.pdf  used on input line 815.
+Package pdftex.def Info: Critic_figs/intro.pdf  used on input line 811.
 (pdftex.def)             Requested size: 294.8657pt x 191.7558pt.
-[96
+[95
 
 ]
 Underfull \vbox (badness 7433) has occurred while \output is active []
 
- [97 <./Critic_figs/intro.pdf>] [98]
-<Critic_figs/method.pdf, id=4756, 383.4325pt x 390.45876pt>
+ [96 <./Critic_figs/intro.pdf>] [97]
+<Critic_figs/method.pdf, id=4752, 383.4325pt x 390.45876pt>
 File: Critic_figs/method.pdf Graphic file (type pdf)
 <use Critic_figs/method.pdf>
-Package pdftex.def Info: Critic_figs/method.pdf  used on input line 925.
+Package pdftex.def Info: Critic_figs/method.pdf  used on input line 921.
 (pdftex.def)             Requested size: 294.8657pt x 300.28477pt.
- [99] [100 <./Critic_figs/method.pdf>]
+ [98] [99 <./Critic_figs/method.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [101]
-<Critic_figs/DPO.pdf, id=4866, 401.5pt x 408.52625pt>
+ [100]
+<Critic_figs/DPO.pdf, id=4862, 401.5pt x 408.52625pt>
 File: Critic_figs/DPO.pdf Graphic file (type pdf)
 <use Critic_figs/DPO.pdf>
-Package pdftex.def Info: Critic_figs/DPO.pdf  used on input line 997.
+Package pdftex.def Info: Critic_figs/DPO.pdf  used on input line 993.
 (pdftex.def)             Requested size: 294.8657pt x 300.04813pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [102 <./Critic_figs/DPO.pdf>]
-Overfull \hbox (31.32169pt too wide) in paragraph at lines 1101--1110
+ [101 <./Critic_figs/DPO.pdf>]
+Overfull \hbox (31.32169pt too wide) in paragraph at lines 1097--1106
 \T1/qpl/m/n/12 stances whose patch ed-its at least one file also touched by the gold patch [[]]. (iii) $[]$,
  []
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/m/n' instead on input line 1113.
+(Font)              using `T1/cmtt/m/n' instead on input line 1109.
 
 
-Overfull \hbox (0.73047pt too wide) in paragraph at lines 1112--1118
+Overfull \hbox (0.73047pt too wide) in paragraph at lines 1108--1114
 \T1/cmtt/b/n/12 Qwen3-Next-80B-A3B-Instruct \T1/qpl/m/n/12 [[]], \T1/cmtt/b/n/12 GLM-4.7-Flash \T1/qpl/m/n/12 [[]], \T1/cmtt/b/n/12 GPT-OSS-20B\T1/qpl/m/n/12 , \T1/cmtt/b/n/12 GPT-OSS-120B \T1/qpl/m/n/12 [[]],
  []
 
-[103]
+[102]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [104]
-Overfull \hbox (1.11792pt too wide) in paragraph at lines 1155--1159
+ [103]
+Overfull \hbox (1.11792pt too wide) in paragraph at lines 1151--1155
 \T1/qpl/b/n/12 Training Im-proves Per-for-mance Across Dif-fer-ent Critic Model Sizes\T1/qpl/m/n/12 . Rel-a-tive to the matched
  []
 
 
-Overfull \hbox (55.09956pt too wide) in paragraph at lines 1165--1167
+Overfull \hbox (55.09956pt too wide) in paragraph at lines 1161--1163
 \T1/qpl/m/n/12 SWE-Bench, the 8B SFT critic model im-proves the re-solved rate by $\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 0$ \T1/qpl/m/n/12 points on both \T1/cmtt/b/n/12 Qwen3-Next-80B-A3B
  []
 
-[105]
-Overfull \hbox (6.28944pt too wide) in paragraph at lines 1221--1227
+[104]
+Overfull \hbox (6.28944pt too wide) in paragraph at lines 1217--1223
 \T1/qpl/m/n/12 $0.03--$0.04 per in-stance with the 8B SFT critic model, ver-sus $0.17--$0.27 with \T1/cmtt/b/n/12 Claude-Opus-4.6\T1/qpl/m/n/12 .
  []
 
 
-Overfull \hbox (1.82985pt too wide) in paragraph at lines 1221--1227
+Overfull \hbox (1.82985pt too wide) in paragraph at lines 1217--1223
 \T1/cmtt/b/n/12 Qwen3-Next-80B-A3B\T1/qpl/m/n/12 , the 8B SFT critic model Pareto-dominates the ``No Critic'' base-line, which
  []
 
-[106]
-<Critic_figs/pareto_full500.pdf, id=5009, 737.47235pt x 498.94029pt>
+[105]
+<Critic_figs/pareto_full500.pdf, id=5005, 737.47235pt x 498.94029pt>
 File: Critic_figs/pareto_full500.pdf Graphic file (type pdf)
 <use Critic_figs/pareto_full500.pdf>
-Package pdftex.def Info: Critic_figs/pareto_full500.pdf  used on input line 1269.
+Package pdftex.def Info: Critic_figs/pareto_full500.pdf  used on input line 1265.
 (pdftex.def)             Requested size: 294.8657pt x 199.48883pt.
- [107] [108 <./Critic_figs/pareto_full500.pdf>] [109]) [110]
+ [106] [107 <./Critic_figs/pareto_full500.pdf>] [108]) [109]
 Chapter 9.
 
-LaTeX Warning: Reference `sec:critique-analysis' on page 111 undefined on input line 354.
+LaTeX Warning: Reference `sec:critique-analysis' on page 110 undefined on input line 352.
 
 
-LaTeX Warning: Reference `sec:critique-advanced-sft' on page 111 undefined on input line 354.
+LaTeX Warning: Reference `sec:critique-advanced-sft' on page 110 undefined on input line 352.
 
 
-LaTeX Warning: Reference `sec:critique-dpo' on page 111 undefined on input line 356.
+LaTeX Warning: Reference `sec:critique-dpo' on page 110 undefined on input line 354.
 
-[111
+[110
 
-] (./part_appendices.tex [112] [113
+] (./part_appendices.tex [111] [112
 
 ]
 Appendix A.
@@ -1725,7 +1740,7 @@ Overfull \hbox (7.93712pt too wide) in paragraph at lines 21--24
 \T1/qpl/m/n/12 mod-els: Qwen2.5Coder-7B [[]], Qwen3-4B, and Qwen3-8B [[]] and 8 teacher mod-els: Claude-
  []
 
-[114
+[113
 
 ]
 
@@ -1736,16 +1751,16 @@ See the caption package documentation for explanation.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [115]
+ [114]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 80.
 See the caption package documentation for explanation.
 
-[116]
+[115]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [117
+ [116
 
 ]
 
@@ -1753,21 +1768,21 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 150.
 See the caption package documentation for explanation.
 
-[118]
-<CATRadar_figs/agent_behaviors/teacher_expo_len_student_acc.pdf, id=5183, 715.25151pt x 642.69989pt>
+[117]
+<CATRadar_figs/agent_behaviors/teacher_expo_len_student_acc.pdf, id=5179, 715.25151pt x 642.69989pt>
 File: CATRadar_figs/agent_behaviors/teacher_expo_len_student_acc.pdf Graphic file (type pdf)
 <use CATRadar_figs/agent_behaviors/teacher_expo_len_student_acc.pdf>
 Package pdftex.def Info: CATRadar_figs/agent_behaviors/teacher_expo_len_student_acc.pdf  used on input line 177.
 (pdftex.def)             Requested size: 113.98419pt x 102.4222pt.
- [119
+ [118
 
  <./CATRadar_figs/agent_behaviors/teacher_expo_len_student_acc.pdf>]
-<CATRadar_figs/agent_behaviors/verbosity_text_only.pdf, id=5271, 725.54565pt x 478.2425pt>
+<CATRadar_figs/agent_behaviors/verbosity_text_only.pdf, id=5267, 725.54565pt x 478.2425pt>
 File: CATRadar_figs/agent_behaviors/verbosity_text_only.pdf Graphic file (type pdf)
 <use CATRadar_figs/agent_behaviors/verbosity_text_only.pdf>
 Package pdftex.def Info: CATRadar_figs/agent_behaviors/verbosity_text_only.pdf  used on input line 246.
 (pdftex.def)             Requested size: 393.15178pt x 259.14467pt.
- [120] [121] [122 <./CATRadar_figs/agent_behaviors/verbosity_text_only.pdf>]
+ [119] [120] [121 <./CATRadar_figs/agent_behaviors/verbosity_text_only.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 286--303
 
  []
@@ -1787,20 +1802,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 305--321
 
  []
 
-[123]
+[122]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [124]
+ [123]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [125] [126]
+ [124] [125]
 Appendix B.
-<Critic_figs/analysis_categorization.pdf, id=5404, 2063.43701pt x 971.27791pt>
+<Critic_figs/analysis_categorization.pdf, id=5400, 2063.43701pt x 971.27791pt>
 File: Critic_figs/analysis_categorization.pdf Graphic file (type pdf)
 <use Critic_figs/analysis_categorization.pdf>
 Package pdftex.def Info: Critic_figs/analysis_categorization.pdf  used on input line 405.
 (pdftex.def)             Requested size: 491.43787pt x 231.31818pt.
-<Critic_figs/analysis_guidance.pdf, id=5405, 1050.8058pt x 398.9304pt>
+<Critic_figs/analysis_guidance.pdf, id=5401, 1050.8058pt x 398.9304pt>
 File: Critic_figs/analysis_guidance.pdf Graphic file (type pdf)
 <use Critic_figs/analysis_guidance.pdf>
 Package pdftex.def Info: Critic_figs/analysis_guidance.pdf  used on input line 412.
@@ -1810,7 +1825,7 @@ Overfull \hbox (21.9996pt too wide) in paragraph at lines 425--426
 \T1/qpl/b/n/12 Sampling and serv-ing\T1/qpl/m/n/12 . Open-weight mod-els are served with vLLM[][][] on $\OT1/cmr/m/n/12 8\OMS/cmsy/m/n/12 ^^B$\T1/qpl/m/n/12 L40S; \T1/cmtt/b/n/12 Claude-Opus-4.6
  []
 
-[127
+[126
 
 
 ]
@@ -1818,33 +1833,33 @@ Overfull \hbox (29.88336pt too wide) in paragraph at lines 434--435
 \T1/qpl/m/n/12 SWE-Bench repos-i-to-ries (dis-joint from SWE-Bench at the in-stance level), query-ing \T1/cmtt/b/n/12 Claude-Opus-4.6
  []
 
-[128 <./Critic_figs/analysis_categorization.pdf>]
+[127 <./Critic_figs/analysis_categorization.pdf>]
 Underfull \vbox (badness 2150) has occurred while \output is active []
 
- [129 <./Critic_figs/analysis_guidance.pdf>]
+ [128 <./Critic_figs/analysis_guidance.pdf>]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 475.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
-) [130{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+) [129{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [131] [132]
+ [130] [131]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [132]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [133]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [134]
 Overfull \hbox (50.10085pt too wide) in paragraph at lines 733--744
  [][] 
  []
 
-[135] [136]
+[134] [135]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 793.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [137]
+ [136]
 Overfull \hbox (45.0306pt too wide) in paragraph at lines 849--850
 \T1/qpl/m/n/12 ($\OML/cmm/m/it/12 ^^Z[]\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 00$\T1/qpl/m/n/12 , re-solved): \T1/cmtt/b/n/12 Claude-Opus-4.6 \T1/qpl/m/n/12 sup-plies the be-fore/after blocks for \T1/cmtt/b/n/12 CheckboxInput.get_context
  []
@@ -1859,7 +1874,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 851--851
 []\T1/qpl/m/n/12 Listing B.4: |\T1/cmtt/b/n/12 Claude-Opus-4.6 \T1/qpl/m/n/12 teacher (de-tailed prompt) at agent step $\OT1/cmr/m/n/12 6$ \T1/qpl/m/n/12 on
  []
 
-[138]
+[137]
 Underfull \hbox (badness 10000) in paragraph at lines 877--877
 []\T1/qpl/m/n/12 Listing B.5: |\T1/cmtt/b/n/12 Claude-Opus-4.6 \T1/qpl/m/n/12 teacher (de-tailed prompt) at agent step $\OT1/cmr/m/n/12 6$ \T1/qpl/m/n/12 on
  []
@@ -1869,7 +1884,7 @@ Underfull \hbox (badness 1509) in paragraph at lines 877--877
 \T1/cmtt/b/n/12 sphinx-doc__sphinx-7590\T1/qpl/m/n/12 . Bul-let $\OT1/cmr/m/n/12 4$\T1/qpl/m/n/12 's ``or if a new ... class is needed'' is the wrong
  []
 
-[139] [140]) (./main.bbl
+[138] [139]) (./main.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 20--23
 []\T1/qpl/m/n/12 Anthropic.  Claude-3.5, 2024.  URL []$\T1/cmtt/b/n/12 https : / / www . anthropic . com / news /
  []
@@ -1897,7 +1912,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--43
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [141
+ [140
 
 
 
@@ -1919,10 +1934,10 @@ Underfull \hbox (badness 7308) in paragraph at lines 68--71
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [142]
+ [141]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [143]
+ [142]
 Underfull \hbox (badness 1122) in paragraph at lines 143--148
 \T1/qpl/m/n/12 on strong-weak model col-lab-o-ra-tion for repo-level code gen-er-a-tion.  In Chris-tos
  []
@@ -1930,12 +1945,15 @@ Underfull \hbox (badness 1122) in paragraph at lines 143--148
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [144]
+ [143]
 Underfull \hbox (badness 4595) in paragraph at lines 201--203
 []\T1/qpl/m/n/12 Hamel Hu-sain, Ho-Hsiang Wu, Tiferet Gazit, Mil-tiadis Al-la-ma-nis, and Marc
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [144]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [145]
@@ -1951,14 +1969,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [149]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [150]
 Underfull \hbox (badness 10000) in paragraph at lines 425--428
 []\T1/qpl/m/n/12 OpenAI.  In-tro-duc-ing gpt-oss, 2025.  URL []$\T1/cmtt/b/n/12 https : / / openai . com / index /
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [150]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [151]
@@ -1974,14 +1992,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [155]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [156]
 Underfull \hbox (badness 1242) in paragraph at lines 613--617
 []\T1/qpl/m/n/12 Yuxiang Wei, Olivier Duchenne, Jade Copet, Quentin Car-bon-neaux, LING-MING
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [156]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [157]
@@ -1990,10 +2008,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [158]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [159]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [160]) [161] (./main.aux)
+ [159]) [160] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -2004,8 +2019,8 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 39E5F786472DEBFD4FCBECB471E1D88C;35667.
  ) 
 Here is how much of TeX's memory you used:
- 44305 strings out of 476025
- 913195 string characters out of 5790017
+ 44304 strings out of 476025
+ 913187 string characters out of 5790017
  2264388 words of memory out of 5000000
  63214 multiletter control sequences out of 15000+600000
  609928 words of font info for 131 fonts, out of 8000000 for 9000
@@ -2030,10 +2045,10 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplbi.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (179 pages, 22128841 bytes).
+Output written on main.pdf (178 pages, 22127505 bytes).
 PDF statistics:
- 6493 PDF objects out of 7423 (max. 8388607)
- 4025 compressed objects within 41 object streams
- 877 named destinations out of 1000 (max. 500000)
+ 6488 PDF objects out of 7423 (max. 8388607)
+ 4021 compressed objects within 41 object streams
+ 876 named destinations out of 1000 (max. 500000)
  1363 words of extra memory for PDF output out of 10000 (max. 10000000)
 

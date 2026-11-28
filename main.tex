@@ -83,21 +83,19 @@ Dan Roth
 % \pagestyle{plain} % for toc, was empty
 
 \begin{abstract}
-With the development of AI techniques, the role of AI in software development is shifting from script-level, static code generation to project-level coding agents.
-This dissertation research focuses on the fundamental challenges of training coding agents: the high cost of constructing training data, the difficulty of handling diverse use cases simutaneously, and the performance saturation with respect to data scale.
-To this end, this thesis is structured around three parts: (1) constructing scalable training data, (2) improving the generalizability of coding agents, and (3) training critic models for coding agents.
+As AI systems evolve from generating isolated code snippets to acting as coding agents within entire software projects, their effectiveness increasingly depends on how they are trained and supported. 
+This dissertation investigates three complementary directions for coding agent training with synthetic data approaches: (1) constructing scalable synthetic training data, (2) understanding what makes training data effective, and (3) training specialized auxiliary models to assist coding agents.
 
 One major bottleneck of scaling coding agent training data is the construction of training environments, which are abstractions of real-world coding setups.
 Building the environments can require substantial human or agent effort, for example, when the environments support the executability and unit testing of an entire code repository. 
 In our work, we aim to find an appropriate level of abstraction for training environments, with the goal of simplifying their construction while preserving training effectiveness.
 
-Building on this lightweight environment construction process, we extend coding agents' abilities to diverse downstream coding tasks and conduct systematic analyses on the generalizability of coding agents across different tasks, which is still under-explored in existing research on both single-task post-training or coding agent pre-training. In particular, we develop principles for designing synthetic training tasks and characterize atomic abilities that transfer across coding tasks.
+While these methods improve the scalability of training data under a given set of data specifications, we next investigate how to design the data specifications to improve downstream performance. 
+We study both the choice of training tasks and the properties of training trajectories. We develop principles for synthetic task design that enable agents to generalize to diverse downstream tasks absent from training. We further show that successful trajectories for the same tasks can differ substantially in training effectiveness, and develop an automated method to identify trajectory properties that can guide improvements to training data.
 
-Even with these advances in coding agent training, empirically, we observe that for a specific model, additional training data yields little or no further gain after a certain point.
-Our analysis further shows that the performance is substantially bottlenecked by the limited high-level planning ability: producing intermediate steps about what should be done and in what order, as opposed to low-level implementation: generating concrete executable actions to perform the intermediate steps.
-In our work, we aim to train an additional critic model that specializes in planning and dynamically provides guidance to the coding agent in inference.
+Even with these advances, coding agents must master a broad combination of abilities, and their performance in individual abilities may remain limited. We therefore explore training small auxiliary critic models that specialize in a single ability to assist larger models. We first demonstrate this approach in factual text generation, then extend it to high-level planning for coding agents. Specifically, through supervised fine-tuning and preference optimization, we train critic models that provide guidance at inference time and substantially improve larger coding agents’ performance.
 
-Together, this thesis aims to build scalable data to train effective coding agents and critic models that generalize across diverse coding tasks.
+Together, this thesis aims to design training data specifications, build scalable training environments, and develop auxiliary models for coding agents.
 \end{abstract}
 
 % \begin{acknowledgments}

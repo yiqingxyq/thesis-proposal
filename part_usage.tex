@@ -5,17 +5,13 @@
 
 
 \start{Overview of Part~\ref{part:usage}}
-In \autoref{part:scalability} and \autoref{part:generalizability}, we aim to construct synthetic data to improve coding agent effectiveness. 
-However, empirically, we still observe that the performance satuates with respect to data scale after a certain point, and the high-level planning ability remains a major bottleneck.
+\autoref{part:scalability} and \autoref{part:generalizability} focus on constructing synthetic data to improve individual coding agents. However, while coding agents are optimized for a combination of abilities, their performance in any individual ability, such as high-level planning or low-level implementation, may still be far from optimal. In this part, instead of training a large coding agent model, we explore training small auxiliary models that specialize in a single ability to assist larger coding agents. Such multi-LLM collaboration may yield stronger overall performance on the targeted ability while limiting the computational resources required for training.
 
-To address this limitation, in this part, we develop a critic model to provide guidance to the coding agent at inference time. 
-While the main coding agent is trained to jointly balance multiple abilities, including high-level planning and low-level implementation, the critic model is specialized for planning.
-Since the optimum for jointly optimizing multiple abilities does not necessarily align with the optimum for planning, training a specialized critic model may lead to stronger planning performance and, in turn, more effective guidance for the coding agent.
+We investigate \textbf{critic models} as an example of this approach. A critic model provides textual feedback to help the main model identify problems and improve its responses or actions. 
 
-To demonstrate the utility of critic model, in \autoref{chap:fence}, we show that a critic model can improve the factuality of a generator model by either interacting with it in inference or providing feedback to assist training. We further improve the effectiveness of the critic model by constructing tailored training data.
+\textbf{\autoref{chap:fence}} first demonstrates this approach in factual text generation. We train a critic model specialized in factuality evaluation using public datasets augmented with textual critiques and diverse knowledge sources. Experiments show that the critic model improves a generator’s factuality both by providing feedback at inference time and by guiding the construction of training data.
 
-When it comes to the domain of coding agent, in \autoref{chap:critique-training}, we first show that using a frontier model (e.g., Claude) to provide critique during inference substantially improves the correctness of a coding agent. Then we distill a more cost-efficient critic model by constructing synthetic supervised-finetuning training data. To further improve its effectiveness, we propose a method to construct direct preference optimization (DPO) training data, focusing on its gap between the frontier critic model.
-
+\textbf{\autoref{chap:critique-training}} further extends this approach to coding agents, with a critic model specialized in high-level planning for coding tasks. We develop a two-stage training framework. First, we use a frontier model to generate critiques for supervised fine-tuning (SFT). We find that the resulting critic struggles to provide high-quality guidance for subsequent steps. To address this limitation, we use a frontier model to evaluate the correctness and clarity of its guidance and construct preference pairs for direct preference optimization (DPO). Experiments show that our fine-tuned 4B and 8B critics substantially improve the performance of six larger coding agents.
 
 
 \chapter{Improving Generator Factuality by Training a Critic Model}
